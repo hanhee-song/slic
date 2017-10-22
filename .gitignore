@@ -17,3 +17,5 @@
 /yarn-error.log
 
 .byebug_history
+/app/assets/javscripts/bundle.js
+/app/assets/javscripts/bundle.js.map

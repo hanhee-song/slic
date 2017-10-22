@@ -1,6 +1,6 @@
 # MVP List
 
-... is a Slack clone that allows users to create channels, DMs, and group chats to message other users.
+Slic is a Slack clone that allows users to create channels, DMs, and group chats to message other users.
 
 #### 1. User CRUD and guest login
 

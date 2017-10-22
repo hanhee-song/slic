@@ -9,7 +9,7 @@
 
 ![session form wireframe](https://raw.githubusercontent.com/hanhee-song/slic/master/docs/Screen%20Shot%202017-10-21%20at%2014.19.40.png)
 
-### Chat main
+### Workspace main
 
 ![chat main wireframe](https://raw.githubusercontent.com/hanhee-song/slic/master/docs/Screen%20Shot%202017-10-21%20at%2014.19.52.png)
 

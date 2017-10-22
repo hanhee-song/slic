@@ -37,3 +37,8 @@
   * UserIndex
   * UserSearch
   * UserIndex
+
+#### Message Thread
+* MessageThread + container
+  * MessageIndex
+  * MessageForm

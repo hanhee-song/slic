@@ -23,12 +23,14 @@
 * ```body```: string, not null
 * ```author_id```: integer, not null, indexed, foreign_key
 * ```channel_id```: integer, not null, indexed, foreign_key
+* ```parent_message_id```: integer, indexed, foreign_key
 * ```created_at```: datetime, not null
 * ```updated_at```: datetime, not null
 
-```author_id``` references ```users```
 
-```channel_id``` references ```channels```
+* ```author_id``` references ```users```
+* ```channel_id``` references ```channels```
+* ```parent_message_id``` references ```messages```
 
 #### Channel Subscriptions
 * ```id```: integer, not null, primary key
@@ -38,6 +40,6 @@
 * ```created_at```: datetime, not null
 * ```updated_at```: datetime, not null
 
-```user_id``` references ```users```
 
-```channel_id``` references ```channels```
+* ```user_id``` references ```users```
+* ```channel_id``` references ```channels```

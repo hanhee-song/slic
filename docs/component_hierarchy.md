@@ -11,11 +11,29 @@
 
 #### Workspace
 * Sidebar + container
-  * Dropdown + container
-    * features tbd - if I have time
+  * CurrentUserShow + container
+    * UserForm + container
   * ChannelIndex + container
     * ChannelIndexItem
 * Header + container
 * MessagesIndex + container
   * MessageIndexItem
   * MessageForm
+
+#### Channel Sidebar
+* ChannelShow + container
+  * ChannelInfo
+  * UserIndex
+    * UserIndexItem
+
+#### Channel New
+* ChannelForm + container
+  * UserSearch
+  * UserIndex
+    * UserIndexItem
+
+#### DM New
+* DMForm + container
+  * UserIndex
+  * UserSearch
+  * UserIndex

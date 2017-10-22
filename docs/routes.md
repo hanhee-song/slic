@@ -36,3 +36,4 @@
 * ```/get-started``` - sign up page
 * ```/sign-in``` - sign in page
 * ```/channel/:channel_id``` - channel at :channel_id
+* ```/channel/:channel_id/details``` - details panel

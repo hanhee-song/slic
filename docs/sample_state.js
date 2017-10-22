@@ -42,14 +42,16 @@
         body: 'asdf',
         user_id: 1,
         channel_id: 1,
-        time: timestamp
+        time: timestamp,
+        child_comment_ids: [6, 7],
       },
       5: {
         id: 5
         body: 'asdf',
         user_id: 1,
         channel_id: 1,
-        time: timestamp
+        time: timestamp,
+        child_comment_ids: []
       }
     }
   },
@@ -57,7 +59,8 @@
   ui: {
     dropdown: [],
     loading: true,
-    currentChannel: 1
+    currentChannel: 1,
+    modal: true,
   }
   
   errors: {

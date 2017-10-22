@@ -43,7 +43,7 @@
         user_id: 1,
         channel_id: 1,
         time: timestamp,
-        child_comment_ids: [6, 7],
+        child_message_ids: [6, 7],
       },
       5: {
         id: 5
@@ -51,7 +51,7 @@
         user_id: 1,
         channel_id: 1,
         time: timestamp,
-        child_comment_ids: []
+        child_message_ids: []
       }
     }
   },

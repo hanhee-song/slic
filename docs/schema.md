@@ -27,6 +27,7 @@
 * ```created_at```: datetime, not null
 * ```updated_at```: datetime, not null
 
+-
 
 * ```author_id``` references ```users```
 * ```channel_id``` references ```channels```
@@ -40,6 +41,7 @@
 * ```created_at```: datetime, not null
 * ```updated_at```: datetime, not null
 
+-
 
 * ```user_id``` references ```users```
 * ```channel_id``` references ```channels```

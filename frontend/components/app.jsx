@@ -1,7 +1,7 @@
 import React from 'react';
 import { AuthRoute } from '../util/route_util';
 import SessionFormContainer from './session/session_form_container';
-import Navbar from './navbar/navbar';
+import NavbarContainer from './navbar/navbar_container';
 import { Switch } from 'react-router';
 
 import WelcomePageContainer from './welcome_page/welcome_page_container';
@@ -9,7 +9,7 @@ import WelcomePageContainer from './welcome_page/welcome_page_container';
 const App = () => {
   return (
     <section>
-      <Navbar />
+      <NavbarContainer />
       <Switch>
         <AuthRoute
           component={SessionFormContainer}

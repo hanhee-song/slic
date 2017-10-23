@@ -10,6 +10,7 @@ const Navbar = (props) => {
         </div>
         
         <ul className="nav-buttons">
+          <li className="nav-button"><button onClick={props.logout}>Sign out</button></li>
           <li className="nav-button"><Link to="/">About Me</Link></li>
           <li className="nav-button"><Link to="/get-started">Sign Up</Link></li>
           <li className="nav-button"><Link to="/login">Log In</Link></li>

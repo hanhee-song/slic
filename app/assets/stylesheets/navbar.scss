@@ -1,0 +1,54 @@
+/* NAVBAR */
+
+.navbar-container {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+}
+
+.navbar {
+  font-family: 'Raleway', sans-serif;
+  color: grey;
+  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  display: inline;
+  width: 100px;
+  height: 30px;
+  background-color: #eee;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-button {
+  padding: 10px;
+  margin-right: 30px;
+  line-height: 1.1em;
+}
+
+.nav-button:last-of-type {
+  border-radius: 5px;
+  border: 1px solid #333;
+}
+
+/* TODO: make the button effect */
+/*.nav-button:last-of-type:hover {
+  border: 1px solid #
+}*/
+
+@media (max-width: 800px) {
+  .nav-buttons {
+    width: 60%;
+  }
+  
+  .nav-button {
+    margin-right: 3%;
+  }
+}

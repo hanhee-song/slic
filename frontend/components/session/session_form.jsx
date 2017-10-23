@@ -37,7 +37,8 @@ class SessionForm extends React.Component {
         <input
           type="text"
           value={this.state.email}
-          onChange={this.handleChange("email")} />
+          onChange={this.handleChange("email")}
+          placeholder="Email Address"/>
       );
     }
     return (
@@ -48,11 +49,13 @@ class SessionForm extends React.Component {
         <input
           type="text"
           value={this.state.username}
-          onChange={this.handleChange("username")} />
+          onChange={this.handleChange("username")}
+          placeholder="Username"/>
         <input
           type="password"
           value={this.state.password}
-          onChange={this.handleChange("password")} />
+          onChange={this.handleChange("password")}
+          placeholder="Password"/>
         <input
           type="submit"
           value="submit" />

@@ -34,7 +34,8 @@ class WelcomePage extends React.Component {
           <input
             type="text"
             value={this.state.email}
-            onChange={this.handleChange} />
+            onChange={this.handleChange}
+            placeholder="Email Address"/>
           
           <input
             type="submit"

@@ -4,6 +4,7 @@ class WelcomePage extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = { email: props.email };
   }
   
@@ -14,7 +15,7 @@ class WelcomePage extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     if (nextProps.email) {
-      this.props.history.push('/');
+      this.props.history.push('/get-started');
     }
   }
   

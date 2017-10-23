@@ -20,6 +20,7 @@ const SessionReducer = (state = initialState, action) => {
     case RECEIVE_EMAIL:
       newState = Object.assign({}, state);
       newState.email = action.email;
+      return newState;
     default:
       return state;
   }

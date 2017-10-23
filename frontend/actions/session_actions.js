@@ -2,6 +2,7 @@ import * as SessionApiUtil from '../util/session_api_util';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const RECEIVE_EMAIL = "RECEIVE_EMAIL";
 
 export const receiveCurrentUser = (currentUser) => {
   return {
@@ -14,6 +15,13 @@ export const receiveSessionErrors = (errors) => {
   return {
     type: RECEIVE_SESSION_ERRORS,
     errors,
+  };
+};
+
+export const receiveEmail = (email) => {
+  return {
+    type: RECEIVE_EMAIL,
+    email,
   };
 };
 

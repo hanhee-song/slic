@@ -5,10 +5,12 @@ import SessionForm from './session_form';
 const mapStateToProps = (state, ownProps) => {
   const formType = ownProps.location.pathname === 'login' ?
     'login' : 'signup';
+  const email = state.session.email ? state.session.email : "";
   return {
     loggedIn: Boolean(state.session.currentUser),
     currentUser: state.currentUser,
     formType: formType,
+    email: email
   };
 };
 

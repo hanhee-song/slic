@@ -11,12 +11,13 @@ class WelcomePage extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.receiveEmail(this.state.email);
+    this.props.history.push('/get-started');
   }
   
   componentWillReceiveProps(nextProps) {
-    if (nextProps.email) {
-      this.props.history.push('/get-started');
-    }
+    // if (nextProps.email) {
+    //   this.props.history.push('/get-started');
+    // }
   }
   
   handleChange(e) {

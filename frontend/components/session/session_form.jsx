@@ -3,13 +3,17 @@ import React from 'react';
 class SessionForm extends React.Component {
   constructor (props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = {
+      email: props.email,
+      username: "",
+      password: "",
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
-      this.props.history.push('/');
+      this.props.history.push('/you-logged-in');
     }
   }
   
@@ -30,6 +34,10 @@ class SessionForm extends React.Component {
     return (
       <form
         onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.email}
+          onChange={this.handleChange("email")} />
         <input
           type="text"
           value={this.state.username}

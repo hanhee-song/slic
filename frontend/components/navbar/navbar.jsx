@@ -5,6 +5,7 @@ const Navbar = (props) => {
   return (
     <div>
       <div>
+        <Link to="/">LOGO</Link>
         <Link to="/get-started">Sign Up</Link>
         <Link to="/login">Log In</Link>
       </div>

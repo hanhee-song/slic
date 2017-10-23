@@ -52,3 +52,21 @@
     margin-right: 3%;
   }
 }
+
+
+.navbar input[type="button"] {
+  background-color: #383aa5;
+}
+
+.navbar a {
+  transition: color .25s ease;
+  -webkit-transition: color .25s ease;
+}
+
+.navbar a:hover {
+  color: #262770;
+}
+
+.navbar * {
+  letter-spacing: 1px;
+}

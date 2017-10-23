@@ -16,6 +16,9 @@
 /node_modules
 /yarn-error.log
 
+node_modules/
+bundle.js
+bundle.js.map
 .byebug_history
-/app/assets/javscripts/bundle.js
-/app/assets/javscripts/bundle.js.map
+.DS_Store
+npm-debug.log

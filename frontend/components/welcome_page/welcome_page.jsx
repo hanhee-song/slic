@@ -26,21 +26,41 @@ class WelcomePage extends React.Component {
   
   render () {
     return (
-      <div>
-        Welcome Page Form
-        <form
-          onSubmit={this.handleSubmit}>
+      <div className="main">
+        <div className="main-left">
+          <img src="#" alt="" />
+        </div>
+        
+        <div className="main-right">
+          <div className="main-header">
+            Where It Happens
+          </div>
+          <div className="main-body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+        
+          <form
+            className="main-form"
+            onSubmit={this.handleSubmit}>
+            
+            <input
+              className="main-signup-input"
+              type="text"
+              value={this.state.email}
+              onChange={this.handleChange}
+              placeholder="Email Address"/>
+            
+            <input
+              className="main-signup-button"
+              type="submit"
+              value="Get Started" />
+          </form>
           
-          <input
-            type="text"
-            value={this.state.email}
-            onChange={this.handleChange}
-            placeholder="Email Address"/>
-          
-          <input
-            type="submit"
-            value="Get Started" />
-        </form>
+          <div className="main-signin">
+            
+          </div>
+        </div>
+        
       </div>
     );
   }

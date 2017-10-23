@@ -3,7 +3,7 @@ import WelcomePage from './welcome_page';
 import { receiveEmail } from '../../actions/session_actions';
 
 const mapStateToProps = (state) => {
-  let email = state.session.email ? state.session.email : null;
+  let email = state.session.email ? state.session.email : "";
   return {
     email: email,
   };

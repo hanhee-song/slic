@@ -25,6 +25,7 @@ class WelcomePage extends React.Component {
   render () {
     return (
       <div>
+        Welcome Page Form
         <form
           onSubmit={this.handleSubmit}>
           
@@ -34,7 +35,7 @@ class WelcomePage extends React.Component {
             onChange={this.handleChange} />
           
           <input
-            type="Submit"
+            type="submit"
             value="Get Started" />
         </form>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+// import { Route } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor (props) {
@@ -30,14 +31,20 @@ class SessionForm extends React.Component {
   }
   
   render () {
-    
-    return (
-      <form
-        onSubmit={this.handleSubmit}>
+    let email;
+    if (this.props.formType === "/signup") {
+      email = (
         <input
           type="text"
           value={this.state.email}
           onChange={this.handleChange("email")} />
+      );
+    }
+    return (
+      <form
+        onSubmit={this.handleSubmit}>
+        
+        {email}
         <input
           type="text"
           value={this.state.username}

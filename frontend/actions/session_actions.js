@@ -29,8 +29,8 @@ export const signup = (user) => {
   return (dispatch) => {
     return SessionApiUtil.signup(user)
       .then(
-        (user) => receiveCurrentUser(user),
-        (errors) => receiveSessionErrors(errors)
+        (user) => dispatch(receiveCurrentUser(user)),
+        (errors) => dispatch(receiveSessionErrors(errors))
       );
   };
 };
@@ -39,8 +39,8 @@ export const login = (user) => {
   return (dispatch) => {
     return SessionApiUtil.login(user)
       .then(
-        (user) => receiveCurrentUser(user),
-        (errors) => receiveSessionErrors(errors)
+        (user) => dispatch(receiveCurrentUser(user)),
+        (errors) => dispatch(receiveSessionErrors(errors))
       );
   };
 };
@@ -49,8 +49,8 @@ export const logout = () => {
   return (dispatch) => {
     return SessionApiUtil.logout()
       .then(
-        () => receiveCurrentUser(null),
-        (errors) => receiveSessionErrors(errors)
+        () => dispatch(receiveCurrentUser(null)),
+        (errors) => dispatch(receiveSessionErrors(errors))
       );
   };
 };

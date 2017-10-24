@@ -44,7 +44,13 @@ class SessionForm extends React.Component {
     }
     
     const header = this.props.formType === "/signup" ?
-      "Create an Account" : "Log In";
+      "Create an Account" : "Welcome back";
+    
+    const button = this.props.formType === "/signup" ?
+      "GET STARTED" : "SIGN IN";
+    
+    debugger;
+    // this.props.errors
     
     return (
       <div className="session-container">
@@ -72,7 +78,7 @@ class SessionForm extends React.Component {
           <input
             className="session-button"
             type="submit"
-            value="GET STARTED" />
+            value={button} />
         </form>
         
       </div>

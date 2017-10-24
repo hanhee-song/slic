@@ -14,8 +14,12 @@ const UIReducer = (state = initialState, action) => {
       newState.dropdown = action.dropdown;
       return newState;
     case CLEAR_DROPDOWN:
-      return null;
+      newState = Object.assign({}, state);
+      newState.dropdown = null;
+      return newState;
     default:
       return state;
   }
 };
+
+export default UIReducer;

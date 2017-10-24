@@ -1,6 +1,7 @@
 import React from 'react';
 import ChannelItemContainer from './channel_item_container';
 import { Link } from 'react-router-dom';
+import ChannelFormContainer from './channel_form_container';
 
 class ChannelIndex extends React.Component {
   
@@ -8,7 +9,18 @@ class ChannelIndex extends React.Component {
     this.props.fetchChannels();
   }
   
+  handleNewChannel() {
+    this.props.receiveDropdown("newChannel");
+  }
+  
   render () {
+    
+    let ChannelFormContainer;
+    if (this.props.dropdown === "newChannel") {
+      ChannelFormContainer = (
+        <ChannelFormContainer />
+      );
+    }
     
     const channels = this.props.channels.map((channel) => (
       <ChannelItemContainer
@@ -20,7 +32,7 @@ class ChannelIndex extends React.Component {
       <div>
         
         {channels}
-        <Link to={`/channels/:channelId/new`}>hi</Link>
+        {ChannelFormContainer}
       </div>
     );
   }

@@ -10,6 +10,6 @@ export const receiveDropdown = (dropdown) => {
 
 export const clearDropdown = () => {
   return {
-    type: RECEIVE_DROPDOWN,
+    type: CLEAR_DROPDOWN,
   };
 };

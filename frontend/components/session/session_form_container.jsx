@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     currentUser: state.currentUser,
     formType: formType,
     email: email,
-    // errors: state.errors.session,
+    errors: state.errors.session,
   };
 };
 

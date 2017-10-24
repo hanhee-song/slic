@@ -49,8 +49,13 @@ class SessionForm extends React.Component {
     const button = this.props.formType === "/signup" ?
       "GET STARTED" : "SIGN IN";
     
-    debugger;
-    // this.props.errors
+    const errors = this.props.errors.map((error, idx) => (
+      <li
+        className="session-error"
+        key={idx}>
+        {error}
+      </li>
+    ));
     
     return (
       <div className="session-container">
@@ -61,6 +66,7 @@ class SessionForm extends React.Component {
           <div className="session-form-header">
             {header}
           </div>
+          <ul>{errors}</ul>
           
           {email}
           <input

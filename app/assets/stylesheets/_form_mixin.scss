@@ -7,7 +7,7 @@
   font-family: 'Raleway', sans-serif;
   color: #777;
   font-size: 14px;
-
+  outline: none
 }
 
 @mixin session-button {
@@ -24,6 +24,11 @@
   -webkit-transition: background-color .25s ease;
   margin-bottom: 10px;
   /* TODO: Maybe add compat for moz/o */
+}
+
+@mixin input-field-focus {
+  border: 1px solid #383aa5;
+  outline: none;
 }
 
 @mixin session-button-hover {

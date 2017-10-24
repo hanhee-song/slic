@@ -8,11 +8,23 @@
   margin-bottom: 10px;
 }
 
+.session-input:focus{
+  @include input-field-focus;
+}
+
 .session-button {
   @include session-button;
   margin: 0 auto;
   margin-top: 30px;
   width: 200px;
+}
+
+.session-button:hover {
+  @include session-button-hover;
+}
+
+.session-button:focus {
+  @include session-button-focus;
 }
 
 .session-container {

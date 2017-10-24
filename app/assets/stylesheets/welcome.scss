@@ -91,8 +91,7 @@
 }
 
 .main-signup-input:focus {
-  border: 1px solid #383aa5;
-  outline: none
+  @include input-field-focus;
 }
 
 .main-signup-button {

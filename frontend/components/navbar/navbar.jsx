@@ -12,9 +12,9 @@ const Navbar = (props) => {
         <ul className="nav-buttons">
           <li className="nav-button"><button onClick={props.logout}>Sign out</button></li>
           <li className="nav-button"><Link to="/">About Me</Link></li>
-          <li className="nav-button"><Link to="/get-started">Sign Up</Link></li>
+          <li className="nav-button"><Link to="/signup">Sign Up</Link></li>
           <li className="nav-button"><Link to="/login">Log In</Link></li>
-          <li className="nav-button"><Link to="/">Guest Login</Link></li>
+          <li className="nav-button"><Link to="/guest-login">Guest Login</Link></li>
         </ul>
       </div>
     </div>

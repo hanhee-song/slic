@@ -16,7 +16,10 @@ const App = () => {
           path="/login"/>
         <AuthRoute
           component={SessionFormContainer}
-          path="/get-started"/>
+          path="/signup"/>
+        <AuthRoute
+          component={SessionFormContainer}
+          path="/guest-login"/>
         <AuthRoute
           component={WelcomePageContainer}
           path="/"/>

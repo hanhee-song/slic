@@ -16,6 +16,7 @@ class SessionForm extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
+      // TODO: change to workspace route
       this.props.history.push('/you-logged-in');
     }
     
@@ -27,6 +28,26 @@ class SessionForm extends React.Component {
         email: "",
       });
     }
+    
+    // Guest Login
+    if (nextProps.formType === "/guest-login") {
+      this.generateGuest();
+    }
+  }
+  
+  componentDidMount() {
+    // Guest Login
+    if (this.props.formType === "/guest-login") {
+      this.generateGuest();
+    }
+  }
+  
+  generateGuest() {
+    const random = Math.floor(999999 * Math.random());
+    this.setState({
+      username: `Guest${random}`,
+      password: 'asdfasdf'
+    });
   }
   
   componentWillUnmount() {
@@ -53,6 +74,7 @@ class SessionForm extends React.Component {
     const header = signup ?
       "Create an Account" : "Welcome back";
     
+    
     const button = signup ?
       "GET STARTED" : "SIGN IN";
     
@@ -67,10 +89,10 @@ class SessionForm extends React.Component {
     const alternateSession = (
       signup ?
       <div className="session-alternate">
-        Already have an account? <Link to="/login">Log In</Link> or <Link to="/">Guest Login</Link>
+        Already have an account? <Link to="/login">Log In</Link> or <Link to="/guest-login">Guest Login</Link>
       </div> :
       <div className="session-alternate">
-        Don't have an account yet? <Link to="/get-started">Sign Up</Link> or <Link to="/">Guest Login</Link>
+        Don't have an account yet? <Link to="/signup">Sign Up</Link> or <Link to="/guest-login">Guest Login</Link>
       </div>
     );
     

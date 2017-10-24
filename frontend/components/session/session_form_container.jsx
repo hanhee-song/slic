@@ -7,8 +7,9 @@ import { signup,
 } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const formType = ownProps.location.pathname === '/login' ?
-    '/login' : '/signup';
+//   const formType = ownProps.location.pathname === '/login' ?
+//     '/login' : '/signup';
+  const formType = ownProps.location.pathname;
   const email = state.session.email ? state.session.email : "";
   return {
     loggedIn: Boolean(state.session.currentUser),
@@ -20,6 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  // Guest login is actually a signup action
   const submitForm = ownProps.location.pathname === '/login' ?
     login : signup;
   return {

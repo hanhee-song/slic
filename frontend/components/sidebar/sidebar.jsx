@@ -4,7 +4,6 @@ import UserInfoContainer from '../user_info/user_info_container.jsx';
 
 const Sidebar = () => (
   <div className="sidebar">
-    This is the sidebar
     <UserInfoContainer />
     <ChannelIndexContainer
       channel="Channels" />

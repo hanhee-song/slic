@@ -35,6 +35,7 @@ class SessionForm extends React.Component {
     if (this.props.formType === "/signup") {
       email = (
         <input
+          className="session-input"
           type="text"
           value={this.state.email}
           onChange={this.handleChange("email")}
@@ -42,24 +43,31 @@ class SessionForm extends React.Component {
       );
     }
     return (
-      <form
-        onSubmit={this.handleSubmit}>
+      <div className="session-container">
+        <form
+          className= "session-form"
+          onSubmit={this.handleSubmit}>
+          
+          {email}
+          <input
+            className="session-input"
+            type="text"
+            value={this.state.username}
+            onChange={this.handleChange("username")}
+            placeholder="Username"/>
+          <input
+            className="session-input"
+            type="password"
+            value={this.state.password}
+            onChange={this.handleChange("password")}
+            placeholder="Password"/>
+          <input
+            className="session-button"
+            type="submit"
+            value="GET STARTED" />
+        </form>
         
-        {email}
-        <input
-          type="text"
-          value={this.state.username}
-          onChange={this.handleChange("username")}
-          placeholder="Username"/>
-        <input
-          type="password"
-          value={this.state.password}
-          onChange={this.handleChange("password")}
-          placeholder="Password"/>
-        <input
-          type="submit"
-          value="submit" />
-      </form>
+      </div>
     );
   }
 }

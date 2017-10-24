@@ -1,5 +1,7 @@
 /* MAIN */
 
+@import "form_mixin";
+
 .main {
   margin: 0 auto;
   margin-top: 50px;
@@ -25,7 +27,7 @@
     width: 100%;
   }
   
-  main {
+  .main {
     flex-direction: column-reverse;
   }
 }
@@ -51,14 +53,9 @@
 }
 
 .main-signup-input {
-  border: 1px solid #eee;
-  padding: 20px;
-  width: 300px;
-  border-radius: 5px;
-  font-family: 'Raleway', sans-serif;
-  color: #777;
-  font-size: 14px;
+  @include input-field;
   margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 @media (min-width: 996px) and (max-width: 1100px) {
@@ -99,29 +96,15 @@
 }
 
 .main-signup-button {
-  color: white;
-  border: none;
-  background-color: #383aa5;
-  padding: 20px 40px 20px 40px;
-  text-transform: uppercase;
-  border-radius: 5px;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  transition: background-color .25s ease;
-  -webkit-transition: background-color .25s ease;
-  margin-bottom: 10px;
-  /* TODO: Maybe add compat for moz/o */
+  @include session-button;
 }
 
 .main-signup-button:hover {
-  cursor: pointer;
-  background-color: #262770;
+  @include session-button-hover;
 }
 
 .main-signup-button:focus {
-  outline: none;
-  background-color: #7185e2;
+  @include session-button-focus;
 }
 
 .main-signin {

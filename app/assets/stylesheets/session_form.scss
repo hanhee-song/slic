@@ -1,0 +1,36 @@
+/* SESSION FORM */
+
+@import "form_mixin";
+
+.session-input {
+  @include input-field;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.session-button {
+  @include session-button;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 200px;
+}
+
+.session-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 400px;
+  height: 500px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.session-form {
+  display: flex;
+  flex-direction: column;
+  
+
+}

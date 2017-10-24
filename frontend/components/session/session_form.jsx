@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
@@ -15,11 +14,6 @@ class SessionForm extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    if (nextProps.loggedIn) {
-      // TODO: change to workspace route
-      this.props.history.push('/you-logged-in');
-    }
-    
     if (this.props.formType !== nextProps.formType) {
       this.props.removeSessionErrors();
       this.setState({

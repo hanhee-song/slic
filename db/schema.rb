@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20171024161517) do
 
   create_table "channels", force: :cascade do |t|
     t.string "name", null: false
-    t.string "description", null: false
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_channels_on_name", unique: true

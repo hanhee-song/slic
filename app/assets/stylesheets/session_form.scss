@@ -2,6 +2,15 @@
 
 @import "form_mixin";
 
+.session-form-header {
+  font-family: sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  color: #556c96;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
 .session-input {
   @include input-field;
   margin: 0 auto;

@@ -42,11 +42,19 @@ class SessionForm extends React.Component {
           placeholder="Email Address"/>
       );
     }
+    
+    const header = this.props.formType === "/signup" ?
+      "Create an Account" : "Log In";
+    
     return (
       <div className="session-container">
         <form
-          className= "session-form"
+          className="session-form"
           onSubmit={this.handleSubmit}>
+          
+          <div className="session-form-header">
+            {header}
+          </div>
           
           {email}
           <input

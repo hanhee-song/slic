@@ -1,5 +1,7 @@
 import React from 'react';
 // import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 class SessionForm extends React.Component {
   constructor (props) {
@@ -40,8 +42,9 @@ class SessionForm extends React.Component {
   }
   
   render () {
+    const formType = this.props.formType;
     let email;
-    if (this.props.formType === "/signup") {
+    if (formType === "/signup") {
       email = (
         <input
           className="session-input"
@@ -52,10 +55,10 @@ class SessionForm extends React.Component {
       );
     }
     
-    const header = this.props.formType === "/signup" ?
+    const header = formType === "/signup" ?
       "Create an Account" : "Welcome back";
     
-    const button = this.props.formType === "/signup" ?
+    const button = formType === "/signup" ?
       "GET STARTED" : "SIGN IN";
     
     const errors = this.props.errors.map((error, idx) => (
@@ -65,6 +68,17 @@ class SessionForm extends React.Component {
         {error}
       </li>
     ));
+    
+    const alternateSession = (
+      formType === "/signup" ?
+      <div className="session-alternate">
+        Already have an account? <Link to="/login">Log In</Link> or <Link to="/">Guest Login</Link>
+      </div> :
+      <div className="session-alternate">
+        Don't have an account yet? <Link to="/get-started">Sign Up</Link> or <Link to="/">Guest Login</Link>
+      </div>
+        
+    );
     
     return (
       <div className="session-container">
@@ -98,7 +112,7 @@ class SessionForm extends React.Component {
             {errors.length > 0 ?
               <ul className="session-errors">{errors}</ul> : null}
         </form>
-        
+        {alternateSession}
       </div>
     );
   }

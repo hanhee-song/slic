@@ -21,6 +21,11 @@ class SessionForm extends React.Component {
     
     if (this.props.formType !== nextProps.formType) {
       this.props.removeSessionErrors();
+      this.setState({
+        username: "",
+        password: "",
+        email: "",
+      });
     }
   }
   

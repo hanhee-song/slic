@@ -1,0 +1,2 @@
+class ChannelSubscription < ApplicationRecord
+end

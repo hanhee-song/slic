@@ -11,7 +11,7 @@ class WelcomePage extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.receiveEmail(this.state.email);
-    this.props.history.push('/get-started');
+    this.props.history.push('/signup');
   }
   
   componentWillReceiveProps(nextProps) {

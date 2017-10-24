@@ -53,9 +53,3 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
-/* Add border box sizing */
-
-* {
-  box-sizing: border-box;
-}

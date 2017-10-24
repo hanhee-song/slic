@@ -1,11 +1,11 @@
 import React from 'react';
 import ChannelIndexContainer from '../channel/channel_index_container';
-import UserInfo from '../user_info/user_info.jsx';
+import UserInfoContainer from '../user_info/user_info_container.jsx';
 
 const Sidebar = () => (
-  <div>
+  <div className="sidebar">
     This is the sidebar
-    <UserInfo />
+    <UserInfoContainer />
     <ChannelIndexContainer
       channel="Channels" />
   </div>

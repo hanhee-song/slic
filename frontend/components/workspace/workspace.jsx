@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from '../sidebar/sidebar';
 
 const Workspace = () => (
-  <div>
+  <div className="workspace">
     <Sidebar />
   </div>
 );

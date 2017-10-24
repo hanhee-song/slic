@@ -25,7 +25,7 @@
   @include session-button;
   margin: 0 auto;
   margin-top: 20px;
-  width: 200px;
+  width: 300px;
 }
 
 .session-button:hover {
@@ -46,7 +46,8 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   margin-top: 50px;
-  justify-content: center;
+  // justify-content: center;
+  align-items: center;
   background-color: #eee;
 }
 
@@ -56,13 +57,14 @@
 }
 
 .session-errors {
-  margin: 10px 40px 10px 40px;
+  margin: 0px 40px 10px 40px;
   padding: 5px;
-  border: 1px solid #bbb;
+  border: 1px solid #844343;
   background-color: #fff;
   border-radius: 5px;
-  animation: fadein .3s;
-  -webkit-animation: fadein .3s;
+  width: 300px;
+  animation: fadein .5s;
+  -webkit-animation: fadein .5s;
 }
 
 .session-error {
@@ -83,7 +85,7 @@
 }
 
 .session-alternate {
-  margin-top: 15px;
+  margin-top: 20px;
   font-family: sans-serif;
   font-size: 16px;
   font-weight: 300;

@@ -91,6 +91,9 @@ class SessionForm extends React.Component {
           </div>
           
           
+          {errors.length > 0 ?
+            <ul className="session-errors">{errors}</ul> : null}
+
           {email}
           <input
             className="session-input"
@@ -104,13 +107,12 @@ class SessionForm extends React.Component {
             value={this.state.password}
             onChange={this.handleChange("password")}
             placeholder="Password"/>
+                          
           <input
             className="session-button"
             type="submit"
             value={button} />
           
-            {errors.length > 0 ?
-              <ul className="session-errors">{errors}</ul> : null}
         </form>
         {alternateSession}
       </div>

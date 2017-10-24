@@ -31,6 +31,7 @@ class SessionForm extends React.Component {
   
   handleSubmit(e) {
     e.preventDefault();
+    this.props.removeSessionErrors();
     const user = Object.assign({}, this.state);
     this.props.submitForm(user);
   }
@@ -42,23 +43,12 @@ class SessionForm extends React.Component {
   }
   
   render () {
-    const formType = this.props.formType;
-    let email;
-    if (formType === "/signup") {
-      email = (
-        <input
-          className="session-input"
-          type="text"
-          value={this.state.email}
-          onChange={this.handleChange("email")}
-          placeholder="Email Address"/>
-      );
-    }
+    const signup = this.props.formType === "/signup";
     
-    const header = formType === "/signup" ?
+    const header = signup ?
       "Create an Account" : "Welcome back";
     
-    const button = formType === "/signup" ?
+    const button = signup ?
       "GET STARTED" : "SIGN IN";
     
     const errors = this.props.errors.map((error, idx) => (
@@ -70,15 +60,27 @@ class SessionForm extends React.Component {
     ));
     
     const alternateSession = (
-      formType === "/signup" ?
+      signup ?
       <div className="session-alternate">
         Already have an account? <Link to="/login">Log In</Link> or <Link to="/">Guest Login</Link>
       </div> :
       <div className="session-alternate">
         Don't have an account yet? <Link to="/get-started">Sign Up</Link> or <Link to="/">Guest Login</Link>
       </div>
-        
     );
+    
+    
+    let email;
+    if (signup) {
+      email = (
+        <input
+          className="session-input"
+          type="text"
+          value={this.state.email}
+          onChange={this.handleChange("email")}
+          placeholder="Email Address"/>
+      );
+    }
     
     return (
       <div className="session-container">
@@ -94,13 +96,16 @@ class SessionForm extends React.Component {
           {errors.length > 0 ?
             <ul className="session-errors">{errors}</ul> : null}
 
-          {email}
           <input
             className="session-input"
             type="text"
             value={this.state.username}
             onChange={this.handleChange("username")}
-            placeholder="Username"/>
+            placeholder="Username"
+            autoFocus
+            key={this.props.formType}
+            />
+          {email}
           <input
             className="session-input"
             type="password"

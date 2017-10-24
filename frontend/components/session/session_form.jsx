@@ -16,7 +16,16 @@ class SessionForm extends React.Component {
     if (nextProps.loggedIn) {
       this.props.history.push('/you-logged-in');
     }
+    
+    if (this.props.formType !== nextProps.formType) {
+      this.props.removeSessionErrors();
+    }
   }
+  
+  componentWillUnmount() {
+    this.props.removeSessionErrors();
+  }
+  
   
   handleSubmit(e) {
     e.preventDefault();
@@ -66,7 +75,7 @@ class SessionForm extends React.Component {
           <div className="session-form-header">
             {header}
           </div>
-          <ul>{errors}</ul>
+          
           
           {email}
           <input
@@ -85,6 +94,9 @@ class SessionForm extends React.Component {
             className="session-button"
             type="submit"
             value={button} />
+          
+            {errors.length > 0 ?
+              <ul className="session-errors">{errors}</ul> : null}
         </form>
         
       </div>

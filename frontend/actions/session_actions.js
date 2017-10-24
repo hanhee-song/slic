@@ -3,6 +3,7 @@ import * as SessionApiUtil from '../util/session_api_util';
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_EMAIL = "RECEIVE_EMAIL";
+export const REMOVE_SESSION_ERRORS = "REMOVE_SESSION_ERRORS";
 
 export const receiveCurrentUser = (currentUser) => {
   return {
@@ -22,6 +23,12 @@ export const receiveEmail = (email) => {
   return {
     type: RECEIVE_EMAIL,
     email,
+  };
+};
+
+export const removeSessionErrors = () => {
+  return {
+    type: REMOVE_SESSION_ERRORS,
   };
 };
 

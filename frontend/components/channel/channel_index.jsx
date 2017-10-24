@@ -1,5 +1,5 @@
 import React from 'react';
-import ChannelItemContainer from './channel_item_container';
+import ChannelIndexItem from './channel_index_item';
 import { Link } from 'react-router-dom';
 import ChannelFormContainer from './channel_form_container';
 
@@ -27,7 +27,7 @@ class ChannelIndex extends React.Component {
     }
     
     const channels = this.props.channels.map((channel) => (
-      <ChannelItemContainer
+      <ChannelIndexItem
         key={channel.id}
         channel={channel}/>
     ));

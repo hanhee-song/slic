@@ -8,6 +8,7 @@ class ChannelForm extends React.Component {
       description: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
   
   handleSubmit(e) {
@@ -21,11 +22,19 @@ class ChannelForm extends React.Component {
     };
   }
   
+  handleClose(e) {
+    e.preventDefault();
+    this.props.clearDropdown();
+  }
+  
   render () {
     return (
       <div>
         <div>Channel Form</div>
         <form onSubmit={this.handleSubmit}>
+          <div onClick={this.handleClose}>
+            x
+          </div>
           <input
             type="text"
             onChange={this.handleChange("name")}

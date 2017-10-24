@@ -4,20 +4,24 @@ import { Link } from 'react-router-dom';
 import ChannelFormContainer from './channel_form_container';
 
 class ChannelIndex extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChannelDropdown = this.handleChannelDropdown.bind(this);
+  }
   
   componentDidMount() {
     this.props.fetchChannels();
   }
   
-  handleNewChannel() {
+  handleChannelDropdown() {
     this.props.receiveDropdown("newChannel");
   }
   
   render () {
     
-    let ChannelFormContainer;
+    let newChannelForm;
     if (this.props.dropdown === "newChannel") {
-      ChannelFormContainer = (
+      newChannelForm = (
         <ChannelFormContainer />
       );
     }
@@ -32,7 +36,9 @@ class ChannelIndex extends React.Component {
       <div>
         
         {channels}
-        {ChannelFormContainer}
+        <button
+          onClick={this.handleChannelDropdown}>new channel</button>
+        {newChannelForm}
       </div>
     );
   }

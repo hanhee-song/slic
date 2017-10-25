@@ -13,7 +13,9 @@ class ChannelForm extends React.Component {
   
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createChannel(this.state);
+    this.props.createChannel(this.state).then(
+        success => this.props.clearDropdown()
+      );
   }
   
   handleChange(field) {

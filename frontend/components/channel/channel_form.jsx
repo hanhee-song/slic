@@ -47,7 +47,8 @@ class ChannelForm extends React.Component {
               type="text"
               onChange={this.handleChange("name")}
               value={this.state.name}
-              placeholder="name" />
+              placeholder="name"
+              autoFocus />
             <textarea
               className="channel-form-input"
               onChange={this.handleChange("description")}

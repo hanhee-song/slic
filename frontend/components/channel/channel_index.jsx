@@ -34,14 +34,18 @@ class ChannelIndex extends React.Component {
     
     return (
       <div className="sidebar-section">
-        <div className="sidebar-section-header channels link">
-          Channels
+        <div
+          className="sidebar-section-header"
+          onClick={this.handleChannelDropdown}>
+          <div
+            className="sidebar-section-title channels link">
+            Channels
+          </div>
+          <i className="fa fa-plus link" aria-hidden="true"></i>
         </div>
         <ul className="sidebar-section-items channels">
           {channels}
         </ul>
-        <button
-          onClick={this.handleChannelDropdown}>new channel</button>
         {newChannelForm}
       </div>
     );

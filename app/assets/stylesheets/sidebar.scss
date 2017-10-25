@@ -19,8 +19,8 @@
 
 .sidebar {
   /*width: 25%;*/
-  /*width: 270px;*/
-  min-width: 220px;
+  width: 220px;
+  // min-width: 220px;
   background-color: #493043;
   font-weight: 300;
   font-size: 15px;
@@ -80,9 +80,29 @@
 }
 
 .sidebar-section-header {
-  margin-bottom: 5px;
-  padding-left: 15px;
-  /*color: #ccc;*/
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar-section-title {
+  padding: 2px 120px 5px 15px;
+  transition: color .3s ease;
+  -webkit-transition: color .3s ease;
+}
+
+.sidebar-section-header .fa-plus {
+  color: #aaa;
+  padding: 3px 5px;
+  // border: 1px solid red;
+  border-radius: 50%;
+  position: absolute;
+  left: 180px;
+  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+}
+
+.sidebar-section-header .fa-plus:hover {
+  color: #eee;
 }
 
 .sidebar-section-items li {

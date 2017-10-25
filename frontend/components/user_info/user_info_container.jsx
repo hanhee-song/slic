@@ -7,6 +7,7 @@ import { receiveDropdown, clearDropdown } from '../../actions/ui_actions';
 const mapStateToProps = (state) => {
   return {
     currentUser: state.session.currentUser,
+    dropdown: state.ui.dropdown,
   };
 };
 

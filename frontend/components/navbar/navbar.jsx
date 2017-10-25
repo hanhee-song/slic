@@ -5,9 +5,11 @@ const Navbar = (props) => {
   return (
     <div className="navbar-container">
       <div className="navbar">
+      <Link to="/">
         <div className="nav-logo">
-          <Link to="/">LOGO</Link>
+          <i className="fa fa-users" aria-hidden="true"></i> Slic
         </div>
+      </Link>
         <ul className="nav-buttons">
           <li className="nav-button"><Link to="/">About Me</Link></li>
           <li className="nav-button"><Link to="/signup">Sign Up</Link></li>

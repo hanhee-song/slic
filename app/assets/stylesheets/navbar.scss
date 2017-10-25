@@ -16,10 +16,16 @@
 }
 
 .nav-logo {
+  font-family: 'Nunito', sans-serif;
   display: inline;
-  width: 100px;
-  height: 30px;
-  background-color: #eee;
+  font-size: 28px;
+  color: #333;
+  font-weight: 700;
+}
+
+.nav-logo .fa-users {
+  color: #3c9b5c;
+  opacity: 0.8;
 }
 
 .nav-buttons {
@@ -58,12 +64,12 @@
   background-color: #383aa5;
 }
 
-.navbar a {
+.nav-buttons a {
   transition: color .25s ease;
   -webkit-transition: color .25s ease;
 }
 
-.navbar a:hover {
+.nav-buttons a:hover {
   color: #262770;
 }
 

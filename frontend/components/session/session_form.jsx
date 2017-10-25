@@ -62,11 +62,6 @@ class SessionForm extends React.Component {
     setTimeout(() => {
       this.props.submitForm(guest);
     }, 2000);
-    // this.setState({
-    //   username: `Guest${random}`,
-    //   password: 'asdfasdf'
-    // });
-    
   }
   
   componentWillUnmount() {

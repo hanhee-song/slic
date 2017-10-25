@@ -1,5 +1,4 @@
 import React from 'react';
-import UserDropdownContainer from './user_dropdown_container';
 import Modal from 'react-modal';
 
 class UserInfo extends React.Component {
@@ -31,13 +30,6 @@ class UserInfo extends React.Component {
   }
 
   render () {
-    let userDropdown;
-    if (this.props.dropdown === "userInfo") {
-      userDropdown = (
-        <UserDropdownContainer />
-      );
-    }
-    
     return (
       <div>
         <div
@@ -56,19 +48,22 @@ class UserInfo extends React.Component {
             </div>
           </div>
         </div>
-        {userDropdown}
         
         <Modal
           className="user-info-modal"
           overlayClassName="modal-overlay"
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}>
-          hi
+          <div
+            className="user-info-modal-header">
+            {this.props.currentUser.username}
+          </div>
           
-          <button
+          <div
+            className="user-info-button"
             onClick={this.logout}>
             Logout
-          </button>
+          </div>
           
         </Modal>
       </div>

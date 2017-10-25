@@ -1,7 +1,14 @@
 .user-info-modal {
   position: absolute;
-  top: 100px;
+  top: 60px;
   background-color: white;
+  width: 200px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  outline: none;
+  box-shadow: 1px 3px 2px #222;
 }
 
 .modal-overlay {
@@ -10,4 +17,27 @@
   width: 100%;
   z-index: 1;
   top: 0;
+}
+
+.user-info-modal-header {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.user-info-button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+  color: #333;
+  width: 100%;
+  padding: 3px;
+  border-radius: 3px
+}
+
+.user-info-button:hover {
+  color: #eee;
+  background-color: #438cbc;
 }

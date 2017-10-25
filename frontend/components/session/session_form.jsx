@@ -9,13 +9,17 @@ class SessionForm extends React.Component {
       email: props.email,
       username: "",
       password: "",
+      submitTimeout: null,
+      typeUsername: null,
+      typePassword: null,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.cleanUp = this.cleanUp.bind(this);
   }
   
   componentWillReceiveProps(nextProps) {
     if (this.props.formType !== nextProps.formType) {
-      this.props.removeSessionErrors();
+      this.cleanUp();
       this.setState({
         username: "",
         password: "",
@@ -51,23 +55,29 @@ class SessionForm extends React.Component {
       typeSpeed: 40,
     };
     let typed;
-    setTimeout(function () {
-      typed = new Typed(".session-form .username", userOptions);
-    }, 100);
-    
-    setTimeout(function () {
-      typed = new Typed(".session-form .password", passOptions);
-    }, 1000);
-    
-    setTimeout(() => {
-      this.props.submitForm(guest);
-    }, 2000);
+    this.setState({
+      typeUsername: setTimeout(function () {
+        typed = new Typed(".session-form .username", userOptions);
+      }, 100),
+      typePassword: setTimeout(function () {
+        typed = new Typed(".session-form .password", passOptions);
+      }, 1000),
+      submitTimeout: setTimeout(() => {
+        this.props.submitForm(guest);
+      }, 2000)
+    });
   }
   
   componentWillUnmount() {
-    this.props.removeSessionErrors();
+    this.cleanUp();
   }
   
+  cleanUp() {
+    this.props.removeSessionErrors();
+    clearTimeout(this.state.submitTimeout);
+    clearTimeout(this.state.typePassword);
+    clearTimeout(this.state.typeUsername);
+  }
   
   handleSubmit(e) {
     e.preventDefault();

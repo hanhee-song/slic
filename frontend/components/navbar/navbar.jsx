@@ -11,14 +11,16 @@ const Navbar = (props) => {
         </div>
       </Link>
         <ul className="nav-buttons">
-          <li className="nav-button"><Link to="/">About Me</Link></li>
-          <li className="nav-button"><Link to="/signup">Sign Up</Link></li>
-          <li className="nav-button"><Link to="/login">Log In</Link></li>
-          <li className="nav-button"><Link to="/guest-login">Guest Login</Link></li>
         </ul>
       </div>
     </div>
   );
 };
+
+// gutting the nav buttons
+// <li className="nav-button"><Link to="/">About Me</Link></li>
+// <li className="nav-button"><Link to="/signup">Sign Up</Link></li>
+// <li className="nav-button"><Link to="/login">Log In</Link></li>
+// <li className="nav-button"><Link to="/guest-login">Guest Login</Link></li>
 
 export default Navbar;

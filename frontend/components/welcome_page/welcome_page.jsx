@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class WelcomePage extends React.Component {
   constructor(props) {
@@ -55,12 +56,13 @@ class WelcomePage extends React.Component {
             <input
               className="main-signup-button"
               type="submit"
-              value="Get Started" />
+              value="GET STARTED" />
           </form>
           
-          <div className="main-signin">
-            
+          <div className="welcome-alternate">
+            Already have an account? <Link to="/login">Log In</Link> or <Link to="/guest-login">Guest Login</Link>
           </div>
+          
         </div>
         
       </div>

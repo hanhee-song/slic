@@ -49,6 +49,8 @@
   font-size: 19px;
   line-height: 1.5em;
   margin-bottom: 20px;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 
 .main-signup-input {
@@ -78,7 +80,7 @@
     margin-bottom: 20px;
   }
   
-  .main-signin {
+  .welcome-alternate {
     text-align: center;
   }
 }
@@ -105,14 +107,14 @@
   @include session-button-focus;
 }
 
-.main-signin {
+.welcome-alternate {
   color: #777;
   font-family: 'Raleway', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 300;
 }
 
-
-.main-signin a {
+.welcome-alternate a {
   color: #383aa5;
   text-decoration: underline;
 }

@@ -66,11 +66,11 @@ class SessionForm extends React.Component {
     const signup = this.props.formType === "/signup";
     
     const header = signup ?
-      "Create an Account" : "Welcome back";
+      "Create an Account" : "Sign in to Slic";
     
     
     const button = signup ?
-      "GET STARTED" : "SIGN IN";
+      "Get started" : "Sign in";
     
     const errors = this.props.errors.map((error, idx) => (
       <li
@@ -90,7 +90,6 @@ class SessionForm extends React.Component {
       </div>
     );
     
-    
     let email;
     if (signup) {
       email = (
@@ -105,42 +104,47 @@ class SessionForm extends React.Component {
     
     return (
       <div className="session-container">
-        <form
-          className="session-form"
-          onSubmit={this.handleSubmit}>
-          
-          <div className="session-form-header">
-            {header}
-          </div>
-          
-          
-          {errors.length > 0 ?
-            <ul className="session-errors">{errors}</ul> : null}
-
-          <input
-            className="session-input"
-            type="text"
-            value={this.state.username}
-            onChange={this.handleChange("username")}
-            placeholder="Username"
-            autoFocus
-            key={this.props.formType}
-            />
-          {email}
-          <input
-            className="session-input"
-            type="password"
-            value={this.state.password}
-            onChange={this.handleChange("password")}
-            placeholder="Password"/>
-                          
-          <input
-            className="session-button"
-            type="submit"
-            value={button} />
-          
-        </form>
-        {alternateSession}
+        <div className="session-box">
+          <form
+            className="session-form"
+            onSubmit={this.handleSubmit}>
+            
+            <div className="session-form-header">
+              {header}
+            </div>
+            
+            {errors.length > 0 ?
+              <ul className="session-errors">{errors}</ul> : null}
+            
+            <div className="session-form-subheader">
+              Enter your <strong>email address</strong> and <strong>password</strong>
+            </div>
+              
+            <input
+              className="session-input"
+              type="text"
+              value={this.state.username}
+              onChange={this.handleChange("username")}
+              placeholder="Username"
+              autoFocus
+              key={this.props.formType}
+              />
+            {email}
+            <input
+              className="session-input"
+              type="password"
+              value={this.state.password}
+              onChange={this.handleChange("password")}
+              placeholder="Password"/>
+                            
+            <input
+              className="session-button"
+              type="submit"
+              value={button} />
+            
+          </form>
+          {alternateSession}
+        </div>
       </div>
     );
   }

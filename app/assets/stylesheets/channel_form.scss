@@ -20,6 +20,18 @@
   padding-bottom: 50px;
   background-color: #fff;
   border: 1px solid #ccc;
+  animation: fadein .1s;
+  -webkit-animation: fadein .1s;
+}
+
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .channel-form-header {

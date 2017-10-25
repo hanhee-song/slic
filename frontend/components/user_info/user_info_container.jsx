@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import UserInfo from './user_info';
+import { receiveDropdown, clearDropdown } from '../../actions/ui_actions';
+
 
 const mapStateToProps = (state) => {
   return {
@@ -10,7 +12,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+    receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
+    clearDropdown: () => dispatch(clearDropdown()),
   };
 };
 

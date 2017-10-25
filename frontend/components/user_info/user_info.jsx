@@ -5,6 +5,10 @@ class UserInfo extends React.Component {
     super(props);
   }
   
+  handleClick(e) {
+    this.handleClick;
+  }
+  
   render () {
     return (
       <div className="sidebar-button button">

@@ -1,4 +1,21 @@
+
+.fa-circle {
+  color: green;
+  font-size: 12px;
+  padding-right: 5px;
+}
+
+.fa-circle-o {
+  color: #555;
+  font-size: 12px;
+  padding-right: 5px;
+}
+
 /* SIDEBAR */
+
+.sidebar * {
+  font-family: 'Open Sans', sans-serif;
+}
 
 .sidebar {
   /*width: 25%;*/

@@ -29,24 +29,27 @@ class ChannelForm extends React.Component {
   
   render () {
     return (
-      <div>
-        <div>Channel Form</div>
-        <form onSubmit={this.handleSubmit}>
-          <div onClick={this.handleClose}>
-            x
-          </div>
-          <input
-            type="text"
-            onChange={this.handleChange("name")}
-            value={this.state.name} />
-          <input
-            type="text"
-            onChange={this.handleChange("description")}
-            value={this.state.description} />
-          <input
-            type="submit"
-            value="Create Channel"/>
-        </form>
+      <div className="channel-form-container">
+        <div
+          className="channel-form-new">
+          Channel Form
+          <form onSubmit={this.handleSubmit}>
+            <div onClick={this.handleClose}>
+              x
+            </div>
+            <input
+              type="text"
+              onChange={this.handleChange("name")}
+              value={this.state.name} />
+            <input
+              type="text"
+              onChange={this.handleChange("description")}
+              value={this.state.description} />
+            <input
+              type="submit"
+              value="Create Channel"/>
+          </form>
+        </div>
       </div>
     );
   }

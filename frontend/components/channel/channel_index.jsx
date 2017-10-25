@@ -33,9 +33,13 @@ class ChannelIndex extends React.Component {
     ));
     
     return (
-      <div>
-        
-        {channels}
+      <div className="sidebar-section">
+        <div className="sidebar-section-header channels link">
+          Channels
+        </div>
+        <ul className="sidebar-section-items channels">
+          {channels}
+        </ul>
         <button
           onClick={this.handleChannelDropdown}>new channel</button>
         {newChannelForm}

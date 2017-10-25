@@ -1,0 +1,24 @@
+@import "form_mixin";
+
+.channel-form-container {
+  position: absolute;
+  left: 50%;
+  top: 0;
+}
+
+.channel-form-new {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  left: -50%;
+  top: 300px;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 400px;
+}
+
+.channel-form-container input {
+  @include input-field;
+  margin: 0 auto;
+}

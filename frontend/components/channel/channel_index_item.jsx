@@ -2,7 +2,7 @@ import React from 'react';
 
 const ChannelIndexItem = ({ channel }) => {
   return (
-    <li>
+    <li className="button">
       {channel.name}
     </li>
   );

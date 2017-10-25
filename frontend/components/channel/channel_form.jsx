@@ -1,4 +1,5 @@
 import React from 'react';
+import onClickOutside from 'react-onclickoutside';
 
 class ChannelForm extends React.Component {
   constructor(props) {
@@ -26,6 +27,10 @@ class ChannelForm extends React.Component {
   
   handleClose(e) {
     e.preventDefault();
+    this.props.clearDropdown();
+  }
+  
+  handleClickOutside(e) {
     this.props.clearDropdown();
   }
   
@@ -67,4 +72,4 @@ class ChannelForm extends React.Component {
   }
 }
 
-export default ChannelForm;
+export default onClickOutside(ChannelForm);

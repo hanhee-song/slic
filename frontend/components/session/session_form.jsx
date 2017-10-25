@@ -42,6 +42,11 @@ class SessionForm extends React.Component {
   
   generateGuest() {
     const random = Math.floor(999999 * Math.random());
+    this.setState({
+      username: '',
+      password: ''
+    });
+    
     const guest = {
       username: `Guest${random}`,
       password: 'asdfasdf',
@@ -56,11 +61,11 @@ class SessionForm extends React.Component {
     };
     let typed;
     this.setState({
-      typeUsername: setTimeout(function () {
-        typed = new Typed(".session-form .username", userOptions);
+      typeUsername: setTimeout(() => {
+        new Typed(".session-form .username", userOptions);
       }, 100),
-      typePassword: setTimeout(function () {
-        typed = new Typed(".session-form .password", passOptions);
+      typePassword: setTimeout(() => {
+        new Typed(".session-form .password", passOptions);
       }, 1000),
       submitTimeout: setTimeout(() => {
         this.props.submitForm(guest);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import Typed from 'typed.js';
 
 class SessionForm extends React.Component {
   constructor (props) {
@@ -38,10 +38,35 @@ class SessionForm extends React.Component {
   
   generateGuest() {
     const random = Math.floor(999999 * Math.random());
-    this.setState({
+    const guest = {
       username: `Guest${random}`,
-      password: 'asdfasdf'
-    });
+      password: 'asdfasdf',
+    };
+    const userOptions = {
+      strings: [guest.username],
+      typeSpeed: 40,
+    };
+    const passOptions = {
+      strings: [guest.username],
+      typeSpeed: 40,
+    };
+    let typed;
+    setTimeout(function () {
+      typed = new Typed(".session-form .username", userOptions);
+    }, 100);
+    
+    setTimeout(function () {
+      typed = new Typed(".session-form .password", passOptions);
+    }, 1000);
+    
+    setTimeout(() => {
+      this.props.submitForm(guest);
+    }, 2000);
+    // this.setState({
+    //   username: `Guest${random}`,
+    //   password: 'asdfasdf'
+    // });
+    
   }
   
   componentWillUnmount() {
@@ -117,11 +142,11 @@ class SessionForm extends React.Component {
               <ul className="session-errors">{errors}</ul> : null}
             
             <div className="session-form-subheader">
-              Enter your <strong>email address</strong> and <strong>password</strong>
+              Enter your <strong>username</strong> and <strong>password</strong>
             </div>
               
             <input
-              className="session-input"
+              className="session-input username"
               type="text"
               value={this.state.username}
               onChange={this.handleChange("username")}
@@ -131,7 +156,7 @@ class SessionForm extends React.Component {
               />
             {email}
             <input
-              className="session-input"
+              className="session-input password"
               type="password"
               value={this.state.password}
               onChange={this.handleChange("password")}

@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
-import { signup,
+import {
+  signup,
   login,
   logout,
   removeSessionErrors
 } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
-//   const formType = ownProps.location.pathname === '/login' ?
-//     '/login' : '/signup';
   const formType = ownProps.location.pathname;
   const email = state.session.email ? state.session.email : "";
   return {

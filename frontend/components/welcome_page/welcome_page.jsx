@@ -15,12 +15,6 @@ class WelcomePage extends React.Component {
     this.props.history.push('/signup');
   }
   
-  componentWillReceiveProps(nextProps) {
-    // if (nextProps.email) {
-    //   this.props.history.push('/get-started');
-    // }
-  }
-  
   handleChange(e) {
     this.setState({ email: e.target.value });
   }

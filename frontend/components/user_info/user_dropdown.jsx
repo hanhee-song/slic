@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import onClickOutside from 'react-onclickoutside';
+import Modal from 'react-modal';
 
 class UserDropdown extends React.Component {
   constructor(props) {
@@ -21,7 +22,10 @@ class UserDropdown extends React.Component {
   
   render () {
     return (
-      <div>this is a dropdown</div>
+      <Modal
+        isOpen={Boolean(this.props.dropdown)}>
+        This is a modal
+      </Modal>
     );
   }
 }

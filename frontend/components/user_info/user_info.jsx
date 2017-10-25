@@ -1,10 +1,30 @@
 import React from 'react';
 import UserDropdownContainer from './user_dropdown_container';
+import Modal from 'react-modal';
+
+const customStyles = {
+  content: {
+    
+  }
+};
 
 class UserInfo extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      modalIsOpen: false,
+    };
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+  
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+  
+  closeModal() {
+    this.setState({ modalIsOpen: false });
   }
   
   handleClick(e) {
@@ -23,7 +43,7 @@ class UserInfo extends React.Component {
       <div>
         <div
           className="sidebar-button button"
-          onClick={this.handleClick}>
+          onClick={this.openModal}>
           <div className="sidebar-button-title">
             Workspace
           </div>
@@ -38,6 +58,14 @@ class UserInfo extends React.Component {
           </div>
         </div>
         {userDropdown}
+        
+        <Modal
+          className="user-info-modal"
+          overlayClassName="modal-overlay"
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={this.closeModal}>
+          hi
+        </Modal>
       </div>
     );
   }

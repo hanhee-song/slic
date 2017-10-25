@@ -6,7 +6,7 @@ import { clearDropdown } from '../../actions/ui_actions';
 
 const mapStateToProps = (state) => {
   return {
-    
+    dropdown: state.ui.dropdown,
   };
 };
 

@@ -29,7 +29,7 @@ class WelcomePage extends React.Component {
     return (
       <div className="main">
         <div className="main-left">
-          <img src="#" alt="" />
+          <img src="" alt="" />
         </div>
         
         <div className="main-right">

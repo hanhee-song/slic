@@ -1,14 +1,13 @@
 .user-info-modal {
   position: absolute;
   top: 100px;
+  background-color: white;
 }
 
 .modal-overlay {
   position: absolute;
-  opacity: 0.1;
   height: 100%;
   width: 100%;
   z-index: 1;
   top: 0;
-  background-color: #eee;
 }

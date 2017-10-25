@@ -2,12 +2,6 @@ import React from 'react';
 import UserDropdownContainer from './user_dropdown_container';
 import Modal from 'react-modal';
 
-const customStyles = {
-  content: {
-    
-  }
-};
-
 class UserInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +11,7 @@ class UserInfo extends React.Component {
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.logout = this.logout.bind(this);
   }
   
   openModal() {
@@ -29,6 +24,10 @@ class UserInfo extends React.Component {
   
   handleClick(e) {
     this.props.receiveDropdown("userInfo");
+  }
+  
+  logout(e) {
+    this.props.logout();
   }
 
   render () {
@@ -65,6 +64,12 @@ class UserInfo extends React.Component {
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}>
           hi
+          
+          <button
+            onClick={this.logout}>
+            Logout
+          </button>
+          
         </Modal>
       </div>
     );

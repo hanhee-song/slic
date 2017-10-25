@@ -12,7 +12,9 @@ import Workspace from './workspace/workspace';
 const App = () => {
   return (
     <section className="app">
-      <NavbarContainer />
+      
+      <AuthRoute
+        component={NavbarContainer} />
       <Switch>
         <ProtectedRoute
           component={Workspace}

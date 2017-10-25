@@ -2,7 +2,7 @@ import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch } from 'react-router';
 
-import NavbarContainer from './navbar/navbar_container';
+import Navbar from './navbar/navbar';
 import SessionFormContainer from './session/session_form_container';
 import WelcomePageContainer from './welcome_page/welcome_page_container';
 import Footer from './footer/footer';
@@ -14,7 +14,7 @@ const App = () => {
     <section className="app">
       
       <AuthRoute
-        component={NavbarContainer} />
+        component={Navbar} />
       <Switch>
         <ProtectedRoute
           component={Workspace}

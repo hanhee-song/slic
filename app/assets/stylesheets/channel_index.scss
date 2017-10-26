@@ -67,11 +67,11 @@
 .channel-new-list {
   display: flex;
   flex-direction: column-reverse;
-  overflow: scroll;
-  height: 500px;
+  // overflow: scroll;
+  // height: 500px;
 }
 
-.channel-new-list li {
+.channel-new-list-li {
   padding: 20px 10px;
   display: flex;
   justify-content: space-between;
@@ -79,6 +79,10 @@
   cursor: pointer;
   border: 1px solid #fff;
   border-bottom: 1px solid #ddd;
+  color: #777;
+  // height: auto;
+  // overflow: visible;
+  // display: flex;
 }
 
 .channel-new-list li:hover {
@@ -96,7 +100,6 @@
 }
 
 .channel-new-list-item {
-  color: #777;
 }
 
 .channel-new-list-item.hashtag {
@@ -111,4 +114,8 @@
 
 .channel-new-list-item.description, .channel-new-list-item.date {
   margin-top: 5px;
+}
+
+.channel-new-list-item.users {
+  
 }

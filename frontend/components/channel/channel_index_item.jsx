@@ -58,6 +58,7 @@ class ChannelIndexItem extends React.Component {
     
     return (
       <li
+        className="channel-new-list-li"
         onClick={this.props.clearDropdown}>
         <div className="channel-new-list-item-left">
           <div className="channel-new-list-item title">

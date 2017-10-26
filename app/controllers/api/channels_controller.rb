@@ -21,7 +21,16 @@ class Api::ChannelsController < ApplicationController
   end
   
   def update
-    # No params[:id] coming in
+    if channel_params[:change_visibility]
+      subscription = @channel.channel_subscriptions.find_by(
+        user_id: channel_params[:user_id])
+      debugger
+      if @channel.channel_subscriptions.update(visible: channel_params[:visible])
+      else
+        render json: @channel.errors.full_messages, status: 422
+      end
+    end
+    
     @channel = Channel.find(channel_params[:channel_id])
     if channel_params[:channel_id] && channel_params[:user_id]
       if @channel.channel_subscriptions.new(user_id: channel_params[:user_id]).save
@@ -45,6 +54,7 @@ class Api::ChannelsController < ApplicationController
   private
   
   def channel_params
-    params.require(:channel).permit(:name, :description, :channel_id, :user_id)
+    params.require(:channel).permit(:name, :description, :channel_id,
+      :user_id, :change_visibility, :visible)
   end
 end

@@ -1,6 +1,7 @@
 class Api::ChannelsController < ApplicationController
   def index
-    @channels = Channel.all
+    # @channels = Channel.all
+    @channels = current_user.channels
   end
   
   def show
@@ -21,6 +22,7 @@ class Api::ChannelsController < ApplicationController
     if channel_params[:channel_id] && channel_params[:user_id]
       @channel_subscription = ChannelSubscription.new(channel_params)
       if @channel_subscription.save
+        debugger
         render "api/channels/show"
       else
         render json: @channel.errors.full_messages, status: 422

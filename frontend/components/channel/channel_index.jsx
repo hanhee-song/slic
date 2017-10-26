@@ -24,9 +24,18 @@ class ChannelIndex extends React.Component {
         );
     });
     return (
-      <div>
-        this is a channel index
-        {channels}
+      <div className="channel-new-container">
+        <div className="channel-new-inside">
+          <div className="channel-new-header">
+            Browse Channels
+          </div>
+          <ul className="channel-new-list">
+            <li className="channel-new-list-header">
+              Channels you can join
+            </li>
+            {channels}
+          </ul>
+        </div>
       </div>
     );
   }

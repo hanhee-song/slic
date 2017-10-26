@@ -1,0 +1,38 @@
+.channel-new-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  animation: fadein .3s;
+  -webkit-animation: fadein .3s;
+  padding-top: 150px;
+  color: #333;
+}
+
+.channel-new-inside {
+  animation: slideup .3s;
+  -webkit-animation: slideup .3s;
+  margin: 0 auto;
+  max-width: 650px;
+}
+
+.channel-new-header {
+  font-size: 40px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.channel-new-list-header {
+  // font-size: 40px;
+  font-weight: 500;
+  color: #555;
+}
+
+.channel-new-list li {
+  border-bottom: 1px solid #ddd;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+}

@@ -11,15 +11,27 @@ class ChannelIndexItem extends React.Component {
   
   render () {
     const userCount = this.props.users.length;
+    let description;
+    if (this.props.channel.description) {
+      description = (
+        <div className="channel-new-list-item description">
+          {this.props.channel.description}
+        </div>
+      );
+    }
     return (
-      <div
+      <li
         onClick={this.props.clearDropdown}>
-        name: {this.props.channel.name}
-        <br />
-        description: {this.props.channel.description}
-        <br />
-        users: {userCount}
-      </div>
+        <div className="channel-new-list-item-left">
+          <div className="channel-new-list-item name">
+            # {this.props.channel.name}
+          </div>
+          {description}
+        </div>
+        <div className="channel-new-list-item users">
+          users: {userCount}
+        </div>
+      </li>
     );
   }
 }

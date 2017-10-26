@@ -9,7 +9,6 @@ class Api::ChannelsController < ApplicationController
   
   def show
     @channel = Channel.find(params[:id])
-    render "api/channels/show"
   end
   
   def create

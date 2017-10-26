@@ -10,7 +10,7 @@ class ChannelIndex extends React.Component {
   }
   
   componentDidMount() {
-    this.props.fetchChannels();
+    this.props.fetchChannels({ visible: true });
   }
   
   handleChannelDropdown() {
@@ -34,14 +34,14 @@ class ChannelIndex extends React.Component {
     
     return (
       <div className="sidebar-section">
-        <div
-          className="sidebar-section-header"
-          onClick={this.handleChannelDropdown}>
-          <div
-            className="sidebar-section-title channels link">
+        <div className="sidebar-section-header">
+          <div className="sidebar-section-title channels link">
             Channels
           </div>
-          <i className="fa fa-plus link" aria-hidden="true"></i>
+          <i
+            onClick={this.handleChannelDropdown}
+            className="fa fa-plus link"
+            aria-hidden="true"></i>
         </div>
         <ul className="sidebar-section-items channels">
           {channels}

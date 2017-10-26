@@ -1,7 +1,8 @@
-export const fetchChannels = () => {
+export const fetchChannels = (options) => {
   return $.ajax({
     method: "GET",
     url: `/api/channels`,
+    data: { options }
   });
 };
 

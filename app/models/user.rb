@@ -41,7 +41,6 @@ class User < ApplicationRecord
   end
   
   def visible_channels
-    debugger
-    self.channel_subscriptions.where(visible: true)
+    self.channels.joins(:channel_subscriptions).where("channel_subscriptions.visible": true)
   end
 end

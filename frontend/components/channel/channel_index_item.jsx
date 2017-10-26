@@ -23,8 +23,13 @@ class ChannelIndexItem extends React.Component {
       <li
         onClick={this.props.clearDropdown}>
         <div className="channel-new-list-item-left">
-          <div className="channel-new-list-item name">
-            # {this.props.channel.name}
+          <div className="channel-new-list-item title">
+            <div className="channel-new-list-item hashtag">
+              #
+            </div>
+            <div className="channel-new-list-item name">
+              {this.props.channel.name}
+            </div>
           </div>
           {description}
         </div>

@@ -19,7 +19,7 @@
 }
 
 .channel-new-header {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 900;
   margin-bottom: 20px;
 }
@@ -27,7 +27,7 @@
 .channel-new-list-header {
   // font-size: 40px;
   font-weight: 500;
-  color: #555;
+  color: #999;
 }
 
 .channel-new-list li {
@@ -35,4 +35,21 @@
   padding: 20px 10px;
   display: flex;
   justify-content: space-between;
+}
+
+.channel-new-list-item.title {
+  display: flex;
+}
+
+.channel-new-list-item.hashtag {
+  margin-right: 4px;
+}
+
+.channel-new-list-item.name {
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.channel-new-list-item.description {
+  margin-top: 5px;
 }

@@ -24,8 +24,7 @@ class ChannelIndex extends React.Component {
         );
     });
     return (
-      <div
-        onClick={this.handleClose}>
+      <div>
         this is a channel index
         {channels}
       </div>

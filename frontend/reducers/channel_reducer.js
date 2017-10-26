@@ -2,7 +2,6 @@ import {
   RECEIVE_ALL_CHANNELS,
   RECEIVE_CHANNEL,
   REMOVE_CHANNEL,
-  RECEIVE_CHANNEL_ERRORS
 } from '../actions/channel_actions';
 
 import merge from 'lodash/merge';
@@ -17,6 +16,7 @@ const ChannelReducer = (state = initialState, action) => {
     case RECEIVE_ALL_CHANNELS:
       return action.channels;
     case RECEIVE_CHANNEL:
+      debugger;
       newState = merge({}, state);
       newState[action.channel.id] = action.channel;
       return newState;

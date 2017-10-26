@@ -5,9 +5,16 @@ class ChannelIndexItem extends React.Component {
     super(props);
   }
   
+  componentDidMount() {
+    this.props.fetchChannel(this.props.channel.id);
+  }
+  
   render () {
     return (
-      <div>{this.props.channel.name}</div>
+      <div
+        onClick={this.props.clearDropdown}>
+        {this.props.channel.name}
+      </div>
     );
   }
 }

@@ -43,4 +43,9 @@ class User < ApplicationRecord
   def visible_channels
     self.channels.joins(:channel_subscriptions).where("channel_subscriptions.visible": true)
   end
+  
+  def can_see_channel?(channel)
+    channel_sub = self.channel_subscriptions.find_by(channel_id: channel.id)
+    channel_sub && channel_sub.visible
+  end
 end

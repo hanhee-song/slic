@@ -1,10 +1,6 @@
 class Api::ChannelsController < ApplicationController
   def index
-    if option_params[:visible]
-      @channels = current_user.visible_channels
-    else
-      @channels = current_user.channels
-    end
+    @channels = current_user.channels
   end
   
   def show

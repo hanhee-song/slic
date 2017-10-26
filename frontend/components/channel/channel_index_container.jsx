@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchChannels: (options) => dispatch(fetchChannels(options)),
+    fetchChannels: () => dispatch(fetchChannels()),
     receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
     clearDropdown: () => dispatch(clearDropdown()),
   };

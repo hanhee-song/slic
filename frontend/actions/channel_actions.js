@@ -33,9 +33,9 @@ export const receiveChannelErrors = (errors) => {
   };
 };
 
-export const fetchChannels = (options) => {
+export const fetchChannels = () => {
   return (dispatch) => {
-    return ChannelApiUtil.fetchChannels(options)
+    return ChannelApiUtil.fetchChannels()
       .then(
         (channels) => dispatch(receiveAllChannels(channels)),
         (errors) => dispatch(receiveChannelErrors(errors))

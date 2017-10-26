@@ -12,7 +12,7 @@ class ChannelSidebar extends React.Component {
   }
   
   componentDidMount() {
-    this.props.fetchChannels({ visible: true });
+    this.props.fetchChannels();
   }
   
   handleChannelNew() {
@@ -32,11 +32,17 @@ class ChannelSidebar extends React.Component {
       dropdown = <ChannelIndexContainer />;
     }
     
-    const channels = this.props.channels.map((channel) => (
-      <ChannelSidebarItemContainer
-        key={channel.id}
-        channel={channel}/>
-    ));
+    const channels = this.props.channels
+      .filter((channel) => {
+        return channel.visible;
+      })
+      .map((channel) => {
+        return (
+          <ChannelSidebarItemContainer
+            key={channel.id}
+            channel={channel}/>
+        );
+      });
     
     return (
       <div className="sidebar-section">

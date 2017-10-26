@@ -1,8 +1,7 @@
-export const fetchChannels = (options = { visible: false }) => {
+export const fetchChannels = () => {
   return $.ajax({
     method: "GET",
     url: `/api/channels`,
-    data: { options }
   });
 };
 
@@ -27,7 +26,6 @@ const defaultOptions = {
 };
 
 export const updateChannel = (channel, options = defaultOptions) => {
-  debugger;
   return $.ajax({
     method: "PATCH",
     url: `/api/channels/${channel.id}`,

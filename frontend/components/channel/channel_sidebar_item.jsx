@@ -7,7 +7,6 @@ class ChannelSidebarItem extends React.Component {
   }
   
   handleClick() {
-    debugger;
     this.props.makeChannelInvisible(this.props.channel);
   }
   

@@ -18,15 +18,21 @@ class Api::ChannelsController < ApplicationController
   end
   
   def update
-    @channel = Channel.find(params[:channel][:channel_id])
+    @channel = Channel.find(channel_params[:channel_id])
+    
     if channel_params[:channel_id] && channel_params[:user_id]
+      user = User.find(channel_params[:user_id])
       @channel_subscription = ChannelSubscription.new(channel_params)
-      if @channel_subscription.save
+      
+      if user && @channel && @channel_subscription.save
+        user.visible_channels << channel_params[:channel_id]
+        user.save
         debugger
         render "api/channels/show"
       else
         render json: @channel.errors.full_messages, status: 422
       end
+      
     else
       if @channel.update(channel_params)
         render "api/channels/show"

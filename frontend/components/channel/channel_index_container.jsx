@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ChannelIndex from './channel_index';
-import { fetchChannels } from '../../actions/channel_actions';
+import { fetchChannels, updateChannel } from '../../actions/channel_actions';
 import { receiveDropdown } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchChannels: () => dispatch(fetchChannels()),
+    updateChannel: (channel) => dispatch(updateChannel(channel)),
     receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
   };
 };

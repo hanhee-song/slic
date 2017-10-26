@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20171024161517) do
     t.string "username", null: false
     t.string "password_digest", null: false
     t.string "session_token", null: false
+    t.string "visible_channels"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true

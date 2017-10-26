@@ -1,17 +1,13 @@
 class Api::ChannelsController < ApplicationController
   def index
-    debugger
     if option_params[:visible]
-      debugger
       @channels = current_user.visible_channels
     else
-      debugger
       @channels = current_user.channels
     end
   end
   
   def show
-    # debugger
     @channel = Channel.find(params[:id])
   end
   
@@ -29,16 +25,12 @@ class Api::ChannelsController < ApplicationController
     user_id = channel_params[:user_id]
     @channel = Channel.find(channel_id)
     
-    debugger
     if channel_params[:change_visibility]
       subscription = @channel.channel_subscriptions.find_by(
         user_id: user_id)
-      debugger
       
       if @channel.channel_subscriptions.update(visible: channel_params[:visible])
-        debugger
       else
-        debugger
         render json: @channel.errors.full_messages, status: 422
       end
       
@@ -73,7 +65,7 @@ class Api::ChannelsController < ApplicationController
   
   def option_params
     opt_params = params.require(:options).permit(:visible)
-    opt_params[:visible] = opt_params == "true"
+    opt_params[:visible] = opt_params[:visible] == "true"
     return opt_params
   end
 end

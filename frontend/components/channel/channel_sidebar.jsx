@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ChannelSidebarItem from './channel_sidebar_item';
+import ChannelSidebarItemContainer from './channel_sidebar_item_container';
 import ChannelIndexContainer from './channel_index_container';
 import ChannelFormContainer from './channel_form_container';
 
@@ -33,7 +33,7 @@ class ChannelSidebar extends React.Component {
     }
     
     const channels = this.props.channels.map((channel) => (
-      <ChannelSidebarItem
+      <ChannelSidebarItemContainer
         key={channel.id}
         channel={channel}/>
     ));

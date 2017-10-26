@@ -10,6 +10,13 @@ class ChannelIndexItem extends React.Component {
     this.props.fetchChannel(this.props.channelId);
   }
   
+  handleClick() {
+    return () => {
+      this.props.clearDropdown();
+      this.props.makeChannelVisible();
+    };
+  }
+  
   date() {
     if (!this.props.channel.created_at) return "";
     

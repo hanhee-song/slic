@@ -36,7 +36,7 @@ class UserInfo extends React.Component {
           className="sidebar-button button"
           onClick={this.openModal}>
           <div className="sidebar-button-title">
-            Workspace  <i class="fa fa-angle-down" aria-hidden="true"></i>
+            Workspace  <i className="fa fa-angle-down" aria-hidden="true"></i>
           </div>
           
           <div className="sidebar-button-subtitle">

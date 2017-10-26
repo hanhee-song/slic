@@ -122,12 +122,17 @@
   color: white;
 }
 
-.fa-times-circle-o {
+.sidebar-section-item .fa-times-circle-o {
   color: #aaa;
   display: none;
+  position: absolute;
+  left: 180px;
+  margin-top: -3px;
+  padding: 2px;
+  font-size: 18px;
 }
 
-.fa-times-circle-o:hover {
+.sidebar-section-item .fa-times-circle-o:hover {
   color: white;
 }
 

@@ -73,6 +73,32 @@ export const updateChannel = (channel) => {
   };
 };
 
+export const makeChannelInvisible = (channel) => {
+  let nextChannel = channel;
+  nextChannel.change_visibility = true;
+  nextChannel.visible = false;
+  return (dispatch) => {
+    return ChannelApiUtil.updateChannel(nextChannel)
+      .then(
+        (channel) => dispatch(receiveChannel(channel)),
+        (errors) => dispatch(receiveChannelErrors(errors))
+      );
+  };
+};
+
+export const makeChannelVisible = (channel) => {
+  let nextChannel = channel;
+  nextChannel.change_visibility = true;
+  nextChannel.visible = true;
+  return (dispatch) => {
+    return ChannelApiUtil.updateChannel(nextChannel)
+      .then(
+        (channel) => dispatch(receiveChannel(channel)),
+        (errors) => dispatch(receiveChannelErrors(errors))
+      );
+  };
+};
+
 export const deleteChannel = (channelId) => {
   return (dispatch) => {
     return ChannelApiUtil.deleteChannel(channelId)

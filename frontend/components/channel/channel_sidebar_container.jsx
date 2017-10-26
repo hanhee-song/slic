@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ChannelIndex from './channel_index';
+import ChannelSidebar from './channel_sidebar';
 import { fetchChannels, updateChannel } from '../../actions/channel_actions';
 import { receiveDropdown } from '../../actions/ui_actions';
 
@@ -21,4 +21,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ChannelIndex);
+)(ChannelSidebar);

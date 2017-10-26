@@ -1,9 +1,9 @@
 import React from 'react';
-import ChannelIndexItem from './channel_index_item';
+import ChannelSidebarItem from './channel_sidebar_item';
 import { Link } from 'react-router-dom';
 import ChannelFormContainer from './channel_form_container';
 
-class ChannelIndex extends React.Component {
+class ChannelSidebar extends React.Component {
   constructor(props) {
     super(props);
     this.handleChannelDropdown = this.handleChannelDropdown.bind(this);
@@ -27,7 +27,7 @@ class ChannelIndex extends React.Component {
     }
     
     const channels = this.props.channels.map((channel) => (
-      <ChannelIndexItem
+      <ChannelSidebarItem
         key={channel.id}
         channel={channel}/>
     ));
@@ -52,4 +52,4 @@ class ChannelIndex extends React.Component {
   }
 }
 
-export default ChannelIndex;
+export default ChannelSidebar;

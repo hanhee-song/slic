@@ -1,4 +1,4 @@
-export const fetchChannels = (options) => {
+export const fetchChannels = (options = { visible: false }) => {
   return $.ajax({
     method: "GET",
     url: `/api/channels`,

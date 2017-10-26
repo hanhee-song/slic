@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ChannelIndexItem = ({ channel }) => {
+const ChannelSidebarItem = ({ channel }) => {
   return (
     <li className="button">
       {channel.name}
@@ -8,4 +8,4 @@ const ChannelIndexItem = ({ channel }) => {
   );
 };
 
-export default ChannelIndexItem;
+export default ChannelSidebarItem;

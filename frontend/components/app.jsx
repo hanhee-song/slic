@@ -33,7 +33,8 @@ const App = () => {
           component={WelcomePageContainer}
           path="/"/>
       </Switch>
-      <Footer />
+      <AuthRoute
+        component={Footer} />
     </section>
   );
 };

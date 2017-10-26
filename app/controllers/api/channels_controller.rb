@@ -17,6 +17,7 @@ class Api::ChannelsController < ApplicationController
   end
   
   def update
+    
   end
   
   def destroy
@@ -25,6 +26,6 @@ class Api::ChannelsController < ApplicationController
   private
   
   def channel_params
-    params.require(:channel).permit(:name, :description)
+    params.require(:channel).permit(:name, :description, :channel_id, :user_id)
   end
 end

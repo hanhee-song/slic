@@ -11,6 +11,7 @@
   -webkit-animation: fadein .3s;
   padding-top: 150px;
   color: #333;
+  z-index: 5;
 }
 
 .channel-new-inside {
@@ -66,6 +67,8 @@
 .channel-new-list {
   display: flex;
   flex-direction: column-reverse;
+  overflow: scroll;
+  height: 500px;
 }
 
 .channel-new-list li {

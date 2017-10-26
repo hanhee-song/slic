@@ -12,6 +12,7 @@ class Api::ChannelsController < ApplicationController
   end
   
   def create
+    debugger
     @channel = Channel.new(channel_params)
     if @channel.save
       render "api/channels/show"
@@ -25,11 +26,11 @@ class Api::ChannelsController < ApplicationController
     user_id = channel_params[:user_id]
     @channel = Channel.find(channel_id)
     
-    if channel_params[:change_visibility]
+    if option_params[:change_visibility]
       subscription = @channel.channel_subscriptions.find_by(
         user_id: user_id)
       
-      if @channel.channel_subscriptions.update(visible: channel_params[:visible])
+      if @channel.channel_subscriptions.update(visible: option_params[:visible])
       else
         render json: @channel.errors.full_messages, status: 422
       end
@@ -56,15 +57,14 @@ class Api::ChannelsController < ApplicationController
   private
   
   def channel_params
-    chan_params = params.require(:channel).permit(:name, :description, :channel_id,
-      :user_id, :change_visibility, :visible)
-    chan_params[:change_visibility] = chan_params[:change_visibility] == "true"
-    chan_params[:visible] = chan_params[:visible] == "true"
-    return chan_params
+    params.require(:channel).permit(:name, :description, :channel_id,
+      :user_id)
   end
-  
+
   def option_params
-    opt_params = params.require(:options).permit(:visible)
+    # these are "true" and "false", both are truthy :c
+    opt_params = params.require(:options).permit(:change_visibility, :visible)
+    opt_params[:change_visibility] = opt_params[:change_visibility] == "true"
     opt_params[:visible] = opt_params[:visible] == "true"
     return opt_params
   end

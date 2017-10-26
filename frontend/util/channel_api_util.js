@@ -21,11 +21,17 @@ export const createChannel = (channel) => {
   });
 };
 
-export const updateChannel = (channel) => {
+const defaultOptions = {
+  change_visibility: false,
+  visible: true,
+};
+
+export const updateChannel = (channel, options = defaultOptions) => {
+  debugger;
   return $.ajax({
     method: "PATCH",
-    url: `/api/channels/${channel.id}`,
-    data: { channel },
+    url: `/api/channels/${channel.channel_id}`,
+    data: { channel, options },
   });
 };
 

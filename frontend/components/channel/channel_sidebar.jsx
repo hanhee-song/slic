@@ -1,6 +1,7 @@
 import React from 'react';
-import ChannelSidebarItem from './channel_sidebar_item';
 import { Link } from 'react-router-dom';
+import ChannelSidebarItem from './channel_sidebar_item';
+import ChannelIndexContainer from './channel_index_container';
 import ChannelFormContainer from './channel_form_container';
 
 class ChannelSidebar extends React.Component {

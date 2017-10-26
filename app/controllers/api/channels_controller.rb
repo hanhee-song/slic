@@ -18,16 +18,10 @@ class Api::ChannelsController < ApplicationController
   end
   
   def update
+    # No params[:id] coming in
     @channel = Channel.find(channel_params[:channel_id])
-    
     if channel_params[:channel_id] && channel_params[:user_id]
-      user = User.find(channel_params[:user_id])
-      @channel_subscription = ChannelSubscription.new(channel_params)
-      
-      if user && @channel && @channel_subscription.save
-        user.visible_channels << channel_params[:channel_id]
-        user.save
-        debugger
+      if @channel.channel_subscriptions.new(user_id: channel_params[:user_id]).save
         render "api/channels/show"
       else
         render json: @channel.errors.full_messages, status: 422

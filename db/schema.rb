@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171024161517) do
   create_table "channel_subscriptions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "channel_id", null: false
+    t.boolean "visible", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel_id", "user_id"], name: "index_channel_subscriptions_on_channel_id_and_user_id", unique: true
@@ -37,7 +38,6 @@ ActiveRecord::Schema.define(version: 20171024161517) do
     t.string "username", null: false
     t.string "password_digest", null: false
     t.string "session_token", null: false
-    t.string "visible_channels"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true

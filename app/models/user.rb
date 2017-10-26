@@ -2,7 +2,6 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :username, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
-  serialize :visible_channels, Array
   
   attr_reader :password
   
@@ -39,5 +38,10 @@ class User < ApplicationRecord
     self.session_token = generate_token
     self.save!
     self.session_token
+  end
+  
+  def visible_channels
+    debugger
+    self.channel_subscriptions.where(visible: true)
   end
 end

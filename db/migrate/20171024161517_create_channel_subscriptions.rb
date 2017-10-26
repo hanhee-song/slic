@@ -3,7 +3,7 @@ class CreateChannelSubscriptions < ActiveRecord::Migration[5.1]
     create_table :channel_subscriptions do |t|
       t.integer :user_id, null: false
       t.integer :channel_id, null: false
-
+      t.boolean :visible, null: false, default: true
       t.timestamps
     end
     add_index :channel_subscriptions, :user_id

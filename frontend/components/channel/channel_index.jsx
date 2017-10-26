@@ -15,6 +15,10 @@ class ChannelIndex extends React.Component {
     this.props.clearDropdown();
   }
   
+  componentDidMount() {
+    this.props.fetchChannels();
+  }
+  
   render () {
     const channels = this.props.channels.reverse().map((channel) => {
       return (

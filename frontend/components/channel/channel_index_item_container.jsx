@@ -5,8 +5,13 @@ import { clearDropdown } from '../../actions/ui_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
+  const channel = state.entities.channels[ownProps.channel.id];
+  const users = channel.users ? Object.keys(channel.users) : [];
+  
   return {
-    channel: ownProps.channel,
+    channelId: ownProps.channel.id,
+    channel: channel,
+    users: users,
   };
 };
 

@@ -7,9 +7,9 @@ class ChannelIndex extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
   
-  componentDidMount() {
-    this.props.fetchChannels();
-  }
+  // componentDidMount() {
+  //   this.props.fetchChannels();
+  // }
   
   handleClose() {
     this.props.clearDropdown();

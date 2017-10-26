@@ -10,8 +10,8 @@ const SessionErrorsReducer = (state = initialState, action) => {
   
   switch (action.type) {
     case RECEIVE_CHANNEL_ERRORS:
-      debugger;
-      return action.errors.responseJSON;
+      return action.errors.responseJSON ?
+        action.errors.responseJSON : [action.errors.responseText];
     case RECEIVE_ALL_CHANNELS:
       return initialState;
     default:

@@ -40,6 +40,7 @@ class ChannelSidebar extends React.Component {
     
     return (
       <div className="sidebar-section">
+        {dropdown}
         <div className="sidebar-section-header">
           <div
             className="sidebar-section-title channels link"
@@ -54,7 +55,6 @@ class ChannelSidebar extends React.Component {
         <ul className="sidebar-section-items channels">
           {channels}
         </ul>
-        {dropdown}
       </div>
     );
   }

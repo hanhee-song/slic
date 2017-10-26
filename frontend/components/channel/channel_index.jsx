@@ -19,6 +19,10 @@ class ChannelIndex extends React.Component {
     this.props.fetchChannels();
   }
   
+  componentWillUnmount(nextProps, nextState) {
+    this.props.fetchChannels({ visible: true });
+  }
+  
   render () {
     const channels = this.props.channels.reverse().map((channel) => {
       return (
@@ -33,7 +37,7 @@ class ChannelIndex extends React.Component {
           <div
             className="channel-new-x"
             onClick={this.handleClose}>
-            <i class="fa fa-times" aria-hidden="true"></i>
+            <i className="fa fa-times" aria-hidden="true"></i>
             <div className="channel-new-esc">esc</div>
           </div>
           <div className="channel-new-header">

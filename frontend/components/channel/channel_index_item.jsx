@@ -6,9 +6,9 @@ class ChannelIndexItem extends React.Component {
     this.date = this.date.bind(this);
   }
   
-  componentDidMount() {
-    this.props.fetchChannel(this.props.channelId);
-  }
+  // componentDidMount() {
+  //   this.props.fetchChannel(this.props.channelId);
+  // }
   
   handleClick() {
     return () => {
@@ -44,7 +44,8 @@ class ChannelIndexItem extends React.Component {
   }
   
   render () {
-    const userCount = this.props.users.length;
+    debugger;
+    const userCount = this.props.channel.user_count;
     let description;
     if (this.props.channel.description) {
       description = (

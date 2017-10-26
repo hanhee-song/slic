@@ -9,8 +9,12 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+  const options = {
+    change_visibility: true,
+    visible: false,
+  };
   return {
-    makeChannelInvisible: (channel) => dispatch(updateChannel(channel)),
+    makeChannelInvisible: (channel) => dispatch(updateChannel(channel, options)),
   };
 };
 

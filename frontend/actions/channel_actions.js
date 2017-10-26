@@ -63,41 +63,26 @@ export const createChannel = (channel) => {
   };
 };
 
-export const updateChannel = (channel) => {
-  return (dispatch) => {
-    return ChannelApiUtil.updateChannel(channel)
+export const updateChannel = (channel, options) => {
+  if (options && options.change_visibility && !options.visible) {
+    return (dispatch) => {
+      return ChannelApiUtil.updateChannel(channel, options)
+      .then(
+        () => dispatch(removeChannel(channel.id)),
+        (errors) => dispatch(receiveChannelErrors(errors))
+      );
+    };
+    
+  } else {
+    return (dispatch) => {
+      return ChannelApiUtil.updateChannel(channel, options)
       .then(
         (channel) => dispatch(receiveChannel(channel)),
         (errors) => dispatch(receiveChannelErrors(errors))
       );
-  };
+    };
+  }
 };
-// 
-// export const makeChannelInvisible = (channel) => {
-//   let nextChannel = channel;
-//   nextChannel.change_visibility = true;
-//   nextChannel.visible = false;
-//   return (dispatch) => {
-//     return ChannelApiUtil.updateChannel(nextChannel)
-//       .then(
-//         (channel) => dispatch(receiveChannel(channel)),
-//         (errors) => dispatch(receiveChannelErrors(errors))
-//       );
-//   };
-// };
-//
-// export const makeChannelVisible = (channel) => {
-//   let nextChannel = channel;
-//   nextChannel.change_visibility = true;
-//   nextChannel.visible = true;
-//   return (dispatch) => {
-//     return ChannelApiUtil.updateChannel(nextChannel)
-//       .then(
-//         (channel) => dispatch(receiveChannel(channel)),
-//         (errors) => dispatch(receiveChannelErrors(errors))
-//       );
-//   };
-// };
 
 export const deleteChannel = (channelId) => {
   return (dispatch) => {

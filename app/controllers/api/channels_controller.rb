@@ -30,6 +30,7 @@ class Api::ChannelsController < ApplicationController
         user_id: user_id)
       
       if @channel.channel_subscriptions.update(visible: option_params[:visible])
+        render "api/channels/show"
       else
         render json: @channel.errors.full_messages, status: 422
       end

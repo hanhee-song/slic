@@ -26,6 +26,12 @@ class ChannelIndex extends React.Component {
     return (
       <div className="channel-new-container">
         <div className="channel-new-inside">
+          <div
+            className="channel-new-x"
+            onClick={this.handleClose}>
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <div className="channel-new-esc">esc</div>
+          </div>
           <div className="channel-new-header">
             Browse Channels
           </div>

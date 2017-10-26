@@ -1,3 +1,5 @@
+/* CHANNEL */
+
 .channel-new-container {
   position: absolute;
   height: 100%;
@@ -16,6 +18,30 @@
   -webkit-animation: slideup .3s;
   margin: 0 auto;
   max-width: 650px;
+}
+
+.channel-new-x {
+  position: relative;
+  // top: 100px;
+  // right: 100px;
+  left: 650px;
+  font-size: 26px;
+  color: #aaa;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.channel-new-esc {
+  font-size: 12px;
+}
+
+.channel-new-x:hover {
+  background-color: #ddd;
+  color: #333;
 }
 
 .channel-new-header {

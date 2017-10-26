@@ -16,7 +16,7 @@ class ChannelIndex extends React.Component {
   }
   
   render () {
-    const channels = this.props.channels.map((channel) => {
+    const channels = this.props.channels.reverse().map((channel) => {
       return (
         <ChannelIndexItemContainer
           key={channel.id}
@@ -29,10 +29,10 @@ class ChannelIndex extends React.Component {
           <div className="channel-new-header">
             Browse Channels
           </div>
+          <div className="channel-new-list-header">
+            Channels you can join
+          </div>
           <ul className="channel-new-list">
-            <li className="channel-new-list-header">
-              Channels you can join
-            </li>
             {channels}
           </ul>
         </div>

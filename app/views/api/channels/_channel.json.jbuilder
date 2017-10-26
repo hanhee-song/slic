@@ -1,4 +1,4 @@
-json.extract! channel, :id, :name, :description
+json.extract! channel, :id, :name, :description, :created_at
 json.users do
   channel.users.each do |user|
     json.set! user.id do

@@ -12,7 +12,6 @@ class Api::ChannelsController < ApplicationController
   end
   
   def create
-    debugger
     @channel = Channel.new(channel_params)
     if @channel.save
       render "api/channels/show"
@@ -22,7 +21,7 @@ class Api::ChannelsController < ApplicationController
   end
   
   def update
-    channel_id = channel_params[:channel_id] || params[:id]
+    channel_id = params[:id]
     user_id = channel_params[:user_id]
     @channel = Channel.find(channel_id)
     
@@ -57,8 +56,7 @@ class Api::ChannelsController < ApplicationController
   private
   
   def channel_params
-    params.require(:channel).permit(:name, :description, :channel_id,
-      :user_id)
+    params.require(:channel).permit(:name, :description, :user_id)
   end
 
   def option_params

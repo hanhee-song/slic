@@ -44,7 +44,6 @@ class ChannelIndexItem extends React.Component {
   }
   
   render () {
-    debugger;
     const userCount = this.props.channel.user_count;
     let description;
     if (this.props.channel.description) {

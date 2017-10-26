@@ -3,14 +3,11 @@ import React from 'react';
 class ChannelSidebarItem extends React.Component {
   constructor(props) {
     super(props);
-    this.makeChannelInvisible = this.makeChannelInvisible.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   
-  makeChannelInvisible() {
-    return () => {
-      debugger;
-      this.props.makeChannelInvisible(this.props.channel);
-    };
+  handleClick() {
+    this.props.makeChannelInvisible(this.props.channel);
   }
   
   render () {
@@ -18,7 +15,7 @@ class ChannelSidebarItem extends React.Component {
       <li className="sidebar-section-item button">
         {this.props.channel.name}
         <i
-          onClick={this.makeChannelInvisible()}
+          onClick={this.handleClick}
           className="fa fa-times-circle-o"></i>
       </li>
     );

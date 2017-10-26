@@ -27,10 +27,9 @@ const defaultOptions = {
 };
 
 export const updateChannel = (channel, options = defaultOptions) => {
-  debugger;
   return $.ajax({
     method: "PATCH",
-    url: `/api/channels/${channel.channel_id}`,
+    url: `/api/channels/${channel.id}`,
     data: { channel, options },
   });
 };

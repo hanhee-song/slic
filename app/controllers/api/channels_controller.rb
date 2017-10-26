@@ -17,9 +17,8 @@ class Api::ChannelsController < ApplicationController
   end
   
   def update
-    @channel = Channel.find_by(params[:id])
-    if channel[:channel_id] && channel[:user_id]
-      
+    @channel = Channel.find(params[:channel][:channel_id])
+    if channel_params[:channel_id] && channel_params[:user_id]
       @channel_subscription = ChannelSubscription.new(channel_params)
       if @channel_subscription.save
         render "api/channels/show"

@@ -1,17 +1,18 @@
 import ChannelForm from './channel_form';
 import { connect } from 'react-redux';
-import { createChannel } from '../../actions/channel_actions';
+import { createChannel, updateChannel } from '../../actions/channel_actions';
 import { clearDropdown } from '../../actions/ui_actions';
 
 const mapStateToProps = (state) => {
   return {
-    
+    currentUser: state.session.currentUser,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createChannel: (channel) => dispatch(createChannel(channel)),
+    updateChannel: (channel) => dispatch(updateChannel(channel)),
     clearDropdown: () => dispatch(clearDropdown()),
   };
 };

@@ -4,6 +4,7 @@ class ChannelIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.date = this.date.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   
   // componentDidMount() {
@@ -11,10 +12,8 @@ class ChannelIndexItem extends React.Component {
   // }
   
   handleClick() {
-    return () => {
-      this.props.clearDropdown();
-      this.props.makeChannelVisible();
-    };
+    this.props.makeChannelVisible(this.props.channel);
+    this.props.clearDropdown();
   }
   
   date() {
@@ -59,7 +58,7 @@ class ChannelIndexItem extends React.Component {
     return (
       <li
         className="channel-new-list-li"
-        onClick={this.props.clearDropdown}>
+        onClick={this.handleClick}>
         <div className="channel-new-list-item-left">
           <div className="channel-new-list-item title">
             <div className="channel-new-list-item hashtag">

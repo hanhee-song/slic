@@ -9,6 +9,8 @@
   padding: 10px;
   outline: none;
   box-shadow: 1px 3px 2px #222;
+  animation: fadein .2s;
+  -webkit-animation: fadein .2s;
 }
 
 .modal-overlay {

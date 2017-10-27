@@ -1,6 +1,9 @@
 class Api::ChannelsController < ApplicationController
   def index
     @channels = current_user.channels
+    @count = current_user.channels.joins(:channel_subscriptions)
+      .group("channel_subscriptions.channel_id").count
+    debugger
   end
   
   def show

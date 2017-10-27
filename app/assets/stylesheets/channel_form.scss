@@ -12,6 +12,12 @@
   width: 650px;
 }
 
+.channel-form-input-error {
+  @include input-field;
+  width: 650px;
+  border: 1px solid #ff8c44;
+}
+
 .channel-form-input:hover {
   @include input-field-hover;
 }

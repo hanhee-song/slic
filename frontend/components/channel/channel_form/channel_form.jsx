@@ -40,6 +40,19 @@ class ChannelForm extends React.Component {
   }
   
   render () {
+    const errors = this.props.errors.map((error, idx) => {
+      if (error === "Name can't be blank") {
+        error = "Don't forget to name your channel";
+      }
+      return (
+        <li key={idx}>
+          {error}
+        </li>
+      );
+    });
+    
+    const errorFlag = this.props.errors.length > 0 ? "-error" : "";
+    
     return (
       <div className="fullscreen-container">
         <div className="fullscreen-inside">
@@ -65,9 +78,12 @@ class ChannelForm extends React.Component {
                 <div className="fullscreen-input-title">
                   Name
                 </div>
+                <div className="fullscreen-popup-errors">
+                  {errors}
+                </div>
               </div>
               <input
-                className="channel-form-input"
+                className={`channel-form-input${errorFlag}`}
                 type="text"
                 onChange={this.handleChange("name")}
                 value={this.state.name}

@@ -6,6 +6,7 @@ import { clearDropdown } from '../../../actions/ui_actions';
 const mapStateToProps = (state) => {
   return {
     currentUser: state.session.currentUser,
+    errors: state.errors.channel
   };
 };
 

@@ -61,3 +61,13 @@ export const logout = () => {
       );
   };
 };
+
+export const updateUser = (user) => {
+  return (dispatch) => {
+    return SessionApiUtil.updateUser(user)
+      .then(
+        (user) => dispatch(receiveCurrentUser(user)),
+        (errors) => dispatch(receiveSessionErrors(errors))
+      );
+  };
+};

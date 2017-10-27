@@ -13,7 +13,7 @@ class ChannelSidebarItem extends React.Component {
   render () {
     return (
       <li className="sidebar-section-item button">
-        {this.props.channel.name}
+        # {this.props.channel.name}
         <i
           onClick={this.handleClick}
           className="fa fa-times-circle-o"></i>

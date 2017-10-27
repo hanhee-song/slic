@@ -47,13 +47,15 @@ class ChannelSidebar extends React.Component {
     return (
       <div className="sidebar-section">
         {dropdown}
+        
+        
         <div className="sidebar-section-header">
           <div
             className="sidebar-section-title channels link sidebar-hoverable"
             onClick={this.handleChannelIndex}>
             Channels
           </div>
-          <div className="sidebar-info-bubble all">
+          <div className="sidebar-info-bubble">
             Browse All Channels
           </div>
           <i
@@ -66,6 +68,28 @@ class ChannelSidebar extends React.Component {
         </div>
         <ul className="sidebar-section-items channels">
           {channels}
+        </ul>
+        
+        
+        <div className="sidebar-section-header">
+          <div
+            className="sidebar-section-title channels link sidebar-hoverable"
+            onClick>
+            Direct Messages
+          </div>
+          <div className="sidebar-info-bubble">
+            Open a direct message
+          </div>
+          <i
+            onClick
+            className="sidebar-hoverable fa fa-plus link"
+            aria-hidden="true"></i>
+          <div className="sidebar-info-bubble dm-2">
+            Open a direct message
+          </div>
+        </div>
+        <ul className="sidebar-section-items channels">
+
         </ul>
       </div>
     );

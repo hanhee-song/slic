@@ -80,22 +80,24 @@
 }
 
 .sidebar-section-header {
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   position: relative;
 }
 
 .sidebar-section-title {
-  padding: 2px 120px 5px 15px;
+  width: 190px;
+  padding: 2px 0px 2px 15px;
+  margin-bottom: 3px;
   transition: color .3s ease;
   -webkit-transition: color .3s ease;
 }
 
 .sidebar-section-header .fa-plus {
   color: #aaa;
-  padding: 3px 5px;
-  // border: 1px solid red;
-  border-radius: 50%;
+  padding: 2px 4px;
+  border-radius: 20%;
   position: absolute;
   left: 180px;
   transition: color .2s ease;
@@ -165,25 +167,19 @@ Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
 ------------------------------------------ */
 
 .sidebar-info-bubble {
-  display: none;
-  font-size: 12px;
-  font-weight: 400;
   position: absolute;
-  padding: 10px;
-  // margin:1em 0 3em;
+  display: none;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
   color:#f5f5f5;
   background:#000;
+  padding: 10px;
   border-radius:10px;
   top: -38px;
   left: 10px;
   -webkit-animation: bubble-fadein .6s;
   animation: bubble-fadein .6s;
-}
-
-.new {
-  left: 130px;
-  width: 130px
-  // margin-left: 120px;
 }
 
 .sidebar-info-bubble:after {
@@ -198,7 +194,23 @@ Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
   width:0;
 }
 
+/////////////////
+
+.new {
+  left: 130px;
+  width: 150px;
+}
+
 .new:after {
+  left: 54px;
+}
+
+.dm-2 {
+  left: 130px;
+  width: 160px;
+}
+
+.dm-2:after {
   left: 54px;
 }
 

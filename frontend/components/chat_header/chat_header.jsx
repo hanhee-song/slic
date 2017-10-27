@@ -6,9 +6,7 @@ class ChatHeader extends React.Component {
   }
   
   render () {
-    const userCount = this.props.channel.users ?
-      this.props.channel.users.length : undefined;
-    
+    const userCount = this.props.channel.user_count;
     return (
       <div className="chat-header">
         
@@ -18,9 +16,10 @@ class ChatHeader extends React.Component {
           </div>
           <div className="chat-header-left-options">
             <div className="chat-header-left-options blue-hover button chat-hoverable">
-              <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
+              <i className="fa fa-user-o" aria-hidden="true"></i>
+              <div>{userCount}</div>
             </div>
-            <div className="chat-info-bubble">
+            <div className="chat-info-bubble users">
               View Member List
             </div>
           </div>

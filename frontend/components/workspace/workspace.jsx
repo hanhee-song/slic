@@ -6,6 +6,25 @@ import ChannelIndexContainer from '../channel/channel_index/channel_index_contai
 import ChannelFormContainer from '../channel/channel_form/channel_form_container';
 
 class Workspace extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleEscape = this.handleEscape.bind(this);
+  }
+  
+  handleEscape(e) {
+    if (e.keyCode === 27) {
+      this.props.clearDropdown();
+    }
+  }
+  
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleEscape, false);
+  }
+  
+  componentWillUnmount(nextProps, nextState) {
+    document.removeEventListener("keydown", this.handleEscape, false);
+  }
+  
   render () {
     let dropdown;
     if (this.props.dropdown === "channelNew") {

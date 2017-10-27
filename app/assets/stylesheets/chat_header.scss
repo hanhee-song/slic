@@ -39,6 +39,10 @@
   color: #777;
 }
 
+.chat-header-left-options .fa-user-o {
+  margin-right: 3px;
+}
+
 .chat-header-left-options .button {
   /*padding: 1px 2px;*/
   margin: 0px 5px;
@@ -115,6 +119,10 @@ Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
 }
 
 /////////////////
+
+.chat-info-bubble.users {
+  right: -22px;
+}
 
 .chat-info-bubble.settings {
   right: 0px;

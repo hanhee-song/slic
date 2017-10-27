@@ -7,23 +7,22 @@ class ChannelSidebarItem extends React.Component {
     this.handleHideChannel = this.handleHideChannel.bind(this);
   }
   
-  handleHideChannel(e) {
-    e.preventDefault();
+  handleHideChannel() {
     this.props.makeChannelInvisible(this.props.channel);
   }
   
   render () {
     return (
-      <div>
+      <li className="sidebar-section-item button">
         <Link to={`/channels/${this.props.channel.id}`}>
-          <li className="sidebar-section-item button">
+          <div className="sidebar-section-item-inner">
             # {this.props.channel.name}
-          </li>
+          </div>
         </Link>
         <i
           onClick={this.handleHideChannel}
           className="fa fa-times-circle-o"></i>
-      </div>
+      </li>
     );
   }
 }

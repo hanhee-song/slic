@@ -108,11 +108,10 @@
   color: #eee;
 }
 
-.sidebar-section-items li {
+.sidebar-section-item-inner {
   padding: 7px 15px 6px 15px;
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
 }
 
 .sidebar-section-items .selected {
@@ -126,15 +125,19 @@
   color: white;
 }
 
+.sidebar-section-item {
+  position: relative;
+}
+
 .sidebar-section-item .fa-times-circle-o {
   color: #aaa;
   display: none;
   position: absolute;
   left: 180px;
+  top: 5px;
   margin-top: -3px;
   padding: 2px;
   font-size: 18px;
-  border: 1px solid red;
 }
 
 .sidebar-section-item .fa-times-circle-o:hover {

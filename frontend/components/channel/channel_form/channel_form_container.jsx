@@ -1,6 +1,10 @@
 import ChannelForm from './channel_form';
 import { connect } from 'react-redux';
-import { createChannel, updateChannel } from '../../../actions/channel_actions';
+import {
+  createChannel,
+  updateChannel,
+  clearChannelErrors,
+} from '../../../actions/channel_actions';
 import { clearDropdown } from '../../../actions/ui_actions';
 
 const mapStateToProps = (state) => {
@@ -15,6 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     createChannel: (channel) => dispatch(createChannel(channel)),
     updateChannel: (channel) => dispatch(updateChannel(channel)),
     clearDropdown: () => dispatch(clearDropdown()),
+    clearChannelErrors: () => dispatch(clearChannelErrors()),
   };
 };
 

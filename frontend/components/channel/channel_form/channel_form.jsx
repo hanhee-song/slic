@@ -32,6 +32,7 @@ class ChannelForm extends React.Component {
   
   handleClose(e) {
     e.preventDefault();
+    this.props.clearChannelErrors();
     this.props.clearDropdown();
   }
   

@@ -112,6 +112,7 @@
   padding: 7px 15px 6px 15px;
   display: flex;
   justify-content: space-between;
+  border: 1px solid red;
 }
 
 .sidebar-section-items .selected {
@@ -133,6 +134,7 @@
   margin-top: -3px;
   padding: 2px;
   font-size: 18px;
+  border: 1px solid red;
 }
 
 .sidebar-section-item .fa-times-circle-o:hover {

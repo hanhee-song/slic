@@ -4,6 +4,7 @@
   position: absolute;
   height: 100%;
   width: 100%;
+  overflow: hidden;
   top: 0;
   left: 0;
   background-color: #fff;
@@ -19,6 +20,7 @@
   -webkit-animation: slideup .3s;
   margin: 0 auto;
   max-width: 650px;
+  height: 100%;
 }
 
 .channel-new-x {
@@ -64,11 +66,15 @@
   padding-bottom: 10px;
 }
 
+.channel-new-list-container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 500px;
+}
+
 .channel-new-list {
   display: flex;
   flex-direction: column-reverse;
-  // overflow: scroll;
-  // height: 500px;
 }
 
 .channel-new-list-li {

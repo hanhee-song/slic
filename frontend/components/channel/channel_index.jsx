@@ -46,9 +46,11 @@ class ChannelIndex extends React.Component {
           <div className="channel-new-list-header">
             Channels you can join
           </div>
-          <ul className="channel-new-list">
-            {channels}
-          </ul>
+          <div className="channel-new-list-container">
+            <ul className="channel-new-list">
+              {channels}
+            </ul>
+          </div>
         </div>
       </div>
     );

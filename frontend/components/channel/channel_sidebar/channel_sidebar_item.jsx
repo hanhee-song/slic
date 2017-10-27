@@ -1,15 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ChannelSidebarItem extends React.Component {
   constructor(props) {
     super(props);
     this.handleHideChannel = this.handleHideChannel.bind(this);
-    this.handleSetChannel = this.handleSetChannel.bind(this);
-  }
-  
-  handleSetChannel() {
-    this.props.setCurrentChannel(this.props.channel.id);
-    debugger;
   }
   
   handleHideChannel() {
@@ -18,14 +13,14 @@ class ChannelSidebarItem extends React.Component {
   
   render () {
     return (
-      <li className="sidebar-section-item button">
-        <div onClick={this.handleSetChannel}>
+      <Link to={`/channels/${this.props.channel.id}`}>
+        <li className="sidebar-section-item button">
           # {this.props.channel.name}
-        </div>
-        <i
-          onClick={this.handleHideChannel}
-          className="fa fa-times-circle-o"></i>
-      </li>
+          <i
+            onClick={this.handleHideChannel}
+            className="fa fa-times-circle-o"></i>
+        </li>
+      </Link>
     );
   }
 }

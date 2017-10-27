@@ -6,7 +6,6 @@ import {
 } from '../../../actions/channel_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  debugger;
   return {
     channel: ownProps.channel,
   };
@@ -19,7 +18,6 @@ const mapDispatchToProps = (dispatch) => {
   };
   return {
     makeChannelInvisible: (channel) => dispatch(updateChannel(channel, options)),
-    setCurrentChannel: (channelId) => dispatch(setCurrentChannel(channelId)),
   };
 };
 

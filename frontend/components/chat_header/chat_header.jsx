@@ -6,16 +6,19 @@ class ChatHeader extends React.Component {
   }
   
   render () {
+    const userCount = this.props.channel.users ?
+      this.props.channel.users.length : undefined;
+    
     return (
       <div className="chat-header">
         
         <div className="chat-header-left">
           <div className="chat-header-left-title button">
-            # Temporary title
+            # {this.props.channel.name}
           </div>
           <div className="chat-header-left-options">
             <div className="chat-header-left-options blue-hover button chat-hoverable">
-              <i className="fa fa-user-o" aria-hidden="true"></i> 71
+              <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
             </div>
             <div className="chat-info-bubble">
               View Member List

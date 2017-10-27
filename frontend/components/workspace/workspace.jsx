@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import Sidebar from '../sidebar/sidebar';
 import ChatHeaderContainer from '../chat_header/chat_header_container';
 import ChannelIndexContainer from '../channel/channel_index/channel_index_container';
@@ -17,8 +18,12 @@ class Workspace extends React.Component {
       <div className="workspace">
         {dropdown}
         <Sidebar />
+        
         <div className="chat">
-          <ChatHeaderContainer />
+          <Route
+            component={ChatHeaderContainer}
+            path="/channels/:channelId" />
+          
         </div>
       </div>
     );

@@ -49,14 +49,20 @@ class ChannelSidebar extends React.Component {
         {dropdown}
         <div className="sidebar-section-header">
           <div
-            className="sidebar-section-title channels link"
+            className="sidebar-section-title channels link sidebar-hoverable"
             onClick={this.handleChannelIndex}>
             Channels
           </div>
+          <div className="sidebar-info-bubble all">
+            Browse All Channels
+          </div>
           <i
             onClick={this.handleChannelNew}
-            className="fa fa-plus link"
+            className="sidebar-hoverable fa fa-plus link"
             aria-hidden="true"></i>
+          <div className="sidebar-info-bubble new">
+            Open a new channel
+          </div>
         </div>
         <ul className="sidebar-section-items channels">
           {channels}

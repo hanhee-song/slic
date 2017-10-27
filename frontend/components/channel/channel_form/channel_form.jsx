@@ -47,10 +47,14 @@ class ChannelForm extends React.Component {
             className="fullscreen-x"
             onClick={this.handleClose}>
             <i className="fa fa-times" aria-hidden="true"></i>
-            <div className="channel-index-esc">esc</div>
+            <div className="fullscreen-esc">esc</div>
           </div>
-          <div className="channel-index-header">
+          <div className="fullscreen-header">
             Create a channel
+          </div>
+          <div className="fullscreen-subheader">
+            Channels are where your members communicate. They&rsquo;re best organized
+            around a topic - #leads, for example.
           </div>
           <form
             className="channel-form-new"

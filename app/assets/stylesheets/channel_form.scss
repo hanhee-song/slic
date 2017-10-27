@@ -27,8 +27,8 @@
   @include session-button-hover;
 }
 
-.channel-form-submit:focus {
-  @include session-button-focus;
+.channel-form-submit:active {
+  @include session-button-active;
 }
 
 .channel-form-x {

@@ -96,18 +96,27 @@
 
 .main-signup-input:focus {
   @include input-field-focus;
+  border: 1px solid #383aa5;
 }
 
 .main-signup-button {
   @include session-button;
+  background-color: #383aa5;
+  border: none;
+  padding: 20px 40px 20px 40px;
+  font-size: 14px;
 }
 
 .main-signup-button:hover {
   @include session-button-hover;
+  background-color: #262770;
+  border: none;
 }
 
-.main-signup-button:focus {
-  @include session-button-focus;
+.main-signup-button:active {
+  @include session-button-active;
+  background-color: #7185e2;
+  border: none;
 }
 
 .welcome-alternate {

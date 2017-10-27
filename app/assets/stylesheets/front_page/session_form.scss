@@ -39,26 +39,14 @@
 
 .session-input:focus{
   @include input-field-focus;
-  border-color: #888;
 }
 
 .session-input:hover{
   border-color: #888;
 }
 
-@mixin green-session-button {
-  padding-bottom: 14px;
-  padding-top: 13px;
-  font-size: 18px;
-  background-color: #2ea06c;
-  border-bottom: 3px solid #2ea06c;
-  border-top: 2px solid #2ea06c;
-  outline: none;
-}
-
 .session-button {
   @include session-button;
-  @include green-session-button;
   margin: 0 auto;
   margin-top: 20px;
   width: 400px;
@@ -67,14 +55,10 @@
 
 .session-button:hover {
   @include session-button-hover;
-  @include green-session-button;
-  border-bottom: 3px solid #1c6644;
 }
 
 .session-button:active {
-  @include session-button-focus;
-  @include green-session-button;
-  border-top: 2px solid #1c6644;
+  @include session-button-active;
 }
 
 .session-box {

@@ -1,4 +1,3 @@
-
 @mixin input-field {
   border: 1px solid #ccc;
   padding: 19px;
@@ -14,31 +13,38 @@
 }
 
 @mixin session-button {
+  outline: none;
   color: white;
   border: none;
-  background-color: #383aa5;
-  padding: 20px 40px 20px 40px;
+  padding-bottom: 14px;
+  padding-top: 13px;
   border-radius: 5px;
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 18px;
   transition: background-color .25s ease;
   -webkit-transition: background-color .25s ease;
   margin-bottom: 10px;
+  background-color: #2ea06c;
+  border-bottom: 3px solid #2ea06c;
+  border-top: 2px solid #2ea06c;
   /* TODO: Maybe add compat for moz/o */
 }
 
 @mixin input-field-focus {
-  border: 1px solid #383aa5;
+  border: 1px solid #888;
   outline: none;
 }
 
 @mixin session-button-hover {
   cursor: pointer;
-  background-color: #262770;
+  border-bottom: 3px solid #1c6644;
+  border-top: 2px solid #2ea06c;
 }
 
-@mixin session-button-focus {
+@mixin session-button-active {
   outline: none;
-  background-color: #7185e2;
+  border: none;
+  border-bottom: 3px solid #2ea06c;
+  border-top: 2px solid #1c6644;
 }

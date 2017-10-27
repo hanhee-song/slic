@@ -38,12 +38,12 @@ class ChannelIndex extends React.Component {
             className="fullscreen-x"
             onClick={this.handleClose}>
             <i className="fa fa-times" aria-hidden="true"></i>
-            <div className="channel-index-esc">esc</div>
+            <div className="fullscreen-esc">esc</div>
           </div>
-          <div className="channel-index-header">
+          <div className="fullscreen-header">
             Browse Channels
           </div>
-          <div className="channel-index-list-header">
+          <div className="fullscreen-subheader">
             Channels you can join
           </div>
           <div className="channel-index-list-container">

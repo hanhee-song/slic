@@ -1,7 +1,7 @@
 import ChannelForm from './channel_form';
 import { connect } from 'react-redux';
-import { createChannel, updateChannel } from '../../actions/channel_actions';
-import { clearDropdown } from '../../actions/ui_actions';
+import { createChannel, updateChannel } from '../../../actions/channel_actions';
+import { clearDropdown } from '../../../actions/ui_actions';
 
 const mapStateToProps = (state) => {
   return {

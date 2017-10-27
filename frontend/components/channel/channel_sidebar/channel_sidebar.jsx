@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ChannelSidebarItemContainer from './channel_sidebar_item_container';
-import ChannelIndexContainer from './channel_index_container';
-import ChannelFormContainer from './channel_form_container';
+
 
 class ChannelSidebar extends React.Component {
   constructor(props) {
@@ -25,12 +24,7 @@ class ChannelSidebar extends React.Component {
   
   render () {
     
-    let dropdown;
-    if (this.props.dropdown === "channelNew") {
-      dropdown = <ChannelFormContainer />;
-    } else if (this.props.dropdown === "channelIndex") {
-      dropdown = <ChannelIndexContainer />;
-    }
+
     
     const channels = this.props.channels
       .filter((channel) => {
@@ -46,9 +40,6 @@ class ChannelSidebar extends React.Component {
     
     return (
       <div className="sidebar-section">
-        {dropdown}
-        
-        
         <div className="sidebar-section-header">
           <div
             className="sidebar-section-title channels link sidebar-hoverable"
@@ -74,14 +65,14 @@ class ChannelSidebar extends React.Component {
         <div className="sidebar-section-header">
           <div
             className="sidebar-section-title channels link sidebar-hoverable"
-            onClick>
+            >
             Direct Messages
           </div>
           <div className="sidebar-info-bubble">
             Open a direct message
           </div>
           <i
-            onClick
+            
             className="sidebar-hoverable fa fa-plus link"
             aria-hidden="true"></i>
           <div className="sidebar-info-bubble dm-2">

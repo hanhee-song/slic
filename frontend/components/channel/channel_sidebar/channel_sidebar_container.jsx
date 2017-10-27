@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 import ChannelSidebar from './channel_sidebar';
-import { fetchChannels, updateChannel, makeChannelInvisible } from '../../actions/channel_actions';
-import { receiveDropdown } from '../../actions/ui_actions';
+import {
+  fetchChannels,
+  updateChannel,
+  makeChannelInvisible } from '../../../actions/channel_actions';
+import { receiveDropdown } from '../../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {

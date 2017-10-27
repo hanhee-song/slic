@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ChannelIndexItem from './channel_index_item';
-import { fetchChannel, updateChannel } from '../../actions/channel_actions';
-import { clearDropdown } from '../../actions/ui_actions';
+import { fetchChannel, updateChannel } from '../../../actions/channel_actions';
+import { clearDropdown } from '../../../actions/ui_actions';
 
 
 const mapStateToProps = (state, ownProps) => {

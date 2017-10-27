@@ -59,22 +59,51 @@ class ChannelForm extends React.Component {
           <form
             className="channel-form-new"
             onSubmit={this.handleSubmit}>
-            <input
-              className="channel-form-input"
-              type="text"
-              onChange={this.handleChange("name")}
-              value={this.state.name}
-              placeholder="name"
-              autoFocus />
-            <textarea
-              className="channel-form-input"
-              onChange={this.handleChange("description")}
-              value={this.state.description}
-              placeholder="description" />
-            <input
-              className="channel-form-submit"
-              type="submit"
-              value="Create Channel"/>
+            
+            <div className="fullscreen-input-container">
+              <div className="fullscreen-input-header">
+                <div className="fullscreen-input-title">
+                  Name
+                </div>
+              </div>
+              <input
+                className="channel-form-input"
+                type="text"
+                onChange={this.handleChange("name")}
+                value={this.state.name}
+                placeholder="e.g. leads"
+                autoFocus />
+            </div>
+            
+            <div className="fullscreen-input-container">
+              <div className="fullscreen-input-header">
+                <div className="fullscreen-input-title">
+                  Purpose
+                </div>
+                <div className="fullscreen-input-optional">
+                  (optional)
+                </div>
+              </div>
+              <input
+                type="text"
+                className="channel-form-input"
+                onChange={this.handleChange("description")}
+                value={this.state.description}/>
+            </div>
+            
+            <div
+              className="channel-form-button-container">
+              <div
+                className="channel-form-cancel"
+                onClick={this.handleClose}>
+                Cancel
+              </div>
+              
+              <input
+                className="channel-form-submit"
+                type="submit"
+                value="Create Channel"/>
+            </div>
           </form>
         </div>
       </div>

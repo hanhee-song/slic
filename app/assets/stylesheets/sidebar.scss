@@ -178,6 +178,7 @@ Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
   border-radius:10px;
   top: -38px;
   left: 10px;
+  z-index: 1;
   -webkit-animation: bubble-fadein .6s;
   animation: bubble-fadein .6s;
 }
@@ -192,6 +193,7 @@ Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
   border-color:#000 transparent;
   display:block;
   width:0;
+  z-index: 1;
 }
 
 /////////////////

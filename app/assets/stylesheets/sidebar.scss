@@ -30,7 +30,7 @@
 }
 
 
-.sidebar .button:hover {
+.sidebar .button:hover, .sidebar-button.selected {
   background-color: #301c2b;
   cursor: pointer;
   /*color: white;*/

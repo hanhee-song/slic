@@ -33,7 +33,7 @@ class UserInfo extends React.Component {
     return (
       <div>
         <div
-          className="sidebar-button button"
+          className={`sidebar-button button ${this.state.modalIsOpen ? "selected" : ""}`}
           onClick={this.openModal}>
           <div className="sidebar-button-title">
             Workspace  <i className="fa fa-angle-down" aria-hidden="true"></i>

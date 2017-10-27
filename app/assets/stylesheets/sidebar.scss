@@ -83,7 +83,7 @@
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  position: relative;
+  position: relative; // for hoverables
 }
 
 .sidebar-section-title {
@@ -214,17 +214,6 @@ Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
   left: 54px;
 }
 
-@-webkit-keyframes bubble-fadein {
-  0% { opacity: 0; }
-  80% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes bubble-fadein {
-  0% { opacity: 0; }
-  80% { opacity: 0; }
-  100% { opacity: 1; }
-}
 
 .sidebar-hoverable:hover + .sidebar-info-bubble {
   display: block;

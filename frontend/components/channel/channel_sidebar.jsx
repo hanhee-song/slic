@@ -74,14 +74,14 @@ class ChannelSidebar extends React.Component {
         <div className="sidebar-section-header">
           <div
             className="sidebar-section-title channels link sidebar-hoverable"
-            onClick>
+            >
             Direct Messages
           </div>
           <div className="sidebar-info-bubble">
             Open a direct message
           </div>
           <i
-            onClick
+            
             className="sidebar-hoverable fa fa-plus link"
             aria-hidden="true"></i>
           <div className="sidebar-info-bubble dm-2">

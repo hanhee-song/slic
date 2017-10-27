@@ -42,25 +42,3 @@
   outline: none;
   background-color: #7185e2;
 }
-
-/* NOT A MIXIN, GLOBAL EFFECTS */
-
-@keyframes fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@-webkit-keyframes fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideup {
-  from { transform: translateY(10px); }
-  to { transform: translateY(0px); }
-}
-
-@-webkit-keyframes slideup {
-  from { transform: translateY(10px); }
-  to { transform: translateY(0px); }
-}

@@ -1,9 +1,10 @@
 class Api::ChannelsController < ApplicationController
   def index
     @channels = current_user.channels
-    @count = current_user.channels.joins(:channel_subscriptions)
+    @counts = current_user.channels.joins(:channel_subscriptions)
       .group("channel_subscriptions.channel_id").count
-    debugger
+    @visibles = current_user.channel_subscriptions.select(:channel_id, :visible)
+    @visibles = visibles_to_json(@visibles)
   end
   
   def show
@@ -54,6 +55,14 @@ class Api::ChannelsController < ApplicationController
   end
   
   private
+  
+  def visibles_to_json(visibles)
+    acc = {}
+    visibles.as_json.each do |visible|
+      acc[visible["channel_id"]] = visible["visible"]
+    end
+    acc
+  end
   
   def channel_params
     params.require(:channel).permit(:name, :description, :user_id)

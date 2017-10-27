@@ -7,7 +7,7 @@ import SessionFormContainer from './session/session_form_container';
 import WelcomePageContainer from './welcome_page/welcome_page_container';
 import Footer from './footer/footer';
 
-import Workspace from './workspace/workspace';
+import WorkspaceContainer from './workspace/workspace_container';
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         component={Navbar} />
       <Switch>
         <ProtectedRoute
-          component={Workspace}
+          component={WorkspaceContainer}
           path="/channels"
           />
         <AuthRoute

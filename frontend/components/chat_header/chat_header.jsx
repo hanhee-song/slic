@@ -14,7 +14,7 @@ class ChatHeader extends React.Component {
             # Temporary title
           </div>
           <div className="chat-header-left-options">
-            <div className="chat-header-left-options users button chat-hoverable">
+            <div className="chat-header-left-options blue-hover button chat-hoverable">
               <i className="fa fa-user-o" aria-hidden="true"></i> 71
             </div>
             <div className="chat-info-bubble">
@@ -24,14 +24,14 @@ class ChatHeader extends React.Component {
         </div>
         
         <div className="chat-header-right">
-          <div className="chat-header-right-options info button chat-hoverable">
+          <div className="chat-header-right-options info blue-hover button chat-hoverable">
             <i className="fa fa-info-circle" aria-hidden="true"></i>
           </div>
           <div className="chat-info-bubble details">
             Show Channel Details
           </div>
           
-          <div className="chat-header-right-options settings button chat-hoverable">
+          <div className="chat-header-right-options settings blue-hover button chat-hoverable">
             <i className="fa fa-cog" aria-hidden="true"></i>
           </div>
           <div className="chat-info-bubble settings">

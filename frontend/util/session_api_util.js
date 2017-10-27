@@ -21,10 +21,16 @@ export const logout = () => {
   });
 };
 
-export const updateUser = (user) => {
+const defaultUpdate = {
+  channelId: null
+};
+
+export const updateUser = (user, options = defaultUpdate) => {
+  const channel_id = options.channelId || options.most_recent_channel_id;
+  const rename = { most_recent_channel_id: channel_id };
   return $.ajax({
     method: "PATCH",
     url: `/api/users/${user.id}`,
-    data: { user },
+    data: { user: Object.assign({}, user, rename) },
   });
 };

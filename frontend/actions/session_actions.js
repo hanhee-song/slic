@@ -71,3 +71,13 @@ export const updateUser = (user) => {
       );
   };
 };
+
+export const rememberCurrentChannelId = (user, channelId) => {
+  return (dispatch) => {
+    return SessionApiUtil.updateUser(user, channelId)
+      .then(
+        (user) => dispatch(receiveCurrentUser(user)),
+        (errors) => dispatch(receiveSessionErrors(errors))
+      );
+  };
+};

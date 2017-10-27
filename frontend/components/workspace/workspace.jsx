@@ -18,7 +18,6 @@ class Workspace extends React.Component {
   }
   
   componentDidMount() {
-    debugger;
     document.addEventListener("keydown", this.handleEscape, false);
     const channelId = this.props.currentUser.most_recent_channel_id;
     if (channelId) {
@@ -28,7 +27,6 @@ class Workspace extends React.Component {
   
   componentWillUnmount(nextProps, nextState) {
     document.removeEventListener("keydown", this.handleEscape, false);
-    debugger;
   }
   
   render () {

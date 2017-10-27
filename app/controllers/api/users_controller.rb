@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
   
   def update
     debugger
-    @user = User.
+    @user = User
   end
 
   def show

@@ -3,19 +3,27 @@ import React from 'react';
 class ChannelSidebarItem extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleHideChannel = this.handleHideChannel.bind(this);
+    this.handleSetChannel = this.handleSetChannel.bind(this);
   }
   
-  handleClick() {
+  handleSetChannel() {
+    this.props.setCurrentChannel(this.props.channel.id);
+    debugger;
+  }
+  
+  handleHideChannel() {
     this.props.makeChannelInvisible(this.props.channel);
   }
   
   render () {
     return (
       <li className="sidebar-section-item button">
-        # {this.props.channel.name}
+        <div onClick={this.handleSetChannel}>
+          # {this.props.channel.name}
+        </div>
         <i
-          onClick={this.handleClick}
+          onClick={this.handleHideChannel}
           className="fa fa-times-circle-o"></i>
       </li>
     );

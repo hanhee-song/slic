@@ -40,12 +40,6 @@ export const clearChannelErrors = () => {
   };
 };
 
-// export const setCurrentChannel = (channelId) => {
-//   return {
-//     type: SET_CURRENT_CHANNEL,
-//     channelId,
-//   };
-// };
 
 export const fetchChannels = () => {
   return (dispatch) => {

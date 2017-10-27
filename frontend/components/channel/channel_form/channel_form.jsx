@@ -41,16 +41,17 @@ class ChannelForm extends React.Component {
   
   render () {
     return (
-      <div className="channel-form-absolute">
-        <div className="channel-form-container">
-          <div className="channel-form-header">
-            Create a new Channel
-          </div>
-          <i
-            className="channel-form-x fa fa-times"
-            aria-hidden="true"
+      <div className="fullscreen-container">
+        <div className="fullscreen-inside">
+          <div
+            className="fullscreen-x"
             onClick={this.handleClose}>
-          </i>
+            <i className="fa fa-times" aria-hidden="true"></i>
+            <div className="channel-index-esc">esc</div>
+          </div>
+          <div className="channel-index-header">
+            Create a channel
+          </div>
           <form
             className="channel-form-new"
             onSubmit={this.handleSubmit}>

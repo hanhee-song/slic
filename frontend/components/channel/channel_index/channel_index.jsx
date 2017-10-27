@@ -32,22 +32,22 @@ class ChannelIndex extends React.Component {
         );
     });
     return (
-      <div className="channel-new-container">
-        <div className="channel-new-inside">
+      <div className="fullscreen-container">
+        <div className="fullscreen-inside">
           <div
-            className="channel-new-x"
+            className="fullscreen-x"
             onClick={this.handleClose}>
             <i className="fa fa-times" aria-hidden="true"></i>
-            <div className="channel-new-esc">esc</div>
+            <div className="channel-index-esc">esc</div>
           </div>
-          <div className="channel-new-header">
+          <div className="channel-index-header">
             Browse Channels
           </div>
-          <div className="channel-new-list-header">
+          <div className="channel-index-list-header">
             Channels you can join
           </div>
-          <div className="channel-new-list-container">
-            <ul className="channel-new-list">
+          <div className="channel-index-list-container">
+            <ul className="channel-index-list">
               {channels}
             </ul>
           </div>

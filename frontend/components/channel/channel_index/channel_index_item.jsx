@@ -47,7 +47,7 @@ class ChannelIndexItem extends React.Component {
     let description;
     if (this.props.channel.description) {
       description = (
-        <div className="channel-new-list-item description">
+        <div className="channel-index-list-item description">
           {this.props.channel.description}
         </div>
       );
@@ -57,23 +57,23 @@ class ChannelIndexItem extends React.Component {
     
     return (
       <li
-        className="channel-new-list-li"
+        className="channel-index-list-li"
         onClick={this.handleClick}>
-        <div className="channel-new-list-item-left">
-          <div className="channel-new-list-item title">
-            <div className="channel-new-list-item hashtag">
+        <div className="channel-index-list-item-left">
+          <div className="channel-index-list-item title">
+            <div className="channel-index-list-item hashtag">
               #
             </div>
-            <div className="channel-new-list-item name">
+            <div className="channel-index-list-item name">
               {this.props.channel.name}
             </div>
           </div>
-          <div className="channel-new-list-item date">
+          <div className="channel-index-list-item date">
             Created on {date}
           </div>
           {description}
         </div>
-        <div className="channel-new-list-item users">
+        <div className="channel-index-list-item users">
           <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
         </div>
       </li>

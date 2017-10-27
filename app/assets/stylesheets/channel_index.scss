@@ -1,64 +1,16 @@
 /* CHANNEL */
 
-.channel-new-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  background-color: #fff;
-  animation: fadein .3s;
-  -webkit-animation: fadein .3s;
-  padding-top: 150px;
-  color: #333;
-  z-index: 5;
-}
-
-.channel-new-inside {
-  animation: slideup .3s;
-  -webkit-animation: slideup .3s;
-  margin: 0 auto;
-  max-width: 650px;
-  height: 100%;
-}
-
-.channel-new-x {
-  position: relative;
-  // top: 100px;
-  // right: 100px;
-  left: 650px;
-  font-size: 26px;
-  color: #aaa;
-  width: 60px;
-  height: 60px;
-  padding: 10px;
-  text-align: center;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.channel-new-esc {
+.channel-index-esc {
   font-size: 12px;
 }
 
-.channel-new-x:hover {
-  background-color: #ddd;
-  color: #333;
-}
-
-.channel-new-x:active {
-  background-color: #2ea06c;
-  color: #f5f5f5;
-}
-
-.channel-new-header {
+.channel-index-header {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
-.channel-new-list-header {
+.channel-index-list-header {
   // font-size: 40px;
   font-weight: 400;
   color: #888;
@@ -66,18 +18,18 @@
   padding-bottom: 10px;
 }
 
-.channel-new-list-container {
+.channel-index-list-container {
   overflow-y: auto;
   overflow-x: hidden;
   height: 500px;
 }
 
-.channel-new-list {
+.channel-index-list {
   display: flex;
   flex-direction: column-reverse;
 }
 
-.channel-new-list-li {
+.channel-index-list-li {
   padding: 20px 10px;
   display: flex;
   justify-content: space-between;
@@ -91,37 +43,37 @@
   // display: flex;
 }
 
-.channel-new-list li:hover {
+.channel-index-list li:hover {
   background-color: #eaf7ff;
   border-radius: 5px;
   border: 1px solid #d1eeff;
 }
 
-.channel-new-list li:hover + li {
+.channel-index-list li:hover + li {
   border-bottom: 1px solid #fff;
 }
 
-.channel-new-list-item.title {
+.channel-index-list-item.title {
   display: flex;
 }
 
-.channel-new-list-item {
+.channel-index-list-item {
 }
 
-.channel-new-list-item.hashtag {
+.channel-index-list-item.hashtag {
   margin-right: 4px;
 }
 
-.channel-new-list-item.name {
+.channel-index-list-item.name {
   color: #333;
   font-weight: 400;
   font-size: 16px;
 }
 
-.channel-new-list-item.description, .channel-new-list-item.date {
+.channel-index-list-item.description, .channel-index-list-item.date {
   margin-top: 5px;
 }
 
-.channel-new-list-item.users {
+.channel-index-list-item.users {
   
 }

@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     channels: Object.values(state.entities.channels),
     dropdown: state.ui.dropdown,
+    selectedChannelId: ownProps.match.params.channelId,
   };
 };
 

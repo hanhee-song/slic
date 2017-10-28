@@ -21,8 +21,12 @@ class ChannelSidebarItem extends React.Component {
       );
     }
     
+    const selected = this.props.channel.id === this.props.selectedChannelId ?
+      "selected" : "";
+    debugger;
+    
     return (
-      <li className="sidebar-section-item button">
+      <li className={`sidebar-section-item button ${selected}`}>
         <Link to={`/channels/${this.props.channel.id}`}>
           <div className="sidebar-section-item-inner">
             # {this.props.channel.name}

@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     channel: ownProps.channel,
     type: ownProps.type,
+    selectedChannelId: parseInt(ownProps.selectedChannelId),
   };
 };
 

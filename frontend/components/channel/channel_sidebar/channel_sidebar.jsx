@@ -35,7 +35,8 @@ class ChannelSidebar extends React.Component {
           <ChannelSidebarItemContainer
             key={channel.id}
             channel={channel}
-            type={"channel"}/>
+            type={"channel"}
+            selectedChannelId={this.props.selectedChannelId}/>
         );
       });
     // channel items with a type of "message" have the x conditionally show

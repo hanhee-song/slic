@@ -10,18 +10,29 @@ ActiveRecord::Base.transaction do
   User.destroy_all
   guest = User.new(username: 'slic-guest', password: 'asdfasdf')
   guest.save!
-  User.create!(username: 'boss', password: 'asdfasdf')
-  User.create!(username: 'hi', password: 'asdfasdf')
+  
+  38.times do
+    User.create!(
+      username: "#{Faker::Name.first_name}-#{Faker::Name.last_name}",
+      password: Faker::Internet.password
+    )
+  end
   
   
   Channel.destroy_all
   Channel.create!(name: 'general', description: 'This is for workspace-wide communication and announcements.')
   Channel.create!(name: 'random', description: 'A place for non-work-related flimflam, faffing, hodge-podge, or jibber-jabber.')
-  Channel.create!(name: 'projects')
+  Channel.create!(name: 'project #1')
+  Channel.create!(name: 'project #2')
+  Channel.create!(name: 'project #3')
+  Channel.create!(name: 'project #4')
+  Channel.create!(name: 'project #5')
   
   ChannelSubscription.destroy_all
   
   User.all.each do |user|
+    next if user == guest
+    
     ChannelSubscription.create!(
       channel_id: Channel.find_by(name: 'general').id,
       user_id: user.id,
@@ -33,24 +44,30 @@ ActiveRecord::Base.transaction do
       visible: true
     )
     
+    randomProject = rand(5) + 1
+    ChannelSubscription.create!(
+      channel_id: Channel.find_by(name: "project ##{randomProject}").id,
+      user_id: user.id,
+      visible: true
+    )
+    
     user.update(most_recent_channel_id: Channel.find_by(name: 'general').id)
   end
   
   # GUEST SPECIFIC SUBS
-  
-  # PROJECTS CHANNEL
-  ChannelSubscription.create!(
-    channel_id: Channel.find_by(name: 'projects').id,
-    user_id: guest.id,
-    visible: true
-  )
-  
-  ChannelSubscription.create!(
-    channel_id: Channel.find_by(name: 'projects').id,
-    user_id: User.find_by(username: 'boss').id,
-    visible: true
-  )
-  
-  
+  Channel.all.each do |channel|
+    visible = ([
+      'general',
+      'random',
+      'project #2',
+      'project #5'
+    ].include?(channel.name))
+    ChannelSubscription.create!(
+      channel_id: channel.id,
+      user_id: guest.id,
+      visible: visible
+    )
+  end
+  guest.update(most_recent_channel_id: Channel.find_by(name: 'general').id)
   
 end

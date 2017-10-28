@@ -5,6 +5,9 @@ import ChatHeaderContainer from '../chat_header/chat_header_container';
 import ChannelIndexContainer from '../channel/channel_index/channel_index_container';
 import ChannelFormContainer from '../channel/channel_form/channel_form_container';
 
+import ChannelSidebarContainer from '../channel/channel_sidebar/channel_sidebar_container';
+import UserInfoContainer from '../user_info/user_info_container.jsx';
+
 class Workspace extends React.Component {
   constructor(props) {
     super(props);
@@ -42,7 +45,20 @@ class Workspace extends React.Component {
     return (
       <div className="workspace">
         {dropdown}
-        <Sidebar />
+        <div className="sidebar">
+          <Route
+            component={UserInfoContainer}
+            path="/channels/:channelId" />
+          <Route
+            component={ChannelSidebarContainer}
+            path="/channels/:channelId" />
+          <Route
+            component={UserInfoContainer}
+            exact path="/channels" />
+          <Route
+            component={ChannelSidebarContainer}
+            exact path="/channels" />
+        </div>
         
         <div className="chat">
           <Route

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Sidebar from '../sidebar/sidebar';
 import ChatHeaderContainer from '../chat_header/chat_header_container';
 import ChannelIndexContainer from '../channel/channel_index/channel_index_container';
 import ChannelFormContainer from '../channel/channel_form/channel_form_container';

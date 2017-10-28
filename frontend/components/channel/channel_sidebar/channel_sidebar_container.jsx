@@ -3,7 +3,7 @@ import ChannelSidebar from './channel_sidebar';
 import {
   fetchChannels,
   updateChannel,
-  makeChannelInvisible } from '../../../actions/channel_actions';
+} from '../../../actions/channel_actions';
 import { receiveDropdown } from '../../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchChannels: () => dispatch(fetchChannels()),
     updateChannel: (channel) => dispatch(updateChannel(channel)),
     receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
-    makeChannelInvisible: (channel) => dispatch(makeChannelInvisible(channel)),
   };
 };
 

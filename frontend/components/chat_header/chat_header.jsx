@@ -46,7 +46,7 @@ class ChatHeader extends React.Component {
   }
   
   handleLeave() {
-    
+    this.props.makeChannelInvisible(this.props.channel);
     this.closeModal();
   }
   

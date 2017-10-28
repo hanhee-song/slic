@@ -12,11 +12,6 @@ import WorkspaceContainer from './workspace/workspace_container';
 const App = () => {
   return (
     <section className="app">
-      
-      <AuthRoute
-        component={Navbar} />
-      <AuthRoute
-        component={Footer} />
       <Switch>
         <ProtectedRoute
           component={WorkspaceContainer}
@@ -26,18 +21,26 @@ const App = () => {
           component={WorkspaceContainer}
           path="/channels/:channelId"
           />
-        <AuthRoute
-          component={SessionFormContainer}
-          path="/login"/>
-        <AuthRoute
-          component={SessionFormContainer}
-          path="/signup"/>
-        <AuthRoute
-          component={SessionFormContainer}
-          path="/guest-login"/>
-        <AuthRoute
-          component={WelcomePageContainer}
-          path="/"/>
+        <div>
+          <AuthRoute
+            component={Navbar} />
+          <Switch>
+            <AuthRoute
+              component={SessionFormContainer}
+              path="/login"/>
+            <AuthRoute
+              component={SessionFormContainer}
+              path="/signup"/>
+            <AuthRoute
+              component={SessionFormContainer}
+              path="/guest-login"/>
+            <AuthRoute
+              component={WelcomePageContainer}
+              path="/"/>
+          </Switch>
+          <AuthRoute
+            component={Footer} />
+        </div>
       </Switch>
     </section>
   );

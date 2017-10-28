@@ -41,16 +41,24 @@ class SessionForm extends React.Component {
   }
   
   generateGuest() {
-    const random = Math.floor(999999 * Math.random());
-    this.setState({
-      username: '',
-      password: ''
-    });
+    // TEMP: guest is no longer a randomly generated account
+    // const random = Math.floor(999999 * Math.random());
+    // this.setState({
+    //   username: '',
+    //   password: ''
+    // });
+    //
+    // const guest = {
+    //   username: `Guest${random}`,
+    //   password: 'asdfasdf',
+    // };
     
+    // TEMP: guest is now a preseeded account
     const guest = {
-      username: `Guest${random}`,
+      username: 'slic-guest',
       password: 'asdfasdf',
     };
+    
     const userOptions = {
       strings: [guest.username],
       typeSpeed: 40,

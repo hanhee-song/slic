@@ -20,8 +20,10 @@ class Workspace extends React.Component {
   componentDidMount() {
     document.addEventListener("keydown", this.handleEscape, false);
     const channelId = this.props.currentUser.most_recent_channel_id;
+    // debugger;
     if (channelId) {
       this.props.history.push(`/channels/${channelId}`);
+      // debugger;
     }
   }
   

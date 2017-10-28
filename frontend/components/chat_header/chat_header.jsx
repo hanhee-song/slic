@@ -10,6 +10,13 @@ class ChatHeader extends React.Component {
       this.props.currentUser, { channelId: this.props.channel.id });
   }
   
+  componentWillReceiveProps(nextProps) {
+    if (this.props.channel.id !== nextProps.channel.id) {
+      nextProps.rememberCurrentChannelId(
+        nextProps.currentUser, { channelId: nextProps.channel.id });
+    }
+  }
+  
   render () {
     const userCount = this.props.channel.user_count;
     return (

@@ -15,10 +15,16 @@ const App = () => {
       
       <AuthRoute
         component={Navbar} />
+      <AuthRoute
+        component={Footer} />
       <Switch>
         <ProtectedRoute
           component={WorkspaceContainer}
           path="/channels"
+          />
+        <ProtectedRoute
+          component={WorkspaceContainer}
+          path="/channels/:channelId"
           />
         <AuthRoute
           component={SessionFormContainer}
@@ -33,8 +39,6 @@ const App = () => {
           component={WelcomePageContainer}
           path="/"/>
       </Switch>
-      <AuthRoute
-        component={Footer} />
     </section>
   );
 };

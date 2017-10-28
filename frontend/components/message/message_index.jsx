@@ -3,18 +3,28 @@ import MessageIndexItemContainer from './message_index_item_container';
 import MessageFormContainer from './message_form_container';
 import { Route } from 'react-router-dom';
 
-class MessageIndexContainer extends React.Component {
+class MessageIndex extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
   componentDidMount() {
-    this.props.fetchMessages();
+    this.props.fetchChannel(this.props.match.params.channelId);
   }
   
   render () {
-    
+    const messages = this.props.messages.map((message) => {
+      return (
+        <MessageIndexItemContainer
+          key={message.id}
+          message={message}/>
+      );
+    });
     
     return (
       <div>
         this is a message index
-        <MessageIndexItemContainer />
+        {messages}
         <MessageFormContainer
           channel={this.props.channel} />
       </div>
@@ -22,4 +32,4 @@ class MessageIndexContainer extends React.Component {
   }
 }
 
-export default MessageIndexContainer;
+export default MessageIndex;

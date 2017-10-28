@@ -4,7 +4,7 @@ class MessageIndexContainer extends React.Component {
   render () {
     return (
       <div>
-        this is a message item
+        {this.props.message.body}
       </div>
     );
   }

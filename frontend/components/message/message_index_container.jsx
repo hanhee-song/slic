@@ -1,18 +1,18 @@
 import MessageIndex from './message_index';
 import { connect } from 'react-redux';
-import { fetchMessages } from '../../actions/message_actions';
+import { fetchChannel } from '../../actions/channel_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const channel = state.entities.channels[ownProps.match.params.channelId] || {};
   return {
-    messages: state.entities.messages,
     channel: channel,
+    messages: channel.messages || [],
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchMessages: () => dispatch(fetchMessages()),
+    fetchChannel: (channelId) => dispatch(fetchChannel(channelId)),
   };
 };
 

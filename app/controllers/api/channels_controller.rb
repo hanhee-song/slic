@@ -2,7 +2,8 @@ class Api::ChannelsController < ApplicationController
   def index
     @channels = current_user.channels
     @counts = current_user.channels.joins(:channel_subscriptions)
-      .group("channel_subscriptions.channel_id").count
+      .group("channel_subscriptions.channel_id")
+      .where("channel_subscriptions.visible", true).count
     @visibles = current_user.channel_subscriptions.select(:channel_id, :visible)
     @visibles = visibles_to_json(@visibles)
   end

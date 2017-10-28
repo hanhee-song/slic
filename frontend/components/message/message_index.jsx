@@ -1,5 +1,6 @@
 import React from 'react';
 import MessageIndexItemContainer from './message_index_item_container';
+import MessageFormContainer from './message_form_container';
 
 class MessageIndexContainer extends React.Component {
   render () {
@@ -7,6 +8,7 @@ class MessageIndexContainer extends React.Component {
       <div>
         this is a message index
         <MessageIndexItemContainer />
+        <MessageFormContainer />
       </div>
     );
   }

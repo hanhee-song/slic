@@ -1,11 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import ChatHeaderContainer from '../chat_header/chat_header_container';
-import ChannelIndexContainer from '../channel/channel_index/channel_index_container';
-import ChannelFormContainer from '../channel/channel_form/channel_form_container';
 
 import ChannelSidebarContainer from '../channel/channel_sidebar/channel_sidebar_container';
 import UserInfoContainer from '../user_info/user_info_container.jsx';
+
+import ChannelFormContainer from '../channel/channel_form/channel_form_container';
+import ChannelIndexContainer from '../channel/channel_index/channel_index_container';
+
+import MessageIndexContainer from '../message/message_index_container';
 
 class Workspace extends React.Component {
   constructor(props) {
@@ -63,7 +66,9 @@ class Workspace extends React.Component {
           <Route
             component={ChatHeaderContainer}
             path="/channels/:channelId" />
-          
+          <Route
+            component={MessageIndexContainer}
+            path="/channels/:channelId" />
         </div>
       </div>
     );

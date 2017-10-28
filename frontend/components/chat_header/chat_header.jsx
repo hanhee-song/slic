@@ -1,8 +1,16 @@
 import React from 'react';
+import Modal from 'react-modal';
 
 class ChatHeader extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+      modalOne: false,
+      modalTwo: false,
+    };
+    
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
   
   componentDidMount() {
@@ -17,13 +25,49 @@ class ChatHeader extends React.Component {
     }
   }
   
+  openModal(modal) {
+    return () => {
+      this.setState({ [modal]: true });
+    };
+  }
+  
+  closeModal() {
+    this.setState({
+      modalOne: false,
+      modalTwo: false,
+    });
+  }
+  
+  modal(field) {
+    return (
+      <Modal
+        className="user-info-modal"
+        overlayClassName="modal-overlay"
+        isOpen={this.state[field]}
+        onRequestClose={this.closeModal}>
+        <div
+          className="user-info-modal-header">
+          {this.props.currentUser.username}
+        </div>
+        
+        <div
+          className="user-info-button"
+          onClick={this.logout}>
+          Logout
+        </div>
+      </Modal>
+    );
+  }
+  
   render () {
     const userCount = this.props.channel.user_count;
     return (
       <div className="chat-header">
         
         <div className="chat-header-left">
-          <div className="chat-header-left-title button">
+          <div
+            className="chat-header-left-title button"
+            onClick={this.openModal("modalOne")}>
             # {this.props.channel.name}
           </div>
           <div className="chat-header-left-options">
@@ -45,7 +89,9 @@ class ChatHeader extends React.Component {
             Show Channel Details
           </div>
           
-          <div className="chat-header-right-options settings blue-hover button chat-hoverable">
+          <div
+            className="chat-header-right-options settings blue-hover button chat-hoverable"
+            onClick={this.openModal("modalTwo")}>
             <i className="fa fa-cog" aria-hidden="true"></i>
           </div>
           <div className="chat-info-bubble settings">
@@ -53,6 +99,8 @@ class ChatHeader extends React.Component {
           </div>
         </div>
         
+        {this.modal("modalOne")}
+        {this.modal("modalTwo")}
       </div>
     );
   }

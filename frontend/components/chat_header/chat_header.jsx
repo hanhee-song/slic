@@ -47,6 +47,18 @@ class ChatHeader extends React.Component {
   
   handleLeave() {
     this.props.makeChannelInvisible(this.props.channel);
+    
+    const nextChannel = Object.values(this.props.channels)
+      .filter((channel) => {
+        return channel.visible === true;
+      })[0];
+    let nextChannelId;
+    if (nextChannel) {
+      nextChannelId = nextChannel.id;
+    }
+    this.props.history.push(`/channels/${nextChannelId}`);
+    // debugger;
+    this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
     this.closeModal();
   }
   
@@ -63,6 +75,8 @@ class ChatHeader extends React.Component {
         return undefined;
     }
     
+    const isGeneral = this.props.channel.name === 'general';
+    
     return (
       <Modal
         className={`modal-interior ${cssName}`}
@@ -76,11 +90,13 @@ class ChatHeader extends React.Component {
           Invite new members to join ...
         </div>
         
-        <div
-          className="modal-button"
-          onClick={this.handleLeave}>
-          Leave # {this.props.channel.name}
-        </div>
+        {!isGeneral &&
+          <div
+            className="modal-button"
+            onClick={this.handleLeave}>
+            Leave # {this.props.channel.name}
+          </div>
+        }
       </Modal>
     );
   }

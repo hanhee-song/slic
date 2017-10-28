@@ -6,6 +6,7 @@ import { updateChannel } from '../../actions/channel_actions';
 const mapStateToProps = (state, ownProps) => {
   let channel = state.entities.channels[ownProps.match.params.channelId] || {};
   return {
+    channels: state.entities.channels,
     channel: channel,
     currentUser: state.session.currentUser,
   };

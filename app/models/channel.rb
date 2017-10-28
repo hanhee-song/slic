@@ -5,4 +5,5 @@ class Channel < ApplicationRecord
   has_many :users,
     through: :channel_subscriptions,
     source: :user
+  has_many :messages
 end

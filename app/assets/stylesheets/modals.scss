@@ -1,4 +1,4 @@
-.user-info-modal {
+@mixin modal-interior {
   position: absolute;
   top: 60px;
   background-color: white;
@@ -13,7 +13,7 @@
   -webkit-animation: fadein .2s;
 }
 
-.modal-overlay {
+@mixin modal-overlay {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -21,14 +21,14 @@
   top: 0;
 }
 
-.user-info-modal-header {
+@mixin modal-header {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: #333;
 }
 
-.user-info-button {
+@mixin modal-button {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 300;
@@ -39,7 +39,28 @@
   border-radius: 3px
 }
 
-.user-info-button:hover {
+@mixin modal-button-hover {
   color: #eee;
   background-color: #438cbc;
+}
+
+
+.modal-interior {
+  @include modal-interior;
+}
+
+.modal-overlay {
+  @include modal-overlay;
+}
+
+.modal-header {
+  @include modal-header;
+}
+
+.modal-button {
+  @include modal-button;
+}
+
+.modal-button:hover {
+  @include modal-button-hover;
 }

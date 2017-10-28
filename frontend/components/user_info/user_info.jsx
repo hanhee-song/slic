@@ -50,17 +50,17 @@ class UserInfo extends React.Component {
         </div>
         
         <Modal
-          className="user-info-modal"
+          className="modal-interior"
           overlayClassName="modal-overlay"
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}>
           <div
-            className="user-info-modal-header">
+            className="modal-header">
             {this.props.currentUser.username}
           </div>
           
           <div
-            className="user-info-button"
+            className="modal-button"
             onClick={this.logout}>
             Logout
           </div>

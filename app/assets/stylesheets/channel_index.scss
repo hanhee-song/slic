@@ -42,13 +42,13 @@
   // display: flex;
 }
 
-.channel-index-list li:hover {
+.channel-index-list a:hover {
   background-color: #eaf7ff;
   border-radius: 5px;
   border: 1px solid #d1eeff;
 }
 
-.channel-index-list li:hover + li {
+.channel-index-list a:hover + a {
   border-bottom: 1px solid #fff;
 }
 

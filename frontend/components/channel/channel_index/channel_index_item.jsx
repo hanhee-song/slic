@@ -57,32 +57,31 @@ class ChannelIndexItem extends React.Component {
     const date = this.date();
     
     return (
-      <Link to={`/channels/${this.props.channel.id}`}>
-        <li
-          className="channel-index-list-li"
-          onClick={this.handleClick}>
-          <div className="channel-index-list-item-left">
-            <div className="channel-index-list-item title">
-              <div className="channel-index-list-item hashtag">
-                #
-              </div>
-              <div className="channel-index-list-item name">
-                {this.props.channel.name}
-              </div>
+      <Link
+        className="channel-index-list-li"
+        to={`/channels/${this.props.channel.id}`}
+        onClick={this.handleClick}>
+        <div className="channel-index-list-item-left">
+          <div className="channel-index-list-item title">
+            <div className="channel-index-list-item hashtag">
+              #
             </div>
-            <div className="channel-index-list-item date">
-              Created on {date}
+            <div className="channel-index-list-item name">
+              {this.props.channel.name}
             </div>
-            {description}
           </div>
-          <div className="channel-index-list-item users">
-            <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
+          <div className="channel-index-list-item date">
+            Created on {date}
           </div>
-          <div className="channel-index-list-item preview">
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-            <div>preview</div>
-          </div>
-        </li>
+          {description}
+        </div>
+        <div className="channel-index-list-item users">
+          <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
+        </div>
+        <div className="channel-index-list-item preview">
+          <i class="fa fa-sign-in" aria-hidden="true"></i>
+          <div>preview</div>
+        </div>
       </Link>
     );
   }

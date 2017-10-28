@@ -11,6 +11,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+  // TODO: delegate this responsibility higher up
+  // this is a temporary band-aid
   return {
     rememberCurrentChannelId: (user, channelId) => dispatch(rememberCurrentChannelId(user, channelId)),
   };

@@ -12,6 +12,15 @@ class ChannelSidebarItem extends React.Component {
   }
   
   render () {
+    let leaveButton;
+    if (this.props.type === "message") {
+      leaveButton = (
+        <i
+          onClick={this.handleHideChannel}
+          className="fa fa-times-circle-o"></i>
+      );
+    }
+    
     return (
       <li className="sidebar-section-item button">
         <Link to={`/channels/${this.props.channel.id}`}>
@@ -19,9 +28,8 @@ class ChannelSidebarItem extends React.Component {
             # {this.props.channel.name}
           </div>
         </Link>
-        <i
-          onClick={this.handleHideChannel}
-          className="fa fa-times-circle-o"></i>
+        
+        {leaveButton}
       </li>
     );
   }

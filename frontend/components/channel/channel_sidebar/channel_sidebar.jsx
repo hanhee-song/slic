@@ -24,7 +24,7 @@ class ChannelSidebar extends React.Component {
   
   render () {
     
-
+    
     
     const channels = this.props.channels
       .filter((channel) => {
@@ -34,9 +34,11 @@ class ChannelSidebar extends React.Component {
         return (
           <ChannelSidebarItemContainer
             key={channel.id}
-            channel={channel}/>
+            channel={channel}
+            type={"channel"}/>
         );
       });
+    // channel items with a type of "message" have the x conditionally show
     
     return (
       <div className="sidebar-section">

@@ -11,6 +11,8 @@ class ChatHeader extends React.Component {
     
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleInvite = this.handleInvite.bind(this);
+    this.handleLeave = this.handleLeave.bind(this);
   }
   
   componentDidMount() {
@@ -38,6 +40,16 @@ class ChatHeader extends React.Component {
     });
   }
   
+  handleInvite() {
+    
+    this.closeModal();
+  }
+  
+  handleLeave() {
+    
+    this.closeModal();
+  }
+  
   modal(field) {
     let cssName;
     switch (field) {
@@ -59,8 +71,15 @@ class ChatHeader extends React.Component {
         onRequestClose={this.closeModal}>
         
         <div
-          className="modal-button">
+          className="modal-button"
+          onClick={this.handleInvite}>
           Invite new members to join ...
+        </div>
+        
+        <div
+          className="modal-button"
+          onClick={this.handleLeave}>
+          Leave # {this.props.channel.name}
         </div>
       </Modal>
     );

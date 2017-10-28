@@ -8,6 +8,7 @@ import {
 const mapStateToProps = (state, ownProps) => {
   return {
     channel: ownProps.channel,
+    type: ownProps.type,
   };
 };
 

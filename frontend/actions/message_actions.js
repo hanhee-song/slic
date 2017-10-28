@@ -70,3 +70,13 @@ export const createMessage = (message) => {
       );
   };
 };
+
+export const deleteMessage = (messageId) => {
+  return (dispatch) => {
+    return MessageApiUtil.deleteMessage(messageId)
+      .then(
+        (message) => dispatch(receiveMessage(messageId)),
+        (errors) => dispatch(receiveMessageErrors(errors))
+      );
+  };
+};

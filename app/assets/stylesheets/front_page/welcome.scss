@@ -58,6 +58,8 @@
 
 .main-signup-input {
   @include input-field;
+  padding-top: 16px;
+  padding-bottom: 17px;
   margin-bottom: 10px;
   margin-right: 10px;
 }

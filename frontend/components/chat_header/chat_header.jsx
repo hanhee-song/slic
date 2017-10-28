@@ -5,8 +5,8 @@ class ChatHeader extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      modalOne: false,
-      modalTwo: false,
+      nameModal: false,
+      settingsModal: false,
     };
     
     this.openModal = this.openModal.bind(this);
@@ -33,27 +33,34 @@ class ChatHeader extends React.Component {
   
   closeModal() {
     this.setState({
-      modalOne: false,
-      modalTwo: false,
+      nameModal: false,
+      settingsModal: false,
     });
   }
   
   modal(field) {
+    let cssName;
+    switch (field) {
+      case "nameModal":
+        cssName = "name-modal";
+        break;
+      case "settingsModal":
+        cssName = "settings-modal";
+        break;
+      default:
+        return undefined;
+    }
+    
     return (
       <Modal
-        className="modal-interior"
+        className={`modal-interior ${cssName}`}
         overlayClassName="modal-overlay"
         isOpen={this.state[field]}
         onRequestClose={this.closeModal}>
-        <div
-          className="modal-header">
-          {this.props.currentUser.username}
-        </div>
         
         <div
-          className="modal-button"
-          onClick={this.logout}>
-          Logout
+          className="modal-button">
+          Invite new members to join ...
         </div>
       </Modal>
     );
@@ -67,7 +74,7 @@ class ChatHeader extends React.Component {
         <div className="chat-header-left">
           <div
             className="chat-header-left-title button"
-            onClick={this.openModal("modalOne")}>
+            onClick={this.openModal("nameModal")}>
             # {this.props.channel.name}
           </div>
           <div className="chat-header-left-options">
@@ -91,7 +98,7 @@ class ChatHeader extends React.Component {
           
           <div
             className="chat-header-right-options settings blue-hover button chat-hoverable"
-            onClick={this.openModal("modalTwo")}>
+            onClick={this.openModal("settingsModal")}>
             <i className="fa fa-cog" aria-hidden="true"></i>
           </div>
           <div className="chat-info-bubble settings">
@@ -99,8 +106,8 @@ class ChatHeader extends React.Component {
           </div>
         </div>
         
-        {this.modal("modalOne")}
-        {this.modal("modalTwo")}
+        {this.modal("nameModal")}
+        {this.modal("settingsModal")}
       </div>
     );
   }

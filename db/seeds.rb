@@ -33,24 +33,19 @@ ActiveRecord::Base.transaction do
   User.all.each do |user|
     next if user == guest
     
-    ChannelSubscription.create!(
-      channel_id: Channel.find_by(name: 'general').id,
-      user_id: user.id,
-      visible: true
-    )
-    ChannelSubscription.create!(
-      channel_id: Channel.find_by(name: 'random').id,
-      user_id: user.id,
-      visible: true
-    )
-    
-    randomProject = rand(5) + 1
-    ChannelSubscription.create!(
-      channel_id: Channel.find_by(name: "project ##{randomProject}").id,
-      user_id: user.id,
-      visible: true
-    )
-    
+    Channel.all.each do |channel|
+      randomProject = rand(5) + 1
+      visible = ([
+        'general',
+        'random',
+        "project ##{randomProject}",
+      ].include?(channel.name))
+      ChannelSubscription.create!(
+        channel_id: channel.id,
+        user_id: user.id,
+        visible: visible
+      )
+    end
     user.update(most_recent_channel_id: Channel.find_by(name: 'general').id)
   end
   

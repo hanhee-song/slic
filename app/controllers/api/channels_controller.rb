@@ -1,11 +1,19 @@
 class Api::ChannelsController < ApplicationController
   def index
     @channels = current_user.channels
-    @counts = current_user.channels.joins(:channel_subscriptions)
-      .group("channel_subscriptions.channel_id")
-      .where("channel_subscriptions.visible", true).count
+    # n query to fix later
+    @counts = {}
+    current_user.channels.each do |channel|
+      @counts[channel.id] = channel.channel_subscriptions.where(visible: true).count
+    end
+    
+    # @counts = current_user.channels.joins(:channel_subscriptions)
+    #   .group("channel_subscriptions.channel_id")
+    #   .count
     @visibles = current_user.channel_subscriptions.select(:channel_id, :visible)
     @visibles = visibles_to_json(@visibles)
+    
+    
   end
   
   def show
@@ -23,14 +31,15 @@ class Api::ChannelsController < ApplicationController
   
   def update
     channel_id = params[:id]
-    user_id = channel_params[:user_id]
+    user_id = channel_params[:user_id] || current_user.id
     @channel = Channel.find(channel_id)
-    
     if option_params[:change_visibility]
       subscription = @channel.channel_subscriptions.find_by(
         user_id: user_id)
       
-      if @channel.channel_subscriptions.update(visible: option_params[:visible])
+      if @channel.channel_subscriptions.find_by(user_id: user_id)
+        .update(visible: option_params[:visible])
+        
         render "api/channels/show"
       else
         render json: @channel.errors.full_messages, status: 422

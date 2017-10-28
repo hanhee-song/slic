@@ -3,7 +3,24 @@
 .channel-index-list-container {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 500px;
+  height: calc(100% - 162px);
+}
+
+.channel-index-list-container::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 4px;
+}
+
+.channel-index-list-container::-webkit-scrollbar-track {
+  background-color: #F5F5F5;
+  border-radius: 4px;
+}
+
+.channel-index-list-container::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 4px;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
 }
 
 .channel-index-list {
@@ -12,7 +29,7 @@
 }
 
 .channel-index-list-li {
-  padding: 20px 10px;
+  padding: 14px 10px;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
@@ -48,14 +65,34 @@
 
 .channel-index-list-item.name {
   color: #333;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 16px;
 }
 
 .channel-index-list-item.description, .channel-index-list-item.date {
-  margin-top: 5px;
+  margin-top: 7px;
+  font-weight: 300;
 }
 
-.channel-index-list-item.users {
-  
+.channel-index-list-li:hover .channel-index-list-item.users {
+  display: none;
+}
+
+.channel-index-list-item.preview {
+  display: none;
+  color: #00a1ff;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.channel-index-list-item.preview .fa {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.channel-index-list-li:hover .channel-index-list-item.preview {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
 }

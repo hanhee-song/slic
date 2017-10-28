@@ -76,6 +76,10 @@ class ChannelIndexItem extends React.Component {
         <div className="channel-index-list-item users">
           <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
         </div>
+        <div className="channel-index-list-item preview">
+          <i class="fa fa-sign-in" aria-hidden="true"></i>
+          <div>preview</div>
+        </div>
       </li>
     );
   }

@@ -7,3 +7,6 @@ json.users do
     end
   end
 end
+json.message_ids do
+  json.array! channel.messages.map(&:id)
+end

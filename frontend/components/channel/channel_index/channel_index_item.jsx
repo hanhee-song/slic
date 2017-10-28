@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ChannelIndexItem extends React.Component {
   constructor(props) {
@@ -56,31 +57,33 @@ class ChannelIndexItem extends React.Component {
     const date = this.date();
     
     return (
-      <li
-        className="channel-index-list-li"
-        onClick={this.handleClick}>
-        <div className="channel-index-list-item-left">
-          <div className="channel-index-list-item title">
-            <div className="channel-index-list-item hashtag">
-              #
+      <Link to={`/channels/${this.props.channel.id}`}>
+        <li
+          className="channel-index-list-li"
+          onClick={this.handleClick}>
+          <div className="channel-index-list-item-left">
+            <div className="channel-index-list-item title">
+              <div className="channel-index-list-item hashtag">
+                #
+              </div>
+              <div className="channel-index-list-item name">
+                {this.props.channel.name}
+              </div>
             </div>
-            <div className="channel-index-list-item name">
-              {this.props.channel.name}
+            <div className="channel-index-list-item date">
+              Created on {date}
             </div>
+            {description}
           </div>
-          <div className="channel-index-list-item date">
-            Created on {date}
+          <div className="channel-index-list-item users">
+            <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
           </div>
-          {description}
-        </div>
-        <div className="channel-index-list-item users">
-          <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
-        </div>
-        <div className="channel-index-list-item preview">
-          <i class="fa fa-sign-in" aria-hidden="true"></i>
-          <div>preview</div>
-        </div>
-      </li>
+          <div className="channel-index-list-item preview">
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+            <div>preview</div>
+          </div>
+        </li>
+      </Link>
     );
   }
 }

@@ -18,7 +18,6 @@ class MessageIndex extends React.Component {
     this.props.fetchChannel(this.props.match.params.channelId);
     var channel = pusher.subscribe('channel-connection');
     channel.bind('create-message', (message) => {
-      debugger;
       this.props.fetchChannel(this.props.match.params.channelId);
     });
   }

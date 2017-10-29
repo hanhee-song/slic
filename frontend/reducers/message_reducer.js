@@ -3,6 +3,7 @@ import {
   RECEIVE_MESSAGE,
   REMOVE_MESSAGE,
 } from '../actions/message_actions';
+import { RECEIVE_CHANNEL } from '../actions/channel_actions';
 
 import merge from 'lodash/merge';
 
@@ -15,6 +16,10 @@ const MessageReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_MESSAGES:
       return action.messages;
+    case RECEIVE_CHANNEL:
+      // The below returns undefined when a channel has no messages
+      // darn jbuilder sending up no empty object
+      return action.channel.messages || {};
     case RECEIVE_MESSAGE:
       newState = merge({}, state, { [action.message.id]: action.message });
       return newState;

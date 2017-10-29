@@ -8,5 +8,9 @@ json.users do
   end
 end
 json.messages do
-  json.array! channel.messages
+  channel.messages.each do |message|
+    json.set! message.id do
+      json.partial! 'api/messages/message', message: message
+    end
+  end
 end

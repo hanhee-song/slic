@@ -1,5 +1,11 @@
 json.extract! channel, :id, :name, :description, :created_at
+json.user_count @counts
 json.visible current_user.can_see_channel?(channel)
+
+json.message_ids do
+  json.array! channel.messages.map(&:id)
+end
+
 json.users do
   channel.users.each do |user|
     json.set! user.id do

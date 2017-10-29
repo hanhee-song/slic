@@ -1,14 +1,10 @@
 class Api::ChannelsController < ApplicationController
   def index
     @channels = current_user.channels.includes(:subscriptions)
-    # n query to fix later
     @counts = {}
     current_user.channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.where(visible: true).length
     end
-    # @counts = current_user.channels.joins(:subscriptions)
-    #   .group("subscriptions.channel_id")
-    #   .length
     @visibles = current_user.channel_subscriptions.select(:channel_id, :visible)
     @visibles = visibles_to_json(@visibles)
     
@@ -16,14 +12,13 @@ class Api::ChannelsController < ApplicationController
   
   def show
     @channel = Channel.find(params[:id])
-    @messages = @channel.messages.includes(:author)
+    render_show(@channel)
   end
   
   def create
     @channel = Channel.new(channel_params)
     if @channel.save
-      @messages = @channel.messages.includes(:author)
-      render "api/channels/show"
+      render_show(@channel)
     else
       render json: @channel.errors.full_messages, status: 422
     end
@@ -33,29 +28,28 @@ class Api::ChannelsController < ApplicationController
     channel_id = params[:id]
     user_id = channel_params[:user_id] || current_user.id
     @channel = Channel.find(channel_id)
-    @messages = @channel.messages.includes(:author)
+    
     if option_params[:change_visibility]
       subscription = @channel.subscriptions.find_by(
         user_id: user_id)
       
       if @channel.subscriptions.find_by(user_id: user_id)
         .update(visible: option_params[:visible])
-        
-        render "api/channels/show"
+        render_show(@channel)
       else
         render json: @channel.errors.full_messages, status: 422
       end
       
     elsif user_id
       if @channel.subscriptions.new(user_id: user_id).save
-        render "api/channels/show"
+        render_show(@channel)
       else
         render json: @channel.errors.full_messages, status: 422
       end
       
     else
       if @channel.update(channel_params)
-        render "api/channels/show"
+        render_show(@channel)
       else
         render json: @channel.errors.full_messages, status: 422
       end
@@ -66,6 +60,12 @@ class Api::ChannelsController < ApplicationController
   end
   
   private
+  
+  def render_show(channel)
+    @messages = channel.messages.includes(:author)
+    @counts = channel.subscriptions.where(visible: true).length
+    render "api/channels/show"
+  end
   
   def visibles_to_json(visibles)
     acc = {}

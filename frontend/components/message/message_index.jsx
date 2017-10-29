@@ -8,6 +8,12 @@ class MessageIndex extends React.Component {
     super(props);
   }
   
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
+      this.props.fetchChannel(nextProps.match.params.channelId);
+    }
+  }
+  
   componentDidMount() {
     this.props.fetchChannel(this.props.match.params.channelId);
   }

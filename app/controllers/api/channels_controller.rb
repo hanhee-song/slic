@@ -22,6 +22,7 @@ class Api::ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
     if @channel.save
+      @messages = @channel.messages.includes(:author)
       render "api/channels/show"
     else
       render json: @channel.errors.full_messages, status: 422
@@ -32,6 +33,7 @@ class Api::ChannelsController < ApplicationController
     channel_id = params[:id]
     user_id = channel_params[:user_id] || current_user.id
     @channel = Channel.find(channel_id)
+    @messages = @channel.messages.includes(:author)
     if option_params[:change_visibility]
       subscription = @channel.subscriptions.find_by(
         user_id: user_id)

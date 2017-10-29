@@ -41,7 +41,6 @@ class ChatHeader extends React.Component {
   }
   
   handleInvite() {
-    
     this.closeModal();
   }
   

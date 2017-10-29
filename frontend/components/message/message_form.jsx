@@ -15,6 +15,7 @@ class MessageForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.createMessage(this.state);
+    this.setState({ body: "" });
   }
   
   render () {

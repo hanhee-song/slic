@@ -1,9 +1,11 @@
 class Channel < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   
-  has_many :channel_subscriptions
+  has_many :subscriptions,
+    foreign_key: :channel_id,
+    class_name: :ChannelSubscription
   has_many :users,
-    through: :channel_subscriptions,
+    through: :subscriptions,
     source: :user
   has_many :messages
 end

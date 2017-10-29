@@ -5,3 +5,11 @@
   display: flex;
   font-family: 'Lato', sans-serif;
 }
+
+.chat-main {
+  align-self: stretch;
+  background-color: #ddd;
+  // min-width: 600px;
+  height: 100%;
+  width: 100%;
+}

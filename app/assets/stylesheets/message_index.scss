@@ -1,17 +1,42 @@
-/* CHAT */
+/* MESSAGES */
 
-.message-index-container {
-  align-self: stretch;
-  background-color: #ddd;
-  // min-width: 600px;
-  height: 100%;
+
+.message-container {
+  height: calc(100% - 60px);
   width: 100%;
+  padding-left: 30px;
+}
+
+.message-index-overflow-wrapper {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100% - 80px);
 }
 
 .message-index {
-  background-color: #fff;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.message-index-item {
+  display: flex;
+}
+
+.message-index-item.profile-image {
+  height: 50px;
+  width: 50px;
+  background-color: #bbb;
+  border-radius: 5px;
+}
+
+.message-index-item-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-form {
+  background-color: #ccc;
+  height: 80px;
   width: 100%;
-  height: calc(100% - 60px);
-  overflow-y: auto;
-  overflow-x: hidden;
 }

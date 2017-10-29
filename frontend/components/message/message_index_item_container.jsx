@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 // import {  }
   
 const mapStateToProps = (state, ownProps) => {
+  debugger;
   return {
     
   };

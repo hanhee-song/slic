@@ -32,8 +32,13 @@ class MessageIndex extends React.Component {
     });
     
     return (
-      <div className="message-index">
-        {messages}
+      <div className="message-container">
+        <div className="message-index-overflow-wrapper">
+          <div className="message-index">
+            {messages}
+          </div>
+          
+        </div>
         <MessageFormContainer
           channel={this.props.channel} />
       </div>

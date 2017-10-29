@@ -63,7 +63,7 @@ class Workspace extends React.Component {
             exact path="/channels" />
         </div>
         
-        <div className="message-index-container">
+        <div className="chat-main">
           <Route
             component={ChatHeaderContainer}
             path="/channels/:channelId" />

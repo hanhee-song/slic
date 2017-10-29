@@ -8,10 +8,6 @@ class ChannelIndexItem extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   
-  // componentDidMount() {
-  //   this.props.fetchChannel(this.props.channelId);
-  // }
-  
   handleClick() {
     this.props.makeChannelVisible(this.props.channel);
     this.props.clearDropdown();

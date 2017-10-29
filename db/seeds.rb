@@ -11,6 +11,9 @@ ActiveRecord::Base.transaction do
   guest = User.new(username: 'slic-guest', password: 'asdfasdf')
   guest.save!
   
+  # asdf is me!
+  asdf = User.create!(username: 'asdf', password: 'asdfasdf')
+  
   38.times do
     User.create!(
       username: "#{Faker::Name.first_name}-#{Faker::Name.last_name}",

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :channels,
     through: :channel_subscriptions,
     source: :channel
+  has_many :messages
   
   after_initialize :ensure_token
   

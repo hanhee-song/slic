@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     
     resources :channels, only: [:create, :show, :index, :update, :destroy]
+    
+    resources :messages, only: [:create, :show, :index]
   end
 end

@@ -7,7 +7,7 @@ import {
 
 const initialState = [];
 
-const SessionErrorsReducer = (state = initialState, action) => {
+const ChannelErrorsReducer = (state = initialState, action) => {
   Object.freeze(state);
   
   switch (action.type) {
@@ -25,4 +25,4 @@ const SessionErrorsReducer = (state = initialState, action) => {
   }
 };
 
-export default SessionErrorsReducer;
+export default ChannelErrorsReducer;

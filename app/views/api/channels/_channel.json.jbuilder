@@ -7,3 +7,6 @@ json.users do
     end
   end
 end
+json.messages do
+  json.array! channel.messages
+end

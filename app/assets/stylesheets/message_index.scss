@@ -3,36 +3,35 @@
 
 .message-container {
   height: calc(100% - 60px);
-  width: 100%;
-  padding-left: 30px;
 }
 
 .message-index-overflow-wrapper {
   overflow-y: auto;
   overflow-x: hidden;
   height: calc(100% - 80px);
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .message-index {
-  background-color: #eee;
-  display: flex;
-  flex-direction: column-reverse;
+  background-color: #fff;
+  flex-shrink: 0;
 }
 
 .message-index-item {
   display: flex;
 }
 
-.message-index-item.profile-image {
-  height: 50px;
-  width: 50px;
-  background-color: #bbb;
-  border-radius: 5px;
+.message-index-item-profile-image {
+  margin: 15px 15px 0px 30px;
 }
 
-.message-index-item-main {
+.message-index-item-content {
+  margin: 15px 0px 0px 0px;
   display: flex;
   flex-direction: column;
+  overflow-wrap: break-word;
+  max-width: calc(100% - 100px);
 }
 
 .message-form {

@@ -6,23 +6,6 @@
   height: calc(100% - 162px);
 }
 
-.channel-index-list-container::-webkit-scrollbar {
-  width: 8px;
-  border-radius: 4px;
-}
-
-.channel-index-list-container::-webkit-scrollbar-track {
-  background-color: #F5F5F5;
-  border-radius: 4px;
-}
-
-.channel-index-list-container::-webkit-scrollbar-thumb {
-  background-color: #ddd;
-  border-radius: 4px;
-  border-top: 2px solid #fff;
-  border-bottom: 2px solid #fff;
-}
-
 .channel-index-list {
   display: flex;
   flex-direction: column-reverse;

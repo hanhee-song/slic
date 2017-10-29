@@ -33,7 +33,7 @@ class MessageIndex extends React.Component {
     
     return (
       <div className="message-container">
-        <div className="message-index-overflow-wrapper">
+        <div className="message-index-overflow-wrapper custom-scroll">
           <div className="message-index">
             {messages}
           </div>

@@ -32,8 +32,7 @@ class MessageIndex extends React.Component {
     });
     
     return (
-      <div>
-        this is a message index
+      <div className="message-index">
         {messages}
         <MessageFormContainer
           channel={this.props.channel} />

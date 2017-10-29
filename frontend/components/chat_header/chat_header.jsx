@@ -94,7 +94,7 @@ class ChatHeader extends React.Component {
           <div
             className="modal-button"
             onClick={this.handleLeave}>
-            Leave # {this.props.channel.name}
+            Leave #{this.props.channel.name}
           </div>
         }
       </Modal>

@@ -1,0 +1,17 @@
+/* CHAT */
+
+.message-index-container {
+  align-self: stretch;
+  background-color: #ddd;
+  // min-width: 600px;
+  height: 100%;
+  width: 100%;
+}
+
+.message-index {
+  background-color: #fff;
+  width: 100%;
+  height: calc(100% - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}

@@ -10,10 +10,6 @@ class ChannelSidebar extends React.Component {
     this.handleChannelIndex = this.handleChannelIndex.bind(this);
   }
   
-  componentDidMount() {
-    this.props.fetchChannels();
-  }
-  
   handleChannelNew() {
     this.props.receiveDropdown("channelNew");
   }

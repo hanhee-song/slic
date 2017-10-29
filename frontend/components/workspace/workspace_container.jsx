@@ -1,6 +1,7 @@
 import Workspace from './workspace';
 import { connect } from 'react-redux';
 import { receiveDropdown, clearDropdown } from '../../actions/ui_actions';
+import { fetchChannels } from '../../actions/channel_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -14,6 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
     clearDropdown: () => dispatch(clearDropdown()),
+    fetchChannels: () => dispatch(fetchChannels()),
   };
 };
 

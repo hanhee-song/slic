@@ -31,8 +31,8 @@ body, html {
 }
 
 .custom-scroll::-webkit-scrollbar {
-  width: 9px;
-  background-color: #fff
+  width: 8px;
+  background-color: #fff;
 }
 
 .custom-scroll::-webkit-scrollbar-track {

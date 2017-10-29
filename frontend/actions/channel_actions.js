@@ -72,16 +72,16 @@ export const createChannel = (channel) => {
 };
 
 export const updateChannel = (channel, options) => {
-  if (options && options.change_visibility && !options.visible) {
-    return (dispatch) => {
-      return ChannelApiUtil.updateChannel(channel, options)
-      .then(
-        () => dispatch(removeChannel(channel.id)),
-        (errors) => dispatch(receiveChannelErrors(errors))
-      );
-    };
-    
-  } else {
+  // if (options && options.change_visibility && !options.visible) {
+    // return (dispatch) => {
+    //   return ChannelApiUtil.updateChannel(channel, options)
+    //   .then(
+    //     () => dispatch(removeChannel(channel.id)),
+    //     (errors) => dispatch(receiveChannelErrors(errors))
+    //   );
+    // };
+    // 
+  // } else {
     return (dispatch) => {
       return ChannelApiUtil.updateChannel(channel, options)
       .then(
@@ -89,7 +89,7 @@ export const updateChannel = (channel, options) => {
         (errors) => dispatch(receiveChannelErrors(errors))
       );
     };
-  }
+  // }
 };
 
 export const deleteChannel = (channelId) => {

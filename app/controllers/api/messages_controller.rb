@@ -4,6 +4,7 @@ class Api::MessagesController < ApplicationController
     @message.author_id = current_user.id
     @message.channel_id = current_user.most_recent_channel_id
     if @message.save
+      Pusher.trigger('channel-connection', 'create-message', @message)
       render 'api/messages/show'
     else
       render json: @message.errors.full_messages, status: 404

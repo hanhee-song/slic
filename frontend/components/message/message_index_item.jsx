@@ -1,6 +1,24 @@
 import React from 'react';
 
 class MessageIndexContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.date = this.date.bind(this);
+  }
+  
+  date() {
+    let time = this.props.message.created_at
+      .split("T")[1].split(":");
+    let minute = time[1];
+    
+    const offset = new Date().getTimezoneOffset() / 60;
+    let hour = parseInt(time[0]) - (offset);
+    hour = hour < 0 ? hour + 24 : hour;
+    const suffix = hour > 12 ? "PM" : "AM";
+    hour = hour > 12 ? hour - 12 : hour;
+    return `${hour}:${minute} ${suffix}`;
+  }
+  
   render () {
     return (
       <div className="message-index-item">
@@ -13,7 +31,7 @@ class MessageIndexContainer extends React.Component {
               {this.props.message.author.username}
             </div>
             <div className="message-index-item-time">
-              {this.props.message.created_at}
+              {this.date()}
             </div>
           </div>
           

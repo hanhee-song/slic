@@ -34,6 +34,19 @@
   max-width: calc(100% - 100px);
 }
 
+.message-index-item-header {
+  display: flex;
+  align-items: baseline;
+}
+
+.message-index-item-time {
+  font-weight: 300;
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+/* FORM */
+
 .message-form {
   background-color: #ccc;
   height: 80px;

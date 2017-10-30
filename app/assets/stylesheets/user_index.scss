@@ -14,6 +14,12 @@
 
 /* MINI ICONS */
 
+.user-index-mini-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
 .user-index-mini {
   display: flex;
   border: 1px solid #3ca0e8;
@@ -23,6 +29,8 @@
   align-items: center;
   cursor: pointer;
   color: #fafafa;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 .user-index-mini-icon {

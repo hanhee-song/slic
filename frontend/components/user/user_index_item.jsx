@@ -12,17 +12,6 @@ class UserIndexItem extends React.Component {
   
   render () {
     return (
-      <div className="fullscreen-index-list-li">
-        <div className="user-index-mini">
-          <div className="user-index-mini-icon">
-            
-          </div>
-          <div className="user-index-mini-name">
-            {this.props.user.username}
-          </div>
-          <i className="fa fa-times" aria-hidden="true"></i>
-        </div>
-        
         <div className="fullscreen-index-list-item-left user">
           <div className="profile-image">
             
@@ -34,7 +23,6 @@ class UserIndexItem extends React.Component {
         <div className="fullscreen-index-list-item preview user">
           <i className="fa fa-plus-square-o" aria-hidden="true"></i>
         </div>
-      </div>
     );
   }
 }

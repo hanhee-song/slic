@@ -39,24 +39,24 @@ class Workspace extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     if (Object.keys(this.props.channels).length !== 0 && this.props.channels.constructor === Object) {
-      debugger;
-      if (!this.props.currentChannelId) {
+      if (!this.props.currentChannelId && !nextProps.currentChannelId) {
         this.setGeneralChannel();
       }
       
-      if (nextProps.ui) {
+      debugger;
+      const nextId = parseInt(nextProps.match.params.channelId);
+      debugger;
+      if (nextId && nextId !== this.props.currentChannelId) {
         debugger;
-        const nextId = nextProps.ui.currentChannelId;
-        if (nextId && nextId !== parseInt(this.props.currentChannelId)) {
-          this.props.history.push(`/channels/${nextId}`);
-          this.props.rememberCurrentChannelId(this.props.currentUser, nextId);
-        }
+        this.props.history.push(`/channels/${nextId}`);
+        this.props.rememberCurrentChannelId(this.props.currentUser, nextId);
+        this.props.setCurrentChannel(nextId);
+        debugger;
       }
     }
   }
   
   setGeneralChannel() {
-    debugger;
     // TODO: clean up this code
     const nextChannel = Object.values(this.props.channels)
       .filter((channel) => {
@@ -66,9 +66,8 @@ class Workspace extends React.Component {
     if (nextChannel) {
       nextChannelId = nextChannel.id;
     }
-    this.props.setCurrentChannel(nextChannelId);
-    console.log(nextChannelId);
     this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
+    this.props.setCurrentChannel(nextChannelId);
   }
   
   componentWillUnmount(nextProps, nextState) {

@@ -25,12 +25,15 @@ const defaultUpdate = {
   channelId: null
 };
 
-export const updateUser = (user, options = defaultUpdate) => {
-  const channel_id = options.channelId || options.most_recent_channel_id;
-  const rename = { most_recent_channel_id: channel_id };
+export const updateUser = (user, channelId = null) => {
+  debugger;
   return $.ajax({
     method: "PATCH",
     url: `/api/users/${user.id}`,
-    data: { user: Object.assign({}, user, rename) },
+    data: { user: Object.assign(
+      {},
+      user,
+      { most_recent_channel_id: channelId}
+    ) },
   });
 };

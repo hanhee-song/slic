@@ -124,3 +124,28 @@
 // .message-form-outline: .message-form-input {
 //
 // }
+
+@import "form_mixin";
+
+
+.message-form-join-wrapper {
+  align-items: center;
+}
+
+.message-form-join-button {
+  @include session-button;
+  cursor: pointer;
+  font-size: 15px;
+  text-align: center;
+  width: 150px;
+  padding: 10px 20px;
+  margin: 0 auto;
+}
+
+.message-form-join-button:active {
+  @include session-button-hover;
+}
+
+.message-form-join-button:hover {
+  @include session-button-active;
+}

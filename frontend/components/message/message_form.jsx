@@ -6,10 +6,18 @@ class MessageForm extends React.Component {
     this.state = { body: "" };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleJoin = this.handleJoin.bind(this);
   }
   
   handleChange(e) {
     this.setState({ body: e.target.value });
+  }
+  
+  handleJoin() {
+    this.props.rememberCurrentChannelId(
+      this.props.currentUser, this.props.channel.id);
+    this.props.makeChannelVisible(this.props.channel);
+    this.closeModal();
   }
   
   handleSubmit(e) {
@@ -39,7 +47,13 @@ class MessageForm extends React.Component {
           </div>
         </div>
       ) : (
-        <div>not visible</div>
+        <div className="message-form-join-wrapper">
+          <div
+            className="message-form-join-button"
+            onClick={this.handleJoin}>
+            Join Channel
+          </div>
+        </div>
       );
     
     return (

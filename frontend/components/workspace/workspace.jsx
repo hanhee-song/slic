@@ -15,7 +15,6 @@ class Workspace extends React.Component {
   constructor(props) {
     super(props);
     this.handleEscape = this.handleEscape.bind(this);
-    this.setGeneralChannel = this.setGeneralChannel.bind(this);
   }
   
   handleEscape(e) {
@@ -38,7 +37,15 @@ class Workspace extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
-
+    // debugger;
+    if (this.props.currentUser && !this.props.currentChannelId) {
+      this.props.rememberCurrentChannelId(this.props.currentUser, this.props.match.params.channelId);
+      
+    } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
+      this.props.rememberCurrentChannelId(this.props.currentUser, nextProps.match.params.channelId);
+      debugger;
+      
+    }
   }
   
   // setGeneralChannel() {

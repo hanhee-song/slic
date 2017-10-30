@@ -2,8 +2,9 @@ import { connect } from 'react-redux';
 import ChannelSidebarItem from './channel_sidebar_item';
 import {
   updateChannel,
-  setCurrentChannel
+  setCurrentChannel,
 } from '../../../actions/channel_actions';
+import { rememberCurrentChannelId } from '../../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -20,6 +21,7 @@ const mapDispatchToProps = (dispatch) => {
   };
   return {
     makeChannelInvisible: (channel) => dispatch(updateChannel(channel, options)),
+    rememberCurrentChannelId: (user, channelId) => dispatch(rememberCurrentChannelId(user, channelId)),
   };
 };
 

@@ -48,17 +48,17 @@ class ChatHeader extends React.Component {
   handleLeave() {
     this.props.makeChannelInvisible(this.props.channel);
     
-    // const nextChannel = Object.values(this.props.channels)
-    //   .filter((channel) => {
-    //     return channel.visible === true;
-    //   })[0];
-    // let nextChannelId;
-    // if (nextChannel) {
-    //   nextChannelId = nextChannel.id;
-    // }
-    // this.props.history.push(`/channels/${nextChannelId}`);
+    const nextChannel = Object.values(this.props.channels)
+      .filter((channel) => {
+        return channel.visible === true;
+      })[0];
+    let nextChannelId;
+    if (nextChannel) {
+      nextChannelId = nextChannel.id;
+    }
+    this.props.history.push(`/channels/${nextChannelId}`);
     // is the below necessary anymore?
-    this.props.rememberCurrentChannelId(this.props.currentUser, null);
+    // this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
     this.closeModal();
   }
   

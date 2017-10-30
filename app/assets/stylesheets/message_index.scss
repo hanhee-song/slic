@@ -8,7 +8,7 @@
 .message-index-overflow-wrapper {
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100% - 85px);
+  height: calc(100% - 65px);
   width: calc(100% - 2px);
   display: flex;
   flex-direction: column-reverse;
@@ -22,6 +22,10 @@
 .message-index-item {
   display: flex;
   color: #333;
+}
+
+.message-index-item:last-of-type {
+  margin-bottom: 15px;
 }
 
 .message-index-item-profile-image {
@@ -61,40 +65,49 @@
 /* FORM */
 
 .message-form {
-  height: 85px;
-  width: 100%;
-  padding: 20px 10px 20px 20px;
-}
-
-.message-form-outline {
+  height: 65px;
+  padding: 0px 10px 20px 20px;
   display: flex;
   width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  border: 2px solid #777;
-}
-
-.message-form-plus {
-  width: 43px;
-  height: 100%;
-  margin-right: 0px;
-  border-right: 2px solid #777;
 }
 
 .message-form-form {
-  width: calc(100% - 43px);
+  width: calc(100% - 10px);
+  position: relative;
+}
+
+.message-form-plus {
+  // background-color: rgba(0, 100, 0, .5);
+  width: 45px;
+  height: 100%;
+  margin-right: 0px;
+  border-right: 2px solid #bbb;
+  position: absolute;
+  top: 0;
+  transition: border-color .1s;
+  -webkit-transition: border-color .1s;
 }
 
 .message-form-input {
-  padding-left: 15px;
+  border-radius: 5px;
+  border: 2px solid #bbb;
+  padding-left: 50px;
   width: 100%;
-  border: 0;
   outline: none;
   height: 100%;
-  border-radius: 0 5px 5px 0;
-  font-size: 16px;
-  color: #555;
-  font-weight: 300;
+  font-size: 15px;
+  color: #333;
+  font-weight: 400;
+  transition: border-color .1s;
+  -webkit-transition: border-color .1s;
+}
+
+.message-form-input:focus {
+  border-color: #777;
+}
+
+.message-form-input:focus + .message-form-plus {
+  border-color: #777;
 }
 
 // .message-form-outline: .message-form-input {

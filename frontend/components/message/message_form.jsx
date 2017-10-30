@@ -25,23 +25,21 @@ class MessageForm extends React.Component {
     
     return (
       <div className="message-form">
-        <div className="message-form-outline">
+        <form
+          className="message-form-form"
+          onSubmit={this.handleSubmit}>
+          
+          <input
+            className="message-form-input"
+            type="text"
+            onChange={this.handleChange}
+            placeholder={placeholder}
+            autoFocus
+            value={this.state.body}/>
           <div className="message-form-plus">
             
           </div>
-          <form
-            className="message-form-form"
-            onSubmit={this.handleSubmit}>
-            
-            <input
-              className="message-form-input"
-              type="text"
-              onChange={this.handleChange}
-              placeholder={placeholder}
-              autoFocus
-              value={this.state.body}/>
-          </form>
-        </div>
+        </form>
       </div>
     );
   }

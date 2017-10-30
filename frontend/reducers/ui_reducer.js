@@ -13,7 +13,9 @@ const UIReducer = (state = initialState, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      newState.currentChannelId = action.currentUser.most_recent_channel_id;
+      if (action.currentUser) {
+        newState.currentChannelId = action.currentUser.most_recent_channel_id;
+      }
       return newState;
     case RECEIVE_DROPDOWN:
       newState.dropdown = action.dropdown;

@@ -1,5 +1,4 @@
 import React from 'react';
-import onClickOutside from 'react-onclickoutside';
 
 class ChannelForm extends React.Component {
   constructor(props) {
@@ -128,4 +127,4 @@ class ChannelForm extends React.Component {
   }
 }
 
-export default onClickOutside(ChannelForm);
+export default ChannelForm;

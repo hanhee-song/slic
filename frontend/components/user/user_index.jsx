@@ -1,5 +1,5 @@
 import React from 'react';
-// import UserIndexItemContainer from './user_index_item_container';
+import UserIndexItemContainer from './user_index_item_container';
 
 class UserIndex extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class UserIndex extends React.Component {
           </div>
           <div className="user-index-list-container custom-scroll">
             <ul className="user-index-list">
-              {undefined && users}
+              {users}
             </ul>
           </div>
         </div>

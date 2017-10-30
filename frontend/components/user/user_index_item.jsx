@@ -13,6 +13,15 @@ class UserIndexItem extends React.Component {
   render () {
     return (
       <div className="fullscreen-index-list-li">
+        <div className="user-index-mini">
+          <div className="user-index-mini-icon">
+            
+          </div>
+          <div className="user-index-mini-name">
+            {this.props.user.username}
+          </div>
+        </div>
+        
         <div className="fullscreen-index-list-item-left user">
           <div className="profile-image">
             

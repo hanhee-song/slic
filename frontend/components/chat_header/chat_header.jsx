@@ -14,18 +14,18 @@ class ChatHeader extends React.Component {
     this.handleInvite = this.handleInvite.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
   }
-  
-  componentDidMount() {
-    this.props.rememberCurrentChannelId(
-      this.props.currentUser, { channelId: this.props.channel.id });
-  }
-  
-  componentWillReceiveProps(nextProps) {
-    if (this.props.channel.id !== nextProps.channel.id) {
-      nextProps.rememberCurrentChannelId(
-        nextProps.currentUser, { channelId: nextProps.channel.id });
-    }
-  }
+  //
+  // componentDidMount() {
+  //   this.props.rememberCurrentChannelId(
+  //     this.props.currentUser, { channelId: this.props.channel.id });
+  // }
+  //
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.channel.id !== nextProps.channel.id) {
+  //     nextProps.rememberCurrentChannelId(
+  //       nextProps.currentUser, { channelId: nextProps.channel.id });
+  //   }
+  // }
   
   openModal(modal) {
     return () => {
@@ -56,9 +56,11 @@ class ChatHeader extends React.Component {
     if (nextChannel) {
       nextChannelId = nextChannel.id;
     }
-    this.props.history.push(`/channels/${nextChannelId}`);
+    // this.props.history.push(`/channels/${nextChannelId}`);
     // is the below necessary anymore?
-    this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
+    // this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
+    debugger;
+    this.props.setCurrentChannel(nextChannelId);
     this.closeModal();
   }
   

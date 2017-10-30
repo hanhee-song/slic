@@ -3,6 +3,15 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login!(@user)
+      # TEMP: subscribe user to all existing channels
+      Channel.all.each do |channel|
+        ChannelSubscription.create!(
+          channel_id: channel.id,
+          user_id: @user.id,
+          visible: false
+        )
+      end
+      #
       render "api/users/show"
     else
       render json: @user.errors.full_messages, status: 422

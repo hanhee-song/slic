@@ -18,6 +18,15 @@ class Api::ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
     if @channel.save
+      # TEMP: subscribe all users to a new channel
+      User.all.each do |user|
+        ChannelSubscription.create!(
+          channel_id: @channel.id,
+          user_id: user.id,
+          visible: false
+        )
+      end
+      #
       render_show(@channel)
     else
       render json: @channel.errors.full_messages, status: 422
@@ -29,10 +38,10 @@ class Api::ChannelsController < ApplicationController
     user_id = channel_params[:user_id] || current_user.id
     @channel = Channel.find(channel_id)
     
+    channel_sub = @channel.subscriptions.find_by(user_id: user_id)
+    
+    # Making a channel visible
     if option_params[:change_visibility]
-      subscription = @channel.subscriptions.find_by(
-        user_id: user_id)
-      
       if @channel.subscriptions.find_by(user_id: user_id)
         .update(visible: option_params[:visible])
         render_show(@channel)
@@ -40,13 +49,15 @@ class Api::ChannelsController < ApplicationController
         render json: @channel.errors.full_messages, status: 422
       end
       
+    # Subscribing a user
     elsif user_id
-      if @channel.subscriptions.new(user_id: user_id).save
+      if channel_sub || @channel.subscriptions.new(user_id: user_id).save
         render_show(@channel)
       else
         render json: @channel.errors.full_messages, status: 422
       end
-      
+    
+    # Updating the channel
     else
       if @channel.update(channel_params)
         render_show(@channel)

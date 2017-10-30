@@ -29,7 +29,8 @@ class MessageIndex extends React.Component {
   flipWheel(e) {
     if(e.deltaY) {
       e.preventDefault();
-      e.currentTarget.scrollTop -= parseFloat(getComputedStyle(e.currentTarget).getPropertyValue('font-size')) * (e.deltaY < 0 ? -1 : 1) * 2;
+      debugger;
+      e.currentTarget.scrollTop -= parseFloat(getComputedStyle(e.currentTarget).getPropertyValue('font-size')) * (e.deltaY) / 15;
     }
   }
   

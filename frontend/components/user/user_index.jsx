@@ -30,7 +30,14 @@ class UserIndex extends React.Component {
   }
   
   handleRemoveUser(user) {
-    
+    return () => {
+      const userIds = this.state.selectedUserIds.slice();
+      const i = userIds.indexOf(user.id);
+      if (i > -1) {
+        userIds.splice(i, 1);
+        this.setState({ selectedUserIds: userIds });
+      }
+    };
   }
   
   render () {

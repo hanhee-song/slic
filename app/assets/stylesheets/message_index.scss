@@ -1,6 +1,5 @@
 /* MESSAGES */
 
-
 .message-container {
   height: calc(100% - 60px);
   min-width: 500px;
@@ -140,6 +139,8 @@
   width: 150px;
   padding: 10px 20px;
   margin: 0 auto;
+  animation: bubble-fadein .8s;
+  -webkit-animation: bubble-fadein .8s;
 }
 
 .message-form-join-button:active {

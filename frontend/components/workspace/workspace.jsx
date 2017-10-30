@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import ChatHeaderContainer from '../chat_header/chat_header_container';
 
 import ChannelSidebarContainer from '../channel/channel_sidebar/channel_sidebar_container';
@@ -36,12 +36,6 @@ class Workspace extends React.Component {
     }
   }
   
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-  //     this.props.rememberCurrentChannelId(this.props.currentUser, nextProps.match.params.channelId);
-  //   }
-  // }
-  
   componentWillUnmount(nextProps, nextState) {
     document.removeEventListener("keydown", this.handleEscape, false);
   }
@@ -50,7 +44,16 @@ class Workspace extends React.Component {
     let dropdown;
     switch (this.props.dropdown) {
       case "channelNew":
-        dropdown = <ChannelFormContainer />;
+        dropdown = (
+          <Switch>
+            <Route
+              component={ChannelFormContainer}
+              path="/channels/:channelId" />
+            <Route
+              component={ChannelFormContainer}
+              path="/" />
+          </Switch>
+        );
         break;
       case "channelIndex":
         dropdown = <ChannelIndexContainer />;

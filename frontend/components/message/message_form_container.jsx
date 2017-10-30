@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createMessage } from '../../actions/message_actions';
 import { updateChannel } from '../../actions/channel_actions';
 import { rememberCurrentChannelId } from '../../actions/session_actions';
+
 const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.session.currentUser,

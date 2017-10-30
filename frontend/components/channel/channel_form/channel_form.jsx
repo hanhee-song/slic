@@ -18,7 +18,10 @@ class ChannelForm extends React.Component {
           const id = response.channel.id;
           const user_id = this.props.currentUser.id;
           this.props.updateChannel({id, user_id});
-          this.props.setCurrentChannel(id);
+          this.props.makeChannelVisible(response.channel);
+          this.props.rememberCurrentChannelId(
+            this.props.currentUser, response.channel.id);
+          this.props.history.push(`/channels/${response.channel.id}`);
           this.props.clearDropdown();
         }
       );

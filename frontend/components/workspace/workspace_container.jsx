@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch) => {
     clearDropdown: () => dispatch(clearDropdown()),
     fetchChannels: () => dispatch(fetchChannels()),
     rememberCurrentChannelId: (user, channelId) => dispatch(rememberCurrentChannelId(user, channelId)),
-    // setCurrentChannel: (channelId) => dispatch(setCurrentChannel(channelId)),
   };
 };
 

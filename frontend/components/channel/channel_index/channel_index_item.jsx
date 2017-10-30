@@ -44,7 +44,7 @@ class ChannelIndexItem extends React.Component {
     let description;
     if (this.props.channel.description) {
       description = (
-        <div className="channel-index-list-item description">
+        <div className="fullscreen-index-list-item description">
           {this.props.channel.description}
         </div>
       );
@@ -54,27 +54,27 @@ class ChannelIndexItem extends React.Component {
     
     return (
       <Link
-        className="channel-index-list-li"
+        className="fullscreen-index-list-li"
         to={`/channels/${this.props.channel.id}`}
         onClick={this.handleClick}>
-        <div className="channel-index-list-item-left">
-          <div className="channel-index-list-item title">
-            <div className="channel-index-list-item hashtag">
+        <div className="fullscreen-index-list-item-left">
+          <div className="fullscreen-index-list-item title">
+            <div className="fullscreen-index-list-item hashtag">
               #
             </div>
-            <div className="channel-index-list-item name">
+            <div className="fullscreen-index-list-item name">
               {this.props.channel.name}
             </div>
           </div>
-          <div className="channel-index-list-item date">
+          <div className="fullscreen-index-list-item date">
             Created on {date}
           </div>
           {description}
         </div>
-        <div className="channel-index-list-item users">
+        <div className="fullscreen-index-list-item users">
           <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
         </div>
-        <div className="channel-index-list-item preview">
+        <div className="fullscreen-index-list-item preview">
           <i class="fa fa-sign-in" aria-hidden="true"></i>
           <div>join</div>
         </div>

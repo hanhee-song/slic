@@ -35,8 +35,8 @@ class UserIndex extends React.Component {
           <div className="fullscreen-header">
             Invite others to #{this.props.channel.name}
           </div>
-          <div className="user-index-list-container custom-scroll">
-            <ul className="user-index-list">
+          <div className="fullscreen-index-list-container custom-scroll">
+            <ul className="fullscreen-index-list">
               {users}
             </ul>
           </div>

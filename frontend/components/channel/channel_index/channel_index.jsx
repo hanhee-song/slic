@@ -34,8 +34,8 @@ class ChannelIndex extends React.Component {
           <div className="fullscreen-subheader">
             Channels you can join
           </div>
-          <div className="channel-index-list-container custom-scroll">
-            <ul className="channel-index-list">
+          <div className="fullscreen-index-list-container custom-scroll">
+            <ul className="fullscreen-index-list">
               {channels}
             </ul>
           </div>

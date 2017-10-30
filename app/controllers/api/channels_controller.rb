@@ -75,6 +75,8 @@ class Api::ChannelsController < ApplicationController
   def render_show(channel)
     @messages = channel.messages.includes(:author)
     @counts = channel.subscriptions.where(visible: true).length
+    @users = @channel.users.joins(:channel_subscriptions).where("channel_subscriptions.visible", true)
+    
     render "api/channels/show"
   end
   

@@ -51,9 +51,11 @@ class UserIndex extends React.Component {
         </div>
       );
     });
+    
     const filteredUsers = Object.values(this.props.users).slice().reverse().filter((user) => {
       return !this.state.selectedUserIds.includes(user.id)
-        && this.props.currentUser.id !== user.id;
+        && this.props.currentUser.id !== user.id
+        && !Object.keys(this.props.channel.users).includes(user.id.toString());
     });
     const users = filteredUsers.map((user) => {
       return (

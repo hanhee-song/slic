@@ -7,7 +7,7 @@ json.message_ids do
 end
 
 json.users do
-  channel.users.each do |user|
+  @users.each do |user|
     json.set! user.id do
       json.partial! 'api/users/user', user: user
     end

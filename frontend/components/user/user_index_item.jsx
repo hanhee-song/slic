@@ -20,6 +20,7 @@ class UserIndexItem extends React.Component {
           <div className="user-index-mini-name">
             {this.props.user.username}
           </div>
+          <i className="fa fa-times" aria-hidden="true"></i>
         </div>
         
         <div className="fullscreen-index-list-item-left user">

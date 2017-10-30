@@ -7,14 +7,15 @@ class MessageIndexContainer extends React.Component {
   }
   
   date() {
+    // some convoluted logic to show the right time. I'm sure I could do better
     let time = this.props.message.created_at
       .split("T")[1].split(":");
     let minute = time[1];
-    
     const offset = new Date().getTimezoneOffset() / 60;
     let hour = parseInt(time[0]) - (offset);
-    hour = hour < 0 ? hour + 24 : hour;
-    const suffix = hour > 12 ? "PM" : "AM";
+    hour = hour <= 0 ? hour + 24 : hour;
+    console.log(hour);
+    const suffix = hour >= 12 && hour !== 24 ? "PM" : "AM";
     hour = hour > 12 ? hour - 12 : hour;
     return `${hour}:${minute} ${suffix}`;
   }

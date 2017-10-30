@@ -12,6 +12,7 @@ class UserIndex extends React.Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleAddUser = this.handleAddUser.bind(this);
     this.handleRemoveUser = this.handleRemoveUser.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   componentDidMount() {
@@ -40,18 +41,22 @@ class UserIndex extends React.Component {
     };
   }
   
+  handleSubmit() {
+    
+  }
+  
   render () {
     const miniUsers = this.state.selectedUserIds.map((id) => {
       let user = this.props.users[id];
       return (
         <div
           onClick={this.handleRemoveUser(user)}
-          className="user-index-mini"
+          className="user-index-mini-item"
           key={user.id}>
-          <div className="user-index-mini-icon">
+          <div className="user-index-mini-item-icon">
             
           </div>
-          <div className="user-index-mini-name">
+          <div className="user-index-mini-item-name">
             {user.username}
           </div>
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -64,6 +69,7 @@ class UserIndex extends React.Component {
         && this.props.currentUser.id !== user.id
         && !Object.keys(this.props.channel.users).includes(user.id.toString());
     });
+    
     const users = filteredUsers.map((user) => {
       return (
         <div
@@ -97,8 +103,13 @@ class UserIndex extends React.Component {
           <div className="fullscreen-header">
             Invite others to #{this.props.channel.name}
           </div>
-          <div className="user-index-mini-list">
-            {miniUsers}
+          <div className="user-index-mini">
+            <div className="user-index-mini-list">
+              {miniUsers}
+            </div>
+            <div className="user-index-mini-button">
+              Invite
+            </div>
           </div>
           <div className="fullscreen-index-list-container custom-scroll">
             <ul className="fullscreen-index-list">

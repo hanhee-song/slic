@@ -14,13 +14,35 @@
 
 /* MINI ICONS */
 
+.user-index-mini {
+  display: flex;
+  justify-content: space-between;
+}
+
 .user-index-mini-list {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
 }
 
-.user-index-mini {
+@import "form_mixin";
+
+.user-index-mini-button {
+  @include session-button;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 50px;
+}
+
+.user-index-mini-button:hover {
+  @include session-button-hover;
+}
+
+.user-index-mini-button:active {
+  @include session-button-active;
+}
+
+.user-index-mini-item {
   display: flex;
   border: 1px solid #3ca0e8;
   background-color: #3ca0e8;
@@ -33,20 +55,20 @@
   margin-bottom: 5px;
 }
 
-.user-index-mini-icon {
+.user-index-mini-item-icon {
   border-radius: 4px 0 0 4px;
   height: 24px;
   width: 24px;
   background-color: #ddd;
 }
 
-.user-index-mini-name {
+.user-index-mini-item-name {
   font-weight: 400;
   font-size: 16px;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-.user-index-mini .fa-times {
+.user-index-mini-item .fa-times {
   margin-right: 5px;
 }

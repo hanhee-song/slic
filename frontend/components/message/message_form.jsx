@@ -19,17 +19,30 @@ class MessageForm extends React.Component {
   }
   
   render () {
+    let placeholder = "Message ";
+    placeholder += "#"; // put logic for messages later
+    placeholder += this.props.channel.name;
+    
     return (
-      <form
-        onSubmit={this.handleSubmit}>
-        
-        <input
-          type="text"
-          onChange={this.handleChange}
-          placeholder={`${this.props.channel.name}`}
-          autoFocus
-          value={this.state.body}/>
-      </form>
+      <div className="message-form">
+        <div className="message-form-outline">
+          <div className="message-form-plus">
+            
+          </div>
+          <form
+            className="message-form-form"
+            onSubmit={this.handleSubmit}>
+            
+            <input
+              className="message-form-input"
+              type="text"
+              onChange={this.handleChange}
+              placeholder={placeholder}
+              autoFocus
+              value={this.state.body}/>
+          </form>
+        </div>
+      </div>
     );
   }
 }

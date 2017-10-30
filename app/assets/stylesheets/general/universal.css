@@ -24,10 +24,10 @@ body, html {
 }
 
 .profile-image {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   background-color: #bbb;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .custom-scroll::-webkit-scrollbar {

@@ -12,7 +12,7 @@ class ChannelIndex extends React.Component {
   }
   
   render () {
-    const channels = this.props.channels.reverse().map((channel) => {
+    const channels = this.props.channels.slice().reverse().map((channel) => {
       return (
         <ChannelIndexItemContainer
           key={channel.id}

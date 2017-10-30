@@ -6,7 +6,8 @@ import { clearDropdown } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    users: Object.values(state.entities.users),
+    currentUser: state.session.currentUser,
+    users: state.entities.users,
     dropdown: state.ui.dropdown,
     channel: state.entities.channels[ownProps.currentChannelId] || {},
   };

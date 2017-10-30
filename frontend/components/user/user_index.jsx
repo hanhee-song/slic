@@ -6,7 +6,7 @@ class UserIndex extends React.Component {
     super(props);
     
     this.state = ({
-      selectedUsers: []
+      selectedUserIds: []
     });
     
     this.handleClose = this.handleClose.bind(this);
@@ -24,8 +24,8 @@ class UserIndex extends React.Component {
   
   handleAddUser(user) {
     return () => {
-      const selectedUsers = this.state.selectedUsers.concat(user);
-      this.setState({ selectedUsers: selectedUsers });
+      const selectedUserIds = this.state.selectedUserIds.concat(user.id);
+      this.setState({ selectedUserIds: selectedUserIds });
     };
   }
   
@@ -34,7 +34,8 @@ class UserIndex extends React.Component {
   }
   
   render () {
-    const miniUsers = this.state.selectedUsers.map((user) => {
+    const miniUsers = this.state.selectedUserIds.map((id) => {
+      let user = this.props.users[id];
       return (
         <div
           onClick={this.handleRemoveUser(user)}
@@ -50,8 +51,11 @@ class UserIndex extends React.Component {
         </div>
       );
     });
-    
-    const users = this.props.users.reverse().map((user) => {
+    const filteredUsers = Object.values(this.props.users).slice().reverse().filter((user) => {
+      return !this.state.selectedUserIds.includes(user.id)
+        && this.props.currentUser.id !== user.id;
+    });
+    const users = filteredUsers.map((user) => {
       return (
         <div
           onClick={this.handleAddUser(user)}

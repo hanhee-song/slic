@@ -75,7 +75,7 @@ class ChannelIndexItem extends React.Component {
           <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
         </div>
         <div className="fullscreen-index-list-item preview">
-          <i class="fa fa-sign-in" aria-hidden="true"></i>
+          <i className="fa fa-sign-in" aria-hidden="true"></i>
           <div>join</div>
         </div>
       </Link>

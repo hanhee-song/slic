@@ -17,7 +17,6 @@ class MessageForm extends React.Component {
     this.props.rememberCurrentChannelId(
       this.props.currentUser, this.props.channel.id);
     this.props.makeChannelVisible(this.props.channel);
-    this.closeModal();
   }
   
   handleSubmit(e) {

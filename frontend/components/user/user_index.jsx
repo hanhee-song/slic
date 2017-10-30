@@ -42,7 +42,19 @@ class UserIndex extends React.Component {
   }
   
   handleSubmit() {
-    
+    debugger;
+    this.state.selectedUserIds.forEach((userId) => {
+      this.props.updateChannel({
+        id: this.props.channel.id,
+        user_id: userId,
+      }).then(
+        (success) => this.props.makeChannelVisible({
+          id: this.props.channel.id,
+          user_id: userId,
+        })
+      );
+    });
+    this.props.clearDropdown();
   }
   
   render () {
@@ -97,6 +109,7 @@ class UserIndex extends React.Component {
           <div
             className="fullscreen-x"
             onClick={this.handleClose}>
+            
             <i className="fa fa-times" aria-hidden="true"></i>
             <div className="fullscreen-esc">esc</div>
           </div>
@@ -107,7 +120,9 @@ class UserIndex extends React.Component {
             <div className="user-index-mini-list">
               {miniUsers}
             </div>
-            <div className="user-index-mini-button">
+            <div
+              onClick={this.handleSubmit}
+              className="user-index-mini-button">
               Invite
             </div>
           </div>

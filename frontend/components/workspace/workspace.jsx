@@ -34,6 +34,11 @@ class Workspace extends React.Component {
       this.props.history.push(`/channels/${channelId}`);
       this.props.rememberCurrentChannelId(this.props.currentUser, channelId);
     }
+    
+    var channel = pusher.subscribe('channel-connection');
+    channel.bind('update-channel', (channel) => {
+      this.props.fetchChannel(channel.id);
+    });
   }
   
   componentWillUnmount(nextProps, nextState) {

@@ -3,6 +3,7 @@ import React from 'react';
 import UserIndex from './user_index';
 import { fetchUsers } from '../../actions/user_actions';
 import { clearDropdown } from '../../actions/ui_actions';
+import { updateChannel } from '../../actions/channel_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -14,9 +15,15 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+  const visible = {
+    change_visibility: true,
+    visible: true,
+  };
   return {
     fetchUsers: () => dispatch(fetchUsers()),
     clearDropdown: () => dispatch(clearDropdown()),
+    updateChannel: (channel) => dispatch(updateChannel(channel)),
+    makeChannelVisible: (channel) => dispatch(updateChannel(channel, visible)),
   };
 };
 

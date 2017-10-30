@@ -7,7 +7,6 @@ class Api::ChannelsController < ApplicationController
     end
     @visibles = current_user.channel_subscriptions.select(:channel_id, :visible)
     @visibles = visibles_to_json(@visibles)
-    
   end
   
   def show
@@ -45,6 +44,7 @@ class Api::ChannelsController < ApplicationController
       if @channel.subscriptions.find_by(user_id: user_id)
         .update(visible: option_params[:visible])
         render_show(@channel)
+        Pusher.trigger('channel-connection', 'update-channel', @channel)
       else
         render json: @channel.errors.full_messages, status: 422
       end
@@ -53,6 +53,7 @@ class Api::ChannelsController < ApplicationController
     elsif user_id
       if channel_sub || @channel.subscriptions.new(user_id: user_id).save
         render_show(@channel)
+        Pusher.trigger('channel-connection', 'update-channel', @channel)
       else
         render json: @channel.errors.full_messages, status: 422
       end
@@ -61,6 +62,7 @@ class Api::ChannelsController < ApplicationController
     else
       if @channel.update(channel_params)
         render_show(@channel)
+        Pusher.trigger('channel-connection', 'update-channel', @channel)
       else
         render json: @channel.errors.full_messages, status: 422
       end
@@ -76,7 +78,6 @@ class Api::ChannelsController < ApplicationController
     @messages = channel.messages.includes(:author)
     @counts = channel.subscriptions.where(visible: true).length
     @users = @channel.users.joins(:channel_subscriptions).where("channel_subscriptions.visible", true)
-    
     render "api/channels/show"
   end
   

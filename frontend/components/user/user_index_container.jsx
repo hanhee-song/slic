@@ -1,21 +1,20 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import UserIndex from './user_index';
-import { receiveAllUsers } from '../../actions/user_actions';
+import { fetchUsers } from '../../actions/user_actions';
 import { clearDropdown } from '../../actions/ui_actions';
 
-
-
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    users: state.entities.users,
+    users: Object.values(state.entities.users),
     dropdown: state.ui.dropdown,
+    channel: state.entities.channels[ownProps.currentChannelId] || {},
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    receiveAllUsers: () => dispatch(receiveAllUsers()),
+    fetchUsers: () => dispatch(fetchUsers()),
     clearDropdown: () => dispatch(clearDropdown()),
   };
 };

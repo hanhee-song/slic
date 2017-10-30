@@ -14,7 +14,6 @@ class MessageIndexContainer extends React.Component {
     const offset = new Date().getTimezoneOffset() / 60;
     let hour = parseInt(time[0]) - (offset);
     hour = hour <= 0 ? hour + 24 : hour;
-    console.log(hour);
     const suffix = hour >= 12 && hour !== 24 ? "PM" : "AM";
     hour = hour > 12 ? hour - 12 : hour;
     return `${hour}:${minute} ${suffix}`;

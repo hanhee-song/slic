@@ -48,7 +48,8 @@ class Workspace extends React.Component {
         dropdown = <ChannelIndexContainer />;
         break;
       case "userIndex":
-        dropdown = <UserIndexContainer />;
+        dropdown = <UserIndexContainer
+          currentChannelId={parseInt(this.props.match.params.channelId)} />;
         break;
       default:
         break;

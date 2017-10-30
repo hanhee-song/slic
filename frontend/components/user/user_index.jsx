@@ -7,18 +7,22 @@ class UserIndex extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
   
+  componentDidMount() {
+    this.props.fetchUsers();
+  }
+  
   handleClose() {
     this.props.clearDropdown();
   }
   
   render () {
-    // const users = this.props.users.reverse().map((user) => {
-    //   return (
-    //     <UserIndexItemContainer
-    //       key={user.id}
-    //       user={user} />
-    //     );
-    // });
+    const users = this.props.users.reverse().map((user) => {
+      return (
+        <UserIndexItemContainer
+          key={user.id}
+          user={user} />
+        );
+    });
     return (
       <div className="fullscreen-container">
         <div className="fullscreen-inside">
@@ -29,10 +33,7 @@ class UserIndex extends React.Component {
             <div className="fullscreen-esc">esc</div>
           </div>
           <div className="fullscreen-header">
-            Browse Users
-          </div>
-          <div className="fullscreen-subheader">
-            Users you can join
+            Invite others to #{this.props.channel.name}
           </div>
           <div className="user-index-list-container custom-scroll">
             <ul className="user-index-list">

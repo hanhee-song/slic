@@ -6,7 +6,7 @@ import UserReducer from './user_reducer';
 const EntitiesReducer = combineReducers({
   channels: ChannelReducer,
   messages: MessageReducer,
-  user: UserReducer,
+  users: UserReducer,
 });
 
 export default EntitiesReducer;

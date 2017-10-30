@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     channel: ownProps.channel,
     type: ownProps.type,
     selectedChannelId: parseInt(ownProps.selectedChannelId),
+    currentUser: state.session.currentUser,
   };
 };
 

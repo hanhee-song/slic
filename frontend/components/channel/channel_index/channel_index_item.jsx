@@ -9,7 +9,7 @@ class ChannelIndexItem extends React.Component {
   }
   
   handleClick() {
-    this.props.makeChannelVisible(this.props.channel);
+    // this.props.makeChannelVisible(this.props.channel);
     this.props.clearDropdown();
   }
   

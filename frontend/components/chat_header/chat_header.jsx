@@ -13,6 +13,7 @@ class ChatHeader extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleInvite = this.handleInvite.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
+    this.handleJoin = this.handleJoin.bind(this);
   }
   //
   // componentDidMount() {
@@ -38,6 +39,14 @@ class ChatHeader extends React.Component {
       nameModal: false,
       settingsModal: false,
     });
+  }
+  
+  handleJoin() {
+    // this.props.history.push(`/channels/${this.props.channel.id}`);
+    this.props.rememberCurrentChannelId(
+      this.props.currentUser, this.props.channel.id);
+    this.props.makeChannelVisible(this.props.channel);
+    this.closeModal();
   }
   
   handleInvite() {
@@ -76,6 +85,7 @@ class ChatHeader extends React.Component {
     }
     
     const isGeneral = this.props.channel.name === 'general';
+    const isVisible = this.props.channel.visible;
     
     return (
       <Modal
@@ -90,11 +100,19 @@ class ChatHeader extends React.Component {
           Invite new members to join ...
         </div>
         
-        {!isGeneral &&
+        {!isGeneral && isVisible &&
           <div
             className="modal-button"
             onClick={this.handleLeave}>
             Leave #{this.props.channel.name}
+          </div>
+        }
+        
+        {!isVisible &&
+          <div
+            className="modal-button"
+            onClick={this.handleJoin}>
+            Join #{this.props.channel.name}
           </div>
         }
       </Modal>

@@ -16,13 +16,18 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   // TODO: delegate this responsibility higher up
   // this is a temporary band-aid
-  const options = {
+  const invisible = {
     change_visibility: true,
     visible: false,
   };
+  const visible = {
+    change_visibility: true,
+    visible: true,
+  };
   return {
     receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
-    makeChannelInvisible: (channel) => dispatch(updateChannel(channel, options)),
+    makeChannelInvisible: (channel) => dispatch(updateChannel(channel, invisible)),
+    makeChannelVisible: (channel) => dispatch(updateChannel(channel, visible)),
     rememberCurrentChannelId: (user, id) => dispatch(rememberCurrentChannelId(user, id)),
   };
 };

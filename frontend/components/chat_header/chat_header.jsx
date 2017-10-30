@@ -41,6 +41,7 @@ class ChatHeader extends React.Component {
   }
   
   handleInvite() {
+    this.props.receiveDropdown("userIndex");
     this.closeModal();
   }
   

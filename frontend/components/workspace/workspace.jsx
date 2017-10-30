@@ -7,6 +7,7 @@ import UserInfoContainer from '../user_info/user_info_container.jsx';
 
 import ChannelFormContainer from '../channel/channel_form/channel_form_container';
 import ChannelIndexContainer from '../channel/channel_index/channel_index_container';
+import UserIndexContainer from '../user/user_index_container';
 
 import MessageIndexContainer from '../message/message_index_container';
 
@@ -39,11 +40,20 @@ class Workspace extends React.Component {
   
   render () {
     let dropdown;
-    if (this.props.dropdown === "channelNew") {
-      dropdown = <ChannelFormContainer />;
-    } else if (this.props.dropdown === "channelIndex") {
-      dropdown = <ChannelIndexContainer />;
+    switch (this.props.dropdown) {
+      case "channelNew":
+        dropdown = <ChannelFormContainer />;
+        break;
+      case "channelIndex":
+        dropdown = <ChannelIndexContainer />;
+        break;
+      case "userIndex":
+        dropdown = <UserIndexContainer />;
+        break;
+      default:
+        break;
     }
+
     
     return (
       <div className="workspace">

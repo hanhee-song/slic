@@ -56,7 +56,6 @@ class ChatHeader extends React.Component {
       nextChannelId = nextChannel.id;
     }
     this.props.history.push(`/channels/${nextChannelId}`);
-    // debugger;
     // is the below necessary anymore?
     this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
     this.closeModal();

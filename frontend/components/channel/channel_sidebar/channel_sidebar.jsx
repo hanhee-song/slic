@@ -19,9 +19,6 @@ class ChannelSidebar extends React.Component {
   }
   
   render () {
-    
-    
-    
     const channels = this.props.channels
       .filter((channel) => {
         return channel.visible;

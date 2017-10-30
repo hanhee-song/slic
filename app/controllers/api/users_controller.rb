@@ -5,11 +5,15 @@ class Api::UsersController < ApplicationController
       login!(@user)
       # TEMP: subscribe user to all existing channels
       Channel.all.each do |channel|
+        visible = channel.name == "general" || channel.name == "random"
         ChannelSubscription.create!(
           channel_id: channel.id,
           user_id: @user.id,
-          visible: false
+          visible: visible
         )
+        if channel.name == "general"
+          @user.update(most_recent_channel_id: channel.id)
+        end
       end
       #
       render "api/users/show"

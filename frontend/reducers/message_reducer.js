@@ -17,9 +17,10 @@ const MessageReducer = (state = initialState, action) => {
     case RECEIVE_ALL_MESSAGES:
       return action.messages;
     case RECEIVE_CHANNEL:
-      // The below returns undefined when a channel has no messages
+      // action.channel.messages returns undefined when a channel has no messages
       // darn jbuilder sending up no empty object
-      return action.channel.messages || {};
+      const actionMessages = action.channel.messages || {};
+      return merge({}, state, actionMessages);
     case RECEIVE_MESSAGE:
       newState = merge({}, state, { [action.message.id]: action.message });
       return newState;

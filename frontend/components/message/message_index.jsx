@@ -20,6 +20,22 @@ class MessageIndex extends React.Component {
     channel.bind('create-message', (message) => {
       this.props.fetchChannel(this.props.match.params.channelId);
     });
+    
+    // Credit to Felix Kling on S.O. for this solution
+    document.querySelector('.message-index-overflow-wrapper')
+      .addEventListener('wheel', (e) => this.flipWheel(e));
+  }
+  
+  flipWheel(e) {
+    if(e.deltaY) {
+      e.preventDefault();
+      e.currentTarget.scrollTop -= parseFloat(getComputedStyle(e.currentTarget).getPropertyValue('font-size')) * (e.deltaY < 0 ? -1 : 1) * 2;
+    }
+  }
+  
+  componentWillUnmount() {
+    document.querySelector('.message-index-overflow-wrapper')
+      .removeEventListener("wheel", this.flipWheel);
   }
   
   render () {

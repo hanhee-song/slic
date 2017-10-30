@@ -12,13 +12,18 @@
   height: calc(100% - 65px);
   width: calc(100% - 2px);
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+}
+
+.message-index-overflow-wrapper, .message-index {
+  transform: scale(1, -1);
 }
 
 .message-index {
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
   flex-shrink: 0;
-  // height: 100%;
 }
 
 .message-index-item {

@@ -16,7 +16,7 @@ ActiveRecord::Base.transaction do
   
   38.times do
     User.create!(
-      username: "#{Faker::Name.first_name}-#{Faker::Name.last_name}",
+      username: "#{Faker::Name.first_name}-#{Faker::Name.last_name}".downcase,
       password: Faker::Internet.password
     )
   end
@@ -38,16 +38,26 @@ ActiveRecord::Base.transaction do
     
     Channel.all.each do |channel|
       randomProject = rand(5) + 1
+      
       visible = ([
         'general',
         'random',
         "project ##{randomProject}",
       ].include?(channel.name))
+      
       ChannelSubscription.create!(
         channel_id: channel.id,
         user_id: user.id,
         visible: visible
       )
+      
+      if visible && rand(2) == 0
+        Message.create!(
+          author_id: user.id,
+          channel_id: channel.id,
+          body: Faker::HitchhikersGuideToTheGalaxy.quote
+        )
+      end
     end
     user.update(most_recent_channel_id: Channel.find_by(name: 'general').id)
   end

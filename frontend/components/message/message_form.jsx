@@ -23,12 +23,9 @@ class MessageForm extends React.Component {
     placeholder += "#"; // put logic for messages later
     placeholder += this.props.channel.name;
     
-    return (
-      <div className="message-form">
-        <form
-          className="message-form-form"
-          onSubmit={this.handleSubmit}>
-          
+    const input = this.props.channel.visible ?
+      (
+        <div className="message-form-input-wrapper">
           <input
             className="message-form-input"
             type="text"
@@ -40,6 +37,18 @@ class MessageForm extends React.Component {
           <div className="message-form-plus">
             
           </div>
+        </div>
+      ) : (
+        <div>not visible</div>
+      );
+    
+    return (
+      <div className="message-form">
+        <form
+          className="message-form-form"
+          onSubmit={this.handleSubmit}>
+          
+          {input}
         </form>
       </div>
     );

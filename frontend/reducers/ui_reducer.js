@@ -10,7 +10,6 @@ const initialState = {
 const UIReducer = (state = initialState, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
-  
   switch (action.type) {
     case SET_CURRENT_CHANNEL:
       newState.currentChannelId = action.channelId;

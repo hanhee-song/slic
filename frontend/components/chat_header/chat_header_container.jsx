@@ -1,6 +1,6 @@
 import ChatHeader from './chat_header';
 import { connect } from 'react-redux';
-import { updateChannel, setCurrentChannel } from '../../actions/channel_actions';
+import { updateChannel } from '../../actions/channel_actions';
 import { receiveDropdown } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
     makeChannelInvisible: (channel) => dispatch(updateChannel(channel, options)),
-    setCurrentChannel: (channel) => dispatch(setCurrentChannel(channel)),
+    // setCurrentChannel: (channel) => dispatch(setCurrentChannel(channel)),
   };
 };
 

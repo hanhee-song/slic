@@ -59,8 +59,8 @@ class ChatHeader extends React.Component {
     // this.props.history.push(`/channels/${nextChannelId}`);
     // is the below necessary anymore?
     // this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
-    debugger;
-    this.props.setCurrentChannel(nextChannelId);
+
+    // this.props.setCurrentChannel(nextChannelId);
     this.closeModal();
   }
   

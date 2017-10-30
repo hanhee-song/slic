@@ -60,7 +60,7 @@ class ChatHeader extends React.Component {
     // is the below necessary anymore?
     // this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
 
-    // this.props.setCurrentChannel(nextChannelId);
+    // this.props.setCurrentChannel(null);
     this.closeModal();
   }
   

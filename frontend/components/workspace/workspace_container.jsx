@@ -1,7 +1,7 @@
 import Workspace from './workspace';
 import { connect } from 'react-redux';
 import { receiveDropdown, clearDropdown } from '../../actions/ui_actions';
-import { fetchChannels, setCurrentChannel } from '../../actions/channel_actions';
+import { fetchChannels } from '../../actions/channel_actions';
 import { rememberCurrentChannelId } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     clearDropdown: () => dispatch(clearDropdown()),
     fetchChannels: () => dispatch(fetchChannels()),
     rememberCurrentChannelId: (user, channelId) => dispatch(rememberCurrentChannelId(user, channelId)),
-    setCurrentChannel: (channelId) => dispatch(setCurrentChannel(channelId)),
+    // setCurrentChannel: (channelId) => dispatch(setCurrentChannel(channelId)),
   };
 };
 

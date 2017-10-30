@@ -26,7 +26,6 @@ const defaultUpdate = {
 };
 
 export const updateUser = (user, channelId = null) => {
-  debugger;
   return $.ajax({
     method: "PATCH",
     url: `/api/users/${user.id}`,

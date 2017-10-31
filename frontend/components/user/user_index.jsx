@@ -13,7 +13,6 @@ class UserIndex extends React.Component {
     this.handleAddUser = this.handleAddUser.bind(this);
     this.handleRemoveUser = this.handleRemoveUser.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.inviteToChannel = this.inviteToChannel.bind(this);
   }
   
   componentDidMount() {
@@ -45,7 +44,7 @@ class UserIndex extends React.Component {
   handleSubmit() {
     switch (this.props.dropdown) {
       case "inviteIndex":
-        this.inviteToChannel(this.props.channel, this.state.selectedUserIds);
+        this.props.subscribeUserIdsToChannel(this.props.channel, this.state.selectedUserIds);
         break;
       
       case "messageNew":
@@ -59,14 +58,7 @@ class UserIndex extends React.Component {
           is_dm: true,
         }).then(
           response => {
-            this.props.subscribeUserIdsToChannel(
-              response.channel,
-              userIds
-            );
-          }
-        ).then(
-          response => {
-            this.inviteToChannel(userIds, response.channel);
+            this.props.subscribeUserIdsToChannel(response.channel, userIds);
             this.props.rememberCurrentChannelId(
               this.props.currentUser, response.channel.id);
             this.props.history.push(`/channels/${response.channel.id}`);
@@ -84,21 +76,6 @@ class UserIndex extends React.Component {
         
     }
     this.props.clearDropdown();
-  }
-  
-  inviteToChannel(userIds, channel) {
-    this.props.subscribeUserIdsToChannel(channel, userIds);
-    // userIds.forEach((userId) => {
-    //   this.props.updateChannel({
-    //     id: channelId,
-    //     user_id: userId,
-    //   }).then(
-    //     (success) => this.props.makeChannelVisible({
-    //       id: channelId,
-    //       user_id: userId,
-    //     })
-    //   );
-    // });
   }
   
   render () {

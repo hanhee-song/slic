@@ -29,6 +29,8 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
     if @channel.save
       render_show(@channel)
+      render "api/channels/show"
+      Pusher.trigger('channel-connection', 'update-channel', @channel)
     else
       render json: @channel.errors.full_messages, status: 422
     end

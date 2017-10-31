@@ -30,7 +30,7 @@ class ChatHeader extends React.Component {
   }
   
   handleJoin() {
-    this.subscribeUserIdsToChannel(this.props.channel, [this.props.currentUser])
+    this.subscribeUserIdsToChannel(this.props.channel, [this.props.currentUser.id])
       .then(
         response => {
           this.props.rememberCurrentChannelId(

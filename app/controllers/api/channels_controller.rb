@@ -41,11 +41,15 @@ class Api::ChannelsController < ApplicationController
     # Subscribing a user
     if !option_params[:user_ids].empty?
       option_params[:user_ids].each do |user_id|
-        @channel.subscriptions.find_by(user_id: user_id) || @channel.subscriptions.new(
-          user_id: user_id,
-          visible: true
-        ).save
-        
+        subs = @channel.subscriptions.find_by(user_id: user_id)
+        if subs
+          subs.update(visible: true)
+        else
+          @channel.subscriptions.new(
+            user_id: user_id,
+            visible: true
+          ).save
+        end
       end
       send_update = true
       
@@ -63,7 +67,6 @@ class Api::ChannelsController < ApplicationController
       send_update = true
       
     end
-    
     if send_update
       render_show(@channel)
       render "api/channels/show"
@@ -94,13 +97,6 @@ class Api::ChannelsController < ApplicationController
       @visible = subscription.visible
     end
     # @users = channel.users.joins(:channel_subscriptions).where("channel_subscriptions.visible", true)
-    p "---"
-    p channel
-    # p @messages
-    p @visible
-    p "---"
-    
-    debugger
   end
   
   # def visibles_to_json(visibles)
@@ -118,13 +114,11 @@ class Api::ChannelsController < ApplicationController
   def option_params
     # these are "true" and "false", both are truthy :c
     opt_params = params.require(:options).permit(:change_visibility,
-      :visible, :user_ids, :subscribe)
+      :visible, { user_ids: [] }, :subscribe)
     opt_params[:change_visibility] = opt_params[:change_visibility] == "true"
     opt_params[:visible] = opt_params[:visible] == "true"
     opt_params[:subscribe] = opt_params[:subscribe] == "true"
-    opt_params[:user_ids] = opt_params[:user_ids] ?
-      opt_params[:user_ids].map(&:to_i)
-      : []
+    opt_params[:user_ids] = opt_params[:user_ids].map(&:to_i)
     return opt_params
   end
 end

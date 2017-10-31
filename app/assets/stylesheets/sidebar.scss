@@ -73,6 +73,13 @@
   color: #ddd;
 }
 
+.sidebar-button-name {
+  text-overflow: ellipse;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 180px;
+}
+
 .sidebar-section {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -127,6 +134,13 @@
 
 .sidebar-section-item {
   position: relative;
+}
+
+.sidebar-section-item-inner {
+  text-overflow: ellipse;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 200px;
 }
 
 .sidebar-section-item .fa-times-circle-o {

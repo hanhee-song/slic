@@ -14,7 +14,7 @@ ActiveRecord::Base.transaction do
   # asdf is me!
   asdf = User.create!(username: 'asdf', password: 'asdfasdf')
   
-  38.times do
+  17.times do
     User.create!(
       username: "#{Faker::Name.first_name}-#{Faker::Name.last_name}".downcase,
       password: Faker::Internet.password
@@ -51,7 +51,7 @@ ActiveRecord::Base.transaction do
         visible: visible
       )
       
-      if visible && rand(2) == 0
+      if visible
         Message.create!(
           author_id: user.id,
           channel_id: channel.id,

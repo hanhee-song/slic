@@ -18,17 +18,19 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
     if @channel.save
       # TEMP: subscribe all users to a new channel
+      if !@channel.private
       User.all.each do |user|
         ChannelSubscription.create!(
           channel_id: @channel.id,
           user_id: user.id,
           visible: false
         )
+        end
+        render_show(@channel)
+        
+      else
+        render json: @channel.errors.full_messages, status: 422
       end
-      #
-      render_show(@channel)
-    else
-      render json: @channel.errors.full_messages, status: 422
     end
   end
   
@@ -90,7 +92,7 @@ class Api::ChannelsController < ApplicationController
   end
   
   def channel_params
-    params.require(:channel).permit(:name, :description, :user_id)
+    params.require(:channel).permit(:name, :description, :user_id, :private)
   end
 
   def option_params

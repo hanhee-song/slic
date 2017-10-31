@@ -1,5 +1,6 @@
 class Channel < ApplicationRecord
   validates :name, presence: true, uniqueness: true
+  validates :private, inclusion: { in: [true, false] }
   
   has_many :subscriptions,
     foreign_key: :channel_id,

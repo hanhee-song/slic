@@ -4,17 +4,17 @@ class Api::UsersController < ApplicationController
     if @user.save
       login!(@user)
       # TEMP: subscribe user to all existing channels
-      Channel.all.each do |channel|
-        visible = channel.name == "general" || channel.name == "random"
-        ChannelSubscription.create!(
-          channel_id: channel.id,
-          user_id: @user.id,
-          visible: visible
-        )
-        if channel.name == "general"
-          @user.update(most_recent_channel_id: channel.id)
-        end
-      end
+      # Channel.all.each do |channel|
+      #   visible = channel.name == "general" || channel.name == "random"
+      #   ChannelSubscription.create!(
+      #     channel_id: channel.id,
+      #     user_id: @user.id,
+      #     visible: visible
+      #   )
+      #   if channel.name == "general"
+      #     @user.update(most_recent_channel_id: channel.id)
+      #   end
+      # end
       #
       render "api/users/show"
     else

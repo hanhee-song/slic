@@ -1,6 +1,7 @@
 class Api::ChannelsController < ApplicationController
   def index
-    @channels = current_user.channels.includes(:subscriptions)
+    # @channels = current_user.channels.includes(:subscriptions)
+    @channels = Channel.all.includes(:subscriptions)
     @counts = {}
     current_user.channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.where(visible: true).length

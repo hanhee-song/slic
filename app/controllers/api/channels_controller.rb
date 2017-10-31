@@ -7,9 +7,11 @@ class Api::ChannelsController < ApplicationController
     end
     
     @visibles = {}
+    @subscribeds = {}
     current_user.channel_subscriptions.select(:channel_id, :visible)
       .each do |subscription|
         @visibles[subscription.channel_id] = subscription.visible
+        @subscribeds[subscription.channel_id] = true
     end
   end
   
@@ -32,7 +34,7 @@ class Api::ChannelsController < ApplicationController
   def update
     send_update = false
     @channel = Channel.find(params[:id])
-      
+    
     # Subscribing a user
     if !option_params[:user_ids].empty?
       option_params[:user_ids].each do |user_id|
@@ -54,15 +56,12 @@ class Api::ChannelsController < ApplicationController
       if user_ids.empty?
         user_ids << current_user.id
       end
-      debugger
       
       user_ids.each do |user_id|
         subs = @channel.subscriptions.find_by(user_id: user_id)
         
-        debugger
         if subs
           subs.update(visible: option_params[:visible])
-          debugger
         end
       end
       send_update = true
@@ -91,9 +90,9 @@ class Api::ChannelsController < ApplicationController
   def render_show(channel)
     @messages = channel.messages.includes(:author)
     @visible = false
-    subscription = channel.subscriptions.find_by(user_id: current_user.id)
-    if subscription
-      @visible = subscription.visible
+    @subscription = channel.subscriptions.find_by(user_id: current_user.id)
+    if @subscription
+      @visible = @subscription.visible
     end
   end
   

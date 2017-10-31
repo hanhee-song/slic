@@ -6,10 +6,25 @@ class ChannelSidebarItem extends React.Component {
     super(props);
     this.handleHideChannel = this.handleHideChannel.bind(this);
     this.handleSelectChannel = this.handleSelectChannel.bind(this);
+    
+    const nextChannel = Object.values(this.props.channels)
+      .filter((channel) => {
+        return channel.visible === true;
+      })[0];
+      let nextChannelId;
+    if (nextChannel) {
+      nextChannelId = nextChannel.id;
+    }
+    
+    this.state = {
+      nextChannelId: nextChannelId,
+    };
   }
   
   handleHideChannel() {
     this.props.makeChannelInvisible(this.props.channel);
+    this.props.rememberCurrentChannelId(
+      this.props.currentUser, this.state.nextChannelId);
   }
   
   handleSelectChannel() {
@@ -20,9 +35,12 @@ class ChannelSidebarItem extends React.Component {
     let leaveButton;
     if (this.props.type === "message") {
       leaveButton = (
-        <i
-          onClick={this.handleHideChannel}
-          className="fa fa-times-circle-o"></i>
+        <Link
+          to={`/channels/${this.state.nextChannelId}`}
+          onClick={this.handleHideChannel}>
+          <i
+            className="fa fa-times-circle-o"></i>
+        </Link>
       );
     }
     

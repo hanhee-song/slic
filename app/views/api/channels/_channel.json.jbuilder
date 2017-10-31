@@ -1,6 +1,7 @@
 json.extract! channel, :id, :name, :description, :created_at, :is_private, :is_dm
 json.user_count channel.subscriptions.length # @counts
 json.visible @visible
+json.subscribed !!(@subscription)
 
 json.message_ids do
   json.array! channel.messages.map(&:id)

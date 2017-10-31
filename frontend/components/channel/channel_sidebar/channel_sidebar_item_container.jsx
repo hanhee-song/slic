@@ -5,6 +5,7 @@ import { rememberCurrentChannelId } from '../../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    channels: state.entities.channels,
     channel: ownProps.channel,
     type: ownProps.type,
     selectedChannelId: parseInt(ownProps.selectedChannelId),

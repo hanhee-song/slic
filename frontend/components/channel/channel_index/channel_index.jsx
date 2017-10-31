@@ -14,7 +14,7 @@ class ChannelIndex extends React.Component {
   render () {
     const chans = this.props.channels.slice().reverse();
     const channels = chans.filter((channel) => {
-      return !channel.is_dm;
+      return !channel.is_dm && !channel.is_private;
     }).map((channel) => {
       return (
         <ChannelIndexItemContainer

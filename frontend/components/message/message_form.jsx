@@ -36,7 +36,7 @@ class MessageForm extends React.Component {
     placeholder += "#"; // put logic for messages later
     placeholder += this.props.channel.name;
     
-    const input = this.props.channel.visible ?
+    const input = this.props.channel.subscribed ?
       (
         <div className="message-form-input-wrapper">
           <input

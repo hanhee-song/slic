@@ -80,16 +80,16 @@ export const updateChannel = (channel, options) => {
   };
 };
 
-const visible = {
-  change_visibility: true,
-  visible: true,
-  user_ids: [],
-  subscribe: true,
-};
 
-export const makeChannelVisible = (channel, options = visible) => {
+export const makeChannelVisible = (channel, ids) => {
+  const visible = {
+    change_visibility: true,
+    visible: true,
+    user_ids: ids,
+    subscribe: true,
+  };
   return (dispatch) => {
-    return ChannelApiUtil.updateChannel(channel, options)
+    return ChannelApiUtil.updateChannel(channel, visible)
     .then(
       (channel) => dispatch(receiveChannel(channel)),
       (errors) => dispatch(receiveChannelErrors(errors))
@@ -97,16 +97,16 @@ export const makeChannelVisible = (channel, options = visible) => {
   };
 };
 
-const invisible = {
-  change_visibility: true,
-  visible: false,
-  user_ids: [],
-  subscribe: true,
-};
 
-export const makeChannelInvisible = (channel, options = invisible) => {
+export const makeChannelInvisible = (channel, ids) => {
+  const invisible = {
+    change_visibility: true,
+    visible: false,
+    user_ids: ids,
+    subscribe: true,
+  };
   return (dispatch) => {
-    return ChannelApiUtil.updateChannel(channel, options)
+    return ChannelApiUtil.updateChannel(channel, invisible)
     .then(
       (channel) => dispatch(receiveChannel(channel)),
       (errors) => dispatch(receiveChannelErrors(errors))

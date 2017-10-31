@@ -1,10 +1,6 @@
 class Api::ChannelsController < ApplicationController
   def index
     @channels = Channel.all.includes(:subscriptions)
-    # @counts = {}
-    # current_user.channels.each do |channel|
-    #   @counts[channel.id] = channel.subscriptions.where(visible: true).length
-    # end
     @counts = {}
     @channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.length
@@ -15,9 +11,6 @@ class Api::ChannelsController < ApplicationController
       .each do |subscription|
         @visibles[subscription.channel_id] = subscription.visible
     end
-    
-    # @visibles = current_user.channel_subscriptions.select(:channel_id, :visible)
-    # @visibles = visibles_to_json(@visibles)
   end
   
   def show
@@ -57,14 +50,20 @@ class Api::ChannelsController < ApplicationController
       
     # Change visibility of channel
     elsif option_params[:change_visibility]
-      if option_params[:user_ids].empty?
-        option_params[:user_ids] << current_user.id
+      user_ids = option_params[:user_ids].dup
+      if user_ids.empty?
+        user_ids << current_user.id
       end
+      debugger
       
-      option_params[:user_ids].each do |user_id|
-        @channel.subscriptions.find_by(user_id: user_id) &&
-        @channel.subscriptions.find_by(user_id: user_id)
-          .update(visible: option_params[:visible])
+      user_ids.each do |user_id|
+        subs = @channel.subscriptions.find_by(user_id: user_id)
+        
+        debugger
+        if subs
+          subs.update(visible: option_params[:visible])
+          debugger
+        end
       end
       send_update = true
       
@@ -91,35 +90,24 @@ class Api::ChannelsController < ApplicationController
   
   def render_show(channel)
     @messages = channel.messages.includes(:author)
-    # @counts = channel.subscriptions.length
-    # @users = channel.users
     @visible = false
     subscription = channel.subscriptions.find_by(user_id: current_user.id)
     if subscription
       @visible = subscription.visible
     end
-    # @users = channel.users.joins(:channel_subscriptions).where("channel_subscriptions.visible", true)
   end
-  
-  # def visibles_to_json(visibles)
-  #   acc = {}
-  #   visibles.as_json.each do |visible|
-  #     acc[visible["channel_id"]] = visible["visible"]
-  #   end
-  #   acc
-  # end
   
   def channel_params
     params.require(:channel).permit(:name, :description, :is_private, :is_dm)
   end
 
   def option_params
-    # these are "true" and "false", both are truthy :c
     opt_params = params.require(:options).permit(:change_visibility,
       :visible, { user_ids: [] }, :subscribe)
     opt_params[:change_visibility] = opt_params[:change_visibility] == "true"
     opt_params[:visible] = opt_params[:visible] == "true"
     opt_params[:subscribe] = opt_params[:subscribe] == "true"
+    opt_params[:user_ids] ||= [];
     opt_params[:user_ids] = opt_params[:user_ids].map(&:to_i)
     return opt_params
   end

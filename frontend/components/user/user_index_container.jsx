@@ -3,7 +3,8 @@ import React from 'react';
 import UserIndex from './user_index';
 import { fetchUsers } from '../../actions/user_actions';
 import { clearDropdown } from '../../actions/ui_actions';
-import { updateChannel } from '../../actions/channel_actions';
+import { createChannel, updateChannel } from '../../actions/channel_actions';
+import { rememberCurrentChannelId } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -21,9 +22,11 @@ const mapDispatchToProps = (dispatch) => {
   };
   return {
     fetchUsers: () => dispatch(fetchUsers()),
-    clearDropdown: () => dispatch(clearDropdown()),
+    createChannel: (channel) => dispatch(createChannel(channel)),
     updateChannel: (channel) => dispatch(updateChannel(channel)),
     makeChannelVisible: (channel) => dispatch(updateChannel(channel, visible)),
+    rememberCurrentChannelId: (user, id) => dispatch(rememberCurrentChannelId(user, id)),
+    clearDropdown: () => dispatch(clearDropdown()),
   };
 };
 

@@ -13,6 +13,7 @@ class UserIndex extends React.Component {
     this.handleAddUser = this.handleAddUser.bind(this);
     this.handleRemoveUser = this.handleRemoveUser.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.inviteToChannel = this.inviteToChannel.bind(this);
   }
   
   componentDidMount() {
@@ -44,29 +45,52 @@ class UserIndex extends React.Component {
   handleSubmit() {
     switch (this.props.dropdown) {
       case "inviteIndex":
-        this.state.selectedUserIds.forEach((userId) => {
-          this.props.updateChannel({
-            id: this.props.channel.id,
-            user_id: userId,
-          }).then(
-            (success) => this.props.makeChannelVisible({
-              id: this.props.channel.id,
-              user_id: userId,
-            })
-          );
-        });
-        this.props.clearDropdown();
+        this.inviteToChannel(this.state.selectedUserIds, this.props.channel.id);
         break;
       
       case "messageNew":
+        // TEMP: GENERATE A RANDOM NUMBER FOR THE NAME
+        const random = Math.floor(999999 * Math.random());
+        
+        this.props.createChannel({
+          name: `${random}`,
+          is_private: true,
+          is_dm: true,
+        }).then(
+          response => {
+            const userIds = this.state.selectedUserIds.concat(this.props.currentUser.id);
+            this.inviteToChannel(userIds, response.channel.id);
+            
+            this.props.rememberCurrentChannelId(
+              this.props.currentUser, response.channel.id);
+            this.props.history.push(`/channels/${response.channel.id}`);
+          }
+        );
         // create a new channel with private + dm = true
+        
         // then invite all the users to the channel
           // don't forget to invite current user
         // then make channel visible
         break;
       default:
         break;
+        
     }
+    this.props.clearDropdown();
+  }
+  
+  inviteToChannel(userIds, channelId) {
+    userIds.forEach((userId) => {
+      this.props.updateChannel({
+        id: channelId,
+        user_id: userId,
+      }).then(
+        (success) => this.props.makeChannelVisible({
+          id: channelId,
+          user_id: userId,
+        })
+      );
+    });
   }
   
   render () {

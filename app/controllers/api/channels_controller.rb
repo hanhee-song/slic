@@ -19,18 +19,18 @@ class Api::ChannelsController < ApplicationController
     if @channel.save
       # TEMP: subscribe all users to a new channel
       if !@channel.is_private
-      User.all.each do |user|
-        ChannelSubscription.create!(
-          channel_id: @channel.id,
-          user_id: user.id,
-          visible: false
-        )
+        User.all.each do |user|
+          ChannelSubscription.create!(
+            channel_id: @channel.id,
+            user_id: user.id,
+            visible: false
+          )
         end
-        render_show(@channel)
-        
-      else
-        render json: @channel.errors.full_messages, status: 422
       end
+      render_show(@channel)
+      
+    else
+      render json: @channel.errors.full_messages, status: 422
     end
   end
   

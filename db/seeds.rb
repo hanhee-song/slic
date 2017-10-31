@@ -45,13 +45,12 @@ ActiveRecord::Base.transaction do
         "project ##{randomProject}",
       ].include?(channel.name))
       
-      ChannelSubscription.create!(
-        channel_id: channel.id,
-        user_id: user.id,
-        visible: visible
-      )
-      
       if visible
+        ChannelSubscription.create!(
+          channel_id: channel.id,
+          user_id: user.id,
+          visible: visible
+        )
         Message.create!(
           author_id: user.id,
           channel_id: channel.id,
@@ -70,11 +69,13 @@ ActiveRecord::Base.transaction do
       'project #2',
       'project #5'
     ].include?(channel.name))
-    ChannelSubscription.create!(
-      channel_id: channel.id,
-      user_id: guest.id,
-      visible: visible
-    )
+    if visible
+      ChannelSubscription.create!(
+        channel_id: channel.id,
+        user_id: guest.id,
+        visible: visible
+      )
+    end
   end
   guest.update(most_recent_channel_id: Channel.find_by(name: 'general').id)
   

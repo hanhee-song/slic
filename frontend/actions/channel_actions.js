@@ -71,24 +71,81 @@ export const createChannel = (channel) => {
 };
 
 export const updateChannel = (channel, options) => {
-  // if (options && options.change_visibility && !options.visible) {
-    // return (dispatch) => {
-    //   return ChannelApiUtil.updateChannel(channel, options)
-    //   .then(
-    //     () => dispatch(removeChannel(channel.id)),
-    //     (errors) => dispatch(receiveChannelErrors(errors))
-    //   );
-    // };
-    //
-  // } else {
-    return (dispatch) => {
-      return ChannelApiUtil.updateChannel(channel, options)
-      .then(
-        (channel) => dispatch(receiveChannel(channel)),
-        (errors) => dispatch(receiveChannelErrors(errors))
-      );
-    };
-  // }
+  return (dispatch) => {
+    return ChannelApiUtil.updateChannel(channel, options)
+    .then(
+      (channel) => dispatch(receiveChannel(channel)),
+      (errors) => dispatch(receiveChannelErrors(errors))
+    );
+  };
+};
+
+const visible = {
+  change_visibility: true,
+  visible: true,
+  user_ids: [],
+  subscribe: true,
+};
+
+export const makeChannelVisible = (channel, options = visible) => {
+  return (dispatch) => {
+    return ChannelApiUtil.updateChannel(channel, options)
+    .then(
+      (channel) => dispatch(receiveChannel(channel)),
+      (errors) => dispatch(receiveChannelErrors(errors))
+    );
+  };
+};
+
+const invisible = {
+  change_visibility: true,
+  visible: false,
+  user_ids: [],
+  subscribe: true,
+};
+
+export const makeChannelInvisible = (channel, options = invisible) => {
+  return (dispatch) => {
+    return ChannelApiUtil.updateChannel(channel, options)
+    .then(
+      (channel) => dispatch(receiveChannel(channel)),
+      (errors) => dispatch(receiveChannelErrors(errors))
+    );
+  };
+};
+
+export const subscribeUserIdsToChannel = (ids, channel) => {
+  const subscribe = {
+    change_visibility: true,
+    visible: false,
+    user_ids: ids,
+    subscribe: true,
+  };
+  
+  return (dispatch) => {
+    return ChannelApiUtil.updateChannel(channel, subscribe)
+    .then(
+      (channel) => dispatch(receiveChannel(channel)),
+      (errors) => dispatch(receiveChannelErrors(errors))
+    );
+  };
+};
+
+export const unsubscribeUserIdsFromChannel = (ids, channel) => {
+  const subscribe = {
+    change_visibility: true,
+    visible: false,
+    user_ids: ids,
+    subscribe: false,
+  };
+  
+  return (dispatch) => {
+    return ChannelApiUtil.updateChannel(channel, subscribe)
+    .then(
+      (channel) => dispatch(receiveChannel(channel)),
+      (errors) => dispatch(receiveChannelErrors(errors))
+    );
+  };
 };
 
 export const deleteChannel = (channelId) => {

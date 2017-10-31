@@ -23,6 +23,8 @@ export const createChannel = (channel) => {
 const defaultOptions = {
   change_visibility: false,
   visible: true,
+  user_ids: [],
+  subscribe: true,
 };
 
 export const updateChannel = (channel, options = defaultOptions) => {

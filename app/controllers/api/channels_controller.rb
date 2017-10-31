@@ -6,7 +6,7 @@ class Api::ChannelsController < ApplicationController
     #   @counts[channel.id] = channel.subscriptions.where(visible: true).length
     # end
     @counts = {}
-    current_user.channels.each do |channel|
+    @channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.length
     end
     

@@ -1,13 +1,13 @@
 json.extract! channel, :id, :name, :description, :created_at, :is_private, :is_dm
-json.user_count @counts
-json.visible current_user.can_see_channel?(channel)
+json.user_count channel.subscriptions.length # @counts
+json.visible @visible
 
 json.message_ids do
   json.array! channel.messages.map(&:id)
 end
 
 json.users do
-  @users.each do |user|
+  channel.users.each do |user|
     json.set! user.id do
       json.partial! 'api/users/user', user: user
     end

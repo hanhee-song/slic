@@ -45,7 +45,7 @@ class UserIndex extends React.Component {
   handleSubmit() {
     switch (this.props.dropdown) {
       case "inviteIndex":
-        this.inviteToChannel(this.state.selectedUserIds, this.props.channel.id);
+        this.inviteToChannel(this.state.selectedUserIds, this.props.channel);
         break;
       
       case "messageNew":
@@ -59,7 +59,7 @@ class UserIndex extends React.Component {
         }).then(
           response => {
             const userIds = this.state.selectedUserIds.concat(this.props.currentUser.id);
-            this.inviteToChannel(userIds, response.channel.id);
+            this.inviteToChannel(userIds, response.channel);
             
             this.props.rememberCurrentChannelId(
               this.props.currentUser, response.channel.id);
@@ -79,18 +79,19 @@ class UserIndex extends React.Component {
     this.props.clearDropdown();
   }
   
-  inviteToChannel(userIds, channelId) {
-    userIds.forEach((userId) => {
-      this.props.updateChannel({
-        id: channelId,
-        user_id: userId,
-      }).then(
-        (success) => this.props.makeChannelVisible({
-          id: channelId,
-          user_id: userId,
-        })
-      );
-    });
+  inviteToChannel(userIds, channel) {
+    this.props.subscribeUserIdsToChannel(userIds, channel);
+    // userIds.forEach((userId) => {
+    //   this.props.updateChannel({
+    //     id: channelId,
+    //     user_id: userId,
+    //   }).then(
+    //     (success) => this.props.makeChannelVisible({
+    //       id: channelId,
+    //       user_id: userId,
+    //     })
+    //   );
+    // });
   }
   
   render () {

@@ -11,7 +11,11 @@ class Api::ChannelsController < ApplicationController
       @counts[channel.id] = channel.subscriptions.length
     end
     
-    # @visibles = 
+    @visibles = {}
+    current_user.channel_subscriptions.select(:channel_id, :visible)
+      .each do |subscription|
+        @visibles[subscription.channel_id] = subscription.visible
+    end
     
     # @visibles = current_user.channel_subscriptions.select(:channel_id, :visible)
     # @visibles = visibles_to_json(@visibles)
@@ -43,40 +47,47 @@ class Api::ChannelsController < ApplicationController
   end
   
   def update
-    channel_id = params[:id]
-    user_id = channel_params[:user_id] || current_user.id
-    @channel = Channel.find(channel_id)
-    
-    channel_sub = @channel.subscriptions.find_by(user_id: user_id)
+    send_update = false
+    @channel = Channel.find(params[:id])
       
     # Subscribing a user
-    if user_id
-      if channel_sub || @channel.subscriptions.new(user_id: user_id).save
-        render_show(@channel)
-        Pusher.trigger('channel-connection', 'update-channel', @channel)
-      else
-        render json: @channel.errors.full_messages, status: 422
+    if !option_params[:user_ids].empty?
+      option_params[:user_ids].each do |user_id|
+        @channel.subscriptions.find_by(user_id: user_id) || @channel.subscriptions.new(user_id: user_id).save
       end
+      send_update = true
+      
+      # render json: @channel.errors.full_messages, status: 422
     
-    # Making a channel visible
+    # Change visibility of channel
     elsif option_params[:change_visibility]
-      if @channel.subscriptions.find_by(user_id: user_id)
-        .update(visible: option_params[:visible])
-        render_show(@channel)
-        Pusher.trigger('channel-connection', 'update-channel', @channel)
-      else
-        render json: @channel.errors.full_messages, status: 422
+      if !option_params[:user_ids].empty?
+        option_params << current_user.id
       end
-    
-    # Updating the channel
-    else
-      if @channel.update(channel_params)
-        render_show(@channel)
-        Pusher.trigger('channel-connection', 'update-channel', @channel)
-      else
-        render json: @channel.errors.full_messages, status: 422
+      
+      option_params[:user_ids].each do |user_id|
+        @channel.subscriptions.find_by(user_id: user_id) &&
+        @channel.subscriptions.find_by(user_id: user_id)
+          .update(visible: option_params[:visible])
       end
+      send_update = true
+      
+    # else
+    #   render json: @channel.errors.full_messages, status: 422
     end
+    
+    if send_update
+      render_show(@channel)
+      Pusher.trigger('channel-connection', 'update-channel', @channel)
+    end
+    # Updating the channel
+    #   if @channel.update(channel_params)
+    #     render_show(@channel)
+    #     Pusher.trigger('channel-connection', 'update-channel', @channel)
+    #   else
+    #     render json: @channel.errors.full_messages, status: 422
+    #   end
+    # end
   end
   
   def destroy
@@ -86,8 +97,11 @@ class Api::ChannelsController < ApplicationController
   
   def render_show(channel)
     @messages = channel.messages.includes(:author)
-    @counts = channel.subscriptions.where(visible: true).length
-    @users = @channel.users.joins(:channel_subscriptions).where("channel_subscriptions.visible", true)
+    # @counts = channel.subscriptions.length
+    # @users = channel.users
+    subscription = channel.subscriptions.find_by(user_id: current_user.id)
+    @visible = subscription && subscription.visible
+    # @users = channel.users.joins(:channel_subscriptions).where("channel_subscriptions.visible", true)
     render "api/channels/show"
   end
   
@@ -110,6 +124,9 @@ class Api::ChannelsController < ApplicationController
     opt_params[:change_visibility] = opt_params[:change_visibility] == "true"
     opt_params[:visible] = opt_params[:visible] == "true"
     opt_params[:subscribe] = opt_params[:subscribe] == "true"
+    opt_params[:user_ids] = opt_params[:user_ids] ?
+      opt_params[:user_ids].map(&:to_i)
+      : []
     return opt_params
   end
 end

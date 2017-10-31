@@ -12,13 +12,17 @@ class ChannelIndex extends React.Component {
   }
   
   render () {
-    const channels = this.props.channels.slice().reverse().map((channel) => {
+    const chans = this.props.channels.slice().reverse();
+    const channels = chans.filter((channel) => {
+      return !channel.is_dm;
+    }).map((channel) => {
       return (
         <ChannelIndexItemContainer
           key={channel.id}
           channel={channel} />
         );
     });
+    
     return (
       <div className="fullscreen-container">
         <div className="fullscreen-inside">

@@ -112,11 +112,16 @@ class UserIndex extends React.Component {
       );
     });
     
-    const filteredUsers = Object.values(this.props.users).slice().reverse().filter((user) => {
+    let filteredUsers = Object.values(this.props.users).slice().reverse().filter((user) => {
       return !this.state.selectedUserIds.includes(user.id)
-        && this.props.currentUser.id !== user.id
-        && !Object.keys(this.props.channel.users).includes(user.id.toString());
+        && this.props.currentUser.id !== user.id;
     });
+    
+    if (this.props.dropdown === "inviteIndex") {
+      filteredUsers = filteredUsers.filter((user) => {
+        return !Object.keys(this.props.channel.users).includes(user.id.toString());
+      });
+    }
     
     const users = filteredUsers.map((user) => {
       return (
@@ -156,6 +161,18 @@ class UserIndex extends React.Component {
         break;
     }
     
+    const anyoneToInvite = !(filteredUsers.length === 0
+      && Object.keys(this.props.channel.users).length > 0);
+    
+    let noOneMessage;
+    if (!anyoneToInvite) {
+      noOneMessage = (
+        <div className="fullscreen-subheader">
+          Looks like everyone is already in this channel!
+        </div>
+      );
+    }
+    
     return (
       <div className="fullscreen-container">
         <div className="fullscreen-inside">
@@ -175,13 +192,16 @@ class UserIndex extends React.Component {
               {subheader}
             </div>
           }
+          {noOneMessage}
           
           <div className="user-index-mini">
             <div className="user-index-mini-list">
               {miniUsers}
             </div>
             
-            { this.props.dropdown !== "messageIndex" &&
+            { this.props.dropdown !== "messageIndex"
+              && anyoneToInvite
+              &&
               <div
                 onClick={this.handleSubmit}
                 className="user-index-mini-button">

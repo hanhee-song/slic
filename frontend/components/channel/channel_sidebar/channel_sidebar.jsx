@@ -31,7 +31,7 @@ class ChannelSidebar extends React.Component {
   render () {
     const channels = this.props.channels
       .filter((channel) => {
-        return channel.visible;
+        return channel.visible && !channel.is_dm;
       })
       .map((channel) => {
         return (
@@ -39,6 +39,20 @@ class ChannelSidebar extends React.Component {
             key={channel.id}
             channel={channel}
             type={"channel"}
+            selectedChannelId={this.props.selectedChannelId}/>
+        );
+      });
+    
+    const dms = this.props.channels
+      .filter((channel) => {
+        return channel.visible && channel.is_dm;
+      })
+      .map((channel) => {
+        return (
+          <ChannelSidebarItemContainer
+            key={channel.id}
+            channel={channel}
+            type={"message"}
             selectedChannelId={this.props.selectedChannelId}/>
         );
       });
@@ -85,7 +99,7 @@ class ChannelSidebar extends React.Component {
           </div>
         </div>
         <ul className="sidebar-section-items channels">
-
+          {dms}
         </ul>
       </div>
     );

@@ -18,7 +18,7 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
     if @channel.save
       # TEMP: subscribe all users to a new channel
-      if !@channel.private
+      if !@channel.is_private
       User.all.each do |user|
         ChannelSubscription.create!(
           channel_id: @channel.id,
@@ -92,7 +92,8 @@ class Api::ChannelsController < ApplicationController
   end
   
   def channel_params
-    params.require(:channel).permit(:name, :description, :user_id, :private)
+    params.require(:channel).permit(:name, :description,
+      :user_id, :is_private, :is_dm)
   end
 
   def option_params

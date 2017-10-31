@@ -42,19 +42,31 @@ class UserIndex extends React.Component {
   }
   
   handleSubmit() {
-    debugger;
-    this.state.selectedUserIds.forEach((userId) => {
-      this.props.updateChannel({
-        id: this.props.channel.id,
-        user_id: userId,
-      }).then(
-        (success) => this.props.makeChannelVisible({
-          id: this.props.channel.id,
-          user_id: userId,
-        })
-      );
-    });
-    this.props.clearDropdown();
+    switch (this.props.dropdown) {
+      case "inviteIndex":
+        this.state.selectedUserIds.forEach((userId) => {
+          this.props.updateChannel({
+            id: this.props.channel.id,
+            user_id: userId,
+          }).then(
+            (success) => this.props.makeChannelVisible({
+              id: this.props.channel.id,
+              user_id: userId,
+            })
+          );
+        });
+        this.props.clearDropdown();
+        break;
+      
+      case "messageNew":
+        // create a new channel with private + dm = true
+        // then invite all the users to the channel
+          // don't forget to invite current user
+        // then make channel visible
+        break;
+      default:
+        break;
+    }
   }
   
   render () {
@@ -103,6 +115,23 @@ class UserIndex extends React.Component {
         );
     });
     
+    let header;
+    let subheader;
+    let button;
+    switch (this.props.dropdown) {
+      case "inviteIndex":
+        header = `Invite others to ${this.props.channel.name}`;
+        button = "Invite";
+        break;
+      case "messageNew":
+        header = "Direct Message";
+        subheader = "Start a conversation";
+        button = "Go";
+        break;
+      default:
+        break;
+    }
+    
     return (
       <div className="fullscreen-container">
         <div className="fullscreen-inside">
@@ -114,17 +143,29 @@ class UserIndex extends React.Component {
             <div className="fullscreen-esc">esc</div>
           </div>
           <div className="fullscreen-header">
-            Invite others to #{this.props.channel.name}
+            {header}
           </div>
+          
+          { this.props.dropdown !== "inviteIndex" &&
+            <div className="fullscreen-subheader">
+              {subheader}
+            </div>
+          }
+          
           <div className="user-index-mini">
             <div className="user-index-mini-list">
               {miniUsers}
             </div>
-            <div
-              onClick={this.handleSubmit}
-              className="user-index-mini-button">
-              Invite
-            </div>
+            
+            { this.props.dropdown !== "messageIndex" &&
+              <div
+                onClick={this.handleSubmit}
+                className="user-index-mini-button">
+                {button}
+              </div>
+            }
+            
+            
           </div>
           <div className="fullscreen-index-list-container custom-scroll">
             <ul className="fullscreen-index-list">

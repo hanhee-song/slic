@@ -1,6 +1,6 @@
 @channels.each do |channel|
   json.set! channel.id do
-    json.extract! channel, :id, :name, :created_at, :description
+    json.extract! channel, :id, :name, :created_at, :description, :is_private, :is_dm
     json.user_count @counts[channel.id]
     json.visible @visibles[channel.id]
     

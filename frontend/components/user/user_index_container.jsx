@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
     currentUser: state.session.currentUser,
     users: state.entities.users,
     dropdown: state.ui.dropdown,
-    channel: state.entities.channels[ownProps.currentChannelId] || {},
+    channel: state.entities.channels[ownProps.match.params.channelId] || {},
   };
 };
 

@@ -63,9 +63,19 @@ class Workspace extends React.Component {
       case "channelIndex":
         dropdown = <ChannelIndexContainer />;
         break;
-      case "userIndex":
-        dropdown = <UserIndexContainer
-          currentChannelId={parseInt(this.props.match.params.channelId)} />;
+      case "inviteIndex":
+      case "messageNew":
+      case "messageIndex":
+        dropdown = (
+          <Switch>
+            <Route
+              component={UserIndexContainer}
+              path="/channels/:channelId" />
+            <Route
+              component={UserIndexContainer}
+              path="/" />
+          </Switch>
+        );
         break;
       default:
         break;

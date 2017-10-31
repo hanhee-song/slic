@@ -1,4 +1,4 @@
-json.extract! channel, :id, :name, :description, :created_at
+json.extract! channel, :id, :name, :description, :created_at, :is_private, :is_dm
 json.user_count @counts
 json.visible current_user.can_see_channel?(channel)
 

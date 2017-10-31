@@ -8,6 +8,8 @@ class ChannelSidebar extends React.Component {
     super(props);
     this.handleChannelNew = this.handleChannelNew.bind(this);
     this.handleChannelIndex = this.handleChannelIndex.bind(this);
+    this.handleMessageNew = this.handleMessageNew.bind(this);
+    this.handleMessageIndex = this.handleMessageIndex.bind(this);
   }
   
   handleChannelNew() {
@@ -16,6 +18,14 @@ class ChannelSidebar extends React.Component {
   
   handleChannelIndex() {
     this.props.receiveDropdown("channelIndex");
+  }
+  
+  handleMessageNew() {
+    this.props.receiveDropdown("messageNew");
+  }
+  
+  handleMessageIndex() {
+    this.props.receiveDropdown("messageIndex");
   }
   
   render () {
@@ -60,15 +70,14 @@ class ChannelSidebar extends React.Component {
         
         <div className="sidebar-section-header">
           <div
-            className="sidebar-section-title channels link sidebar-hoverable"
-            >
+            className="sidebar-section-title channels link sidebar-hoverable">
             Direct Messages
           </div>
           <div className="sidebar-info-bubble">
             Open a direct message
           </div>
           <i
-            
+            onClick={this.handleMessageNew}
             className="sidebar-hoverable fa fa-plus link"
             aria-hidden="true"></i>
           <div className="sidebar-info-bubble dm-2">

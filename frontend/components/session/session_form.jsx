@@ -133,18 +133,6 @@ class SessionForm extends React.Component {
       </div>
     );
     
-    let email;
-    if (signup) {
-      email = (
-        <input
-          className="session-input"
-          type="text"
-          value={this.state.email}
-          onChange={this.handleChange("email")}
-          placeholder="Email Address"/>
-      );
-    }
-    
     return (
       <div className="session-container">
         <div className="session-box">
@@ -172,7 +160,14 @@ class SessionForm extends React.Component {
               autoFocus
               key={this.props.formType}
               />
-            {email}
+            {signup &&
+              <input
+                className="session-input"
+                type="text"
+                value={this.state.email}
+                onChange={this.handleChange("email")}
+                placeholder="Email Address"/>
+            }
             <input
               className="session-input password"
               type="password"

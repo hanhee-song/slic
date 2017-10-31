@@ -4,13 +4,11 @@ import Modal from 'react-modal';
 class UserInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
     this.state = {
       modalIsOpen: false,
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.logout = this.logout.bind(this);
   }
   
   openModal() {
@@ -21,14 +19,6 @@ class UserInfo extends React.Component {
     this.setState({ modalIsOpen: false });
   }
   
-  handleClick(e) {
-    this.props.receiveDropdown("userInfo");
-  }
-  
-  logout(e) {
-    this.props.logout();
-  }
-
   render () {
     return (
       <div>
@@ -61,7 +51,7 @@ class UserInfo extends React.Component {
           
           <div
             className="modal-button"
-            onClick={this.logout}>
+            onClick={this.props.logout}>
             Logout
           </div>
           

@@ -38,8 +38,8 @@
   display: flex;
   flex-direction: column;
   overflow-wrap: break-word;
-  animation: fadein .4s;
-  -webkit-animation: fadein .4s;
+  animation: message-fadein .5s;
+  -webkit-animation: message-fadein .5s;
 }
 
 .message-index-item.beginning-header {
@@ -114,6 +114,8 @@
 
 .message-form-input-wrapper {
   height: 100%;
+  animation: fadein .2s;
+  -webkit-animation: fadein .2s;
 }
 
 .message-form-plus {
@@ -168,8 +170,8 @@
   width: 150px;
   padding: 10px 20px;
   margin: 0 auto;
-  animation: bubble-fadein .6s;
-  -webkit-animation: bubble-fadein .6s;
+  animation: fadein .2s;
+  -webkit-animation: fadein .2s;
 }
 
 .message-form-join-button:hover {

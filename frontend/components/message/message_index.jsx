@@ -29,7 +29,6 @@ class MessageIndex extends React.Component {
   flipWheel(e) {
     if(e.deltaY) {
       e.preventDefault();
-      debugger;
       e.currentTarget.scrollTop -= parseFloat(getComputedStyle(e.currentTarget)
         .getPropertyValue('font-size')) * (e.deltaY) / 15;
     }
@@ -50,7 +49,6 @@ class MessageIndex extends React.Component {
     });
     
     let beginningMessage;
-    debugger;
     if (this.props.channel.id) {
       beginningMessage = (
         <div

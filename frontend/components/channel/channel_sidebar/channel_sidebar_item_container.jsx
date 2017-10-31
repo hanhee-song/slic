@@ -1,9 +1,6 @@
 import { connect } from 'react-redux';
 import ChannelSidebarItem from './channel_sidebar_item';
-import {
-  updateChannel,
-  setCurrentChannel,
-} from '../../../actions/channel_actions';
+import { updateChannel } from '../../../actions/channel_actions';
 import { rememberCurrentChannelId } from '../../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {

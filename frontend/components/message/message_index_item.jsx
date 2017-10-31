@@ -1,6 +1,6 @@
 import React from 'react';
 
-class MessageIndexContainer extends React.Component {
+class MessageIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.date = this.date.bind(this);
@@ -44,4 +44,4 @@ class MessageIndexContainer extends React.Component {
   }
 }
 
-export default MessageIndexContainer;
+export default MessageIndexItem;

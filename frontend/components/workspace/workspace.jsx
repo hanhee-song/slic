@@ -75,6 +75,7 @@ class Workspace extends React.Component {
     return (
       <div className="workspace">
         {dropdown}
+        
         <div className="sidebar">
           <Route
             component={UserInfoContainer}

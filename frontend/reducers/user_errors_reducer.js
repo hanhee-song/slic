@@ -2,7 +2,6 @@ import {
   RECEIVE_ALL_USERS,
   RECEIVE_USER_ERRORS,
   CLEAR_USER_ERRORS,
-  RECEIVE_USER,
 } from '../actions/user_actions';
 
 const initialState = [];

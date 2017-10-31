@@ -45,12 +45,13 @@ class UserIndex extends React.Component {
   handleSubmit() {
     switch (this.props.dropdown) {
       case "inviteIndex":
-        this.inviteToChannel(this.state.selectedUserIds, this.props.channel);
+        this.inviteToChannel(this.props.channel, this.state.selectedUserIds);
         break;
       
       case "messageNew":
         // TEMP: GENERATE A RANDOM NUMBER FOR THE NAME
         const random = Math.floor(999999 * Math.random());
+        const userIds = this.state.selectedUserIds.concat(this.props.currentUser.id);
         
         this.props.createChannel({
           name: `${random}`,
@@ -58,14 +59,20 @@ class UserIndex extends React.Component {
           is_dm: true,
         }).then(
           response => {
-            const userIds = this.state.selectedUserIds.concat(this.props.currentUser.id);
+            this.props.subscribeUserIdsToChannel(
+              response.channel,
+              userIds
+            );
+          }
+        ).then(
+          response => {
             this.inviteToChannel(userIds, response.channel);
-            
             this.props.rememberCurrentChannelId(
               this.props.currentUser, response.channel.id);
             this.props.history.push(`/channels/${response.channel.id}`);
           }
         );
+        
         // create a new channel with private + dm = true
         
         // then invite all the users to the channel
@@ -80,7 +87,7 @@ class UserIndex extends React.Component {
   }
   
   inviteToChannel(userIds, channel) {
-    this.props.subscribeUserIdsToChannel(userIds, channel);
+    this.props.subscribeUserIdsToChannel(channel, userIds);
     // userIds.forEach((userId) => {
     //   this.props.updateChannel({
     //     id: channelId,

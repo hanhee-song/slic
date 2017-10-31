@@ -2,7 +2,8 @@ import ChannelForm from './channel_form';
 import { connect } from 'react-redux';
 import {
   createChannel,
-  updateChannel,
+  subscribeUserIdsToChannel,
+  makeChannelVisible,
   clearChannelErrors,
 } from '../../../actions/channel_actions';
 import { clearDropdown } from '../../../actions/ui_actions';
@@ -17,14 +18,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  const visible = {
-    change_visibility: true,
-    visible: true,
-  };
   return {
     createChannel: (channel) => dispatch(createChannel(channel)),
-    updateChannel: (channel) => dispatch(updateChannel(channel)),
-    makeChannelVisible: (channel) => dispatch(updateChannel(channel, visible)),
+    subscribeUserIdsToChannel: (channel, ids) => dispatch(subscribeUserIdsToChannel(channel, ids)),
+    makeChannelVisible: (channel) => dispatch(makeChannelVisible(channel)),
     rememberCurrentChannelId: (user, id) => dispatch(rememberCurrentChannelId(user, id)),
     clearDropdown: () => dispatch(clearDropdown()),
     clearChannelErrors: () => dispatch(clearChannelErrors()),

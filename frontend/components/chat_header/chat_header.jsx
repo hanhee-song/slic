@@ -30,10 +30,15 @@ class ChatHeader extends React.Component {
   }
   
   handleJoin() {
-    this.props.rememberCurrentChannelId(
-      this.props.currentUser, this.props.channel.id);
-    this.props.makeChannelVisible(this.props.channel);
-    this.closeModal();
+    this.subscribeUserIdsToChannel(this.props.channel, [this.props.currentUser])
+      .then(
+        response => {
+          this.props.rememberCurrentChannelId(
+            this.props.currentUser, this.props.channel.id);
+          this.props.makeChannelVisible(this.props.channel);
+          this.closeModal();
+        }
+      );
   }
   
   handleInvite() {

@@ -14,8 +14,14 @@ class MessageForm extends React.Component {
   }
   
   handleJoin() {
+    this.props.subscribeUserIdsToChannel(
+      this.props.channel,
+      [this.props.currentUser.id]
+    );
     this.props.rememberCurrentChannelId(
-      this.props.currentUser, this.props.channel.id);
+      this.props.currentUser,
+      this.props.channel.id
+    );
     this.props.makeChannelVisible(this.props.channel);
   }
   

@@ -114,9 +114,9 @@ export const makeChannelInvisible = (channel, options = invisible) => {
   };
 };
 
-export const subscribeUserIdsToChannel = (ids, channel) => {
+export const subscribeUserIdsToChannel = (channel, ids) => {
   const subscribe = {
-    change_visibility: true,
+    change_visibility: false,
     visible: false,
     user_ids: ids,
     subscribe: true,
@@ -131,9 +131,9 @@ export const subscribeUserIdsToChannel = (ids, channel) => {
   };
 };
 
-export const unsubscribeUserIdsFromChannel = (ids, channel) => {
+export const unsubscribeUserIdsFromChannel = (channel, ids) => {
   const subscribe = {
-    change_visibility: true,
+    change_visibility: false,
     visible: false,
     user_ids: ids,
     subscribe: false,

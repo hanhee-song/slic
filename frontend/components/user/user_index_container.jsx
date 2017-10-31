@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
     createChannel: (channel) => dispatch(createChannel(channel)),
-    subscribeUserIdsToChannel: (ids, channel) => dispatch(subscribeUserIdsToChannel(ids, channel)),
+    subscribeUserIdsToChannel: (channel, ids) => dispatch(subscribeUserIdsToChannel(channel, ids)),
     makeChannelVisible: (channel) => dispatch(makeChannelVisible(channel)),
     rememberCurrentChannelId: (user, id) => dispatch(rememberCurrentChannelId(user, id)),
     clearDropdown: () => dispatch(clearDropdown()),

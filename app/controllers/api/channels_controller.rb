@@ -1,6 +1,5 @@
 class Api::ChannelsController < ApplicationController
   def index
-    # @channels = current_user.channels.includes(:subscriptions)
     @channels = Channel.all.includes(:subscriptions)
     # @counts = {}
     # current_user.channels.each do |channel|
@@ -29,18 +28,7 @@ class Api::ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
     if @channel.save
-      # TEMP: subscribe all users to a new channel
-      # if !@channel.is_private
-      #   User.all.each do |user|
-      #     ChannelSubscription.create!(
-      #       channel_id: @channel.id,
-      #       user_id: user.id,
-      #       visible: false
-      #     )
-      #   end
-      # end
       render_show(@channel)
-      
     else
       render json: @channel.errors.full_messages, status: 422
     end
@@ -53,16 +41,18 @@ class Api::ChannelsController < ApplicationController
     # Subscribing a user
     if !option_params[:user_ids].empty?
       option_params[:user_ids].each do |user_id|
-        @channel.subscriptions.find_by(user_id: user_id) || @channel.subscriptions.new(user_id: user_id).save
+        @channel.subscriptions.find_by(user_id: user_id) || @channel.subscriptions.new(
+          user_id: user_id,
+          visible: true
+        ).save
+        
       end
       send_update = true
       
-      # render json: @channel.errors.full_messages, status: 422
-    
     # Change visibility of channel
     elsif option_params[:change_visibility]
-      if !option_params[:user_ids].empty?
-        option_params << current_user.id
+      if option_params[:user_ids].empty?
+        option_params[:user_ids] << current_user.id
       end
       
       option_params[:user_ids].each do |user_id|
@@ -72,12 +62,11 @@ class Api::ChannelsController < ApplicationController
       end
       send_update = true
       
-    # else
-    #   render json: @channel.errors.full_messages, status: 422
     end
     
     if send_update
       render_show(@channel)
+      render "api/channels/show"
       Pusher.trigger('channel-connection', 'update-channel', @channel)
     end
     # Updating the channel
@@ -99,10 +88,19 @@ class Api::ChannelsController < ApplicationController
     @messages = channel.messages.includes(:author)
     # @counts = channel.subscriptions.length
     # @users = channel.users
+    @visible = false
     subscription = channel.subscriptions.find_by(user_id: current_user.id)
-    @visible = subscription && subscription.visible
+    if subscription
+      @visible = subscription.visible
+    end
     # @users = channel.users.joins(:channel_subscriptions).where("channel_subscriptions.visible", true)
-    render "api/channels/show"
+    p "---"
+    p channel
+    # p @messages
+    p @visible
+    p "---"
+    
+    debugger
   end
   
   # def visibles_to_json(visibles)

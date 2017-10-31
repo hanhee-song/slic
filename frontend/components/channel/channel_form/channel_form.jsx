@@ -17,7 +17,7 @@ class ChannelForm extends React.Component {
         response => {
           const id = response.channel.id;
           const user_id = this.props.currentUser.id;
-          this.props.updateChannel({id, user_id});
+          this.props.subscribeUserIdsToChannel(response.channel, [currentUser.id]);
           this.props.makeChannelVisible(response.channel);
           this.props.rememberCurrentChannelId(
             this.props.currentUser, response.channel.id);

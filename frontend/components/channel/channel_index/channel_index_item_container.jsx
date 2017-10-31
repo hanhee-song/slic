@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ChannelIndexItem from './channel_index_item';
-// import { updateChannel } from '../../../actions/channel_actions';
+import { makeChannelVisible } from '../../../actions/channel_actions';
 import { clearDropdown } from '../../../actions/ui_actions';
 
 
@@ -16,13 +16,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  const options = {
-    change_visibility: true,
-    visible: true,
-  };
   return {
     clearDropdown: () => dispatch(clearDropdown()),
-    // makeChannelVisible: (channel) => dispatch(updateChannel(channel, options)),
+    makeChannelVisible: (channel) => dispatch(makeChannelVisible(channel)),
   };
 };
 

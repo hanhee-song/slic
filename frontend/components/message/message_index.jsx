@@ -50,10 +50,11 @@ class MessageIndex extends React.Component {
     });
     
     let beginningMessage;
+    debugger;
     if (this.props.channel.id) {
       beginningMessage = (
         <div
-          forceRefresh={this.props.channel.id}
+          key={this.props.channel.id}
           className="message-index-item content beginning">
           <div className="message-index-item beginning-header">
             #{this.props.channel.name}

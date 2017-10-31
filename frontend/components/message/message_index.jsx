@@ -30,13 +30,14 @@ class MessageIndex extends React.Component {
     if(e.deltaY) {
       e.preventDefault();
       debugger;
-      e.currentTarget.scrollTop -= parseFloat(getComputedStyle(e.currentTarget).getPropertyValue('font-size')) * (e.deltaY) / 15;
+      e.currentTarget.scrollTop -= parseFloat(getComputedStyle(e.currentTarget)
+        .getPropertyValue('font-size')) * (e.deltaY) / 15;
     }
   }
   
   componentWillUnmount() {
     document.querySelector('.message-index-overflow-wrapper')
-      .removeEventListener("wheel", this.flipWheel);
+      .removeEventListener("wheel", (e) => this.flipWheel(e));
   }
   
   render () {
@@ -48,10 +49,28 @@ class MessageIndex extends React.Component {
       );
     });
     
+    let beginningMessage;
+    if (this.props.channel.id) {
+      beginningMessage = (
+        <div
+          forceRefresh={this.props.channel.id}
+          className="message-index-item content beginning">
+          <div className="message-index-item beginning-header">
+            #{this.props.channel.name}
+          </div>
+          <div className="message-index-item beginning-body">
+            This is the very beginning of the #{this.props.channel.name} channel.
+          </div>
+          <div className="message-index-item-break"></div>
+        </div>
+      );
+    }
+    
     return (
       <div className="message-container">
         <div className="message-index-overflow-wrapper custom-scroll">
           <div className="message-index">
+            {beginningMessage}
             {messages}
           </div>
           

@@ -15,18 +15,6 @@ class ChatHeader extends React.Component {
     this.handleLeave = this.handleLeave.bind(this);
     this.handleJoin = this.handleJoin.bind(this);
   }
-  //
-  // componentDidMount() {
-  //   this.props.rememberCurrentChannelId(
-  //     this.props.currentUser, { channelId: this.props.channel.id });
-  // }
-  //
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.channel.id !== nextProps.channel.id) {
-  //     nextProps.rememberCurrentChannelId(
-  //       nextProps.currentUser, { channelId: nextProps.channel.id });
-  //   }
-  // }
   
   openModal(modal) {
     return () => {
@@ -42,7 +30,6 @@ class ChatHeader extends React.Component {
   }
   
   handleJoin() {
-    // this.props.history.push(`/channels/${this.props.channel.id}`);
     this.props.rememberCurrentChannelId(
       this.props.currentUser, this.props.channel.id);
     this.props.makeChannelVisible(this.props.channel);
@@ -66,8 +53,6 @@ class ChatHeader extends React.Component {
       nextChannelId = nextChannel.id;
     }
     this.props.history.push(`/channels/${nextChannelId}`);
-    // is the below necessary anymore?
-    // this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
     this.closeModal();
   }
   
@@ -94,11 +79,13 @@ class ChatHeader extends React.Component {
         isOpen={this.state[field]}
         onRequestClose={this.closeModal}>
         
-        <div
-          className="modal-button"
-          onClick={this.handleInvite}>
-          Invite new members to join ...
-        </div>
+        {isVisible &&
+          <div
+            className="modal-button"
+            onClick={this.handleInvite}>
+            Invite new members to join ...
+          </div>
+        }
         
         {!isGeneral && isVisible &&
           <div

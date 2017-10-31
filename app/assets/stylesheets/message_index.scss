@@ -38,8 +38,8 @@
   display: flex;
   flex-direction: column;
   overflow-wrap: break-word;
-  animation: bubble-fadein .4s;
-  -webkit-animation: bubble-fadein .4s;
+  animation: fadein .4s;
+  -webkit-animation: fadein .4s;
 }
 
 .message-index-item.beginning-header {

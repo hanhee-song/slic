@@ -52,6 +52,8 @@ class ChatHeader extends React.Component {
     if (nextChannel) {
       nextChannelId = nextChannel.id;
     }
+    this.props.rememberCurrentChannelId(
+      this.props.currentUser, nextChannelId);
     this.props.history.push(`/channels/${nextChannelId}`);
     this.closeModal();
   }

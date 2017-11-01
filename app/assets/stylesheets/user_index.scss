@@ -18,7 +18,7 @@
   @include input-field;
   width: 550px;
   height: 50px;
-  margin: 10px 0;
+  // margin: 10px 0;
 }
 
 /* MINI ICONS */
@@ -26,6 +26,8 @@
 .user-index-mini {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
 }
 
 .user-index-mini-list {
@@ -39,6 +41,7 @@
   padding-left: 20px;
   padding-right: 20px;
   height: 50px;
+  margin: 0;
 }
 
 .user-index-mini-button:hover {

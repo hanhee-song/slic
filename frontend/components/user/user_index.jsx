@@ -161,8 +161,12 @@ class UserIndex extends React.Component {
         break;
     }
     
+    const channelUsersCount = Object.keys(this.props.channel.users).length;
+    const userCount = Object.keys(this.props.users).length;
+    
     const anyoneToInvite = !(filteredUsers.length === 0
-      && Object.keys(this.props.channel.users).length > 0);
+      && channelUsersCount > 0);
+    
     
     let noOneMessage;
     if (!anyoneToInvite) {
@@ -170,7 +174,9 @@ class UserIndex extends React.Component {
         <div className="fullscreen-subheader">
           {
             this.state.selectedUserIds.length > 0 &&
-            this.props.users.length !== 0 &&
+            userCount !== 0 &&
+            this.state.selectedUserIds.length + this.generateList().length
+              === userCount - 1 &&
             "There's no one else to invite!"
           }
           {

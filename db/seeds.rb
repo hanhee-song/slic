@@ -36,7 +36,7 @@ ActiveRecord::Base.transaction do
   User.all.each do |user|
     next if user == guest
     
-    # SUBSCRIBE TO THREE CHANNELS AND TALK IN THEM
+    # SUBSCRIBE TO THREE CHANNELS
     Channel.all.each do |channel|
       randomProject = rand(5) + 1
       
@@ -51,11 +51,6 @@ ActiveRecord::Base.transaction do
           channel_id: channel.id,
           user_id: user.id,
           visible: visible
-        )
-        Message.create!(
-          author_id: user.id,
-          channel_id: channel.id,
-          body: Faker::HitchhikersGuideToTheGalaxy.quote
         )
       end
     end
@@ -131,4 +126,18 @@ ActiveRecord::Base.transaction do
     )
   end
   
+  User.all.includes(:channels).each do |user|
+    user.channels.each do |channel|
+      next if user == guest
+      Message.create!(
+        author_id: user.id,
+        channel_id: channel.id,
+        body: (
+          rand(2) == 1 ?
+          Faker::HitchhikersGuideToTheGalaxy.quote :
+          Faker::Simpsons.quote
+          )
+      )
+    end
+  end
 end

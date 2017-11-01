@@ -75,7 +75,11 @@ class ChannelIndexItem extends React.Component {
         </div>
         <div className="fullscreen-index-list-item preview">
           <i className="fa fa-sign-in" aria-hidden="true"></i>
-          <div>preview</div>
+          <div>
+            { !this.props.channel.subscribed &&
+              "preview"
+            }
+          </div>
         </div>
       </Link>
     );

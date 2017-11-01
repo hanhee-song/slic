@@ -16,10 +16,14 @@ class ChannelIndex extends React.Component {
     
     
     
-    let channels;
+    let channels = [];
+    let channelsSubscribed = [];
     if (this.props.dropdown === "channelIndex") {
       channels = chans.filter((channel) => {
-        return !channel.is_dm;
+        return !channel.is_dm && !channel.subscribed;
+      });
+      channelsSubscribed = chans.filter((channel) => {
+        return !channel.is_dm && channel.subscribed;
       });
     } else if (this.props.dropdown === "messageIndex") {
       channels = chans.filter((channel) => {
@@ -29,6 +33,14 @@ class ChannelIndex extends React.Component {
     
     
     channels = channels.map((channel) => {
+      return (
+        <ChannelIndexItem
+          key={channel.id}
+          channel={channel}
+          clearDropdown={this.props.clearDropdown} />
+        );
+    });
+    channelsSubscribed = channelsSubscribed.map((channel) => {
       return (
         <ChannelIndexItem
           key={channel.id}
@@ -48,14 +60,31 @@ class ChannelIndex extends React.Component {
             <div className="fullscreen-esc">esc</div>
           </div>
           <div className="fullscreen-header">
-            Browse Channels
-          </div>
-          <div className="fullscreen-subheader">
-            Channels you can join
+            {
+              this.props.dropdown === "channelIndex" ?
+              "Browse Channels" :
+              "View Messages"
+            }
           </div>
           <div className="fullscreen-index-list-container custom-scroll">
+            { this.props.dropdown === "channelIndex" &&
+              channels.length > 0 &&
+              <div className="fullscreen-subheader">
+                Channels you can join
+              </div>
+            }
             <ul className="fullscreen-index-list">
               {channels}
+            </ul>
+            
+            { this.props.dropdown === "channelIndex" &&
+              channelsSubscribed.length > 0 &&
+              <div className="fullscreen-subheader">
+                Channels you belong to
+              </div>
+            }
+            <ul className="fullscreen-index-list">
+              {channelsSubscribed}
             </ul>
           </div>
         </div>

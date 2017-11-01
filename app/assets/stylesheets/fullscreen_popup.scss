@@ -54,15 +54,15 @@
 .fullscreen-header {
   font-size: 36px;
   font-weight: 700;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 
 .fullscreen-subheader {
   // font-size: 40px;
-  font-weight: 300;
-  color: #888;
+  font-weight: 400;
+  color: #777;
   // padding-left: 10px;
-  padding-bottom: 20px;
+  margin: 20px 0px 5px 5px;
 }
 
 .fullscreen-input-container {
@@ -112,6 +112,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   height: calc(100% - 162px);
+  margin-top: 20px;
 }
 
 .fullscreen-index-list-container-users {

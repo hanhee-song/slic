@@ -6,6 +6,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     channels: Object.values(state.entities.channels),
     dropdown: state.ui.dropdown,
+    currentUser: state.entities.currentUser,
   };
 };
 

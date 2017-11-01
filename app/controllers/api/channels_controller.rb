@@ -1,6 +1,12 @@
 class Api::ChannelsController < ApplicationController
   def index
-    @channels = Channel.all.includes(:subscriptions, :users)
+    channels = Channel.all.includes(:subscriptions, :users)
+    @channels = []
+    channels.each do |channel|
+      if channel.users.ids.include?(current_user.id) || !channel.is_private
+        @channels << channel
+      end
+    end
     @counts = {}
     @channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.length
@@ -27,15 +33,33 @@ class Api::ChannelsController < ApplicationController
   
   def show
     @channel = Channel.find(params[:id])
-    render_show(@channel)
+    if @channel
+      if @channel.is_private && !@channel.users.ids.include?(current_user.id)
+        render json: ["Channel not found"], status: 404
+      else
+        render_show(@channel)
+      end
+    else
+      render json: ["Channel not found"], status: 404
+    end
   end
   
   def create
     @channel = Channel.new(channel_params)
     if @channel.save
-      render_show(@channel)
-      render "api/channels/show"
-      Pusher.trigger('channel-connection', 'update-channel', @channel)
+      
+      @channel.subscriptions.create!(
+        user_id: current_user.id,
+        visible: true
+      )
+      
+      if @channel.is_private && !@channel.users.ids.include?(current_user.id)
+        render json: [""], status: 204
+      else
+        render_show(@channel)
+        render "api/channels/show"
+        Pusher.trigger('channel-connection', 'update-channel', @channel)
+      end
     else
       render json: @channel.errors.full_messages, status: 422
     end
@@ -88,10 +112,18 @@ class Api::ChannelsController < ApplicationController
       send_update = true
       
     end
+    
+    # Render
     if send_update
-      render_show(@channel)
-      render "api/channels/show"
-      Pusher.trigger('channel-connection', 'update-channel', @channel)
+      if @channel.is_private && !@channel.users.ids.include?(current_user.id)
+        render json: [""], status: 204
+      else
+        render_show(@channel)
+        render 'api/channels/show'
+        Pusher.trigger('channel-connection', 'update-channel', @channel)
+      end
+    else
+      render json: ["Channel not found"], status: 404
     end
     # Updating the channel
     #   if @channel.update(channel_params)

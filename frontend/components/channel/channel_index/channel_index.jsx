@@ -1,6 +1,5 @@
 import React from 'react';
-import ChannelIndexItemContainer from './channel_index_item_container';
-// import ChannelIndexItemContainer from './channel_index_item_container';
+import ChannelIndexItem from './channel_index_item';
 
 class ChannelIndex extends React.Component {
   constructor(props) {
@@ -16,11 +15,22 @@ class ChannelIndex extends React.Component {
     const chans = this.props.channels.slice().reverse();
     
     
-    const channels = chans.filter((channel) => {
-      return !channel.is_dm && !channel.is_private;
-    }).map((channel) => {
+    
+    let channels;
+    if (this.props.dropdown === "channelIndex") {
+      channels = chans.filter((channel) => {
+        return !channel.is_dm;
+      });
+    } else if (this.props.dropdown === "messageIndex") {
+      channels = chans.filter((channel) => {
+        return channel.is_dm;
+      });
+    }
+    
+    
+    channels = channels.map((channel) => {
       return (
-        <ChannelIndexItemContainer
+        <ChannelIndexItem
           key={channel.id}
           channel={channel}
           clearDropdown={this.props.clearDropdown} />

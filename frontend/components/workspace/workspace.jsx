@@ -61,11 +61,11 @@ class Workspace extends React.Component {
         );
         break;
       case "channelIndex":
+      case "messageIndex":
         dropdown = <ChannelIndexContainer />;
         break;
       case "inviteIndex":
       case "messageNew":
-      case "messageIndex":
         dropdown = (
           <Switch>
             <Route

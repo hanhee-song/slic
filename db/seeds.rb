@@ -84,16 +84,16 @@ ActiveRecord::Base.transaction do
   accounts = User.limit(18)[2..16]
   
   # CHAT WITH SELF
-  dm1 = Channel.create!(
-    name: SecureRandom::urlsafe_base64,
-    is_private: true,
-    is_dm: true
-  )
-  ChannelSubscription.create!(
-    channel_id: dm1.id,
-    user_id: guest.id,
-    visible: true
-  )
+  # dm1 = Channel.create!(
+  #   name: SecureRandom::urlsafe_base64,
+  #   is_private: true,
+  #   is_dm: true
+  # )
+  # ChannelSubscription.create!(
+  #   channel_id: dm1.id,
+  #   user_id: guest.id,
+  #   visible: true
+  # )
   
   # CHAT WITH ANOTHER
   dm2 = Channel.create!(

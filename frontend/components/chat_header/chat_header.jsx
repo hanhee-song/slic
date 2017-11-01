@@ -89,8 +89,8 @@ class ChatHeader extends React.Component {
             onClick={this.handleInvite}>
             {
               isDm ?
-              "Invite new members to join ..." :
-              "Invite another member ..."
+              "Invite another member ..." :
+              "Invite new members to join ..."
             }
             
           </div>

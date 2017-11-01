@@ -47,18 +47,21 @@ class Api::ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
     if @channel.save
-      
-      @channel.subscriptions.create!(
-        user_id: current_user.id,
-        visible: true
-      )
-      
-      if @channel.is_private && !@channel.users.ids.include?(current_user.id)
-        render json: [""], status: 204
+      if current_user
+        @channel.subscriptions.create!(
+          user_id: current_user.id,
+          visible: true
+        )
+        if @channel.is_private && !@channel.users.ids.include?(current_user.id)
+          render json: [""], status: 204
+        else
+          render_show(@channel)
+          render "api/channels/show"
+          Pusher.trigger('channel-connection', 'update-channel', @channel)
+        end
+        
       else
-        render_show(@channel)
-        render "api/channels/show"
-        Pusher.trigger('channel-connection', 'update-channel', @channel)
+        render json: ["How'd you do that?"], status: 204
       end
     else
       render json: @channel.errors.full_messages, status: 422
@@ -83,7 +86,6 @@ class Api::ChannelsController < ApplicationController
           if subs
             subs.update(visible: true)
           else
-            debugger
             @channel.subscriptions.create!(
               user_id: user_id,
               visible: true

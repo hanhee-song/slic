@@ -14,7 +14,7 @@ ActiveRecord::Base.transaction do
   # asdf is me!
   asdf = User.create!(username: 'asdf', password: 'asdfasdf')
   
-  17.times do
+  16.times do
     User.create!(
       username: "#{Faker::Name.first_name[0]}#{Faker::Name.last_name}".downcase,
       password: Faker::Internet.password
@@ -36,6 +36,7 @@ ActiveRecord::Base.transaction do
   User.all.each do |user|
     next if user == guest
     
+    # SUBSCRIBE TO THREE CHANNELS AND TALK IN THEM
     Channel.all.each do |channel|
       randomProject = rand(5) + 1
       
@@ -78,5 +79,56 @@ ActiveRecord::Base.transaction do
     end
   end
   guest.update(most_recent_channel_id: Channel.find_by(name: 'general').id)
+  
+  # CREATE RANDOM PRIVATE MESSAGES FOR GUEST
+  accounts = User.limit(18)[2..16]
+  
+  # CHAT WITH SELF
+  dm1 = Channel.create!(
+    name: SecureRandom::urlsafe_base64,
+    is_private: true,
+    is_dm: true
+  )
+  ChannelSubscription.create!(
+    channel_id: dm1.id,
+    user_id: guest.id,
+    visible: true
+  )
+  
+  # CHAT WITH ANOTHER
+  dm2 = Channel.create!(
+    name: SecureRandom::urlsafe_base64,
+    is_private: true,
+    is_dm: true
+  )
+  ChannelSubscription.create!(
+    channel_id: dm2.id,
+    user_id: guest.id,
+    visible: true
+  )
+  ChannelSubscription.create!(
+    channel_id: dm2.id,
+    user_id: accounts[rand(14)].id,
+    visible: true
+  )
+  
+  # CHAT WITH THREE
+  dm3 = Channel.create!(
+    name: SecureRandom::urlsafe_base64,
+    is_private: true,
+    is_dm: true
+  )
+  ChannelSubscription.create!(
+    channel_id: dm3.id,
+    user_id: guest.id,
+    visible: true
+  )
+  3.times do |i|
+    ChannelSubscription.create!(
+      channel_id: dm3.id,
+      user_id: accounts[i * 2 + 5].id,
+      visible: true
+    )
+  end
   
 end

@@ -1,5 +1,6 @@
 import React from 'react';
 import ChannelIndexItemContainer from './channel_index_item_container';
+// import ChannelIndexItemContainer from './channel_index_item_container';
 
 class ChannelIndex extends React.Component {
   constructor(props) {
@@ -13,15 +14,19 @@ class ChannelIndex extends React.Component {
   
   render () {
     const chans = this.props.channels.slice().reverse();
+    
+    
     const channels = chans.filter((channel) => {
       return !channel.is_dm && !channel.is_private;
     }).map((channel) => {
       return (
         <ChannelIndexItemContainer
           key={channel.id}
-          channel={channel} />
+          channel={channel}
+          clearDropdown={this.props.clearDropdown} />
         );
     });
+    
     
     return (
       <div className="fullscreen-container">

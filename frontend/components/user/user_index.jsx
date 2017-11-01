@@ -1,5 +1,5 @@
 import React from 'react';
-// import UserIndexItemContainer from './user_index_item_container';
+import UserIndexItem from './user_index_item';
 
 class UserIndex extends React.Component {
   constructor(props) {
@@ -64,12 +64,9 @@ class UserIndex extends React.Component {
             this.props.history.push(`/channels/${response.channel.id}`);
           }
         );
+        break;
+      case "messageIndex":
         
-        // create a new channel with private + dm = true
-        
-        // then invite all the users to the channel
-          // don't forget to invite current user
-        // then make channel visible
         break;
       default:
         break;
@@ -110,22 +107,11 @@ class UserIndex extends React.Component {
     
     const users = filteredUsers.map((user) => {
       return (
-        <div
-          onClick={this.handleAddUser(user)}
-          className="fullscreen-index-list-li"
-          key={user.id}>
-            <div className="fullscreen-index-list-item-left user">
-              <div className="profile-image">
-                
-              </div>
-              <div className="fullscreen-index-list-item name">
-                {user.username}
-              </div>
-            </div>
-            <div className="fullscreen-index-list-item preview user">
-              <i className="fa fa-plus-square-o" aria-hidden="true"></i>
-            </div>
-        </div>
+          <UserIndexItem
+            key={user.id}
+            user={user}
+            handleAddUser={this.handleAddUser}
+            />
         );
     });
     
@@ -200,7 +186,7 @@ class UserIndex extends React.Component {
             
           </div>
           {noOneMessage}
-          <div className="fullscreen-index-list-container custom-scroll">
+          <div className="fullscreen-index-list-container-users custom-scroll">
             <ul className="fullscreen-index-list">
               {users}
             </ul>

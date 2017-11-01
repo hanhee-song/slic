@@ -33,7 +33,9 @@ class MessageForm extends React.Component {
   
   render () {
     let placeholder = "Message ";
-    placeholder += "#"; // put logic for messages later
+    if (!this.props.channel.is_dm) {
+      placeholder += "#";
+    }
     placeholder += this.props.channel.name;
     
     const input = this.props.channel.subscribed ?

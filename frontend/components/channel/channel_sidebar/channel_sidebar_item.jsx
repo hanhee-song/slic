@@ -32,20 +32,17 @@ class ChannelSidebarItem extends React.Component {
   }
   
   render () {
-    let leaveButton;
-    if (this.props.type === "message") {
-      leaveButton = (
-        <Link
-          to={`/channels/${this.state.nextChannelId}`}
-          onClick={this.handleHideChannel}>
-          <i
-            className="fa fa-times-circle-o"></i>
-        </Link>
-      );
-    }
-    
     const selected = this.props.channel.id === this.props.selectedChannelId ?
       "selected" : "";
+    
+    let prefix;
+    
+    if (!this.props.channel.is_dm) {
+      prefix = "# ";
+    } else if (this.props.channel.is_dm
+        && Object.values(this.props.channel.users).length > 2) {
+      prefix = `(${Object.values(this.props.channel.users).length - 1}) `;
+    }
     
     return (
       <li className={`sidebar-section-item button ${selected}`}>
@@ -53,11 +50,19 @@ class ChannelSidebarItem extends React.Component {
           onClick={this.handleSelectChannel}
           to={`/channels/${this.props.channel.id}`}>
           <div className="sidebar-section-item-inner">
-            # {this.props.channel.name}
+            {prefix}
+            {this.props.channel.name}
           </div>
         </Link>
         
-        {leaveButton}
+        { this.props.type === "message" &&
+          <Link
+            to={`/channels/${this.state.nextChannelId}`}
+            onClick={this.handleHideChannel}>
+            <i
+              className="fa fa-times-circle-o"></i>
+          </Link>
+        }
       </li>
     );
   }

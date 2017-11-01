@@ -1,4 +1,5 @@
 json.extract! channel, :id, :name, :description, :created_at, :is_private, :is_dm
+json.name @name
 json.user_count channel.subscriptions.length # @counts
 json.visible @visible
 json.subscribed !!(@subscription)

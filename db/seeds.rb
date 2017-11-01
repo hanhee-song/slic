@@ -16,7 +16,7 @@ ActiveRecord::Base.transaction do
   
   17.times do
     User.create!(
-      username: "#{Faker::Name.first_name}-#{Faker::Name.last_name}".downcase,
+      username: "#{Faker::Name.first_name[0]}#{Faker::Name.last_name}".downcase,
       password: Faker::Internet.password
     )
   end

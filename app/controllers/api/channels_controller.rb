@@ -1,6 +1,6 @@
 class Api::ChannelsController < ApplicationController
   def index
-    @channels = Channel.all.includes(:subscriptions)
+    @channels = Channel.all.includes(:subscriptions, :users)
     @counts = {}
     @channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.length
@@ -12,6 +12,16 @@ class Api::ChannelsController < ApplicationController
       .each do |subscription|
         @visibles[subscription.channel_id] = subscription.visible
         @subscribeds[subscription.channel_id] = true
+    end
+    
+    @names = {}
+    @channels.each do |channel|
+      generate_message_name(channel)
+      if channel.is_dm
+        @names[channel.id] = generate_message_name(channel)
+      else
+        @names[channel.id] = channel.name
+      end
     end
   end
   
@@ -93,6 +103,23 @@ class Api::ChannelsController < ApplicationController
     @subscription = channel.subscriptions.find_by(user_id: current_user.id)
     if @subscription
       @visible = @subscription.visible
+    end
+    if channel.is_dm
+      @name = generate_message_name(channel)
+    else
+      @name = channel.name
+    end
+  end
+  
+  def generate_message_name(channel)
+    
+    names = channel.users.map(&:username) - [current_user.username]
+    if names.length <= 0
+      "#{current_user.username} (you)"
+    elsif names.length == 1
+      names[0]
+    else names.length >= 2
+      names.join(", ")
     end
   end
   

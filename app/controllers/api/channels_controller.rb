@@ -67,24 +67,38 @@ class Api::ChannelsController < ApplicationController
     end
     
     
+    
     @channel = Channel.new(channel_params)
     if @channel.save
-      if current_user
+      option_params[:user_ids].each do |id|
         @channel.subscriptions.create!(
-          user_id: current_user.id,
+          user_id: id,
           visible: true
         )
-        if @channel.is_private && !@channel.users.ids.include?(current_user.id)
-          render json: [""], status: 204
-        else
-          render_show(@channel)
-          render "api/channels/show"
-          Pusher.trigger('channel-connection', 'update-channel', @channel)
-        end
-        
-      else
-        render json: ["How'd you do that?"], status: 204
       end
+      if @channel.is_private && !@channel.users.ids.include?(current_user.id)
+        render json: [""], status: 204
+      else
+        render_show(@channel)
+        render "api/channels/show"
+        Pusher.trigger('channel-connection', 'update-channel', @channel)
+      end
+      # if current_user
+      #   @channel.subscriptions.create!(
+      #     user_id: current_user.id,
+      #     visible: true
+      #   )
+      #   if @channel.is_private && !@channel.users.ids.include?(current_user.id)
+      #     render json: [""], status: 204
+      #   else
+      #     render_show(@channel)
+      #     render "api/channels/show"
+      #     Pusher.trigger('channel-connection', 'update-channel', @channel)
+      #   end
+      #
+      # else
+      #   render json: ["How'd you do that?"], status: 204
+      # end
     else
       render json: @channel.errors.full_messages, status: 422
     end

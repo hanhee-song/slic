@@ -7,7 +7,7 @@ class UserIndex extends React.Component {
     
     this.state = ({
       selectedUserIds: [],
-      inputval: "",
+      inputVal: "",
       names: Object.values(this.props.users),
     });
     
@@ -15,6 +15,9 @@ class UserIndex extends React.Component {
     this.handleAddUser = this.handleAddUser.bind(this);
     this.handleRemoveUser = this.handleRemoveUser.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addTopUser = this.addTopUser.bind(this);
+    this.changeInput = this.changeInput.bind(this);
+    this.generateList = this.generateList.bind(this);
   }
   
   componentDidMount() {
@@ -79,6 +82,37 @@ class UserIndex extends React.Component {
     this.props.clearDropdown();
   }
   
+  changeInput(e) {
+    this.setState({ inputVal: e.target.value });
+  }
+  
+  generateList() {
+    let filteredUsers = Object.values(this.props.users).slice().reverse().filter((user) => {
+      return !this.state.selectedUserIds.includes(user.id)
+        && this.props.currentUser.id !== user.id;
+    });
+    
+    if (this.props.dropdown === "inviteIndex") {
+      filteredUsers = filteredUsers.filter((user) => {
+        return !Object.keys(this.props.channel.users).includes(user.id.toString());
+      });
+    }
+    
+    return filteredUsers.filter((user) => {
+      return user.username.includes(this.state.inputVal);
+    });
+  }
+  
+  addTopUser(e) {
+    e.preventDefault();
+    if (this.state.inputVal.length > 0) {
+      const list = this.generateList();
+      if (list.length > 0) {
+        this.handleAddUser(list[list.length - 1])();
+      }
+    }
+  }
+  
   render () {
     const miniUsers = this.state.selectedUserIds.map((id) => {
       let user = this.props.users[id];
@@ -98,16 +132,7 @@ class UserIndex extends React.Component {
       );
     });
     
-    let filteredUsers = Object.values(this.props.users).slice().reverse().filter((user) => {
-      return !this.state.selectedUserIds.includes(user.id)
-        && this.props.currentUser.id !== user.id;
-    });
-    
-    if (this.props.dropdown === "inviteIndex") {
-      filteredUsers = filteredUsers.filter((user) => {
-        return !Object.keys(this.props.channel.users).includes(user.id.toString());
-      });
-    }
+    const filteredUsers = this.generateList();
     
     const users = filteredUsers.map((user) => {
       return (
@@ -144,7 +169,7 @@ class UserIndex extends React.Component {
       noOneMessage = (
         <div className="fullscreen-subheader">
           {
-            this.state.selectedUserIds.length > 1 &&
+            this.state.selectedUserIds.length > 0 &&
             this.props.users.length !== 0 &&
             "There's no one else to invite!"
           }
@@ -177,9 +202,14 @@ class UserIndex extends React.Component {
           }
           
           <div className="user-index-mini">
-            <input
-              className="user-index-input"
-              ></input>
+            <form onSubmit={this.addTopUser}>
+              <input
+                className="user-index-input"
+                value={this.state.inputVal}
+                onChange={this.changeInput}
+                type="text"
+                ></input>
+            </form>
             <div
               onClick={this.handleSubmit}
               className="user-index-mini-button">

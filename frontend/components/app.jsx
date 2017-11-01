@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch } from 'react-router';
 
@@ -21,26 +22,28 @@ const App = () => {
           component={WorkspaceContainer}
           path="/channels"
           />
+        
+        <div>
+          <Route
+            component={Navbar} />
+          <Switch>
+            <AuthRoute
+              component={SessionFormContainer}
+              path="/login"/>
+            <AuthRoute
+              component={SessionFormContainer}
+              path="/signup"/>
+            <AuthRoute
+              component={SessionFormContainer}
+              path="/guest-login"/>
+            <AuthRoute
+              component={WelcomePageContainer}
+              path="/"/>
+          </Switch>
+          <Route
+            component={Footer} />
+        </div>
       </Switch>
-      
-      <AuthRoute
-        component={Navbar} />
-      <Switch>
-        <AuthRoute
-          component={SessionFormContainer}
-          path="/login"/>
-        <AuthRoute
-          component={SessionFormContainer}
-          path="/signup"/>
-        <AuthRoute
-          component={SessionFormContainer}
-          path="/guest-login"/>
-        <AuthRoute
-          component={WelcomePageContainer}
-          path="/"/>
-      </Switch>
-      <AuthRoute
-        component={Footer} />
     </section>
   );
 };

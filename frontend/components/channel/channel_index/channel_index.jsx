@@ -37,7 +37,9 @@ class ChannelIndex extends React.Component {
         <ChannelIndexItem
           key={channel.id}
           channel={channel}
-          clearDropdown={this.props.clearDropdown} />
+          clearDropdown={this.props.clearDropdown}
+          makeChannelVisible={this.props.makeChannelVisible}
+          />
         );
     });
     channelsSubscribed = channelsSubscribed.map((channel) => {

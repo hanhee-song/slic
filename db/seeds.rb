@@ -126,7 +126,7 @@ ActiveRecord::Base.transaction do
   3.times do |i|
     ChannelSubscription.create!(
       channel_id: dm3.id,
-      user_id: accounts[i * 2 + 5].id,
+      user_id: accounts[i + 5].id,
       visible: true
     )
   end

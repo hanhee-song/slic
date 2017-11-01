@@ -83,10 +83,11 @@ class Api::ChannelsController < ApplicationController
           if subs
             subs.update(visible: true)
           else
-            @channel.subscriptions.new(
+            debugger
+            @channel.subscriptions.create!(
               user_id: user_id,
               visible: true
-            ).save
+            )
           end
         end
         

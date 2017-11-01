@@ -45,6 +45,12 @@ class Workspace extends React.Component {
     document.removeEventListener("keydown", this.handleEscape, false);
   }
   
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.channelErrors.length > 1) {
+      
+    }
+  }
+  
   render () {
     let dropdown;
     switch (this.props.dropdown) {

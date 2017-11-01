@@ -8,13 +8,14 @@ import {
 } from '../../actions/channel_actions';
 import { receiveDropdown } from '../../actions/ui_actions';
 import { rememberCurrentChannelId } from '../../actions/session_actions';
+import { findNextChannelId } from '../../util/find_next_channel_id.js';
 
 const mapStateToProps = (state, ownProps) => {
   let channel = state.entities.channels[ownProps.match.params.channelId] || {};
   return {
-    channels: state.entities.channels,
     channel: channel,
     currentUser: state.session.currentUser,
+    nextChannelId: findNextChannelId(state.entities.channels),
   };
 };
 

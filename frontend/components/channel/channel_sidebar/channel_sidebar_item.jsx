@@ -1,31 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { findNextChannelId } from '../../../util/find_next_channel_id.js';
 
 class ChannelSidebarItem extends React.Component {
   constructor(props) {
     super(props);
     this.handleHideChannel = this.handleHideChannel.bind(this);
     this.handleSelectChannel = this.handleSelectChannel.bind(this);
-    
-    const nextChannel = Object.values(this.props.channels)
-      .filter((channel) => {
-        return channel.subscribed === true;
-      })[0];
-      let nextChannelId;
-    if (nextChannel) {
-      nextChannelId = nextChannel.id;
-    }
-    
-    this.state = {
-      nextChannelId: nextChannelId,
-    };
   }
   
   handleHideChannel() {
     this.props.makeChannelInvisible(this.props.channel);
     if (this.props.channel.id === this.props.selectedChannelId) {
       this.props.rememberCurrentChannelId(
-        this.props.currentUser, this.state.nextChannelId);
+        this.props.currentUser, this.props.nextChannelId);
     }
   }
   
@@ -46,7 +34,7 @@ class ChannelSidebarItem extends React.Component {
       prefix = `(${Object.values(this.props.channel.users).length - 1}) `;
     }
     
-    // const link = selected ? this.state.nextChannelId : this.props.channel.id;
+    // const link = selected ? this.props.nextChannelId : this.props.channel.id;
     
     return (
       <li className={`sidebar-section-item button ${selected}`}>
@@ -63,7 +51,7 @@ class ChannelSidebarItem extends React.Component {
           (
             selected ?
             <Link
-              to={`/channels/${this.state.nextChannelId}`}
+              to={`/channels/${this.props.nextChannelId}`}
               onClick={this.handleHideChannel}>
               <i className="fa fa-times-circle-o"></i>
             </Link>

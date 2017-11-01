@@ -86,7 +86,7 @@ export const makeChannelVisible = (channel, ids) => {
     change_visibility: true,
     visible: true,
     user_ids: ids,
-    change_subscription: true,
+    change_subscription: false,
     subscribe: true,
   };
   return (dispatch) => {
@@ -104,7 +104,7 @@ export const makeChannelInvisible = (channel, ids) => {
     change_visibility: true,
     visible: false,
     user_ids: ids,
-    change_subscription: true,
+    change_subscription: false,
     subscribe: true,
   };
   return (dispatch) => {

@@ -53,17 +53,9 @@ class ChatHeader extends React.Component {
     );
     this.props.makeChannelInvisible(this.props.channel);
     
-    const nextChannel = Object.values(this.props.channels)
-      .filter((channel) => {
-        return channel.subscribed === true;
-      })[0];
-    let nextChannelId;
-    if (nextChannel) {
-      nextChannelId = nextChannel.id;
-    }
     this.props.rememberCurrentChannelId(
-      this.props.currentUser, nextChannelId);
-    this.props.history.push(`/channels/${nextChannelId}`);
+      this.props.currentUser, this.props.nextChannelId);
+    this.props.history.push(`/channels/${this.props.nextChannelId}`);
     this.closeModal();
   }
   

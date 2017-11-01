@@ -2,14 +2,15 @@ import { connect } from 'react-redux';
 import ChannelSidebarItem from './channel_sidebar_item';
 import { makeChannelInvisible } from '../../../actions/channel_actions';
 import { rememberCurrentChannelId } from '../../../actions/session_actions';
+import { findNextChannelId } from '../../../util/find_next_channel_id.js';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    channels: state.entities.channels,
     channel: ownProps.channel,
     type: ownProps.type,
     selectedChannelId: parseInt(ownProps.selectedChannelId),
     currentUser: state.session.currentUser,
+    nextChannelId: findNextChannelId(state.entities.channels),
   };
 };
 

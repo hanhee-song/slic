@@ -6,7 +6,9 @@ class UserIndex extends React.Component {
     super(props);
     
     this.state = ({
-      selectedUserIds: []
+      selectedUserIds: [],
+      inputval: "",
+      names: Object.values(this.props.users),
     });
     
     this.handleClose = this.handleClose.bind(this);
@@ -143,7 +145,7 @@ class UserIndex extends React.Component {
         <div className="fullscreen-subheader">
           {
             this.state.selectedUserIds.length > 1 &&
-            this.state.users.length !== 0 &&
+            this.props.users.length !== 0 &&
             "There's no one else to invite!"
           }
           {
@@ -175,21 +177,17 @@ class UserIndex extends React.Component {
           }
           
           <div className="user-index-mini">
-            <div className="user-index-mini-list">
-              {miniUsers}
+            <input
+              className="user-index-input"
+              ></input>
+            <div
+              onClick={this.handleSubmit}
+              className="user-index-mini-button">
+              {button}
             </div>
-            
-            { this.props.dropdown !== "messageIndex"
-              && (anyoneToInvite || this.state.selectedUserIds.length > 0)
-              &&
-              <div
-                onClick={this.handleSubmit}
-                className="user-index-mini-button">
-                {button}
-              </div>
-            }
-            
-            
+          </div>
+          <div className="user-index-mini-list">
+            {miniUsers}
           </div>
           {noOneMessage}
           <div className="fullscreen-index-list-container-users custom-scroll">

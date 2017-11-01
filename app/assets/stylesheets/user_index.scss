@@ -12,6 +12,14 @@
   margin-top: 10px;
 }
 
+@import "form_mixin";
+
+.user-index-input {
+  @include input-field;
+  width: 550px;
+  height: 50px;
+}
+
 /* MINI ICONS */
 
 .user-index-mini {
@@ -24,8 +32,6 @@
   flex-wrap: wrap;
   margin-bottom: 10px;
 }
-
-@import "form_mixin";
 
 .user-index-mini-button {
   @include session-button;

@@ -69,7 +69,7 @@ class ChatHeader extends React.Component {
         cssName = "settings-modal";
         break;
       default:
-        return undefined;
+        return "";
     }
     
     const isGeneral = this.props.channel.name === 'general';

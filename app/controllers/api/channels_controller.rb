@@ -167,7 +167,7 @@ class Api::ChannelsController < ApplicationController
     elsif names.length >= 2 && names.length < 4
       names.join(", ")
     elsif names.length >= 4
-      names[0, 3].join(", ") + "and #{names.length - 3} other#{names.length > 4 ? 's' : ''}"
+      names[0, 3].join(", ") + " and #{names.length - 3} other#{names.length > 4 ? 's' : ''}"
     end
   end
   

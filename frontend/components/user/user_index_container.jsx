@@ -21,7 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
-    createChannel: (channel) => dispatch(createChannel(channel)),
+    createChannel: (channel, ids) => dispatch(createChannel(channel, ids)),
     subscribeUserIdsToChannel: (channel, ids) => dispatch(subscribeUserIdsToChannel(channel, ids)),
     makeChannelVisible: (channel) => dispatch(makeChannelVisible(channel)),
     rememberCurrentChannelId: (user, id) => dispatch(rememberCurrentChannelId(user, id)),

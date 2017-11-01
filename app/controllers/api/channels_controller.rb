@@ -52,6 +52,21 @@ class Api::ChannelsController < ApplicationController
   end
   
   def create
+    # Manually search every channel to see if this already exists
+    if channel_params[:is_dm]
+      Channel.all.where("is_dm").includes(:users).each do |channel|
+        if channel.users.map(&:id).sort == option_params[:user_ids].sort
+          @channel = channel
+          
+          render_show(@channel)
+          render "api/channels/show"
+          Pusher.trigger('channel-connection', 'update-channel', @channel)
+          return
+        end
+      end
+    end
+    
+    
     @channel = Channel.new(channel_params)
     if @channel.save
       if current_user

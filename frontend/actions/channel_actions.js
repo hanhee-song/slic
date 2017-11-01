@@ -60,9 +60,12 @@ export const fetchChannel = (channelId) => {
   };
 };
 
-export const createChannel = (channel) => {
+export const createChannel = (channel, ids) => {
+  const options = {
+    user_ids: ids,
+  };
   return (dispatch) => {
-    return ChannelApiUtil.createChannel(channel)
+    return ChannelApiUtil.createChannel(channel, options)
       .then(
         (channel) => dispatch(receiveChannel(channel)),
         (errors) => dispatch(receiveChannelErrors(errors))

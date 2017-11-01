@@ -49,14 +49,16 @@ class UserIndex extends React.Component {
       
       case "messageNew":
         // TEMP: GENERATE A RANDOM NUMBER FOR THE NAME
-        const random = Math.floor(999999 * Math.random());
+        const random = Math.floor(999999999 * Math.random());
         const userIds = this.state.selectedUserIds.concat(this.props.currentUser.id);
         
         this.props.createChannel({
           name: `${random}`,
           is_private: true,
           is_dm: true,
-        }).then(
+        },
+        userIds
+        ).then(
           response => {
             this.props.subscribeUserIdsToChannel(response.channel, userIds);
             this.props.rememberCurrentChannelId(

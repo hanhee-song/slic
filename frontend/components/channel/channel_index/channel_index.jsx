@@ -31,6 +31,20 @@ class ChannelIndex extends React.Component {
       });
     }
     
+    if (this.props.dropdown === "messageIndex") {
+      channels.sort((a, b) => {
+        const first = new Date(a.most_recent_activity);
+        const second = new Date(b.most_recent_activity);
+        return first > second ? 1 : -1;
+      });
+    } else {
+      channels.sort((a, b) => {
+        return b.name.toLowerCase().localeCompare(a.name.toLowerCase());
+      });
+      channelsSubscribed.sort((a, b) => {
+        return b.name.toLowerCase().localeCompare(a.name.toLowerCase());
+      });
+    }
     
     channels = channels.map((channel) => {
       return (
@@ -42,6 +56,7 @@ class ChannelIndex extends React.Component {
           />
         );
     });
+    
     channelsSubscribed = channelsSubscribed.map((channel) => {
       return (
         <ChannelIndexItem

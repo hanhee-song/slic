@@ -153,7 +153,11 @@
   margin-top: -3px;
   padding: 2px;
   font-size: 18px;
-  background-color: #4f3448;
+  background-color: #301c2b;
+}
+
+.sidebar-section-item.selected .fa-times-circle-o {
+  background-color: #598e84;
 }
 
 .sidebar-section-item .fa-times-circle-o:hover {

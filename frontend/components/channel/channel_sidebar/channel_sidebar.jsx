@@ -89,7 +89,7 @@ class ChannelSidebar extends React.Component {
             Direct Messages
           </div>
           <div className="sidebar-info-bubble">
-            Open a direct message
+            Browse all direct messages
           </div>
           <i
             onClick={this.handleMessageNew}

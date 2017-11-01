@@ -4,6 +4,7 @@ import {
   makeChannelInvisible,
   makeChannelVisible,
   subscribeUserIdsToChannel,
+  unsubscribeUserIdsFromChannel,
 } from '../../actions/channel_actions';
 import { receiveDropdown } from '../../actions/ui_actions';
 import { rememberCurrentChannelId } from '../../actions/session_actions';
@@ -24,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
     makeChannelVisible: (channel) => dispatch(makeChannelVisible(channel)),
     rememberCurrentChannelId: (user, id) => dispatch(rememberCurrentChannelId(user, id)),
     subscribeUserIdsToChannel: (channel, ids) => dispatch(subscribeUserIdsToChannel(channel, ids)),
+    unsubscribeUserIdsFromChannel: (channel, ids) => dispatch(unsubscribeUserIdsFromChannel(channel, ids)),
   };
 };
 

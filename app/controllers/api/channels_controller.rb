@@ -45,28 +45,39 @@ class Api::ChannelsController < ApplicationController
     send_update = false
     @channel = Channel.find(params[:id])
     
+    user_ids = option_params[:user_ids].dup
+    if user_ids.empty?
+      user_ids << current_user.id
+    end
+    
     # Subscribing a user
-    if !option_params[:user_ids].empty?
-      option_params[:user_ids].each do |user_id|
-        subs = @channel.subscriptions.find_by(user_id: user_id)
-        if subs
-          subs.update(visible: true)
-        else
-          @channel.subscriptions.new(
-            user_id: user_id,
-            visible: true
-          ).save
+    if option_params[:change_subscription]
+      send_update = true
+      if option_params[:subscribe]
+        user_ids.each do |user_id|
+          subs = @channel.subscriptions.find_by(user_id: user_id)
+          if subs
+            subs.update(visible: true)
+          else
+            @channel.subscriptions.new(
+              user_id: user_id,
+              visible: true
+            ).save
+          end
+        end
+        
+      # Unsubscribing a user
+      else
+        user_ids.each do |user_id|
+          subs = @channel.subscriptions.find_by(user_id: user_id)
+          subs.destroy
         end
       end
-      send_update = true
-      
+    end
+    
+    
     # Change visibility of channel
-    elsif option_params[:change_visibility]
-      user_ids = option_params[:user_ids].dup
-      if user_ids.empty?
-        user_ids << current_user.id
-      end
-      
+    if option_params[:change_visibility]
       user_ids.each do |user_id|
         subs = @channel.subscriptions.find_by(user_id: user_id)
         
@@ -129,10 +140,11 @@ class Api::ChannelsController < ApplicationController
 
   def option_params
     opt_params = params.require(:options).permit(:change_visibility,
-      :visible, { user_ids: [] }, :subscribe)
+      :visible, { user_ids: [] }, :subscribe, :change_subscription)
     opt_params[:change_visibility] = opt_params[:change_visibility] == "true"
     opt_params[:visible] = opt_params[:visible] == "true"
     opt_params[:subscribe] = opt_params[:subscribe] == "true"
+    opt_params[:change_subscription] = opt_params[:change_subscription] == "true"
     opt_params[:user_ids] ||= [];
     opt_params[:user_ids] = opt_params[:user_ids].map(&:to_i)
     return opt_params

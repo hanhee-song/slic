@@ -47,11 +47,15 @@ class ChatHeader extends React.Component {
   }
   
   handleLeave() {
+    this.props.unsubscribeUserIdsFromChannel(
+      this.props.channel,
+      [this.props.currentUser.id]
+    );
     this.props.makeChannelInvisible(this.props.channel);
     
     const nextChannel = Object.values(this.props.channels)
       .filter((channel) => {
-        return channel.visible === true;
+        return channel.subscribed === true;
       })[0];
     let nextChannelId;
     if (nextChannel) {
@@ -77,7 +81,8 @@ class ChatHeader extends React.Component {
     }
     
     const isGeneral = this.props.channel.name === 'general';
-    const isVisible = this.props.channel.visible;
+    const isSubscribed = this.props.channel.subscribed;
+    const isDm = this.props.channel.is_dm;
     
     return (
       <Modal
@@ -86,15 +91,20 @@ class ChatHeader extends React.Component {
         isOpen={this.state[field]}
         onRequestClose={this.closeModal}>
         
-        {isVisible &&
+        {isSubscribed &&
           <div
             className="modal-button"
             onClick={this.handleInvite}>
-            Invite new members to join ...
+            {
+              isDm ?
+              "Invite new members to join ..." :
+              "Invite another member ..."
+            }
+            
           </div>
         }
         
-        {!isGeneral && isVisible &&
+        {!isGeneral && isSubscribed && !isDm &&
           <div
             className="modal-button"
             onClick={this.handleLeave}>
@@ -102,7 +112,7 @@ class ChatHeader extends React.Component {
           </div>
         }
         
-        {!isVisible &&
+        {!isSubscribed && !isDm &&
           <div
             className="modal-button"
             onClick={this.handleJoin}>

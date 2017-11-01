@@ -70,6 +70,7 @@ class Api::ChannelsController < ApplicationController
     
     @channel = Channel.new(channel_params)
     if @channel.save
+      debugger
       option_params[:user_ids].each do |id|
         @channel.subscriptions.create!(
           user_id: id,

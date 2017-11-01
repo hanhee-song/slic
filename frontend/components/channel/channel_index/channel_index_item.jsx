@@ -5,6 +5,7 @@ class ChannelIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.date = this.date.bind(this);
+    this.timeAgo = this.timeAgo.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
   
@@ -41,6 +42,38 @@ class ChannelIndexItem extends React.Component {
     return `${monthString} ${day}, ${year}`;
   }
   
+  timeAgo() {
+    const date = new Date(this.props.channel.most_recent_activity);
+    const now = new Date();
+    
+    // Surely there's a better way to do this...
+    const timeDif = (
+      now.getYear()*365*30*24*60 + now.getMonth()*30*24*60 +
+      now.getDay()*24*60 + now.getHours()*60 + now.getMinutes()
+    ) - (
+      date.getYear()*365*30*24*60 + date.getMonth()*30*24*60 +
+      date.getDay()*24*60 + date.getHours()*60 + date.getMinutes()
+    );
+    
+    if (timeDif < 1) {
+      return "less than a minute ago";
+    } else if (timeDif < 60) {
+      return `${Math.floor(timeDif)} minute${timeDif > 1 ? "s" : ""} ago`;
+    } else if (timeDif < 60 * 24) {
+      const hours = timeDif / 60;
+      return `${Math.floor(timeDif/24)} hour${timeDif > 1 ? "s" : ""} ago`;
+    } else if (timeDif < 60 * 24 * 30) {
+      const days = timeDif / 60 / 24;
+      return `${Math.floor(days)} day${days > 1 ? "s" : ""} ago`;
+    } else if (timeDif < 60 + 24 * 30 * 12) {
+      const months = timeDif / 60 / 24 / 30;
+      return `${Math.floor(months)} month${months > 1 ? "s" : ""} ago`;
+    } else {
+      const years = timeDif / 60 / 24 / 30 / 365;
+      return `${Math.floor(years)} year${years > 1 ? "s" : ""} ago`;
+    }
+  }
+  
   render () {
     const userCount = this.props.channel.user_count;
     let description;
@@ -54,6 +87,17 @@ class ChannelIndexItem extends React.Component {
     
     const date = this.date();
     
+    const prefix = this.props.channel.is_dm ?
+      (
+        <div className="profile-image">
+          
+        </div>
+      ) : (
+        <div className="fullscreen-index-list-item hashtag">
+          #
+        </div>
+      );
+    
     return (
       <Link
         className="fullscreen-index-list-li"
@@ -61,21 +105,31 @@ class ChannelIndexItem extends React.Component {
         onClick={this.handleClick}>
         <div className="fullscreen-index-list-item-left">
           <div className="fullscreen-index-list-item title">
-            <div className="fullscreen-index-list-item hashtag">
-              #
-            </div>
+            {prefix}
             <div className="fullscreen-index-list-item name">
               {this.props.channel.name}
             </div>
           </div>
-          <div className="fullscreen-index-list-item date">
-            Created on {date}
+          
+          { !this.props.channel.is_dm &&
+            <div className="fullscreen-index-list-item date">
+              Created on {date}
+            </div>
+          }
+          {
+            !this.props.channel.is_dm &&
+            description
+          }
+        </div>
+        { this.props.channel.is_dm ?
+          <div className="fullscreen-index-list-item users">
+            {this.timeAgo()}
           </div>
-          {description}
-        </div>
-        <div className="fullscreen-index-list-item users">
-          <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
-        </div>
+            :
+          <div className="fullscreen-index-list-item users">
+            <i className="fa fa-user-o" aria-hidden="true"></i> {userCount}
+          </div>
+        }
         <div className="fullscreen-index-list-item preview">
           <i className="fa fa-sign-in" aria-hidden="true"></i>
           <div>

@@ -1,6 +1,6 @@
 class Api::ChannelsController < ApplicationController
   def index
-    channels = Channel.all.includes(:subscriptions, :users)
+    channels = Channel.all.includes(:subscriptions, :users, :messages)
     @channels = []
     channels.each do |channel|
       if channel.users.ids.include?(current_user.id) || !channel.is_private
@@ -8,8 +8,14 @@ class Api::ChannelsController < ApplicationController
       end
     end
     @counts = {}
+    @most_recent_activities = {}
     @channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.length
+      if channel.messages.last
+        @most_recent_activities[channel.id] = channel.messages.last.created_at
+      else
+        @most_recent_activities[channel.id] = channel.created_at
+      end
     end
     
     @visibles = {}
@@ -19,6 +25,7 @@ class Api::ChannelsController < ApplicationController
         @visibles[subscription.channel_id] = subscription.visible
         @subscribeds[subscription.channel_id] = true
     end
+    
     
     @names = {}
     @channels.each do |channel|
@@ -154,6 +161,11 @@ class Api::ChannelsController < ApplicationController
       @name = generate_message_name(channel)
     else
       @name = channel.name
+    end
+    if channel.messages.last
+      @most_recent_activity = channel.messages.last.created_at
+    else
+      @most_recent_activity = channel.created_at
     end
   end
   

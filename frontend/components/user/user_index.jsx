@@ -140,8 +140,12 @@ class UserIndex extends React.Component {
       noOneMessage = (
         <div className="fullscreen-subheader">
           {
-            this.state.selectedUserIds.length > 1 ?
-            "There's no one else to invite!" :
+            this.state.selectedUserIds.length > 1 &&
+            this.state.users.length !== 0 &&
+            "There's no one else to invite!"
+          }
+          {
+            this.state.selectedUserIds.length === 0 &&
             "Looks like everyone is already in this channel!"
           }
         </div>

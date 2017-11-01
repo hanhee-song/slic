@@ -62,7 +62,12 @@
   font-weight: 400;
   color: #777;
   // padding-left: 10px;
-  margin: 20px 0px 5px 5px;
+  margin: 20px 0px 0px 5px;
+}
+
+.fullscreen-subheader-underline {
+  margin-top: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .fullscreen-input-container {
@@ -155,6 +160,8 @@
 }
 
 .fullscreen-index-list-item {
+  display: flex;
+  align-items: center;
 }
 
 .fullscreen-index-list-item.hashtag {

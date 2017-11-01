@@ -3,6 +3,7 @@ json.name @name
 json.user_count channel.subscriptions.length # @counts
 json.visible @visible
 json.subscribed !!(@subscription)
+json.most_recent_activity @most_recent_activity
 
 json.message_ids do
   json.array! channel.messages.map(&:id)

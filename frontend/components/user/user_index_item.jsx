@@ -7,17 +7,17 @@ class UserIndexItem extends React.Component {
         onClick={this.props.handleAddUser(this.props.user)}
         className="fullscreen-index-list-li"
         key={this.props.user.id}>
-          <div className="fullscreen-index-list-item-left user">
-            <div className="profile-image">
-              
-            </div>
-            <div className="fullscreen-index-list-item name">
-              {this.props.user.username}
-            </div>
+        <div className="fullscreen-index-list-item-left user">
+          <div className="profile-image">
+            
           </div>
-          <div className="fullscreen-index-list-item preview user">
-            <i className="fa fa-plus-square-o" aria-hidden="true"></i>
+          <div className="fullscreen-index-list-item name">
+            {this.props.user.username}
           </div>
+        </div>
+        <div className="fullscreen-index-list-item preview user">
+          <i className="fa fa-plus-square-o" aria-hidden="true"></i>
+        </div>
       </div>
     );
   }

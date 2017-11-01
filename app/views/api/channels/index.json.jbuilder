@@ -5,7 +5,8 @@
     json.user_count @counts[channel.id]
     json.visible @visibles[channel.id]
     json.subscribed !!(@subscribeds[channel.id])
-    
+    json.most_recent_activity @most_recent_activities[channel.id]
+
     json.users do
       channel.users.each do |user|
         json.set! user.id do

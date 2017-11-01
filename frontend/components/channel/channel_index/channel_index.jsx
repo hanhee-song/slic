@@ -73,6 +73,7 @@ class ChannelIndex extends React.Component {
               channels.length > 0 &&
               <div className="fullscreen-subheader">
                 Channels you can join
+                <div className="fullscreen-subheader-underline"></div>
               </div>
             }
             <ul className="fullscreen-index-list">
@@ -83,6 +84,7 @@ class ChannelIndex extends React.Component {
               channelsSubscribed.length > 0 &&
               <div className="fullscreen-subheader">
                 Channels you belong to
+                <div className="fullscreen-subheader-underline"></div>
               </div>
             }
             <ul className="fullscreen-index-list">

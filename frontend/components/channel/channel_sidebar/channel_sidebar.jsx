@@ -84,6 +84,7 @@ class ChannelSidebar extends React.Component {
         
         <div className="sidebar-section-header">
           <div
+            onClick={this.handleMessageIndex}
             className="sidebar-section-title channels link sidebar-hoverable">
             Direct Messages
           </div>

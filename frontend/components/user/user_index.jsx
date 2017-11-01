@@ -153,7 +153,11 @@ class UserIndex extends React.Component {
     if (!anyoneToInvite) {
       noOneMessage = (
         <div className="fullscreen-subheader">
-          Looks like everyone is already in this channel!
+          {
+            this.state.selectedUserIds.length > 1 ?
+            "There's no one else to invite!" :
+            "Looks like everyone is already in this channel!"
+          }
         </div>
       );
     }
@@ -177,7 +181,6 @@ class UserIndex extends React.Component {
               {subheader}
             </div>
           }
-          {noOneMessage}
           
           <div className="user-index-mini">
             <div className="user-index-mini-list">
@@ -185,7 +188,7 @@ class UserIndex extends React.Component {
             </div>
             
             { this.props.dropdown !== "messageIndex"
-              && anyoneToInvite
+              && (anyoneToInvite || this.state.selectedUserIds.length > 0)
               &&
               <div
                 onClick={this.handleSubmit}
@@ -196,6 +199,7 @@ class UserIndex extends React.Component {
             
             
           </div>
+          {noOneMessage}
           <div className="fullscreen-index-list-container custom-scroll">
             <ul className="fullscreen-index-list">
               {users}

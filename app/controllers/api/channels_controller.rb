@@ -129,8 +129,10 @@ class Api::ChannelsController < ApplicationController
       "#{current_user.username} (you)"
     elsif names.length == 1
       names[0]
-    else names.length >= 2
+    elsif names.length >= 2 && names.length < 4
       names.join(", ")
+    elsif names.length >= 4
+      names[0, 3].join(", ") + "and #{names.length - 3} other#{names.length > 4 ? 's' : ''}"
     end
   end
   

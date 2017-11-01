@@ -132,7 +132,12 @@ class ChatHeader extends React.Component {
           <div
             className="chat-header-left-title button"
             onClick={this.openModal("nameModal")}>
-            # {this.props.channel.name}
+            {
+              this.props.channel.is_dm ?
+              `${this.props.channel.name}`
+              :
+              `# ${this.props.channel.name}`
+            }
           </div>
           <div className="chat-header-left-options">
             <div className="chat-header-left-options blue-hover button chat-hoverable">

@@ -45,6 +45,12 @@ body, html {
   border-radius: 4px;
 }
 
+.profile-image-large {
+  height: 60px;
+  width: 60px;
+  border-radius: 5px;
+}
+
 .custom-scroll::-webkit-scrollbar {
   width: 8px;
   background-color: #fff;

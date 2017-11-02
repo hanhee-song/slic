@@ -16,8 +16,11 @@ class ChannelDetails extends React.Component {
     
     const name = channel.name ? channel.name : '';
     
-    const about = channel.is_dm ?
+    let about;
+    if (channel.id) {
+      about = channel.is_dm ?
       "About this conversation" : `About #${channel.name}`;
+    }
     
     const byCreator = channel.creator ?
       ` by ${channel.creator.username} ` : "";
@@ -35,20 +38,20 @@ class ChannelDetails extends React.Component {
     const miniUsers = this.props.users.map((user) => {
       return (
         <div
-          className="user-index-mini-item"
+          className="channel-details-user-mini-item"
           key={user.id}>
-          <div className="user-index-mini-item-icon">
+          <div className="channel-details-user-mini-icon">
             <img
-              className="profile-image-mini-half-round"
+              className="profile-image-mini-round"
               src={user.avatar_url}
               />
           </div>
           { user.username === this.props.currentUser.username ?
-            <div className="user-index-mini-item-name">
+            <div className="channel-details-user-mini-name">
               {user.username} (you)
             </div>
             :
-            <div className="user-index-mini-item-name">
+            <div className="channel-details-user-mini-name">
               {user.username}
             </div>
           }
@@ -56,15 +59,21 @@ class ChannelDetails extends React.Component {
       );
     });
     
+    let otherUser;
+    if (channel.user_count === 1) {
+      otherUser = Object.assign({}, this.props.currentUser);
+      otherUser.username += ' (you)';
+    } else if (channel.user_count === 2) {
+      otherUser = this.props.users.filter((user) => {
+        return user.id !== this.props.currentUser.id;
+      })[0];
+    }
+    
     return (
       <div className="channel-details">
         <div className="channel-details-header">
           <div className="channel-details-header-name">
-            {
-              channel.is_dm ?
-              "About this conversation" :
-              `About #${name}`
-            }
+            {about}
           </div>
           <div className="channel-details-header-x">
             <i
@@ -72,53 +81,64 @@ class ChannelDetails extends React.Component {
               onClick={this.handleClose}></i>
           </div>
         </div>
-        
-        <div className="channel-details-list">
-          { !channel.is_dm &&
-            <div>
-              <div className="channel-details-list-header">
-                <i className="fa fa-info-circle" aria-hidden="true"></i>
-                <div>
-                  Channel Details
+        <div className="fullscreen-index-list-container-users custom-scroll">
+          <ul className="fullscreen-index-list-nonreversed">
+            { !channel.is_dm && channel.id &&
+              <div>
+                <div className="channel-details-list-header">
+                  <i className="fa fa-info-circle" aria-hidden="true"></i>
+                  <div>
+                    Channel Details
+                  </div>
+                </div>
+                <div className="channel-details-list-content">
+                  <div className="channel-details-list-section-header">
+                    Purpose
+                  </div>
+                  <div className="channel-details-list-section-body">
+                    {description}
+                  </div>
+                  <div className="channel-details-list-section-header">
+                    Created
+                  </div>
+                  <div className="channel-details-list-section-body">
+                    {createdString}
+                  </div>
                 </div>
               </div>
-              <div className="channel-details-list-content">
-                <div className="channel-details-list-section-header">
-                  Purpose
-                </div>
-                <div className="channel-details-list-section-body">
-                  {description}
-                </div>
-                <div className="channel-details-list-section-header">
-                  Created
-                </div>
-                <div className="channel-details-list-section-body">
-                  {createdString}
-                </div>
-              </div>
-            </div>
-          }
-          
-          { (!channel.is_dm || channel.user_count > 2) &&
+            }
+            
+            { (!channel.is_dm || channel.user_count > 2) &&
+              channel.id &&
 
-            <div className="channel-details-list-members">
-              <div className="channel-details-list-header">
-                <i className="fa fa-user-o" aria-hidden="true"></i>
-                <div>
-                  {channel.user_count} member{channel.user_count === 1 ? "" : "s"}
+              <div className="channel-details-list-members">
+                <div className="channel-details-list-header">
+                  <i className="fa fa-user-o" aria-hidden="true"></i>
+                  <div>
+                    {channel.user_count} member{channel.user_count === 1 ? "" : "s"}
+                  </div>
+                </div>
+                {miniUsers}
+              </div>
+            }
+            
+            { (channel.is_dm && channel.user_count <= 2) &&
+              <div className="channel-details-list-user">
+                <div className="fullscreen-index-list-item-left user">
+                  <img className="profile-image-large"
+                      src={otherUser.avatar_url} />
+                  <div className="fullscreen-index-list-item name">
+                    {otherUser.username}
+                  </div>
+                </div>
+                <div className="fullscreen-index-list-item preview user">
+                  <i className="fa fa-plus-square-o" aria-hidden="true"></i>
                 </div>
               </div>
-              This is a channel members list
-              {miniUsers}
-            </div>
-          }
-          
-          { (channel.is_dm && channel.user_count <= 2) &&
-            <div className="channel-details-list-user">
-              This is a detailed user show
-            </div>
-          }
+            }
+          </ul>
         </div>
+          
       </div>
     );
   }

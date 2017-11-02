@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   border-left: 1px solid #ddd;
+  cursor: default;
 }
 
 .channel-details-header {
@@ -57,7 +58,15 @@
 }
 
 .channel-details-list-header .fa {
-  margin-right: 5px;
+  margin-right: 10px;
+}
+
+.channel-details-list-header .fa-info-circle {
+  color: #888;
+}
+
+.channel-details-list-header .fa-user-o {
+  color: #39a846;
 }
 
 .channel-details-list-content {
@@ -77,4 +86,29 @@
   line-height: 24px;
   font-size: 16px;
   margin-bottom: 20px;
+}
+
+.channel-details-list-user {
+  margin: 10px;
+}
+
+.channel-details-user-mini-item {
+  border: 1px solid #fff;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 3px;
+  cursor: default;
+}
+
+.channel-details-user-mini-icon {
+  margin-right: 7px;
+}
+
+.channel-details-user-mini-name {
+}
+
+.channel-details-user-mini-item:hover {
+  border-color: #d1eeff;
+  background-color: #eaf7ff;
 }

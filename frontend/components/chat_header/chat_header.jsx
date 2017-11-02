@@ -149,7 +149,12 @@ class ChatHeader extends React.Component {
               <div>{userCount}</div>
             </div>
             <div className="chat-info-bubble users">
-              View Member List
+              {
+                this.props.match.path === "/channels/:channelId" ?
+                "View Member List"
+                :
+                "Hide Member List"
+              }
             </div>
           </div>
         </div>

@@ -132,6 +132,11 @@
   flex-direction: column-reverse;
 }
 
+.fullscreen-index-list-nonreversed {
+  display: flex;
+  flex-direction: column;
+}
+
 .fullscreen-index-list-li {
   padding: 14px 10px;
   display: flex;

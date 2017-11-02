@@ -1,5 +1,5 @@
 import React from 'react';
-import ChannelIndexItem from './channel_index_item';
+import ChannelIndexItemContainer from './channel_index_item_container';
 
 class ChannelIndex extends React.Component {
   constructor(props) {
@@ -48,21 +48,17 @@ class ChannelIndex extends React.Component {
     
     channels = channels.map((channel) => {
       return (
-        <ChannelIndexItem
+        <ChannelIndexItemContainer
           key={channel.id}
-          channel={channel}
-          clearDropdown={this.props.clearDropdown}
-          makeChannelVisible={this.props.makeChannelVisible}
-          />
+          channel={channel} />
         );
     });
     
     channelsSubscribed = channelsSubscribed.map((channel) => {
       return (
-        <ChannelIndexItem
+        <ChannelIndexItemContainer
           key={channel.id}
-          channel={channel}
-          clearDropdown={this.props.clearDropdown} />
+          channel={channel} />
         );
     });
     

@@ -14,6 +14,7 @@ class ChatHeader extends React.Component {
     this.handleInvite = this.handleInvite.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
     this.handleJoin = this.handleJoin.bind(this);
+    this.handleInfo = this.handleInfo.bind(this);
   }
   
   openModal(modal) {
@@ -57,6 +58,14 @@ class ChatHeader extends React.Component {
       this.props.currentUser, this.props.nextChannelId);
     this.props.history.push(`/channels/${this.props.nextChannelId}`);
     this.closeModal();
+  }
+  
+  handleInfo() {
+    if (this.props.match.path === "/channels/:channelId") {
+      this.props.history.push(`/channels/${this.props.channel.id}/details`);
+    } else {
+      this.props.history.push(`/channels/${this.props.channel.id}`);
+    }
   }
   
   modal(field) {
@@ -143,11 +152,17 @@ class ChatHeader extends React.Component {
         </div>
         
         <div className="chat-header-right">
-          <div className="chat-header-right-options info blue-hover button chat-hoverable">
+          <div className="chat-header-right-options info blue-hover button chat-hoverable"
+            onClick={this.handleInfo}>
             <i className="fa fa-info-circle" aria-hidden="true"></i>
           </div>
           <div className="chat-info-bubble details">
-            Show Channel Details
+            {
+              this.props.match.path === "/channels/:channelId" ?
+              "Show Channel Details"
+              :
+              "Hide Channel Details"
+            }
           </div>
           
           <div

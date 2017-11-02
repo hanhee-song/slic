@@ -27,7 +27,21 @@ body, html {
 .profile-image {
   height: 40px;
   width: 40px;
-  background-color: #bbb;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.profile-image-mini-half-round {
+  height: 24px;
+  width: 24px;
+  background-color: #fff;
+  border-radius: 4px 0 0 4px;
+}
+
+.profile-image-mini-round {
+  height: 24px;
+  width: 24px;
+  background-color: #fff;
   border-radius: 4px;
 }
 

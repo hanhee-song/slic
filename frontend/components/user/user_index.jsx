@@ -122,7 +122,10 @@ class UserIndex extends React.Component {
           className="user-index-mini-item"
           key={user.id}>
           <div className="user-index-mini-item-icon">
-            
+            <img
+              className="profile-image-mini-half-round"
+              src={user.avatar_url}
+              />
           </div>
           <div className="user-index-mini-item-name">
             {user.username}

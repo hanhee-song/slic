@@ -23,6 +23,8 @@ class MessageIndexItem extends React.Component {
     return (
       <div className="message-index-item">
         <div className="message-index-item-profile-image profile-image">
+          <img className="profile-image"
+              src={this.props.message.author.avatar_url} />
         </div>
         
         <div className="message-index-item-content">

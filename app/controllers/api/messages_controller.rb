@@ -15,6 +15,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def index
+    # @messages = Message.all.include(:author)
   end
   
   private

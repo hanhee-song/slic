@@ -184,6 +184,7 @@ class UserIndex extends React.Component {
           }
           {
             this.state.selectedUserIds.length === 0 &&
+            Object.values(this.props.users).length > 0 &&
             "Looks like everyone is already in this channel!"
           }
         </div>

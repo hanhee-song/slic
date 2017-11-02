@@ -127,6 +127,12 @@
   height: calc(100% - 214px);
 }
 
+.fullscreen-index-list-container-sidebar {
+  height: calc(100%);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .fullscreen-index-list {
   display: flex;
   flex-direction: column-reverse;

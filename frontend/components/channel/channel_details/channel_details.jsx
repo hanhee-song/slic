@@ -5,10 +5,15 @@ class ChannelDetails extends React.Component {
     super(props);
     
     this.handleClose = this.handleClose.bind(this);
+    this.handleInvite = this.handleInvite.bind(this);
   }
   
   handleClose() {
     this.props.history.push(`/channels/${this.props.match.params.channelId}`);
+  }
+  
+  handleInvite() {
+    this.props.receiveDropdown("inviteIndex");
   }
   
   render () {
@@ -81,7 +86,7 @@ class ChannelDetails extends React.Component {
               onClick={this.handleClose}></i>
           </div>
         </div>
-        <div className="fullscreen-index-list-container-users custom-scroll">
+        <div className="fullscreen-index-list-container-sidebar custom-scroll">
           <ul className="fullscreen-index-list-nonreversed">
             { !channel.is_dm && channel.id &&
               <div>
@@ -119,6 +124,11 @@ class ChannelDetails extends React.Component {
                   </div>
                 </div>
                 {miniUsers}
+                <div
+                  className="channel-details-list-invite"
+                  onClick={this.handleInvite}>
+                  Invite more people ...
+                </div>
               </div>
             }
             

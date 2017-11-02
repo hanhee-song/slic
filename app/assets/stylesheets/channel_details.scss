@@ -112,3 +112,14 @@
   border-color: #d1eeff;
   background-color: #eaf7ff;
 }
+
+.channel-details-list-invite {
+  margin: 10px 0px 10px 10px;
+  cursor: pointer;
+  color: #3491d3;
+  display: inline-block;
+}
+
+.channel-details-list-invite:hover {
+  text-decoration: underline;
+}

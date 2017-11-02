@@ -10,6 +10,7 @@ import ChannelIndexContainer from '../channel/channel_index/channel_index_contai
 import UserIndexContainer from '../user/user_index_container';
 
 import MessageIndexContainer from '../message/message_index_container';
+import ChannelDetailsContainer from '../channel/channel_details/channel_details_container';
 
 class Workspace extends React.Component {
   constructor(props) {
@@ -111,9 +112,14 @@ class Workspace extends React.Component {
           <Route
             component={ChatHeaderContainer}
             path="/channels/:channelId" />
-          <Route
-            component={MessageIndexContainer}
-            path="/channels/:channelId" />
+          <div className="chat-body">
+            <Route
+              component={MessageIndexContainer}
+              path="/channels/:channelId" />
+            <Route
+              component={ChannelDetailsContainer}
+              path="/channels/:channelId" />
+          </div>
         </div>
       </div>
     );

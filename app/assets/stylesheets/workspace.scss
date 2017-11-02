@@ -7,8 +7,19 @@
 }
 
 .chat-main {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
   align-self: stretch;
   background-color: #fff;
   height: 100%;
   width: calc(100% - 220px);
+}
+
+.chat-body {
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+  height: calc(100% - 60px);
+  width: 100%;
 }

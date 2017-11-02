@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import ChannelDetails from './channel_details';
 
 const mapStateToProps = (state, ownProps) => {
+  const channel = state.entities.channels[ownProps.match.params.channelId] || {};
+  const users = channel.users || {};
   return {
-    channel: state.entities.channels[ownProps.match.params.channelId] || {},
-    
+    channel: channel,
+    users: Object.values(users) || [],
+    currentUser: state.session.currentUser,
   };
 };
 

@@ -125,6 +125,7 @@ class ChatHeader extends React.Component {
   }
   
   render () {
+    const name = this.props.channel.name ? this.props.channel.name : "";
     const userCount = this.props.channel.user_count;
     return (
       <div className="chat-header">
@@ -135,13 +136,15 @@ class ChatHeader extends React.Component {
             onClick={this.openModal("nameModal")}>
             {
               this.props.channel.is_dm ?
-              `${this.props.channel.name}`
+              `${name}`
               :
-              `# ${this.props.channel.name}`
+              `# ${name}`
             }
           </div>
           <div className="chat-header-left-options">
-            <div className="chat-header-left-options blue-hover button chat-hoverable">
+            <div
+              className="chat-header-left-options blue-hover button chat-hoverable"
+              onClick={this.handleInfo}>
               <i className="fa fa-user-o" aria-hidden="true"></i>
               <div>{userCount}</div>
             </div>

@@ -1,6 +1,6 @@
 class Api::ChannelsController < ApplicationController
   def index
-    channels = Channel.all.includes(:subscriptions, :users, :messages)
+    channels = Channel.all.includes(:subscriptions, :users, :messages, :creator)
     @channels = []
     channels.each do |channel|
       if channel.users.ids.include?(current_user.id) || !channel.is_private
@@ -65,6 +65,9 @@ class Api::ChannelsController < ApplicationController
     end
     
     @channel = Channel.new(channel_params)
+    if !channel_params[:is_dm]
+      @channel.creator_id = current_user.id
+    end
     if @channel.save
       option_params[:user_ids].each do |id|
         @channel.subscriptions.create!(

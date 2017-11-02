@@ -17,7 +17,6 @@
   align-items: center;
   border-bottom: 1px solid #ddd;
   background-color: #f8f8f8;
-  // padding: 18px 10px;
   height: 60px;
 }
 
@@ -47,3 +46,21 @@
 // .channel-details * {
 //   border: 1px solid red;
 // }
+
+.channel-details-list {
+  border: 1px solid red;
+}
+
+.channel-details-list-show {
+  border: 1px solid red;
+  padding: 15px 10px;
+}
+
+.channel-details-list-header {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.channel-details-list-body {
+  
+}

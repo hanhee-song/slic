@@ -11,8 +11,8 @@ ActiveRecord::Base.transaction do
   guest = User.new(username: 'slic-guest', password: 'asdfasdf')
   guest.save!
   
-  # asdf is me!
-  asdf = User.create!(username: 'asdf', password: 'asdfasdf')
+  # hanhee-song is me!
+  hanhee_song = User.create!(username: 'hanhee-song', password: 'asdfasdf')
   
   16.times do
     User.create!(
@@ -23,13 +23,36 @@ ActiveRecord::Base.transaction do
   
   
   Channel.destroy_all
-  Channel.create!(name: 'general', description: 'This is for workspace-wide communication and announcements.')
-  Channel.create!(name: 'random', description: 'A place for non-work-related flimflam, faffing, hodge-podge, or jibber-jabber.')
-  Channel.create!(name: 'project #1')
-  Channel.create!(name: 'project #2')
-  Channel.create!(name: 'project #3')
-  Channel.create!(name: 'project #4')
-  Channel.create!(name: 'project #5')
+  Channel.create!(
+    name: 'general',
+    description: 'This is for workspace-wide communication and announcements.',
+    creator_id: hanhee_song.id
+  )
+  Channel.create!(
+    name: 'random',
+    description: 'A place for non-work-related flimflam, faffing, hodge-podge, or jibber-jabber.',
+    creator_id: hanhee_song.id
+  )
+  Channel.create!(
+    name: 'project #1',
+    creator_id: hanhee_song.id
+  )
+  Channel.create!(
+    name: 'project #2',
+    creator_id: hanhee_song.id
+  )
+  Channel.create!(
+    name: 'project #3',
+    creator_id: hanhee_song.id
+  )
+  Channel.create!(
+    name: 'project #4',
+    creator_id: hanhee_song.id
+  )
+  Channel.create!(
+    name: 'project #5',
+    creator_id: hanhee_song.id
+  )
   
   ChannelSubscription.destroy_all
   

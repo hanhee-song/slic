@@ -10,4 +10,8 @@ class Channel < ApplicationRecord
     through: :subscriptions,
     source: :user
   has_many :messages
+  belongs_to :creator,
+    foreign_key: :creator_id,
+    class_name: :User,
+    optional: true
 end

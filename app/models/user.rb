@@ -13,6 +13,9 @@ class User < ApplicationRecord
     through: :channel_subscriptions,
     source: :channel
   has_many :messages
+  has_many :created_channels,
+    foreign_key: :creator_id,
+    class_name: :Channel
   
   after_initialize :ensure_token
   

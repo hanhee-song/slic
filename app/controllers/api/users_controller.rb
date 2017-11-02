@@ -12,31 +12,16 @@ class Api::UsersController < ApplicationController
       )
       @user.update(most_recent_channel_id: first_channel.id)
       
-      self_dm = Channel.create!(
-        name: rand(99999999),
-        is_private: true,
-        is_dm: true
-      )
-      
-      self_dm.subscriptions.create!(
-        user_id: @user.id,
-        visible: true
-      )
-      
-      
-      # TEMP: subscribe user to all existing channels
-      # Channel.all.each do |channel|
-      #   visible = channel.name == "general" || channel.name == "random"
-      #   ChannelSubscription.create!(
-      #     channel_id: channel.id,
-      #     user_id: @user.id,
-      #     visible: visible
-      #   )
-      #   if channel.name == "general"
-      #     @user.update(most_recent_channel_id: channel.id)
-      #   end
-      # end
+      # self_dm = Channel.create!(
+      #   name: rand(99999999),
+      #   is_private: true,
+      #   is_dm: true
+      # )
       #
+      # self_dm.subscriptions.create!(
+      #   user_id: @user.id,
+      #   visible: true
+      # )
       render "api/users/show"
     else
       render json: @user.errors.full_messages, status: 422

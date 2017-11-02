@@ -89,9 +89,8 @@ class ChannelIndexItem extends React.Component {
     
     const prefix = this.props.channel.is_dm ?
       (
-        <div className="profile-image">
-          
-        </div>
+        <img className="profile-image"
+            src={Object.values(this.props.channel.users)[0].avatar_url} />
       ) : (
         <div className="fullscreen-index-list-item hashtag">
           #

@@ -61,8 +61,13 @@ export const fetchChannel = (channelId) => {
 };
 
 export const createChannel = (channel, ids) => {
+  const user_ids = ids || [];
   const options = {
-    user_ids: ids,
+    change_visibility: true,
+    visible: true,
+    user_ids: user_ids,
+    change_subscription: false,
+    subscribe: true,
   };
   return (dispatch) => {
     return ChannelApiUtil.createChannel(channel, options)

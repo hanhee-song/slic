@@ -2,7 +2,9 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :username, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
-  
+  has_attached_file :avatar, default_url: "default_avatar.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
   attr_reader :password
   
   has_many :channel_subscriptions

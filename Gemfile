@@ -30,6 +30,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
 gem 'faker'
 gem 'pusher'
+gem 'figaro'
+gem 'aws-sdk', '< 3.0'
+gem 'paperclip', '~> 5.1.0'#.beta1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -40,6 +43,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'pry-rails'
 end
 
 group :development do

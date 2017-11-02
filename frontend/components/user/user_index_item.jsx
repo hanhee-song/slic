@@ -8,9 +8,8 @@ class UserIndexItem extends React.Component {
         className="fullscreen-index-list-li"
         key={this.props.user.id}>
         <div className="fullscreen-index-list-item-left user">
-          <div className="profile-image">
-            
-          </div>
+          <img className="profile-image"
+              src={this.props.user.avatar_url} />
           <div className="fullscreen-index-list-item name">
             {this.props.user.username}
           </div>

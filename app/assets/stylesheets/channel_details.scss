@@ -24,20 +24,24 @@
 .channel-details-header-name {
   font-weight: 700;
   font-size: 19px;
-  text-overflow: ellipse;
+  height: 22px;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  margin-left: 10px;
 }
 
 .channel-details-header-x {
   cursor: pointer;
   padding: 6px 3px;
-  border: 1px solid red;
   color: #777;
+  margin-right: 5px;
+  transition: color .2s;
+  -webkit-transition: color .2s;
 }
 
 .channel-details-header-x:hover {
-  color: #3ca0e8
+  color: #3ca0e8;
 }
 
 // .channel-details * {

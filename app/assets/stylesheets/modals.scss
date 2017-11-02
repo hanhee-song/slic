@@ -87,4 +87,11 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
+  margin-right: 10px;
+}
+
+.modal-user-username {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

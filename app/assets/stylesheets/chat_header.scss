@@ -31,10 +31,11 @@
   color: #111;
   font-weight: 700;
   font-size: 18px;
-  margin-bottom: 10px;
-  text-overflow: ellipse;
+  margin-bottom: 8px;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  height: 20px;
   max-width: 300px;
 }
 

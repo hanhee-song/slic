@@ -75,7 +75,7 @@
 }
 
 .sidebar-button-name {
-  text-overflow: ellipse;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   max-width: 180px;
@@ -118,8 +118,10 @@
 
 .sidebar-section-item-inner {
   padding: 7px 15px 6px 15px;
-  display: flex;
-  justify-content: space-between;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .sidebar-section-items .selected {
@@ -135,13 +137,6 @@
 
 .sidebar-section-item {
   position: relative;
-}
-
-.sidebar-section-item-inner {
-  text-overflow: ellipse;
-  overflow: hidden;
-  white-space: nowrap;
-  max-width: 200px;
 }
 
 .sidebar-section-item .fa-times-circle-o {
@@ -196,6 +191,9 @@ Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
   display: none;
   font-size: 13px;
   font-weight: 400;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   text-align: center;
   color:#f5f5f5;
   background:#000;
@@ -203,7 +201,7 @@ Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
   border-radius:10px;
   top: -38px;
   left: 10px;
-  z-index: 1;
+  z-index: 2;
   -webkit-animation: bubble-fadein .6s;
   animation: bubble-fadein .6s;
 }
@@ -218,7 +216,7 @@ Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
   border-color:#000 transparent;
   display:block;
   width:0;
-  z-index: 1;
+  z-index: 2;
 }
 
 /////////////////

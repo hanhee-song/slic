@@ -62,9 +62,11 @@ class ChatHeader extends React.Component {
   
   handleInfo() {
     if (this.props.match.path === "/channels/:channelId") {
-      this.props.history.push(`/channels/${this.props.channel.id}/details`);
+      this.props.receiveDetails();
+      // this.props.history.push(`/channels/${this.props.channel.id}/details`);
     } else {
-      this.props.history.push(`/channels/${this.props.channel.id}`);
+      this.props.clearDetails();
+      // this.props.history.push(`/channels/${this.props.channel.id}`);
     }
   }
   

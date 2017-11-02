@@ -9,7 +9,8 @@ class ChannelDetails extends React.Component {
   }
   
   handleClose() {
-    this.props.history.push(`/channels/${this.props.match.params.channelId}`);
+    this.props.clearDetails();
+    // this.props.history.push(`/channels/${this.props.match.params.channelId}`);
   }
   
   handleInvite() {

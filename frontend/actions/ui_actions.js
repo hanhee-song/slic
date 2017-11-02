@@ -1,5 +1,7 @@
 export const RECEIVE_DROPDOWN = "RECEIVE_DROPDOWN";
 export const CLEAR_DROPDOWN = "CLEAR_DROPDOWN";
+export const RECEIVE_DETAILS = "RECEIVE_DETAILS";
+export const CLEAR_DETAILS = "CLEAR_DETAILS";
 
 export const receiveDropdown = (dropdown) => {
   return {
@@ -11,5 +13,17 @@ export const receiveDropdown = (dropdown) => {
 export const clearDropdown = () => {
   return {
     type: CLEAR_DROPDOWN,
+  };
+};
+
+export const receiveDetails = () => {
+  return {
+    type: RECEIVE_DETAILS,
+  };
+};
+
+export const clearDetails = () => {
+  return {
+    type: CLEAR_DETAILS,
   };
 };

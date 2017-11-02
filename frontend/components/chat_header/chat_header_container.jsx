@@ -6,7 +6,11 @@ import {
   subscribeUserIdsToChannel,
   unsubscribeUserIdsFromChannel,
 } from '../../actions/channel_actions';
-import { receiveDropdown } from '../../actions/ui_actions';
+import {
+  receiveDropdown,
+  receiveDetails,
+  clearDetails,
+} from '../../actions/ui_actions';
 import { rememberCurrentChannelId } from '../../actions/session_actions';
 import { findNextChannelId } from '../../util/find_next_channel_id.js';
 
@@ -22,6 +26,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
+    receiveDetails: () => dispatch(receiveDetails()),
+    clearDetails: () => dispatch(clearDetails()),
     makeChannelInvisible: (channel) => dispatch(makeChannelInvisible(channel)),
     makeChannelVisible: (channel) => dispatch(makeChannelVisible(channel)),
     rememberCurrentChannelId: (user, id) => dispatch(rememberCurrentChannelId(user, id)),

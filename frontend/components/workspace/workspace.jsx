@@ -36,6 +36,7 @@ class Workspace extends React.Component {
         ? "/details" : "";
       this.props.history.push(`/channels/${channelId}${details}`);
       this.props.rememberCurrentChannelId(this.props.currentUser, channelId);
+      this.props.receiveDetails();
     }
     
     var channel = pusher.subscribe('channel-connection');
@@ -49,10 +50,18 @@ class Workspace extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    if (this.props.match.params.channelId !== nextProps.match.params.channelId
-      && this.props.match.path === "/channels/:channelId/details") {
-      this.props.history.push(`/channels/${nextProps.match.params.channelId}/details`);
+    
+    if (this.props.details !== nextProps.details) {
+      this.props.history.push(`/channels/${nextProps.match.params.channelId}${nextProps.details}`);
+    } else if (this.props.match.params.channelId !== nextProps.match.params.channelId
+      && nextProps.details) {
+        this.props.history.push(`/channels/${nextProps.match.params.channelId}${nextProps.details}`);
     }
+    
+    // if (this.props.match.params.channelId !== nextProps.match.params.channelId
+    //   && this.props.match.path === "/channels/:channelId/details") {
+    //   this.props.history.push(`/channels/${nextProps.match.params.channelId}/details`);
+    // }
   }
   
   render () {

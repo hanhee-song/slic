@@ -49,6 +49,7 @@ class Workspace extends React.Component {
   
   componentWillUnmount(nextProps, nextState) {
     document.removeEventListener("keydown", this.handleEscape, false);
+    
   }
   
   componentWillReceiveProps(nextProps) {

@@ -9,6 +9,7 @@ class UserInfo extends React.Component {
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
   
   openModal() {
@@ -17,6 +18,11 @@ class UserInfo extends React.Component {
   
   closeModal() {
     this.setState({ modalIsOpen: false });
+  }
+  
+  handleLogout() {
+    this.props.logout();
+    this.props.clearChannels();
   }
   
   render () {
@@ -57,7 +63,7 @@ class UserInfo extends React.Component {
           
           <div
             className="modal-button"
-            onClick={this.props.logout}>
+            onClick={this.handleLogout}>
             Logout
           </div>
           

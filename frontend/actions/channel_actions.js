@@ -3,6 +3,7 @@ import * as ChannelApiUtil from '../util/channel_api_util';
 export const RECEIVE_ALL_CHANNELS = "RECEIVE_ALL_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
+export const CLEAR_CHANNELS = "CLEAR_CHANNELS";
 export const RECEIVE_CHANNEL_ERRORS = "RECEIVE_CHANNEL_ERRORS";
 export const CLEAR_CHANNEL_ERRORS = "CLEAR_CHANNEL_ERRORS";
 
@@ -37,6 +38,12 @@ export const receiveChannelErrors = (errors) => {
 export const clearChannelErrors = () => {
   return {
     type: CLEAR_CHANNEL_ERRORS,
+  };
+};
+
+export const clearChannels = () => {
+  return {
+    type: CLEAR_CHANNELS,
   };
 };
 

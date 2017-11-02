@@ -82,3 +82,9 @@
   right: 20px;
   top: 50px;
 }
+
+.modal-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}

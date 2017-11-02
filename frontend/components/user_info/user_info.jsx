@@ -44,9 +44,15 @@ class UserInfo extends React.Component {
           overlayClassName="modal-overlay"
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}>
-          <div
-            className="modal-header">
-            {this.props.currentUser.username}
+          <div className="modal-header">
+            <div className="modal-user-avatar">
+              <img className="profile-image"
+                  src={this.props.currentUser.avatar_url} />
+            </div>
+            <div
+              className="modal-user-username">
+              {this.props.currentUser.username}
+            </div>
           </div>
           
           <div

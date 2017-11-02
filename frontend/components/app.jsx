@@ -16,6 +16,10 @@ const App = () => {
       <Switch>
         <ProtectedRoute
           component={WorkspaceContainer}
+          path="/channels/:channelId/details"
+          />
+        <ProtectedRoute
+          component={WorkspaceContainer}
           path="/channels/:channelId"
           />
         <ProtectedRoute

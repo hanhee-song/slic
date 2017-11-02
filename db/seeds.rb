@@ -16,7 +16,7 @@ ActiveRecord::Base.transaction do
   
   16.times do
     User.create!(
-      username: "#{Faker::Name.first_name[0]}#{Faker::Name.last_name}".downcase,
+      username: "#{Faker::Name.first_name[0]}#{Faker::Name.last_name}".downcase[0, 15],
       password: Faker::Internet.password
     )
   end
@@ -80,7 +80,7 @@ ActiveRecord::Base.transaction do
   
   # CHAT WITH SELF
   # dm1 = Channel.create!(
-  #   name: SecureRandom::urlsafe_base64,
+  #   name: SecureRandom::urlsafe_base64(8),
   #   is_private: true,
   #   is_dm: true
   # )
@@ -92,7 +92,7 @@ ActiveRecord::Base.transaction do
   
   # CHAT WITH ANOTHER
   dm2 = Channel.create!(
-    name: SecureRandom::urlsafe_base64,
+    name: SecureRandom::urlsafe_base64(8),
     is_private: true,
     is_dm: true
   )
@@ -109,7 +109,7 @@ ActiveRecord::Base.transaction do
   
   # CHAT WITH THREE
   dm3 = Channel.create!(
-    name: SecureRandom::urlsafe_base64,
+    name: SecureRandom::urlsafe_base64(8),
     is_private: true,
     is_dm: true
   )

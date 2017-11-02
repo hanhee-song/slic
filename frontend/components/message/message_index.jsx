@@ -53,12 +53,12 @@ class MessageIndex extends React.Component {
       beginningMessage = (
         <div
           key={this.props.channel.id}
-          className="message-index-item content beginning">
-          <div className="message-index-item beginning-header">
+          className="message-index-item beginning">
+          <div className="message-index-item-beginning-header">
             { !this.props.channel.is_dm && "#" }
             {this.props.channel.name}
           </div>
-          <div className="message-index-item beginning-body">
+          <div className="message-index-item-beginning-body">
             {
               this.props.channel.is_dm ?
               `This is the start of your conversation with ${this.props.channel.name}`

@@ -3,7 +3,7 @@
 .message-container {
   // height: calc(100% - 60px);
   height: 100%;
-  min-width: 400px;
+  min-width: 250px;
   width: 100%;
 }
 
@@ -39,21 +39,24 @@
   margin-left: 20px;
   display: flex;
   flex-direction: column;
-  overflow-wrap: break-word;
   animation: message-fadein .5s;
   -webkit-animation: message-fadein .5s;
 }
 
-.message-index-item.beginning-header {
+.message-index-item-beginning-header {
   font-weight: 700;
   font-size: 28px;
   margin-top: 100px;
   margin-bottom: 10px;
+  overflow-wrap: break-word;
+  max-width: calc(100% - 20px);
 }
 
-.message-index-item.beginning-body {
+.message-index-item-beginning-body {
   line-height: 22px;
   font-size: 18px;
+  overflow-wrap: break-word;
+  max-width: calc(100% - 20px);
 }
 
 .message-index-item-break {

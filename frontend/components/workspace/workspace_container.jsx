@@ -8,7 +8,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.session.currentUser,
     dropdown: state.ui.dropdown,
-    currentChannelId: state.ui.currentChannelId,
     channels: state.entities.channels,
     channelErrors: state.errors.channel,
   };

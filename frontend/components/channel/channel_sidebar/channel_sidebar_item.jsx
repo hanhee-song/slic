@@ -35,12 +35,11 @@ class ChannelSidebarItem extends React.Component {
     }
     
     // const link = selected ? this.props.nextChannelId : this.props.channel.id;
-    
     return (
       <li className={`sidebar-section-item button ${selected}`}>
         <Link
           onClick={this.handleSelectChannel}
-          to={`/channels/${this.props.channel.id}`}>
+          to={`/channels/${this.props.channel.id}${this.props.details}`}>
           <div className="sidebar-section-item-inner">
             {prefix}
             {this.props.channel.name}
@@ -51,7 +50,7 @@ class ChannelSidebarItem extends React.Component {
           (
             selected ?
             <Link
-              to={`/channels/${this.props.nextChannelId}`}
+              to={`/channels/${this.props.nextChannelId}/${this.props.details}`}
               onClick={this.handleHideChannel}>
               <i className="fa fa-times-circle-o"></i>
             </Link>

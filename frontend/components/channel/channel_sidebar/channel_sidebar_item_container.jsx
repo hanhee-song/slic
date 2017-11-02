@@ -6,11 +6,12 @@ import { findNextChannelId } from '../../../util/find_next_channel_id.js';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    channel: ownProps.channel,
-    type: ownProps.type,
+    // channel: ownProps.channel,
+    // type: ownProps.type,
     selectedChannelId: parseInt(ownProps.selectedChannelId),
     currentUser: state.session.currentUser,
     nextChannelId: findNextChannelId(state.entities.channels),
+    details: state.ui.details,
   };
 };
 

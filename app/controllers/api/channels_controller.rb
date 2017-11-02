@@ -9,12 +9,21 @@ class Api::ChannelsController < ApplicationController
     end
     @counts = {}
     @most_recent_activities = {}
+    @names = {}
     @channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.length
+      
       if channel.messages.last
         @most_recent_activities[channel.id] = channel.messages.last.created_at
       else
         @most_recent_activities[channel.id] = channel.created_at
+      end
+      
+      if channel.is_dm
+        generate_message_name(channel)
+        @names[channel.id] = generate_message_name(channel)
+      else
+        @names[channel.id] = channel.name
       end
     end
     
@@ -24,17 +33,6 @@ class Api::ChannelsController < ApplicationController
       .each do |subscription|
         @visibles[subscription.channel_id] = subscription.visible
         @subscribeds[subscription.channel_id] = true
-    end
-    
-    
-    @names = {}
-    @channels.each do |channel|
-      generate_message_name(channel)
-      if channel.is_dm
-        @names[channel.id] = generate_message_name(channel)
-      else
-        @names[channel.id] = channel.name
-      end
     end
   end
   
@@ -66,8 +64,6 @@ class Api::ChannelsController < ApplicationController
       end
     end
     
-    
-    
     @channel = Channel.new(channel_params)
     if @channel.save
       option_params[:user_ids].each do |id|
@@ -83,22 +79,6 @@ class Api::ChannelsController < ApplicationController
         render "api/channels/show"
         Pusher.trigger('channel-connection', 'update-channel', @channel)
       end
-      # if current_user
-      #   @channel.subscriptions.create!(
-      #     user_id: current_user.id,
-      #     visible: true
-      #   )
-      #   if @channel.is_private && !@channel.users.ids.include?(current_user.id)
-      #     render json: [""], status: 204
-      #   else
-      #     render_show(@channel)
-      #     render "api/channels/show"
-      #     Pusher.trigger('channel-connection', 'update-channel', @channel)
-      #   end
-      #
-      # else
-      #   render json: ["How'd you do that?"], status: 204
-      # end
     else
       render json: @channel.errors.full_messages, status: 422
     end
@@ -119,7 +99,7 @@ class Api::ChannelsController < ApplicationController
       if option_params[:subscribe]
         user_ids.each do |user_id|
           subs = @channel.subscriptions.find_by(user_id: user_id)
-          if subs
+          if subs && !subs.visible
             subs.update(visible: true)
           else
             @channel.subscriptions.create!(
@@ -133,23 +113,21 @@ class Api::ChannelsController < ApplicationController
       else
         user_ids.each do |user_id|
           subs = @channel.subscriptions.find_by(user_id: user_id)
-          subs.destroy
+          subs.destroy if subs
         end
       end
     end
-    
     
     # Change visibility of channel
     if option_params[:change_visibility]
       user_ids.each do |user_id|
         subs = @channel.subscriptions.find_by(user_id: user_id)
         
-        if subs
+        if subs && subs.visible != option_params[:visible]
           subs.update(visible: option_params[:visible])
         end
       end
       send_update = true
-      
     end
     
     # Render
@@ -203,9 +181,7 @@ class Api::ChannelsController < ApplicationController
     names = channel.users.map(&:username) - [current_user.username]
     if names.length <= 0
       "#{current_user.username} (you)"
-    elsif names.length == 1
-      names[0]
-    elsif names.length >= 2 && names.length < 4
+    elsif names.length >= 1 && names.length < 4
       names.join(", ")
     elsif names.length >= 4
       names[0, 3].join(", ") + " and #{names.length - 3} other#{names.length > 4 ? 's' : ''}"

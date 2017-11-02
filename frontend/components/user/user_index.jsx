@@ -65,7 +65,7 @@ class UserIndex extends React.Component {
         userIds
         ).then(
           response => {
-            this.props.subscribeUserIdsToChannel(response.channel, userIds);
+            // this.props.subscribeUserIdsToChannel(response.channel, userIds);
             this.props.rememberCurrentChannelId(
               this.props.currentUser, response.channel.id);
             this.props.history.push(`/channels/${response.channel.id}`);

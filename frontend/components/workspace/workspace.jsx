@@ -49,8 +49,9 @@ class Workspace extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    if (nextProps.channelErrors.length > 1) {
-      
+    if (this.props.match.params.channelId !== nextProps.match.params.channelId
+      && this.props.match.path === "/channels/:channelId/details") {
+      this.props.history.push(`/channels/${nextProps.match.params.channelId}/details`);
     }
   }
   
@@ -98,10 +99,16 @@ class Workspace extends React.Component {
         <div className="sidebar">
           <Route
             component={UserInfoContainer}
-            path="/channels/:channelId" />
+            path="/channels/:channelId/details" />
           <Route
             component={ChannelSidebarContainer}
-            path="/channels/:channelId" />
+            path="/channels/:channelId/details" />
+          <Route
+            component={UserInfoContainer}
+            exact path="/channels/:channelId" />
+          <Route
+            component={ChannelSidebarContainer}
+            exact path="/channels/:channelId" />
           <Route
             component={UserInfoContainer}
             exact path="/channels" />

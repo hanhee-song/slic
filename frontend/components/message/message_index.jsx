@@ -21,7 +21,7 @@ class MessageIndex extends React.Component {
     var channel = pusher.subscribe('channel-connection');
     channel.bind('create-message', (message) => {
       // this.props.fetchChannel(this.props.match.params.channelId);
-      this.props.fetchMessage(message.id);
+      this.props.receiveMessage(message);
     });
     
     document.querySelector('.message-index-overflow-wrapper')

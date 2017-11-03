@@ -8,7 +8,7 @@ class Api::MessagesController < ApplicationController
     @message.channel_id = current_user.most_recent_channel_id
     if @message.save
       Pusher.trigger(
-        'channel-connection',
+        "channel-connection-#{@message.channel_id}",
         'create-message',
         {
           id: @message.id,

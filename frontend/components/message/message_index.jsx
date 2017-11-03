@@ -18,7 +18,7 @@ class MessageIndex extends React.Component {
   componentDidMount() {
     // this.props.fetchChannel(this.props.match.params.channelId);
     this.props.fetchMessages(this.props.match.params.channelId);
-    var channel = pusher.subscribe('channel-connection');
+    var channel = pusher.subscribe(`channel-connection-${this.props.match.params.channelId}`);
     channel.bind('create-message', (message) => {
       // this.props.fetchChannel(this.props.match.params.channelId);
       this.props.receiveMessage(message);

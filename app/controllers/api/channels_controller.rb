@@ -133,7 +133,7 @@ class Api::ChannelsController < ApplicationController
     # Render
     if send_update
       if @channel.is_private && !@channel.users.ids.include?(current_user.id)
-        render json: [""], status: 204
+        render json: [""], status: 404
       else
         render_show(@channel)
         render 'api/channels/show'

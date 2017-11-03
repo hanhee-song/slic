@@ -161,10 +161,17 @@ export const unsubscribeUserIdsFromChannel = (channel, ids) => {
   return (dispatch) => {
     return ChannelApiUtil.updateChannel(channel, subscribe)
     .then(
-      (channel) => dispatch(receiveChannel(channel)),
-      (errors) => dispatch(receiveChannelErrors(errors))
+      () => dispatch(removeChannel(channel.id)),
+      (errors) => dispatch(removeChannel(channel.id))
     );
   };
+  // return (dispatch) => {
+  //   return ChannelApiUtil.updateChannel(channel, subscribe)
+  //   .then(
+  //     (channel) => dispatch(receiveChannel(channel)),
+  //     (errors) => dispatch(receiveChannelErrors(errors))
+  //   );
+  // };
 };
 
 export const deleteChannel = (channelId) => {

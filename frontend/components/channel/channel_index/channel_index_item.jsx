@@ -28,8 +28,9 @@ class ChannelIndexItem extends React.Component {
     const months = "January February March April May June July August September October November December"
       .split(" ");
     const monthString = months[parseInt(month - 1)];
-    
-    switch (day[day.length-1]) {
+    let dayStr = day;
+    day = parseInt(day);
+    switch (dayStr[dayStr.length-1]) {
       case "1":
         day += "st";
         break;

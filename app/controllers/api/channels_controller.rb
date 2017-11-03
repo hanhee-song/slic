@@ -137,8 +137,8 @@ class Api::ChannelsController < ApplicationController
       else
         render_show(@channel)
         render 'api/channels/show'
-        Pusher.trigger('channel-connection', 'update-channel', @channel)
       end
+      Pusher.trigger('channel-connection', 'update-channel', @channel)
     else
       render json: ["Channel not found"], status: 404
     end

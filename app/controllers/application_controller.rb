@@ -21,4 +21,10 @@ class ApplicationController < ActionController::Base
     current_user = nil
     session[:session_token] = nil
   end
+  
+  def ensure_login
+    if !current_user
+      render json: ["Please log in"], status: 403
+    end
+  end
 end

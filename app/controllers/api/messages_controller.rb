@@ -1,4 +1,7 @@
 class Api::MessagesController < ApplicationController
+  before_action :ensure_login, only: [:create, :index]
+
+  
   def create
     @message = Message.new(message_params)
     @message.author_id = current_user.id
@@ -12,10 +15,11 @@ class Api::MessagesController < ApplicationController
   end
 
   def show
+    @message = Message.find(params[:id])
   end
 
   def index
-    # @messages = Message.all.include(:author)
+    @messages = Message.where(channel_id: params[:channel_id]).includes(:author)
   end
   
   private

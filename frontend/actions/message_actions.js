@@ -41,9 +41,9 @@ export const clearMessageErrors = () => {
 };
 
 
-export const fetchMessages = () => {
+export const fetchMessages = (channelId) => {
   return (dispatch) => {
-    return MessageApiUtil.fetchMessages()
+    return MessageApiUtil.fetchMessages(channelId)
       .then(
         (messages) => dispatch(receiveAllMessages(messages)),
         (errors) => dispatch(receiveMessageErrors(errors))

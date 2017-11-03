@@ -1,4 +1,6 @@
 class Api::ChannelsController < ApplicationController
+  before_action :ensure_login, only: [:create, :show, :update]
+  
   def index
     channels = Channel.all.includes(:subscriptions, :users, :messages, :creator)
     @channels = []

@@ -54,6 +54,10 @@ class Workspace extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
+      this.props.fetchChannel(nextProps.match.params.channelId);
+    }
+    
     if (this.props.details !== nextProps.details) {
       this.props.history.push(`/channels/${nextProps.match.params.channelId}${nextProps.details}`);
     } else if (this.props.match.params.channelId !== nextProps.match.params.channelId

@@ -18,7 +18,7 @@ class Api::SessionsController < ApplicationController
       logout!
       render "api/users/show"
     else
-      render json: ["No user to sign out"]
+      render json: ["No user to sign out"], status: 422
     end
   end
 end

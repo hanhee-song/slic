@@ -7,7 +7,7 @@ const footer = () => {
       <div className="footer-content">
         <Link to="/">
           <div className="footer-logo">
-            <i className="fa fa-users" aria-hidden="true"></i>
+            <i className="fa fa-hashtag" aria-hidden="true"></i>
           </div>
         </Link>
         <ul className="footer-categories">

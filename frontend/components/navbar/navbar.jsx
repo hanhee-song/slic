@@ -7,7 +7,7 @@ const Navbar = (props) => {
       <div className="navbar">
       <Link to="/">
         <div className="nav-logo">
-          <i className="fa fa-users" aria-hidden="true"></i> Slic
+          <i className="fa fa-hashtag" aria-hidden="true"></i> Slic
         </div>
       </Link>
         <ul className="nav-buttons">

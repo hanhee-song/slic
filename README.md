@@ -24,7 +24,9 @@ Users can sign up for Slic or log in via the front page. Slic will automatically
 
 #### Channels and Invites
 
-Users can create channels and invite users to channels. Users can also view and join non-private channels. Invited users will have the channels added to their sidebar automatically.
+Users can create channels and invite users to channels. Users can also view and join non-private channels. Invited users will have the channels added to their sidebar automatically. Users can create private channels, which can be joined only through invites and are not visible to others.
+
+
 
 #### Messages
 
@@ -43,4 +45,3 @@ A details panel shows information depending on the communication type. A channel
 * Notifications
 * Editing a user
 * Editing a channel
-* Private Channels

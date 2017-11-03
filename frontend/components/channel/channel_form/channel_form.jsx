@@ -6,9 +6,11 @@ class ChannelForm extends React.Component {
     this.state = {
       name: "",
       description: "",
+      is_private: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleSwitch = this.handleSwitch.bind(this);
   }
   
   handleSubmit(e) {
@@ -31,6 +33,10 @@ class ChannelForm extends React.Component {
     return (e) => {
       this.setState({ [field]: e.target.value });
     };
+  }
+  
+  handleSwitch(e) {
+    this.setState({ is_private: !this.state.is_private });
   }
   
   handleClose(e) {
@@ -67,7 +73,11 @@ class ChannelForm extends React.Component {
             <div className="fullscreen-esc">esc</div>
           </div>
           <div className="fullscreen-header">
-            Create a channel
+            { this.state.is_private ?
+              "Create a private channel"
+              :
+              "Create a channel"
+            }
           </div>
           <div className="fullscreen-subheader">
             Channels are where your members communicate. They&rsquo;re best organized
@@ -76,6 +86,29 @@ class ChannelForm extends React.Component {
           <form
             className="channel-form-new"
             onSubmit={this.handleSubmit}>
+            <div className="fullscreen-input-switch-container">
+              <label className="fullscreen-input-switch-box">
+                <input
+                  className="fullscreen-input-switch-checkbox"
+                  value={'asdf'}
+                  checked={this.state.is_private}
+                  onChange={this.handleSwitch}
+                  type="checkbox" />
+                <div className="fullscreen-input-switch-slider"></div>
+                <div className="fullscreen-input-switch-word">
+                  { this.state.is_private ?
+                    "Private" : "Public"
+                  }
+                </div>
+              </label>
+              <div className="fullscreen-input-switch-text">
+                { this.state.is_private ?
+                  "This channel can only be joined or viewed by invite."
+                  :
+                  "Anyone in your workspace can view and join this channel."
+                }
+              </div>
+            </div>
             
             <div className="fullscreen-input-container">
               <div className="fullscreen-input-header">

@@ -111,6 +111,87 @@
   width: 590px;
 }
 
+.fullscreen-input-switch-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.fullscreen-input-switch-text {
+  color: #333;
+  margin-left: 15px;
+}
+
+//////////////////////////////////
+
+/* SLIDER */
+
+.fullscreen-input-switch-box {
+  position: relative;
+  display: inline-block;
+  width: 92px; //96
+  height: 24px;
+}
+
+.fullscreen-input-switch-checkbox {
+  display:none;
+}
+
+.fullscreen-input-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #26845a;
+  border-radius: 28px;
+  -webkit-transition: .1s;
+  transition: .1s;
+}
+
+.fullscreen-input-switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 70px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  -webkit-transition: .1s;
+  transition: .1s;
+}
+
+.fullscreen-input-switch-checkbox:checked ~ .fullscreen-input-switch-slider {
+  background-color: #db6643;
+}
+
+
+.fullscreen-input-switch-checkbox:checked ~ .fullscreen-input-switch-slider:before {
+  -webkit-transform: translateX(-68px);
+  transform: translateX(-68px);
+}
+
+.fullscreen-input-switch-word {
+  cursor: pointer;
+  position: absolute;
+  height: 24px;
+  line-height: 24px;
+  -webkit-transition: .1s;
+  transition: .1s;
+  left: 20px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.fullscreen-input-switch-checkbox:checked ~ .fullscreen-input-switch-word {
+  -webkit-transform: translateX(8px);
+  transform: translateX(8px);
+}
+
+/////////////////////////////////
 
 /* INSIDE THE LISTS */
 

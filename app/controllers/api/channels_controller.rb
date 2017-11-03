@@ -91,10 +91,7 @@ class Api::ChannelsController < ApplicationController
     send_update = false
     @channel = Channel.find(params[:id])
     
-    user_ids = option_params[:user_ids].dup
-    if user_ids.empty?
-      user_ids << current_user.id
-    end
+    user_ids = option_params[:user_ids]
     
     # Subscribing a user
     if option_params[:change_subscription]
@@ -202,7 +199,7 @@ class Api::ChannelsController < ApplicationController
     opt_params[:visible] = opt_params[:visible] == "true"
     opt_params[:subscribe] = opt_params[:subscribe] == "true"
     opt_params[:change_subscription] = opt_params[:change_subscription] == "true"
-    opt_params[:user_ids] ||= [];
+    opt_params[:user_ids] ||= [current_user.id];
     opt_params[:user_ids] = opt_params[:user_ids].map(&:to_i)
     return opt_params
   end

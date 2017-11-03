@@ -126,8 +126,26 @@ class ChatHeader extends React.Component {
     );
   }
   
+  
   render () {
-    const name = this.props.channel.name ? this.props.channel.name : "";
+    let name;
+    if (this.props.channel.name) {
+      if (this.props.channel.is_dm) {
+        name = this.props.channel.name;
+      } else {
+        if (this.props.channel.is_private) {
+          name = (
+            <div>
+              <i class="fa fa-lock" aria-hidden="true"></i>
+              {this.props.channel.name}
+            </div>
+          );
+        } else {
+          name = `# ${name}`;
+        }
+      }
+    }
+    
     const userCount = this.props.channel.user_count;
     return (
       <div className="chat-header">
@@ -136,12 +154,7 @@ class ChatHeader extends React.Component {
           <div
             className="chat-header-left-title button"
             onClick={this.openModal("nameModal")}>
-            {
-              this.props.channel.is_dm ?
-              `${name}`
-              :
-              `# ${name}`
-            }
+            {name}
           </div>
           <div className="chat-header-left-options">
             <div

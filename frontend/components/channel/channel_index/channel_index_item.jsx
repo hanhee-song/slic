@@ -91,15 +91,27 @@ class ChannelIndexItem extends React.Component {
     
     const date = this.date();
     
-    const prefix = this.props.channel.is_dm ?
-      (
+    let prefix;
+    if (this.props.channel.is_dm) {
+      prefix = (
         <img className="profile-image"
             src={Object.values(this.props.channel.users)[0].avatar_url} />
-      ) : (
-        <div className="fullscreen-index-list-item hashtag">
-          #
-        </div>
       );
+    } else {
+      if (this.props.channel.is_private) {
+        prefix = (
+          <div className="fullscreen-index-list-item-symbol">
+            <i className="fa fa-lock" aria-hidden="true"></i>&nbsp;
+          </div>
+        );
+      } else {
+        prefix = (
+          <div className="fullscreen-index-list-item-symbol">
+            #
+          </div>
+        );
+      }
+    }
     
     return (
       <Link

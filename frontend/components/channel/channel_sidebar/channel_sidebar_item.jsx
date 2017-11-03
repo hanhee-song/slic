@@ -22,27 +22,39 @@ class ChannelSidebarItem extends React.Component {
   }
   
   render () {
-    const selected = this.props.channel.id === this.props.selectedChannelId ?
+    const channel = this.props.channel;
+    
+    const selected = channel.id === this.props.selectedChannelId ?
       "selected" : "";
     
-    let prefix;
-    
-    if (!this.props.channel.is_dm) {
-      prefix = "# ";
-    } else if (this.props.channel.is_dm
-        && Object.values(this.props.channel.users).length > 2) {
-      prefix = `(${Object.values(this.props.channel.users).length - 1}) `;
+    let name;
+    if (channel.name) {
+      if (!channel.is_dm) {
+        if (channel.is_private) {
+          name = (
+            <div>
+              <i className="fa fa-lock" aria-hidden="true"></i>&nbsp;
+                {channel.name}
+              </div>
+            );
+          } else {
+            name = `# ${channel.name}`;
+          }
+      } else if (Object.values(channel.users).length > 2) {
+        name = `(${Object.values(channel.users).length - 1}) ${channel.name}`;
+      } else {
+        name = channel.name;
+      }
     }
     
-    // const link = selected ? this.props.nextChannelId : this.props.channel.id;
+    // const link = selected ? this.props.nextChannelId : channel.id;
     return (
       <li className={`sidebar-section-item button ${selected}`}>
         <Link
           onClick={this.handleSelectChannel}
-          to={`/channels/${this.props.channel.id}${this.props.details}`}>
+          to={`/channels/${channel.id}${this.props.details}`}>
           <div className="sidebar-section-item-inner">
-            {prefix}
-            {this.props.channel.name}
+            {name}
           </div>
         </Link>
         

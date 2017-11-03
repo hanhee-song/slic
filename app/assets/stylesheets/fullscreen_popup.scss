@@ -260,8 +260,10 @@
   align-items: center;
 }
 
-.fullscreen-index-list-item.hashtag {
-  margin-right: 4px;
+.fullscreen-index-list-item-symbol {
+  display: flex;
+  align-items: center;
+  width: 11px;
 }
 
 .fullscreen-index-list-item.name {

@@ -49,8 +49,21 @@ class MessageIndex extends React.Component {
     });
     
     let message = "";
+    let beginningMessage;
+    
     const channel = this.props.channel;
     if (channel.id) {
+      let name;
+      if (channel.is_dm) {
+        name = channel.name;
+      } else if (channel.is_private) {
+        name = (<div>
+            <i className="fa fa-lock" aria-hidden="true"></i>&nbsp;
+            {channel.name}
+          </div>);
+      } else {
+        name = `#${channel.name}`;
+      }
       
       if (channel.creator && channel.creator.username) {
         const date = new Date(channel.created_at);
@@ -75,7 +88,7 @@ class MessageIndex extends React.Component {
       if (channel.is_dm) {
         message += ` This is the start of your conversation with ${channel.name}`;
       } else if (channel.is_private) {
-        message += ` This is the very beginning of the &#128274;${channel.name} private channel.`;
+        message += ` This is the very beginning of the ${channel.name} private channel.`;
       } else {
         message += ` This is the very beginning of the #${channel.name} channel.`;
       }
@@ -83,17 +96,13 @@ class MessageIndex extends React.Component {
       if (channel.description) {
         message += ` Purpose: ${channel.description}`;
       }
-    }
-    
-    let beginningMessage;
-    if (channel.id) {
+      
       beginningMessage = (
         <div
           key={channel.id}
           className="message-index-item beginning">
           <div className="message-index-item-beginning-header">
-            { !channel.is_dm && "#" }
-            {channel.name}
+            {name}
           </div>
           <div className="message-index-item-beginning-body">
             {message}

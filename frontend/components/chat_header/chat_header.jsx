@@ -137,7 +137,7 @@ class ChatHeader extends React.Component {
         if (channel.is_private) {
           name = (
             <div>
-              <i className="fa fa-lock" aria-hidden="true"></i>
+              <i className="fa fa-lock" aria-hidden="true"></i>&nbsp;
               {channel.name}
             </div>
           );

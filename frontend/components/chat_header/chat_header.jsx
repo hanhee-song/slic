@@ -128,25 +128,26 @@ class ChatHeader extends React.Component {
   
   
   render () {
+    const channel = this.props.channel;
     let name;
-    if (this.props.channel.name) {
-      if (this.props.channel.is_dm) {
-        name = this.props.channel.name;
+    if (channel.name) {
+      if (channel.is_dm) {
+        name = channel.name;
       } else {
-        if (this.props.channel.is_private) {
+        if (channel.is_private) {
           name = (
             <div>
-              <i class="fa fa-lock" aria-hidden="true"></i>
-              {this.props.channel.name}
+              <i className="fa fa-lock" aria-hidden="true"></i>
+              {channel.name}
             </div>
           );
         } else {
-          name = `# ${name}`;
+          name = `# ${channel.name}`;
         }
       }
     }
     
-    const userCount = this.props.channel.user_count;
+    const userCount = channel.user_count;
     return (
       <div className="chat-header">
         

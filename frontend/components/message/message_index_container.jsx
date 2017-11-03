@@ -8,6 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     channel: channel,
     messages: Object.values(messages),
+    currentUser: state.session.currentUser,
   };
 };
 

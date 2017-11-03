@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .fullscreen-index-list-item.name {

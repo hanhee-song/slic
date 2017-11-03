@@ -32,13 +32,14 @@ class MessageForm extends React.Component {
   }
   
   render () {
+    const channel = this.props.channel;
     let placeholder = "Message ";
-    if (!this.props.channel.is_dm) {
+    if (!channel.is_dm && !channel.is_private) {
       placeholder += "#";
     }
-    placeholder += this.props.channel.name;
+    placeholder += channel.name;
     
-    const input = this.props.channel.subscribed ?
+    const input = channel.subscribed ?
       (
         <div className="message-form-input-wrapper">
           <input
@@ -48,7 +49,7 @@ class MessageForm extends React.Component {
             placeholder={placeholder}
             autoFocus
             value={this.state.body}
-            key={this.props.channel.id}/>
+            key={channel.id}/>
           <div className="message-form-plus">
             
           </div>

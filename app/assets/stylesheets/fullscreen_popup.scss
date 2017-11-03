@@ -12,6 +12,9 @@
   padding-top: 100px;
   color: #333;
   z-index: 5;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .fullscreen-inside {

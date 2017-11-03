@@ -14,6 +14,9 @@
 }
 
 @mixin modal-overlay {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
   position: absolute;
   height: 100%;
   width: 100%;

@@ -7,6 +7,9 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .chat-header .button {

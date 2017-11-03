@@ -24,8 +24,21 @@ class ChannelDetails extends React.Component {
     
     let about;
     if (channel.id) {
-      about = channel.is_dm ?
-      "About this conversation" : `About #${channel.name}`;
+      if (channel.is_dm) {
+        about = "About this conversation";
+      } else {
+        if (channel.is_private) {
+          about = (
+            <div>
+              About
+              <i className="fa fa-lock" aria-hidden="true"></i>
+              {channel.name}
+            </div>
+          );
+        } else {
+          about = `About #${channel.name}`;
+        }
+      }
     }
     
     const byCreator = channel.creator ?
@@ -90,7 +103,7 @@ class ChannelDetails extends React.Component {
         <div className="fullscreen-index-list-container-sidebar custom-scroll">
           <ul className="fullscreen-index-list-nonreversed">
             { !channel.is_dm && channel.id &&
-              <div>
+              <div className="channel-details-list-border">
                 <div className="channel-details-list-header">
                   <i className="fa fa-info-circle" aria-hidden="true"></i>
                   <div>

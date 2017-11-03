@@ -57,6 +57,8 @@ class Api::ChannelsController < ApplicationController
       Channel.all.where("is_dm").includes(:users).each do |channel|
         if channel.users.map(&:id).sort == option_params[:user_ids].sort
           @channel = channel
+          subs = @channel.subscriptions.find_by(user_id: current_user)
+            subs.update(visible: true) if !subs.visible
           
           render_show(@channel)
           render "api/channels/show"

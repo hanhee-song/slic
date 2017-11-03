@@ -61,13 +61,14 @@ export const fetchMessage = (messageId) => {
   };
 };
 
+// MESSAGE CONTROLLER PUSHES BACK TO SUBMITTER
 export const createMessage = (message) => {
   return (dispatch) => {
-    return MessageApiUtil.createMessage(message)
-      .then(
-        (message) => dispatch(receiveMessage(message)),
-        (errors) => dispatch(receiveMessageErrors(errors))
-      );
+    return MessageApiUtil.createMessage(message);
+      // .then(
+      //   (message) => dispatch(receiveMessage(message)),
+      //   (errors) => dispatch(receiveMessageErrors(errors))
+      // );
   };
 };
 

@@ -18,7 +18,8 @@ class SessionForm extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    if (this.props.formType !== nextProps.formType) {
+    if (this.props.formType !== nextProps.formType
+      && this.props.formType !== "/guest-login") {
       this.cleanUp();
       this.setState({
         username: "",
@@ -54,31 +55,34 @@ class SessionForm extends React.Component {
     // };
     
     // TEMP: guest is now a preseeded account
-    const guest = {
-      username: 'slic-guest',
-      password: 'asdfasdf',
-    };
+    if (!this.state.submitTimeout) {
+      const guest = {
+        username: 'slic-guest',
+        password: 'asdfasdf',
+      };
+      
+      const userOptions = {
+        strings: [guest.username],
+        typeSpeed: 40,
+      };
+      const passOptions = {
+        strings: [guest.username],
+        typeSpeed: 40,
+      };
+      let typed;
+      this.setState({
+        typeUsername: setTimeout(() => {
+          new Typed(".session-form .username", userOptions);
+        }, 100),
+        typePassword: setTimeout(() => {
+          new Typed(".session-form .password", passOptions);
+        }, 1000),
+        submitTimeout: setTimeout(() => {
+          this.props.submitForm(guest);
+        }, 2000)
+      });
+    }
     
-    const userOptions = {
-      strings: [guest.username],
-      typeSpeed: 40,
-    };
-    const passOptions = {
-      strings: [guest.username],
-      typeSpeed: 40,
-    };
-    let typed;
-    this.setState({
-      typeUsername: setTimeout(() => {
-        new Typed(".session-form .username", userOptions);
-      }, 100),
-      typePassword: setTimeout(() => {
-        new Typed(".session-form .password", passOptions);
-      }, 1000),
-      submitTimeout: setTimeout(() => {
-        this.props.submitForm(guest);
-      }, 2000)
-    });
   }
   
   componentWillUnmount() {
@@ -94,9 +98,14 @@ class SessionForm extends React.Component {
   
   handleSubmit(e) {
     e.preventDefault();
-    this.props.removeSessionErrors();
-    const user = Object.assign({}, this.state);
-    this.props.submitForm(user);
+    if (!this.state.submitTimeout) {
+      this.props.removeSessionErrors();
+      const user = {
+        username: this.state.username,
+        password: this.state.password,
+      };
+      this.props.submitForm(user);
+    }
   }
   
   handleChange(field) {

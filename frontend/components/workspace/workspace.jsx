@@ -21,6 +21,7 @@ class Workspace extends React.Component {
   handleEscape(e) {
     if (e.keyCode === 27) {
       this.props.clearDropdown();
+      this.props.clearChannelErrors();
     }
   }
   

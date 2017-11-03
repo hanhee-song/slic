@@ -15,6 +15,7 @@ class ChannelForm extends React.Component {
   
   handleSubmit(e) {
     e.preventDefault();
+    this.props.clearChannelErrors();
     this.props.createChannel(this.state).then(
         response => {
           const id = response.channel.id;
@@ -115,9 +116,11 @@ class ChannelForm extends React.Component {
                 <div className="fullscreen-input-title">
                   Name
                 </div>
-                <div className="fullscreen-popup-errors">
-                  {errors}
-                </div>
+                { errors.length > 0 &&
+                  <div className="fullscreen-popup-errors">
+                    {errors}
+                  </div>
+                }
               </div>
               <input
                 className={`channel-form-input${errorFlag}`}

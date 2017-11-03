@@ -112,6 +112,8 @@
   overflow: hidden;
   max-height: 17px;
   width: 590px;
+  animation: fadein .1s;
+  -webkit-animation: fadein .1s;
 }
 
 .fullscreen-input-switch-container {

@@ -7,7 +7,7 @@ class Api::MessagesController < ApplicationController
       Pusher.trigger('channel-connection', 'create-message', @message)
       render 'api/messages/show'
     else
-      render json: @message.errors.full_messages, status: 404
+      render json: @message.errors.full_messages, status: 422
     end
   end
 

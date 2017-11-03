@@ -53,11 +53,16 @@ ActiveRecord::Base.transaction do
     name: 'project #5',
     creator_id: hanhee_song.id
   )
+  Channel.create!(
+    name: 'secret channel',
+    creator_id: hanhee_song.id,
+    is_private: true
+  )
   
   ChannelSubscription.destroy_all
   
   User.all.each do |user|
-    next if user == guest
+    next if user == guest || user == hanhee_song
     
     # SUBSCRIBE TO THREE CHANNELS
     Channel.all.each do |channel|
@@ -86,7 +91,8 @@ ActiveRecord::Base.transaction do
       'general',
       'random',
       'project #2',
-      'project #5'
+      'project #5',
+      'secret channel'
     ].include?(channel.name))
     if visible
       ChannelSubscription.create!(
@@ -94,12 +100,17 @@ ActiveRecord::Base.transaction do
         user_id: guest.id,
         visible: visible
       )
+      ChannelSubscription.create!(
+        channel_id: channel.id,
+        user_id: hanhee_song.id,
+        visible: visible
+      )
     end
   end
   guest.update(most_recent_channel_id: Channel.find_by(name: 'general').id)
   
   # CREATE RANDOM PRIVATE MESSAGES FOR GUEST
-  accounts = User.limit(18)[2..16]
+  accounts = User.limit(18)[3..16]
   
   # CHAT WITH SELF
   # dm1 = Channel.create!(
@@ -112,6 +123,28 @@ ActiveRecord::Base.transaction do
   #   user_id: guest.id,
   #   visible: true
   # )
+  
+  # CHAT WITH ME
+  dm = Channel.create!(
+    name: SecureRandom::urlsafe_base64(8),
+    is_private: true,
+    is_dm: true
+  )
+  ChannelSubscription.create!(
+    channel_id: dm.id,
+    user_id: guest.id,
+    visible: true
+  )
+  ChannelSubscription.create!(
+    channel_id: dm.id,
+    user_id: hanhee_song.id,
+    visible: true
+  )
+  Message.create!(
+    author_id: hanhee_song.id,
+    channel_id: dm.id,
+    body: "Hi there! Welcome to my Slic app."
+  )
   
   # CHAT WITH ANOTHER
   dm2 = Channel.create!(
@@ -149,17 +182,14 @@ ActiveRecord::Base.transaction do
     )
   end
   
+  # SPAM THE CHANNELS!
   User.all.includes(:channels).each do |user|
     user.channels.each do |channel|
-      next if user == guest
+      next if user == guest || user == hanhee_song
       Message.create!(
         author_id: user.id,
         channel_id: channel.id,
-        body: (
-          rand(2) == 1 ?
-          Faker::HitchhikersGuideToTheGalaxy.quote :
-          Faker::Simpsons.quote
-          )
+        body: (Faker::HitchhikersGuideToTheGalaxy.quote)
       )
     end
   end

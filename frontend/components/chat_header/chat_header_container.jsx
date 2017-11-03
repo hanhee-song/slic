@@ -1,7 +1,7 @@
 import ChatHeader from './chat_header';
 import { connect } from 'react-redux';
 import {
-  makeChannelInvisible,
+  // makeChannelInvisible,
   makeChannelVisible,
   subscribeUserIdsToChannel,
   unsubscribeUserIdsFromChannel,
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
     receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
     receiveDetails: () => dispatch(receiveDetails()),
     clearDetails: () => dispatch(clearDetails()),
-    makeChannelInvisible: (channel) => dispatch(makeChannelInvisible(channel)),
+    // makeChannelInvisible: (channel) => dispatch(makeChannelInvisible(channel)),
     makeChannelVisible: (channel) => dispatch(makeChannelVisible(channel)),
     rememberCurrentChannelId: (user, id) => dispatch(rememberCurrentChannelId(user, id)),
     subscribeUserIdsToChannel: (channel, ids) => dispatch(subscribeUserIdsToChannel(channel, ids)),

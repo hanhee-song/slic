@@ -52,7 +52,7 @@ class ChatHeader extends React.Component {
       this.props.channel,
       [this.props.currentUser.id]
     );
-    this.props.makeChannelInvisible(this.props.channel);
+    // this.props.makeChannelInvisible(this.props.channel);
     
     this.props.rememberCurrentChannelId(
       this.props.currentUser, this.props.nextChannelId);

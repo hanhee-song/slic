@@ -8,7 +8,6 @@ class UserIndex extends React.Component {
     this.state = ({
       selectedUserIds: [],
       inputVal: "",
-      names: Object.values(this.props.users),
       closeFlag: "",
     });
     
@@ -68,7 +67,6 @@ class UserIndex extends React.Component {
         this.props.subscribeUserIdsToChannel(
           this.props.channel, this.state.selectedUserIds);
         break;
-      
       case "messageNew":
         // TEMP: GENERATE A RANDOM NUMBER FOR THE NAME
         const random = Math.floor(999999999 * Math.random());
@@ -78,9 +76,7 @@ class UserIndex extends React.Component {
           name: `${random}`,
           is_private: true,
           is_dm: true,
-        },
-        userIds
-        ).then(
+        }, userIds).then(
           response => {
             this.props.rememberCurrentChannelId(
               this.props.currentUser, response.channel.id);
@@ -112,6 +108,8 @@ class UserIndex extends React.Component {
     
     return filteredUsers.filter((user) => {
       return user.username.includes(this.state.inputVal);
+    }).sort((a, b) => {
+      return b.username.toLowerCase().localeCompare(a.username.toLowerCase());
     });
   }
   
@@ -160,7 +158,6 @@ class UserIndex extends React.Component {
     });
     
     let header;
-    let subheader;
     let button;
     switch (this.props.dropdown) {
       case "inviteIndex":
@@ -169,7 +166,6 @@ class UserIndex extends React.Component {
         break;
       case "messageNew":
         header = "Direct Message";
-        subheader = "Start a conversation";
         button = "Go";
         break;
       default:
@@ -184,20 +180,23 @@ class UserIndex extends React.Component {
     
     
     let noOneMessage;
-    if (!anyoneToInvite) {
+    if (!anyoneToInvite && userCount > 0) {
       noOneMessage = (
         <div className="fullscreen-subheader">
           {
             this.state.selectedUserIds.length > 0 &&
-            userCount !== 0 &&
-            this.state.selectedUserIds.length + this.generateList().length
-              === userCount - 1 &&
+            this.state.selectedUserIds.length + this.props.channel.user_count
+              === userCount &&
             "There's no one else to invite!"
           }
           {
-            this.state.selectedUserIds.length === 0 &&
-            Object.values(this.props.users).length > 0 &&
+            this.props.channel.user_count === userCount &&
             "Looks like everyone is already in this channel!"
+          }
+          {
+            this.state.selectedUserIds.length === 0 &&
+            this.props.channel.user_count < userCount &&
+            `No user matches '${this.state.inputVal}.'`
           }
         </div>
       );
@@ -219,7 +218,7 @@ class UserIndex extends React.Component {
           
           { this.props.dropdown !== "inviteIndex" &&
             <div className="fullscreen-subheader">
-              {subheader}
+              Start a conversation
             </div>
           }
           

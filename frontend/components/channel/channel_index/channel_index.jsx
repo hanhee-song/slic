@@ -100,6 +100,7 @@ class ChannelIndex extends React.Component {
               "View Messages"
             }
           </div>
+          
           <div className="fullscreen-index-list-container custom-scroll">
             { this.props.dropdown === "channelIndex" &&
               channels.length > 0 &&
@@ -108,6 +109,7 @@ class ChannelIndex extends React.Component {
                 <div className="fullscreen-subheader-underline"></div>
               </div>
             }
+            
             <ul className="fullscreen-index-list">
               {channels}
             </ul>
@@ -119,9 +121,11 @@ class ChannelIndex extends React.Component {
                 <div className="fullscreen-subheader-underline"></div>
               </div>
             }
+            
             <ul className="fullscreen-index-list">
               {channelsSubscribed}
             </ul>
+            
           </div>
         </div>
       </div>

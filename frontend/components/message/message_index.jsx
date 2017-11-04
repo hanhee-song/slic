@@ -12,6 +12,14 @@ class MessageIndex extends React.Component {
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       // this.props.fetchChannel(nextProps.match.params.channelId);
       this.props.fetchMessages(nextProps.match.params.channelId);
+      
+      // TODO: NEW PUSHER HERE //
+      pusher.unsubscribe(`channel-connection-${this.props.match.params.channelId}`);
+      
+      var channel = pusher.subscribe(`channel-connection-${nextProps.match.params.channelId}`);
+      channel.bind('create-message', (message) => {
+        this.props.receiveMessage(message);
+      });
     }
   }
   
@@ -20,7 +28,6 @@ class MessageIndex extends React.Component {
     this.props.fetchMessages(this.props.match.params.channelId);
     var channel = pusher.subscribe(`channel-connection-${this.props.match.params.channelId}`);
     channel.bind('create-message', (message) => {
-      // this.props.fetchChannel(this.props.match.params.channelId);
       this.props.receiveMessage(message);
     });
     
@@ -39,6 +46,7 @@ class MessageIndex extends React.Component {
   componentWillUnmount() {
     document.querySelector('.message-index-overflow-wrapper')
       .removeEventListener("wheel", (e) => this.flipWheel(e));
+    pusher.unsubscribe(`channel-connection-${this.props.match.params.channelId}`);
   }
   
   render () {

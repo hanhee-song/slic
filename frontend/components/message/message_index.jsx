@@ -10,10 +10,8 @@ class MessageIndex extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-      // this.props.fetchChannel(nextProps.match.params.channelId);
       this.props.fetchMessages(nextProps.match.params.channelId);
       
-      // TODO: NEW PUSHER HERE //
       pusher.unsubscribe(`channel-connection-${this.props.match.params.channelId}`);
       
       var channel = pusher.subscribe(`channel-connection-${nextProps.match.params.channelId}`);

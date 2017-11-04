@@ -98,6 +98,7 @@ class Api::ChannelsController < ApplicationController
     user_ids = option_params[:user_ids]
     
     # Subscribing a user
+    # If already subscribed, make visible
     if option_params[:change_subscription]
       send_update = true
       if option_params[:subscribe]
@@ -105,7 +106,7 @@ class Api::ChannelsController < ApplicationController
           subs = @channel.subscriptions.find_by(user_id: user_id)
           if subs && !subs.visible
             subs.update(visible: true)
-          else
+          elsif !subs
             @channel.subscriptions.create!(
               user_id: user_id,
               visible: true

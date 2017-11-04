@@ -23,8 +23,7 @@ class ChannelForm extends React.Component {
           this.props.subscribeUserIdsToChannel(response.channel, [this.props.currentUser.id]);
           this.props.rememberCurrentChannelId(
             this.props.currentUser, response.channel.id);
-          this.props.makeChannelVisible(response.channel);
-          this.props.clearDropdown();
+          this.handleClose();
           this.props.history.push(`/channels/${response.channel.id}`);
         }
       );
@@ -40,8 +39,7 @@ class ChannelForm extends React.Component {
     this.setState({ is_private: !this.state.is_private });
   }
   
-  handleClose(e) {
-    e.preventDefault();
+  handleClose() {
     this.props.clearChannelErrors();
     this.props.clearDropdown();
   }

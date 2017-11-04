@@ -10,7 +10,7 @@ class ChannelIndexItem extends React.Component {
   }
   
   handleClick() {
-    this.props.clearDropdown();
+    this.props.handleClose();
     if (this.props.channel.is_dm) {
       this.props.makeChannelVisible(this.props.channel);
     }

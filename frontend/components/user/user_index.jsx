@@ -9,23 +9,39 @@ class UserIndex extends React.Component {
       selectedUserIds: [],
       inputVal: "",
       names: Object.values(this.props.users),
+      closeFlag: "",
     });
     
-    this.handleClose = this.handleClose.bind(this);
     this.handleAddUser = this.handleAddUser.bind(this);
     this.handleRemoveUser = this.handleRemoveUser.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addTopUser = this.addTopUser.bind(this);
     this.changeInput = this.changeInput.bind(this);
     this.generateList = this.generateList.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleEscape = this.handleEscape.bind(this);
   }
   
   componentDidMount() {
+    document.addEventListener("keydown", this.handleEscape, false);
     this.props.fetchUsers();
   }
   
+  componentWillUnmount(nextProps, nextState) {
+    document.removeEventListener("keydown", this.handleEscape, false);
+  }
+  
+  handleEscape(e) {
+    if (e.keyCode === 27) {
+      this.handleClose();
+    }
+  }
+  
   handleClose() {
-    this.props.clearDropdown();
+    this.setState({ closeFlag: "closing" });
+    setTimeout(() => {
+      this.props.clearDropdown();
+    }, 300);
   }
   
   handleAddUser(user) {
@@ -49,7 +65,8 @@ class UserIndex extends React.Component {
   handleSubmit() {
     switch (this.props.dropdown) {
       case "inviteIndex":
-        this.props.subscribeUserIdsToChannel(this.props.channel, this.state.selectedUserIds);
+        this.props.subscribeUserIdsToChannel(
+          this.props.channel, this.state.selectedUserIds);
         break;
       
       case "messageNew":
@@ -65,21 +82,16 @@ class UserIndex extends React.Component {
         userIds
         ).then(
           response => {
-            // this.props.subscribeUserIdsToChannel(response.channel, userIds);
             this.props.rememberCurrentChannelId(
               this.props.currentUser, response.channel.id);
             this.props.history.push(`/channels/${response.channel.id}`);
           }
         );
         break;
-      case "messageIndex":
-        
-        break;
       default:
         break;
-        
     }
-    this.props.clearDropdown();
+    this.handleClose();
   }
   
   changeInput(e) {
@@ -192,8 +204,8 @@ class UserIndex extends React.Component {
     }
     
     return (
-      <div className="fullscreen-container">
-        <div className="fullscreen-inside">
+      <div className={`fullscreen-container ${this.state.closeFlag}`}>
+        <div className={`fullscreen-inside ${this.state.closeFlag}`}>
           <div
             className="fullscreen-x"
             onClick={this.handleClose}>

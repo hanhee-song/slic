@@ -7,10 +7,34 @@ class ChannelForm extends React.Component {
       name: "",
       description: "",
       is_private: false,
+      closeFlag: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSwitch = this.handleSwitch.bind(this);
+    this.handleEscape = this.handleEscape.bind(this);
+  }
+  
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleEscape, false);
+  }
+  
+  componentWillUnmount(nextProps, nextState) {
+    document.removeEventListener("keydown", this.handleEscape, false);
+  }
+  
+  handleEscape(e) {
+    if (e.keyCode === 27) {
+      this.handleClose();
+    }
+  }
+  
+  handleClose() {
+    this.props.clearChannelErrors();
+    this.setState({ closeFlag: "closing" });
+    setTimeout(() => {
+      this.props.clearDropdown();
+    }, 300);
   }
   
   handleSubmit(e) {
@@ -39,15 +63,6 @@ class ChannelForm extends React.Component {
     this.setState({ is_private: !this.state.is_private });
   }
   
-  handleClose() {
-    this.props.clearChannelErrors();
-    this.props.clearDropdown();
-  }
-  
-  handleClickOutside(e) {
-    this.props.clearDropdown();
-  }
-  
   render () {
     const errors = this.props.errors.map((error, idx) => {
       if (error === "Name can't be blank") {
@@ -63,8 +78,8 @@ class ChannelForm extends React.Component {
     const errorFlag = this.props.errors.length > 0 ? "-error" : "";
     
     return (
-      <div className="fullscreen-container">
-        <div className="fullscreen-inside">
+      <div className={`fullscreen-container ${this.state.closeFlag}`}>
+        <div className={`fullscreen-inside ${this.state.closeFlag}`}>
           <div
             className="fullscreen-x"
             onClick={this.handleClose}>

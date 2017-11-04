@@ -9,16 +9,16 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
-// 
-// @keyframes fadeout {
-//   from { opacity: 0; }
-//   to { opacity: 1; }
-// }
-//
-// @-webkit-keyframes fadeout {
-//   from { opacity: 0; }
-//   to { opacity: 1; }
-// }
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@-webkit-keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 
 @keyframes slideup {
   from { transform: translateY(10px); }
@@ -28,6 +28,16 @@
 @-webkit-keyframes slideup {
   from { transform: translateY(10px); }
   to { transform: translateY(0px); }
+}
+
+@keyframes slidedown {
+  from { transform: translateY(0px); }
+  to { transform: translateY(10px); }
+}
+
+@-webkit-keyframes slidedown {
+  from { transform: translateY(0px); }
+  to { transform: translateY(10px); }
 }
 
 @-webkit-keyframes bubble-fadein {

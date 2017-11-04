@@ -7,28 +7,40 @@
   top: 0;
   left: 0;
   background-color: #fff;
-  animation: fadein .3s;
-  -webkit-animation: fadein .3s;
   padding-top: 100px;
   color: #333;
   z-index: 5;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
+  
+  animation: fadein .3s;
+  -webkit-animation: fadein .3s;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
 }
 
 .fullscreen-inside {
-  animation: slideup .3s;
-  -webkit-animation: slideup .3s;
   margin: 0 auto;
   max-width: 650px;
   height: 100%;
+  animation: slideup .3s;
+  -webkit-animation: slideup .3s;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+}
+
+.fullscreen-container.closing {
+  opacity: 0;
+}
+
+.fullscreen-inside.closing {
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
 }
 
 .fullscreen-x {
   position: relative;
-  // top: 100px;
-  // right: 100px;
   left: 650px;
   font-size: 26px;
   color: #aaa;
@@ -135,7 +147,7 @@
 .fullscreen-input-switch-box {
   position: relative;
   display: inline-block;
-  width: 92px; //96
+  width: 92px;
   height: 24px;
 }
 

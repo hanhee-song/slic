@@ -15,19 +15,9 @@ import ChannelDetailsContainer from '../channel/channel_details/channel_details_
 class Workspace extends React.Component {
   constructor(props) {
     super(props);
-    this.handleEscape = this.handleEscape.bind(this);
-  }
-  
-  handleEscape(e) {
-    if (e.keyCode === 27) {
-      this.props.clearDropdown();
-      this.props.clearChannelErrors();
-    }
   }
   
   componentDidMount() {
-    document.addEventListener("keydown", this.handleEscape, false);
-    
     this.props.fetchChannels();
     
     const channelId = this.props.currentUser.most_recent_channel_id;
@@ -46,11 +36,6 @@ class Workspace extends React.Component {
     channel.bind('update-channel', (channel) => {
       this.props.fetchChannel(channel.id);
     });
-  }
-  
-  componentWillUnmount(nextProps, nextState) {
-    document.removeEventListener("keydown", this.handleEscape, false);
-    
   }
   
   componentWillReceiveProps(nextProps) {

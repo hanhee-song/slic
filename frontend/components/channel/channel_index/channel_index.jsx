@@ -4,17 +4,36 @@ import ChannelIndexItemContainer from './channel_index_item_container';
 class ChannelIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      closeFlag: "",
+    };
     this.handleClose = this.handleClose.bind(this);
+    this.handleEscape = this.handleEscape.bind(this);
+  }
+  
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleEscape, false);
+  }
+  
+  componentWillUnmount(nextProps, nextState) {
+    document.removeEventListener("keydown", this.handleEscape, false);
+  }
+  
+  handleEscape(e) {
+    if (e.keyCode === 27) {
+      this.handleClose();
+    }
   }
   
   handleClose() {
-    this.props.clearDropdown();
+    this.setState({ closeFlag: "closing" });
+    setTimeout(() => {
+      this.props.clearDropdown();
+    }, 300);
   }
   
   render () {
     const chans = this.props.channels.slice().reverse();
-    
-    
     
     let channels = [];
     let channelsSubscribed = [];
@@ -50,7 +69,8 @@ class ChannelIndex extends React.Component {
       return (
         <ChannelIndexItemContainer
           key={channel.id}
-          channel={channel} />
+          channel={channel}
+          handleClose={this.handleClose} />
         );
     });
     
@@ -58,14 +78,15 @@ class ChannelIndex extends React.Component {
       return (
         <ChannelIndexItemContainer
           key={channel.id}
-          channel={channel} />
+          channel={channel}
+          handleClose={this.handleClose} />
         );
     });
     
     
     return (
-      <div className="fullscreen-container">
-        <div className="fullscreen-inside">
+      <div className={`fullscreen-container ${this.state.closeFlag}`}>
+        <div className={`fullscreen-inside ${this.state.closeFlag}`}>
           <div
             className="fullscreen-x"
             onClick={this.handleClose}>

@@ -18,6 +18,9 @@ class MessageIndex extends React.Component {
       channel.bind('create-message', (message) => {
         this.props.receiveMessage(message);
       });
+      
+      const element = document.querySelector(".message-index-overflow-wrapper");
+      element.scrollTop = 0;
     }
   }
   

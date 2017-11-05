@@ -66,7 +66,7 @@ class Api::ChannelsController < ApplicationController
           
           render_show(@channel)
           render "api/channels/show"
-          Pusher.trigger('channel-connection', 'update-channel', @channel)
+          Pusher.trigger('channel-connection', 'update-channel', @channel.id)
           return
         end
       end
@@ -88,7 +88,7 @@ class Api::ChannelsController < ApplicationController
       else
         render_show(@channel)
         render "api/channels/show"
-        Pusher.trigger('channel-connection', 'update-channel', @channel)
+        Pusher.trigger('channel-connection', 'update-channel', @channel.id)
       end
     else
       render json: @channel.errors.full_messages, status: 422
@@ -147,14 +147,14 @@ class Api::ChannelsController < ApplicationController
         render_show(@channel)
         render 'api/channels/show'
       end
-      Pusher.trigger('channel-connection', 'update-channel', @channel)
+      Pusher.trigger('channel-connection', 'update-channel', @channel.id)
     else
       render json: ["Channel not found"], status: 404
     end
     # Updating the channel
     #   if @channel.update(channel_params)
     #     render_show(@channel)
-    #     Pusher.trigger('channel-connection', 'update-channel', @channel)
+    #     Pusher.trigger('channel-connection', 'update-channel', @channel.id)
     #   else
     #     render json: @channel.errors.full_messages, status: 422
     #   end

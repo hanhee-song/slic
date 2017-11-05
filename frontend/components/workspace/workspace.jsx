@@ -18,32 +18,39 @@ class Workspace extends React.Component {
   }
   
   componentDidMount() {
-    this.props.fetchChannels();
-    
     const channelId = this.props.currentUser.most_recent_channel_id;
+    
+    this.props.fetchChannels();//.then(
+    //   channels => {
+    //     if (!Object.keys(channels).includes(this.props.match.params.channelId)) {
+    //       this.props.history.push(`/channels/${channelId}/details`);
+    //     }
+    //   }
+    // );
+    
     if (channelId && this.props.match.path !== "/channels/:channelId/details") {
-      // const details = this.props.match.path === "/channels/:channelId/details"
-      //   ? "/details" : "";
-      
-      // MAYBE TEMP: DETAIL PANE SHOWS UP BY DEFAULT
       this.props.history.push(`/channels/${channelId}/details`);
     }
     this.props.fetchChannel(channelId);
-    // if (this.props.match.path === "/channels/:channelId/details") {
     this.props.receiveDetails();
-    // }
     
     var channel = pusher.subscribe('channel-connection');
-    channel.bind('update-channel', (channel) => {
-      this.props.fetchChannel(channel.id);
+    channel.bind('update-channel', (id) => {
+      this.props.fetchChannel(id);
     });
   }
   
   componentWillReceiveProps(nextProps) {
     const nextChannelId = nextProps.match.params.channelId;
+    const thisChannelId = this.props.match.params.channelId;
     const channelIds = Object.keys(nextProps.channels);
     
-    if (this.props.match.params.channelId !== nextChannelId
+    if (!channelIds.includes(nextChannelId) && channelIds.length > 0) {
+      this.props.history.push(`/channels/${this.props.currentUser.most_recent_channel_id}${this.props.details}`);
+      return;
+    }
+    
+    if (thisChannelId !== nextChannelId
       && channelIds.includes(nextChannelId)) {
       this.props.fetchChannel(nextChannelId);
       
@@ -52,7 +59,7 @@ class Workspace extends React.Component {
     
     if (this.props.details !== nextProps.details) {
       this.props.history.push(`/channels/${nextChannelId}${nextProps.details}`);
-    } else if (this.props.match.params.channelId !== nextChannelId
+    } else if (thisChannelId !== nextChannelId
       && nextProps.details && nextProps.match.path !== "/channels/:channelId/details") {
         this.props.history.push(`/channels/${nextChannelId}${nextProps.details}`);
     }
@@ -102,16 +109,10 @@ class Workspace extends React.Component {
         <div className="sidebar">
           <Route
             component={UserInfoContainer}
-            path="/channels/:channelId/details" />
+            path="/channels/:channelId" />
           <Route
             component={ChannelSidebarContainer}
-            path="/channels/:channelId/details" />
-          <Route
-            component={UserInfoContainer}
-            exact path="/channels/:channelId" />
-          <Route
-            component={ChannelSidebarContainer}
-            exact path="/channels/:channelId" />
+            path="/channels/:channelId" />
           <Route
             component={UserInfoContainer}
             exact path="/channels" />
@@ -123,10 +124,7 @@ class Workspace extends React.Component {
         <div className="chat-main">
           <Route
             component={ChatHeaderContainer}
-            exact path="/channels/:channelId/details" />
-          <Route
-            component={ChatHeaderContainer}
-            exact path="/channels/:channelId" />
+            path="/channels/:channelId" />
           <div className="chat-body">
             <Route
               component={MessageIndexContainer}

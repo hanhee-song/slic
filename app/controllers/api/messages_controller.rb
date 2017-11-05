@@ -1,6 +1,5 @@
 class Api::MessagesController < ApplicationController
   before_action :ensure_login, only: [:create, :index]
-
   
   def create
     @message = Message.new(message_params)
@@ -35,7 +34,14 @@ class Api::MessagesController < ApplicationController
   end
 
   def index
-    @messages = Message.where(channel_id: params[:channel_id]).includes(:author)
+    channel_id = params[:channel_id]
+    channel = Channel.find(channel_id)
+    if !channel ||
+      (!current_user.channels.map(&:id).include?(channel_id.to_i) && channel.is_private)
+      
+      render json: ["Channel not found"], status: 404
+    end
+    @messages = Message.where(channel_id: channel_id).includes(:author)
   end
   
   private

@@ -55,10 +55,10 @@ class ChatHeader extends React.Component {
   }
   
   handleInfo() {
-    if (this.props.match.path === "/channels/:channelId") {
-      this.props.receiveDetails();
-    } else {
+    if (this.props.details) {
       this.props.clearDetails();
+    } else {
+      this.props.receiveDetails();
     }
   }
   
@@ -158,10 +158,10 @@ class ChatHeader extends React.Component {
             </div>
             <div className="chat-info-bubble users">
               {
-                this.props.match.path === "/channels/:channelId" ?
-                "View Member List"
-                :
+                this.props.details ?
                 "Hide Member List"
+                :
+                "View Member List"
               }
             </div>
           </div>
@@ -174,10 +174,10 @@ class ChatHeader extends React.Component {
           </div>
           <div className="chat-info-bubble details">
             {
-              this.props.match.path === "/channels/:channelId" ?
-              "Show Channel Details"
-              :
+              this.props.details ?
               "Hide Channel Details"
+              :
+              "Show Channel Details"
             }
           </div>
           

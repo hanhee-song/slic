@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
     channel: channel,
     currentUser: state.session.currentUser,
     nextChannelId: findNextChannelId(state.entities.channels),
+    details: state.ui.details,
   };
 };
 

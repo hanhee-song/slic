@@ -82,7 +82,7 @@ class MessageIndex extends React.Component {
         const month = "January February March April May June July August September October November December".split(' ')[date.getMonth()];
         
         let time;
-        if (thisMonth === month && today.getDay() === date.getDay()) {
+        if (thisMonth === month && today.getDate() === date.getDate()) {
           time = " today";
         } else {
           time = ` on ${month} ${date.getDate()}`;

@@ -50,10 +50,10 @@ class ChannelIndexItem extends React.Component {
     // Surely there's a better way to do this...
     const timeDif = (
       now.getYear()*365*30*24*60 + now.getMonth()*30*24*60 +
-      now.getDay()*24*60 + now.getHours()*60 + now.getMinutes()
+      now.getDate()*24*60 + now.getHours()*60 + now.getMinutes()
     ) - (
       date.getYear()*365*30*24*60 + date.getMonth()*30*24*60 +
-      date.getDay()*24*60 + date.getHours()*60 + date.getMinutes()
+      date.getDate()*24*60 + date.getHours()*60 + date.getMinutes()
     );
     
     if (timeDif < 1) {

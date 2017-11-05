@@ -4,6 +4,7 @@ import {
   REMOVE_CHANNEL,
   CLEAR_CHANNELS,
 } from '../actions/channel_actions';
+import { RECEIVE_MESSAGE } from '../actions/message_actions';
 
 import merge from 'lodash/merge';
 
@@ -30,6 +31,10 @@ const ChannelReducer = (state = initialState, action) => {
       return newState;
     case CLEAR_CHANNELS:
       return initialState;
+    case RECEIVE_MESSAGE:
+      newState = merge({}, state);
+      newState[action.message.channel_id].most_recent_activity = action.message.created_at;
+      return newState;
     default:
       return state;
   }

@@ -2,21 +2,13 @@
   box-sizing: border-box;
 }
 
-body, html {
+body, html, .app, #root {
   height: 100%;
 }
 
 .workspace {
   height: 100%;
   overflow: hidden;
-}
-
-.app {
-  height: 100%;
-}
-
-#root {
-  height: 100%;
 }
 
 .full {
@@ -49,6 +41,7 @@ body, html {
   height: 60px;
   width: 60px;
   border-radius: 5px;
+  background-color: #fff;
 }
 
 .custom-scroll::-webkit-scrollbar {

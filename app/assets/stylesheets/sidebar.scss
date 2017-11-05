@@ -21,11 +21,8 @@
 }
 
 .sidebar {
-  /*width: 25%;*/
-  // width: 220px;
   min-width: 220px;
   background-color: #4f3448;
-  // border-right: 1px solid #704a66;
   font-weight: 300;
   font-size: 15px;
   height: 100%;
@@ -37,7 +34,6 @@
 .sidebar .button:hover, .sidebar-button.selected {
   background-color: #301c2b;
   cursor: pointer;
-  /*color: white;*/
 }
 
 .sidebar .link:hover {
@@ -46,7 +42,6 @@
 }
 
 .sidebar > * {
-  /*padding-left: 15px;*/
   color: white;
 }
 

@@ -7,21 +7,20 @@
   color: #333;
   font-weight: 300;
   font-size: 18px;
-  outline: none;
   transition: border-color .1s ease;
   -webkit-transition: border-color .2s ease;
 }
 
 @mixin session-button {
-  outline: none;
   color: white;
   border: none;
-  padding-bottom: 14px;
-  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-top: 14px;
   border-radius: 5px;
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
   font-size: 18px;
+  line-height: 19px;
   transition: background-color .25s ease;
   -webkit-transition: background-color .25s ease;
   margin-bottom: 10px;
@@ -34,7 +33,6 @@
 
 @mixin input-field-focus {
   border: 1px solid #888;
-  outline: none;
 }
 
 @mixin input-field-hover{
@@ -48,9 +46,8 @@
 }
 
 @mixin session-button-active {
-  outline: none;
   border: none;
   border-bottom: 2px solid #2ea06c;
   // border-top: 2px solid #1c6644;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .5);
 }

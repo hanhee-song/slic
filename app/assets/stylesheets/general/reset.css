@@ -57,3 +57,7 @@ a {
 li {
 	list-style: none;
 }
+
+* {
+	outline: none;
+}

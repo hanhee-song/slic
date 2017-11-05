@@ -69,14 +69,12 @@
 .fullscreen-header {
   font-size: 36px;
   font-weight: 700;
-  // margin-bottom: 20px;
 }
 
 .fullscreen-subheader {
-  // font-size: 40px;
   font-weight: 400;
   color: #777;
-  // padding-left: 10px;
+  padding-bottom: 5px;
   margin: 20px 0px 0px 5px;
 }
 
@@ -122,7 +120,8 @@
   font-style: italic;
   font-size: 17px;
   overflow: hidden;
-  max-height: 17px;
+  line-height: 18px;
+  height: 18px;
   width: 590px;
   animation: fadein .1s;
   -webkit-animation: fadein .1s;
@@ -250,9 +249,6 @@
   border: 1px solid #fff;
   border-bottom: 1px solid #ddd;
   color: #777;
-  // height: auto;
-  // overflow: visible;
-  // display: flex;
 }
 
 .fullscreen-index-list .fullscreen-index-list-li:hover {

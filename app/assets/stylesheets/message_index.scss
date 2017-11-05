@@ -139,7 +139,6 @@
   border: 2px solid #bbb;
   padding-left: 50px;
   width: 100%;
-  outline: none;
   height: 100%;
   font-size: 15px;
   color: #333;
@@ -155,10 +154,6 @@
 .message-form-input:focus + .message-form-plus {
   border-color: #777;
 }
-
-// .message-form-outline: .message-form-input {
-//
-// }
 
 @import "form_mixin";
 

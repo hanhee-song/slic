@@ -34,9 +34,6 @@ class ChatHeader extends React.Component {
     this.props.subscribeUserIdsToChannel(this.props.channel, [this.props.currentUser.id])
       .then(
         response => {
-          this.props.rememberCurrentChannelId(
-            this.props.currentUser, this.props.channel.id);
-          this.props.makeChannelVisible(this.props.channel);
           this.closeModal();
         }
       );
@@ -52,10 +49,7 @@ class ChatHeader extends React.Component {
       this.props.channel,
       [this.props.currentUser.id]
     );
-    // this.props.makeChannelInvisible(this.props.channel);
     
-    this.props.rememberCurrentChannelId(
-      this.props.currentUser, this.props.nextChannelId);
     this.props.history.push(`/channels/${this.props.nextChannelId}`);
     this.closeModal();
   }
@@ -63,10 +57,8 @@ class ChatHeader extends React.Component {
   handleInfo() {
     if (this.props.match.path === "/channels/:channelId") {
       this.props.receiveDetails();
-      // this.props.history.push(`/channels/${this.props.channel.id}/details`);
     } else {
       this.props.clearDetails();
-      // this.props.history.push(`/channels/${this.props.channel.id}`);
     }
   }
   

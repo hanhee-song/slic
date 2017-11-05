@@ -5,9 +5,7 @@ import { fetchUsers } from '../../actions/user_actions';
 import { clearDropdown } from '../../actions/ui_actions';
 import { createChannel,
   subscribeUserIdsToChannel,
-  makeChannelVisible
 } from '../../actions/channel_actions';
-import { rememberCurrentChannelId } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -23,8 +21,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchUsers: () => dispatch(fetchUsers()),
     createChannel: (channel, ids) => dispatch(createChannel(channel, ids)),
     subscribeUserIdsToChannel: (channel, ids) => dispatch(subscribeUserIdsToChannel(channel, ids)),
-    makeChannelVisible: (channel) => dispatch(makeChannelVisible(channel)),
-    rememberCurrentChannelId: (user, id) => dispatch(rememberCurrentChannelId(user, id)),
     clearDropdown: () => dispatch(clearDropdown()),
   };
 };

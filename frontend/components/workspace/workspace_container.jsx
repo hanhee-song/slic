@@ -1,6 +1,6 @@
 import Workspace from './workspace';
 import { connect } from 'react-redux';
-import { clearDropdown, receiveDetails } from '../../actions/ui_actions';
+import { receiveDetails } from '../../actions/ui_actions';
 import { fetchChannels, fetchChannel, clearChannelErrors } from '../../actions/channel_actions';
 import { rememberCurrentChannelId } from '../../actions/session_actions';
 
@@ -16,7 +16,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    clearDropdown: () => dispatch(clearDropdown()),
     receiveDetails: () => dispatch(receiveDetails()),
     fetchChannels: () => dispatch(fetchChannels()),
     fetchChannel: (channelId) => dispatch(fetchChannel(channelId)),

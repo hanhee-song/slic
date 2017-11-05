@@ -26,7 +26,6 @@ class Workspace extends React.Component {
       const details = this.props.match.path === "/channels/:channelId/details"
         ? "/details" : "";
       this.props.history.push(`/channels/${channelId}${details}`);
-      this.props.rememberCurrentChannelId(this.props.currentUser, channelId);
       if (details) {
         this.props.receiveDetails();
       }
@@ -39,15 +38,20 @@ class Workspace extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-      this.props.fetchChannel(nextProps.match.params.channelId);
+    const nextChannelId = nextProps.match.params.channelId;
+    
+    if (this.props.match.params.channelId !== nextChannelId) {
+      this.props.fetchChannel(nextChannelId);
+      // TODO: DON'T REMEMBER THE CHANNEL IF THE USER ISN'T A PART OF IT
+      // AND IT'S PRIVATE OR NOT VALID
+      this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
     }
     
     if (this.props.details !== nextProps.details) {
-      this.props.history.push(`/channels/${nextProps.match.params.channelId}${nextProps.details}`);
-    } else if (this.props.match.params.channelId !== nextProps.match.params.channelId
+      this.props.history.push(`/channels/${nextChannelId}${nextProps.details}`);
+    } else if (this.props.match.params.channelId !== nextChannelId
       && nextProps.details && nextProps.match.path !== "/channels/:channelId/details") {
-        this.props.history.push(`/channels/${nextProps.match.params.channelId}${nextProps.details}`);
+        this.props.history.push(`/channels/${nextChannelId}${nextProps.details}`);
     }
     
     // if (this.props.match.params.channelId !== nextProps.match.params.channelId

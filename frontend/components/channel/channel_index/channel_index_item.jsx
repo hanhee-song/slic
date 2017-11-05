@@ -14,10 +14,6 @@ class ChannelIndexItem extends React.Component {
     if (this.props.channel.is_dm) {
       this.props.makeChannelVisible(this.props.channel);
     }
-    this.props.rememberCurrentChannelId(
-      this.props.currentUser,
-      this.props.channel.id
-    );
   }
   
   date() {

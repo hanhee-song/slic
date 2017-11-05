@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import {
   createChannel,
   subscribeUserIdsToChannel,
-  makeChannelVisible,
   clearChannelErrors,
 } from '../../../actions/channel_actions';
 import { clearDropdown } from '../../../actions/ui_actions';
-import { rememberCurrentChannelId } from '../../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
   
@@ -21,8 +19,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     createChannel: (channel) => dispatch(createChannel(channel)),
     subscribeUserIdsToChannel: (channel, ids) => dispatch(subscribeUserIdsToChannel(channel, ids)),
-    makeChannelVisible: (channel) => dispatch(makeChannelVisible(channel)),
-    rememberCurrentChannelId: (user, id) => dispatch(rememberCurrentChannelId(user, id)),
     clearDropdown: () => dispatch(clearDropdown()),
     clearChannelErrors: () => dispatch(clearChannelErrors()),
   };

@@ -18,3 +18,5 @@ json.users do
     end
   end
 end
+
+json.avatar_url @avatar

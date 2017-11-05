@@ -12,6 +12,7 @@ class Api::ChannelsController < ApplicationController
     @counts = {}
     @most_recent_activities = {}
     @names = {}
+    @avatars = {}
     @channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.length
       
@@ -27,6 +28,8 @@ class Api::ChannelsController < ApplicationController
       else
         @names[channel.id] = channel.name
       end
+      
+      @avatars[channel.id] = generate_message_avatar(channel)
     end
     
     @visibles = {}
@@ -36,6 +39,7 @@ class Api::ChannelsController < ApplicationController
         @visibles[subscription.channel_id] = subscription.visible
         @subscribeds[subscription.channel_id] = true
     end
+    
   end
   
   def show
@@ -179,10 +183,10 @@ class Api::ChannelsController < ApplicationController
     else
       @most_recent_activity = channel.created_at
     end
+    @avatar = generate_message_avatar(@channel)
   end
   
   def generate_message_name(channel)
-    
     names = channel.users.map(&:username) - [current_user.username]
     if names.length <= 0
       "#{current_user.username} (you)"
@@ -191,6 +195,13 @@ class Api::ChannelsController < ApplicationController
     elsif names.length >= 4
       names[0, 3].join(", ") + " and #{names.length - 3} other#{names.length > 4 ? 's' : ''}"
     end
+  end
+  
+  def generate_message_avatar(channel)
+    avatar = channel.users.length > 1 ?
+      (channel.users - [current_user]).first.avatar.url
+      : current_user.avatar.url
+    ActionController::Base.helpers.asset_path(avatar)
   end
   
   def channel_params

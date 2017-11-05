@@ -92,7 +92,7 @@ class ChannelIndexItem extends React.Component {
     if (this.props.channel.is_dm) {
       prefix = (
         <img className="profile-image"
-            src={Object.values(this.props.channel.users)[0].avatar_url} />
+            src={this.props.channel.avatar_url} />
       );
     } else {
       if (this.props.channel.is_private) {

@@ -77,15 +77,15 @@ class ChannelDetails extends React.Component {
       );
     });
     
-    let otherUser;
-    if (channel.user_count === 1) {
-      otherUser = Object.assign({}, this.props.currentUser);
-      otherUser.username += ' (you)';
-    } else if (channel.user_count === 2) {
-      otherUser = this.props.users.filter((user) => {
-        return user.id !== this.props.currentUser.id;
-      })[0];
-    }
+    // let otherUser;
+    // if (channel.user_count === 1) {
+    //   otherUser = Object.assign({}, this.props.currentUser);
+    //   otherUser.username += ' (you)';
+    // } else if (channel.user_count === 2) {
+    //   otherUser = this.props.users.filter((user) => {
+    //     return user.id !== this.props.currentUser.id;
+    //   })[0];
+    // }
     
     return (
       <div className="channel-details">
@@ -149,9 +149,9 @@ class ChannelDetails extends React.Component {
               <div className="channel-details-list-user">
                 <div className="fullscreen-index-list-item-left user">
                   <img className="profile-image-large"
-                      src={otherUser.avatar_url} />
+                      src={channel.avatar_url} />
                   <div className="fullscreen-index-list-item name">
-                    {otherUser.username}
+                    {channel.name}
                   </div>
                 </div>
                 <div className="fullscreen-index-list-item preview user">

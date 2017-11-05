@@ -24,8 +24,11 @@ class Workspace extends React.Component {
     if (channelId && this.props.match.path !== "/channels/:channelId/details") {
       // const details = this.props.match.path === "/channels/:channelId/details"
       //   ? "/details" : "";
+      
+      // MAYBE TEMP: DETAIL PANE SHOWS UP BY DEFAULT
       this.props.history.push(`/channels/${channelId}/details`);
     }
+    this.props.fetchChannel(channelId);
     // if (this.props.match.path === "/channels/:channelId/details") {
     this.props.receiveDetails();
     // }

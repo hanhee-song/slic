@@ -30,8 +30,8 @@ class ChannelSidebarItem extends React.Component {
           } else {
             name = `# ${channel.name}`;
           }
-      } else if (Object.values(channel.users).length > 2) {
-        name = `(${Object.values(channel.users).length - 1}) ${channel.name}`;
+      } else if (channel.user_count > 2) {
+        name = `(${channel.user_count - 1}) ${channel.name}`;
       } else {
         name = channel.name;
       }

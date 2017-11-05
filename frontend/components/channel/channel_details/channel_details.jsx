@@ -93,10 +93,10 @@ class ChannelDetails extends React.Component {
           <div className="channel-details-header-name">
             {about}
           </div>
-          <div className="channel-details-header-x">
-            <i
-              className="fa fa-times" aria-hidden="true"
-              onClick={this.handleClose}></i>
+          <div
+            className="channel-details-header-x"
+            onClick={this.handleClose} >
+            <i className="fa fa-times" aria-hidden="true"></i>
           </div>
         </div>
         <div className="fullscreen-index-list-container-sidebar custom-scroll">

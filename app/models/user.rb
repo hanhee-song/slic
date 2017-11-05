@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :username, :session_token, presence: true, uniqueness: true
   validates :username, length: { maximum: 24 }
   validates :password, length: { minimum: 6, allow_nil: true }
-  has_attached_file :avatar, default_url: "default_avatar.png"
+  has_attached_file :avatar, default_url: :random_default_avatar# "default_avatar.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   attr_reader :password
@@ -18,6 +18,10 @@ class User < ApplicationRecord
     class_name: :Channel
   
   after_initialize :ensure_token
+  
+  def random_default_avatar
+    "avatar_#{self.id % 5 + 1}.png"
+  end
   
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

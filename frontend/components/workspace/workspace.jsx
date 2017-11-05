@@ -21,14 +21,14 @@ class Workspace extends React.Component {
     this.props.fetchChannels();
     
     const channelId = this.props.currentUser.most_recent_channel_id;
-    if (channelId) {
-      const details = this.props.match.path === "/channels/:channelId/details"
-        ? "/details" : "";
-      this.props.history.push(`/channels/${channelId}${details}`);
+    if (channelId && this.props.match.path !== "/channels/:channelId/details") {
+      // const details = this.props.match.path === "/channels/:channelId/details"
+      //   ? "/details" : "";
+      this.props.history.push(`/channels/${channelId}/details`);
     }
-    if (this.props.match.path === "/channels/:channelId/details") {
-      this.props.receiveDetails();
-    }
+    // if (this.props.match.path === "/channels/:channelId/details") {
+    this.props.receiveDetails();
+    // }
     
     var channel = pusher.subscribe('channel-connection');
     channel.bind('update-channel', (channel) => {

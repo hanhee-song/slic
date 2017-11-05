@@ -16,6 +16,7 @@ class ChannelForm extends React.Component {
   }
   
   componentDidMount() {
+    this.props.clearChannelErrors();
     document.addEventListener("keydown", this.handleEscape, false);
   }
   
@@ -45,8 +46,6 @@ class ChannelForm extends React.Component {
           const id = response.channel.id;
           const user_id = this.props.currentUser.id;
           this.props.subscribeUserIdsToChannel(response.channel, [this.props.currentUser.id]);
-          // this.props.rememberCurrentChannelId(
-          //   this.props.currentUser, response.channel.id);
           this.handleClose();
           this.props.history.push(`/channels/${response.channel.id}`);
         }

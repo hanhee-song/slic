@@ -2,6 +2,7 @@ import {
   RECEIVE_ALL_MESSAGES,
   RECEIVE_MESSAGE,
   REMOVE_MESSAGE,
+  CLEAR_MESSAGES,
 } from '../actions/message_actions';
 import { RECEIVE_CHANNEL } from '../actions/channel_actions';
 
@@ -25,6 +26,8 @@ const MessageReducer = (state = initialState, action) => {
     case RECEIVE_MESSAGE:
       newState = merge({}, state, { [action.message.id]: action.message });
       return newState;
+    case CLEAR_MESSAGES:
+      return initialState;
     // case REMOVE_MESSAGE:
     //   newState = merge({}, state);
     //   delete newState[action.messageId];

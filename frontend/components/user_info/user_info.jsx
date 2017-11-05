@@ -22,7 +22,6 @@ class UserInfo extends React.Component {
   
   handleLogout() {
     this.props.logout();
-    this.props.clearChannels();
   }
   
   render () {

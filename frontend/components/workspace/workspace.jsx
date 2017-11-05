@@ -40,6 +40,12 @@ class Workspace extends React.Component {
     });
   }
   
+  componentWillUnmount() {
+    pusher.unsubscribe('channel-connection');
+    this.props.clearChannels();
+    this.props.clearMessages();
+  }
+  
   componentWillReceiveProps(nextProps) {
     const nextChannelId = nextProps.match.params.channelId;
     const thisChannelId = this.props.match.params.channelId;

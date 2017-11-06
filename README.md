@@ -1,6 +1,6 @@
 # README
 
-Slic: [Live site](http://slic.herokuapp.com/)
+Slic: [Live site](http://www.slic.live/)
 
 Slic is a single-page messaging app modeled after Slack. It is built on Rails back-end and React/Redux front-end and utilizes RESTful architecture. It employs Pusher to establish a live connection.
 

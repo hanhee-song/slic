@@ -77,16 +77,6 @@ class ChannelDetails extends React.Component {
       );
     });
     
-    // let otherUser;
-    // if (channel.user_count === 1) {
-    //   otherUser = Object.assign({}, this.props.currentUser);
-    //   otherUser.username += ' (you)';
-    // } else if (channel.user_count === 2) {
-    //   otherUser = this.props.users.filter((user) => {
-    //     return user.id !== this.props.currentUser.id;
-    //   })[0];
-    // }
-    
     return (
       <div className="channel-details">
         <div className="channel-details-header">

@@ -17,21 +17,11 @@ const MessageReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_MESSAGES:
       return action.messages;
-    // case RECEIVE_CHANNEL:
-      // action.channel.messages returns undefined when a channel has no messages
-      // darn jbuilder sending up no empty object
-      // const actionMessages = action.channel.messages || {};
-      // return merge({}, state, actionMessages);
-      // return action.channel.messages || {};
     case RECEIVE_MESSAGE:
       newState = merge({}, state, { [action.message.id]: action.message });
       return newState;
     case CLEAR_MESSAGES:
       return initialState;
-    // case REMOVE_MESSAGE:
-    //   newState = merge({}, state);
-    //   delete newState[action.messageId];
-    //   return newState;
     default:
       return state;
   }

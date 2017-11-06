@@ -11,13 +11,6 @@ export const receiveAllUsers = (users) => {
   };
 };
 
-// export const receiveUser = (user) => {
-//   return {
-//     type: RECEIVE_USER,
-//     user,
-//   };
-// };
-
 export const receiveUserErrors = (errors) => {
   return {
     type: RECEIVE_USER_ERRORS,
@@ -40,23 +33,3 @@ export const fetchUsers = () => {
       );
   };
 };
-
-// export const fetchUser = (userId) => {
-//   return (dispatch) => {
-//     return UserApiUtil.fetchUser(userId)
-//       .then(
-//         (user) => dispatch(receiveUser(user)),
-//         (errors) => dispatch(receiveUserErrors(errors))
-//       );
-//   };
-// };
-//
-// export const updateUser = (user) => {
-//   return (dispatch) => {
-//     return UserApiUtil.updateUser(user)
-//       .then(
-//         (user) => dispatch(receiveUser(user)),
-//         (errors) => dispatch(receiveUserErrors(errors))
-//       );
-//   };
-// };

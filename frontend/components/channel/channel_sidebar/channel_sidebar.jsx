@@ -56,7 +56,6 @@ class ChannelSidebar extends React.Component {
             selectedChannelId={this.props.selectedChannelId}/>
         );
       });
-    // channel items with a type of "message" have the x conditionally show
     
     return (
       <div className="sidebar-section">

@@ -15,10 +15,10 @@ const footer = () => {
             <li><a href="#">About Me</a></li>
           </ul>
           <ul className="footer-list">
-            <li><a href="#"><i className="fa fa-github" aria-hidden="true"></i> Github</a></li>
+            <li><a href="https://github.com/hanhee-song/slic"><i className="fa fa-github" aria-hidden="true"></i> Github</a></li>
           </ul>
           <ul className="footer-list">
-            <li><a href="#"><i className="fa fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
+            <li><a href="https://www.linkedin.com/in/hanhee-song-641291127/"><i className="fa fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
           </ul>
         </ul>
       </div>

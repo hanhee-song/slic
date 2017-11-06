@@ -13,17 +13,6 @@ class Api::UsersController < ApplicationController
       @user.update(most_recent_channel_id: first_channel.id)
       
       create_welcome_message
-      
-      # self_dm = Channel.create!(
-      #   name: rand(99999999),
-      #   is_private: true,
-      #   is_dm: true
-      # )
-      #
-      # self_dm.subscriptions.create!(
-      #   user_id: @user.id,
-      #   visible: true
-      # )
       render "api/users/show"
     else
       render json: @user.errors.full_messages, status: 422

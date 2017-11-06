@@ -56,7 +56,6 @@ class Api::ChannelsController < ApplicationController
   end
   
   def create
-    # Manually search every channel to see if this already exists
     if channel_params[:is_dm]
       Channel.all.where("is_dm").includes(:users).each do |channel|
         if channel.users.map(&:id).sort == option_params[:user_ids].sort
@@ -101,8 +100,6 @@ class Api::ChannelsController < ApplicationController
     
     user_ids = option_params[:user_ids]
     
-    # Subscribing a user
-    # If already subscribed, make visible
     if option_params[:change_subscription]
       send_update = true
       if option_params[:subscribe]
@@ -118,7 +115,6 @@ class Api::ChannelsController < ApplicationController
           end
         end
         
-      # Unsubscribing a user
       else
         user_ids.each do |user_id|
           subs = @channel.subscriptions.find_by(user_id: user_id)
@@ -127,7 +123,6 @@ class Api::ChannelsController < ApplicationController
       end
     end
     
-    # Change visibility of channel
     if option_params[:change_visibility]
       user_ids.each do |user_id|
         subs = @channel.subscriptions.find_by(user_id: user_id)
@@ -139,7 +134,6 @@ class Api::ChannelsController < ApplicationController
       send_update = true
     end
     
-    # Render
     if send_update
       if @channel.is_private && !@channel.users.ids.include?(current_user.id)
         render json: [""], status: 404
@@ -151,14 +145,6 @@ class Api::ChannelsController < ApplicationController
     else
       render json: ["Channel not found"], status: 404
     end
-    # Updating the channel
-    #   if @channel.update(channel_params)
-    #     render_show(@channel)
-    #     Pusher.trigger('channel-connection', 'update-channel', @channel.id)
-    #   else
-    #     render json: @channel.errors.full_messages, status: 422
-    #   end
-    # end
   end
   
   def destroy

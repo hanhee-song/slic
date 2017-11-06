@@ -81,16 +81,3 @@ export const rememberCurrentChannelId = (user, channelId) => {
       );
   };
 };
-
-// Make a util to choose the first channel Id in the list that's not
-// channelId
-//
-// export const newCurrentChannelId = (user, channels, channelId) => {
-//   return (dispatch) => {
-//     return SessionApiUtil.updateUser(user, channelId)
-//       .then(
-//         (user) => dispatch(receiveCurrentUser(user)),
-//         (errors) => dispatch(receiveSessionErrors(errors))
-//       );
-//   };
-// };

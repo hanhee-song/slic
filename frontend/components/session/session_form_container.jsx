@@ -17,14 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  // TEMP: guest login no longer generates a new account
-  // const submitForm = ownProps.location.pathname === '/login' ?
-  //   login : signup;
-  
-  // TEMP: make guest login access a pre-seeded account
   const submitForm = ownProps.location.pathname === '/signup' ?
     signup : login;
-  //
   
   return {
     submitForm: (user) => dispatch(submitForm(user)),

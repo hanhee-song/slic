@@ -54,7 +54,6 @@
 
 .chat-header-left-options .button {
   padding: 2px 4px;
-  // margin: 3px 5px;
 }
 
 .chat-header .blue-hover:hover{
@@ -62,7 +61,6 @@
 }
 
 .chat-header-right {
-  /*padding-top: 7px;*/
   color: #777;
   display: flex;
   align-items: center;
@@ -81,20 +79,7 @@
   cursor: pointer;
 }
 
-
-/* ------------------------------------------
-PURE CSS SPEECH BUBBLES
-by Nicolas Gallagher
-- http://nicolasgallagher.com/pure-css-speech-bubbles/
-
-http://nicolasgallagher.com
-http://twitter.com/necolas
-
-Created: 02 March 2010
-Version: 1.2 (03 March 2011)
-
-Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
------------------------------------------- */
+// BUBBLE
 
 .chat-info-bubble {
   position: absolute;

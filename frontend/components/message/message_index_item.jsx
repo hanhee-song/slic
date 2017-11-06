@@ -7,7 +7,6 @@ class MessageIndexItem extends React.Component {
   }
   
   date() {
-    // some convoluted logic to show the right time. I'm sure I could do better
     let time = this.props.message.created_at
       .split("T")[1].split(":");
     let minute = time[1];

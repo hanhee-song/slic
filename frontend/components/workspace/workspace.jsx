@@ -20,13 +20,7 @@ class Workspace extends React.Component {
   componentDidMount() {
     const channelId = this.props.currentUser.most_recent_channel_id;
     
-    this.props.fetchChannels();//.then(
-    //   channels => {
-    //     if (!Object.keys(channels).includes(this.props.match.params.channelId)) {
-    //       this.props.history.push(`/channels/${channelId}/details`);
-    //     }
-    //   }
-    // );
+    this.props.fetchChannels();
     
     if (channelId && this.props.match.path !== "/channels/:channelId/details") {
       this.props.history.push(`/channels/${channelId}/details`);

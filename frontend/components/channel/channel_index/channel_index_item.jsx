@@ -47,7 +47,6 @@ class ChannelIndexItem extends React.Component {
     const date = new Date(this.props.channel.most_recent_activity);
     const now = new Date();
     
-    // Surely there's a better way to do this...
     const timeDif = (
       now.getYear()*365*30*24*60 + now.getMonth()*30*24*60 +
       now.getDate()*24*60 + now.getHours()*60 + now.getMinutes()

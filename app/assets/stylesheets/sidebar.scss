@@ -89,7 +89,7 @@
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  position: relative; // for hoverables
+  position: relative;
 }
 
 .sidebar-section-title {
@@ -128,7 +128,6 @@
 }
 
 .sidebar-section-items .selected:hover {
-  /* overwriting previous hover fx */
   background-color: #598e84;
   color: white;
 }
@@ -170,19 +169,7 @@
   display: inline;
 }
 
-/* ------------------------------------------
-PURE CSS SPEECH BUBBLES
-by Nicolas Gallagher
-- http://nicolasgallagher.com/pure-css-speech-bubbles/
-
-http://nicolasgallagher.com
-http://twitter.com/necolas
-
-Created: 02 March 2010
-Version: 1.2 (03 March 2011)
-
-Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
------------------------------------------- */
+// BUBBLE
 
 .sidebar-info-bubble {
   position: absolute;
@@ -234,7 +221,6 @@ Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
 .dm-2:after {
   left: 54px;
 }
-
 
 .sidebar-hoverable:hover + .sidebar-info-bubble {
   display: block;

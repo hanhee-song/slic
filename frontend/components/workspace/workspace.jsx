@@ -59,7 +59,7 @@ class Workspace extends React.Component {
     if (thisChannelId !== nextChannelId
       && channelIds.includes(nextChannelId)) {
       this.props.fetchChannel(nextChannelId);
-      
+      this.props.clearMessages();
       this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
     }
     

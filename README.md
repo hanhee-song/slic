@@ -24,9 +24,9 @@ Users can sign up for Slic or log in via the front page. Slic will automatically
 
 #### Channels and Invites
 
-Users can create channels and invite users to channels. Users can also view and join non-private channels. Invited users will have the channels added to their sidebar automatically.
+Users can create channels and invite users to channels. Users can also view and join non-private channels. Invited users will have the channels added to their sidebar automatically, and the channel's users list will update in real-time when users join or leave a channel.
 
-Users can create private channels, which can be joined only through invites and are not visible to others. Updates to a channel's users list are automatically sent when users join or leave a channel. Private channels are securely protected on the server side; the server will reject any request to access a channel that the user is not a part of.
+Users can create private channels, which can be joined only through invites and are not visible to others. Private channels are protected on the server side; the server will reject a request to access or view the messages of a channel that the user is not a part of. Attempts to access an invalid or inaccessible channel ID will automatically redirect the user back to their previous channel.
 
 #### Messages
 
@@ -34,7 +34,7 @@ Slic enables its users to send and receive messages in real-time via Pusher. Joi
 
 #### Direct and Group Messaging
 
-Slic allows its users to create and browse through direct messages and group messages with select people. A search bar enables quick lookup of users. When attempting to create a preexisting DM, the user will be conveniently redirected to the preexisting DM.
+Slic allows its users to create, browse, and hide direct messages and group messages with select people. A search bar enables quick lookup of users. When attempting to create a preexisting DM, the user will be conveniently redirected to the preexisting DM.
 
 #### Channel Details Panel
 

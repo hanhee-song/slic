@@ -28,14 +28,19 @@
 }
 
 .message-index-item {
-  line-height: 22px;
+  // line-height: 18px;
   display: flex;
   color: #333;
   animation: fadein .3s;
   -webkit-animation: fadein .3s;
 }
 
-.message-index-item.beginning {
+.message-index-item:hover {
+  background-color: #f9f9f9;
+}
+
+.message-index-item-beginning {
+  color: #333;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
@@ -71,11 +76,12 @@
 }
 
 .message-index-item-profile-image {
-  margin: 15px 15px 0px 30px;
+  margin: 5px 15px 5px 30px;
 }
 
 .message-index-item-content {
-  margin: 15px 0px 0px 0px;
+  line-height: 22px;
+  margin: 5px 0px 5px 0px;
   display: flex;
   flex-direction: column;
   overflow-wrap: break-word;

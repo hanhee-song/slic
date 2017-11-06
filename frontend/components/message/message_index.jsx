@@ -110,7 +110,7 @@ class MessageIndex extends React.Component {
       beginningMessage = (
         <div
           key={channel.id}
-          className="message-index-item beginning">
+          className="message-index-item-beginning">
           <div className="message-index-item-beginning-header">
             {name}
           </div>

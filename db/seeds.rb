@@ -8,11 +8,11 @@
 
 ActiveRecord::Base.transaction do
   User.destroy_all
-  guest = User.new(username: 'slic-guest', password: 'asdfasdf')
-  guest.save!
-  
   # hanhee-song is me!
   hanhee_song = User.create!(username: 'hanhee-song', password: 'asdfasdf')
+  
+  guest = User.new(username: 'slic-guest', password: 'asdfasdf')
+  guest.save!
   
   16.times do
     User.create!(
@@ -108,6 +108,7 @@ ActiveRecord::Base.transaction do
     end
   end
   guest.update(most_recent_channel_id: Channel.find_by(name: 'general').id)
+  hanhee_song.update(most_recent_channel_id: Channel.find_by(name: 'general').id)
   
   # CREATE RANDOM PRIVATE MESSAGES FOR GUEST
   accounts = User.limit(18)[3..16]
@@ -143,7 +144,7 @@ ActiveRecord::Base.transaction do
   Message.create!(
     author_id: hanhee_song.id,
     channel_id: dm.id,
-    body: "Hi there! Welcome to my Slic app."
+    body: User.welcome_message
   )
   
   # CHAT WITH ANOTHER

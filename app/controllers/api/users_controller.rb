@@ -12,6 +12,8 @@ class Api::UsersController < ApplicationController
       )
       @user.update(most_recent_channel_id: first_channel.id)
       
+      create_welcome_message
+      
       # self_dm = Channel.create!(
       #   name: rand(99999999),
       #   is_private: true,
@@ -51,5 +53,30 @@ class Api::UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:username, :password, :most_recent_channel_id)
+  end
+  
+  def create_welcome_message
+    hanhee = User.find_by(username: 'hanhee-song')
+    channel = Channel.new(
+      name: SecureRandom::urlsafe_base64(8),
+      is_private: true,
+      is_dm: true,
+      creator_id: hanhee.id
+    )
+    channel.save!
+    channel.subscriptions.create!(
+      user_id: @user.id,
+      visible: true
+    )
+    channel.subscriptions.create!(
+      user_id: hanhee.id,
+      visible: true
+    )
+    
+    Message.create!(
+      author_id: hanhee.id,
+      channel_id: channel.id,
+      body: User.welcome_message
+    )
   end
 end

@@ -19,10 +19,6 @@ class User < ApplicationRecord
   
   after_initialize :ensure_token
   
-  def random_default_avatar
-    "avatar_#{self.id % 5 + 1}.png"
-  end
-  
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     user && user.is_password?(password) ? user : nil
@@ -58,5 +54,15 @@ class User < ApplicationRecord
   def can_see_channel?(channel)
     channel_sub = self.channel_subscriptions.find_by(channel_id: channel.id)
     channel_sub && channel_sub.visible
+  end
+  
+  def self.welcome_message
+    "Hi there! Welcome to Slic."
+  end
+  
+  private
+  
+  def random_default_avatar
+    "avatar_#{self.id % 5 + 1}.png"
   end
 end

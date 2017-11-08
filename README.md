@@ -14,8 +14,6 @@ Slic is a single-page messaging app modeled after Slack. It is built on Rails ba
 
 4. Private and Group Messaging
 
-5. Channel Details Panel
-
 *Note: gifs will be added once notifications are implemented*
 
 #### Users
@@ -26,19 +24,35 @@ Users can sign up for Slic or log in via the front page. Slic will automatically
 
 Users can create channels and invite users to channels. Users can also view and join non-private channels. Invited users will have the channels added to their sidebar automatically, and the channel's users list will update in real-time when users join or leave a channel.
 
+![Join Channel](https://thumbs.gfycat.com/EthicalConstantGhostshrimp-max-14mb.gif)
+
 Users can create private channels, which can be joined only through invites and are not visible to others. Private channels are protected on the server side; the server will reject a request to access or view the messages of a channel that the user is not a part of. Attempts to access an invalid or inaccessible channel ID will automatically redirect the user back to their previous channel.
+
+![Private Channels](https://thumbs.gfycat.com/AridRigidDegu-max-14mb.gif)
 
 #### Messages
 
 Slic enables its users to send and receive messages in real-time via Pusher. Joining a channel generates a new connection to the server. When a user submits a new message, the client notifies the server to push the new message to those who are connected to that specific channel.
 
+![Channel Message](https://thumbs.gfycat.com/BrokenMajesticKakarikis-max-14mb.gif)
+
 #### Direct and Group Messaging
 
-Slic allows its users to create, browse, and hide direct messages and group messages with select people. A search bar enables quick lookup of users. When attempting to create a preexisting DM, the user will be conveniently redirected to the preexisting DM.
+Slic allows its users to create, browse, and hide direct messages and group messages with select people.
 
-#### Channel Details Panel
+![DM](https://thumbs.gfycat.com/OddballEdibleHydra-max-14mb.gif)
 
-A details panel shows useful information depending on the communication type.
+The message index will sort itself in real-time according to the most recent activity.
+
+![Message Index](https://thumbs.gfycat.com/FragrantLikableJackal-max-14mb.gif)
+
+Users can create group messages by inviting multiple users to a DM.
+
+![Group Message](https://thumbs.gfycat.com/JoyousGrizzledJavalina-max-14mb.gif)
+
+Users can hide direct messages if the sidebar becomes too cluttered. When attempting to create a DM with a previously messaged user, Slic will show the previous DM instead of creating a new one.
+
+![Find Preexisting DM](https://thumbs.gfycat.com/ScaryFreeFanworms-max-14mb.gif)
 
 #### Features to Implement
 

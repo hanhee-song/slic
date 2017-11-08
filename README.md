@@ -1,8 +1,8 @@
 # README
 
-Slic: [Live site](http://www.slic.live/)
+[Live site](http://www.slic.live/)
 
-Slic is a single-page messaging app modeled after Slack. It is built on Rails back-end and React/Redux front-end and utilizes RESTful architecture. It employs Pusher to establish a live connection.
+Slic is a single-page messaging app inspired by Slack. It is built on Rails back-end and React/Redux front-end and utilizes RESTful architecture. It employs Pusher to establish a live connection.
 
 ### Features
 
@@ -13,8 +13,6 @@ Slic is a single-page messaging app modeled after Slack. It is built on Rails ba
 3. Messages
 
 4. Private and Group Messaging
-
-*Note: gifs will be added once notifications are implemented*
 
 #### Users
 

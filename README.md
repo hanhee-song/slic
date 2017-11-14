@@ -14,8 +14,6 @@ Slic is a single-page messaging app modeled after Slack. It is built on Rails ba
 
 4. Private and Group Messaging
 
-*Note: gifs will be added once notifications are implemented*
-
 #### Users
 
 Users can sign up for Slic or log in via the front page. Slic will automatically redirect users to the login page when the user attempts to view a channel without being logged in. A guest login is conveniently provided for quick access to Slic's features.

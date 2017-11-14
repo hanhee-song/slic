@@ -4,7 +4,6 @@ import {
   REMOVE_MESSAGE,
   CLEAR_MESSAGES,
 } from '../actions/message_actions';
-import { RECEIVE_CHANNEL } from '../actions/channel_actions';
 
 import merge from 'lodash/merge';
 

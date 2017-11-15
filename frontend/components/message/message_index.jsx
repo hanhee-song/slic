@@ -47,7 +47,7 @@ class MessageIndex extends React.Component {
   generateDate(date) {
     const today = new Date();
     let yesterday = new Date();
-    yesterday.setDate(date.getDate() - 1);
+    yesterday.setDate(today.getDate() - 1);
     
     let time;
     if (today.getMonth() === date.getMonth()

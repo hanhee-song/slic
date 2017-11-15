@@ -41,12 +41,16 @@
 }
 
 .message-index-divider-text {
+  display: inline-block;
   position: absolute;
   top: -13px;
-  display: inline-block;
   background-color: #fff;
   padding: 4px 10px;
   border-radius: 10px;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
 
 .message-index-item {

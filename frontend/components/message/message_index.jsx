@@ -1,6 +1,7 @@
 import React from 'react';
 import MessageIndexItemContainer from './message_index_item_container';
 import MessageFormContainer from './message_form_container';
+import MessageIndexBeginning from './message_index_beginning';
 import { Route } from 'react-router-dom';
 
 class MessageIndex extends React.Component {
@@ -58,75 +59,29 @@ class MessageIndex extends React.Component {
       );
     });
     
-    let message = "";
-    let beginningMessage;
+    // let messages = [];
+    // for (var i = 0; i < messages.length; i++) {
+    //   let message = messages[i];
+    //   let nextMessage = message[i + 1];
+    //   messages.push(
+    //     <MessageIndexItemContainer
+    //       key={message.id}
+    //       message={message}/>
+    //   );
+    //
+    // }
     
     const channel = this.props.channel;
-    if (channel.id) {
-      let name;
-      if (channel.is_dm) {
-        name = channel.name;
-      } else if (channel.is_private) {
-        name = (<div>
-            <i className="fa fa-lock" aria-hidden="true"></i>&nbsp;
-            {channel.name}
-          </div>);
-      } else {
-        name = `#${channel.name}`;
-      }
-      
-      if (channel.creator && channel.creator.username) {
-        const date = new Date(channel.created_at);
-        const today = new Date();
-        const thisMonth = "January February March April May June July August September October November December".split(' ')[today.getMonth()];
-        const month = "January February March April May June July August September October November December".split(' ')[date.getMonth()];
-        
-        let time;
-        if (thisMonth === month && today.getDate() === date.getDate()) {
-          time = " today";
-        } else {
-          time = ` on ${month} ${date.getDate()}`;
-        }
-      
-        if (channel.creator.id === this.props.currentUser.id) {
-          message += `You created this channel${time}.`;
-        } else if (channel.creator.id) {
-          message += `${channel.creator.username} created this channel${time}.`;
-        }
-      }
-      
-      if (channel.is_dm) {
-        message += ` This is the start of your conversation with ${channel.name}`;
-      } else if (channel.is_private) {
-        message += ` This is the very beginning of the ${channel.name} private channel.`;
-      } else {
-        message += ` This is the very beginning of the #${channel.name} channel.`;
-      }
-      
-      if (channel.description) {
-        message += ` Purpose: ${channel.description}`;
-      }
-      
-      beginningMessage = (
-        <div
-          key={channel.id}
-          className="message-index-item-beginning">
-          <div className="message-index-item-beginning-header">
-            {name}
-          </div>
-          <div className="message-index-item-beginning-body">
-            {message}
-          </div>
-          <div className="message-index-item-break"></div>
-        </div>
-      );
-    }
     
     return (
       <div className="message-container">
         <div className="message-index-overflow-wrapper custom-scroll">
           <div className="message-index">
-            {beginningMessage}
+            { channel.id &&
+              <MessageIndexBeginning
+                channel={channel}
+                currentUser={this.props.currentUser} />
+            }
             {messages}
           </div>
           

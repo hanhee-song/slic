@@ -59,7 +59,6 @@ const MessageIndexBeginning = ({ channel, currentUser }) => {
       <div className="message-index-item-beginning-body">
         {message}
       </div>
-      <div className="message-index-item-break"></div>
     </div>
   );
 };

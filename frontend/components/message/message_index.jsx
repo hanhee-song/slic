@@ -51,25 +51,43 @@ class MessageIndex extends React.Component {
   }
   
   render () {
-    const messages = this.props.messages.map((message) => {
-      return (
-        <MessageIndexItemContainer
-          key={message.id}
-          message={message}/>
-      );
-    });
-    
-    // let messages = [];
-    // for (var i = 0; i < messages.length; i++) {
-    //   let message = messages[i];
-    //   let nextMessage = message[i + 1];
-    //   messages.push(
+    // const messages = this.props.messages.map((message) => {
+    //   return (
     //     <MessageIndexItemContainer
     //       key={message.id}
     //       message={message}/>
     //   );
-    //
-    // }
+    // });
+    
+    let messages = [];
+    for (var i = 0; i < this.props.messages.length; i++) {
+      let message = this.props.messages[i];
+      let nextMessage = this.props.messages[i + 1];
+      messages.push(
+        <MessageIndexItemContainer
+          key={message.id}
+          message={message}/>
+      );
+      if (!nextMessage) continue;
+      let thisDate = new Date(message.created_at);
+      let nextDate = new Date(nextMessage.created_at);
+      if (thisDate.getDate() !== nextDate.getDate()
+        || thisDate.getMonth() !== nextDate.getMonth()
+        || thisDate.getYear() !== nextDate.getYear()) {
+          messages.push(
+            <div
+              className="message-index-divider"
+              key={-message.id}>
+              <div className="message-index-divider-line">
+                
+                <div className="message-index-divider-text">
+                  day
+                </div>
+              </div>
+            </div>
+          );
+        }
+    }
     
     const channel = this.props.channel;
     

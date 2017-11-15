@@ -1,7 +1,6 @@
 import React from 'react';
 
 const MessageIndexBeginning = ({ channel, currentUser }) => {
-  debugger;
   let message = "";
   
   let name;

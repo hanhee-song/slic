@@ -26,6 +26,29 @@
   flex-shrink: 0;
 }
 
+.message-index-divider {
+  position: relative;
+  height: 30px;
+}
+
+.message-index-divider-line {
+  position: absolute;
+  top: 15px;
+  width: 100%;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+}
+
+.message-index-divider-text {
+  position: absolute;
+  top: -13px;
+  display: inline-block;
+  background-color: #fff;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+
 .message-index-item {
   display: flex;
   color: #333;

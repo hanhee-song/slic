@@ -62,15 +62,12 @@
 
 .message-index-item-beginning {
   color: #333;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   animation: message-fadein .5s;
   -webkit-animation: message-fadein .5s;
 }
-
-
 
 .message-index-item-beginning-header {
   font-weight: 700;

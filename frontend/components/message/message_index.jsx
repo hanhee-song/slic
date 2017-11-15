@@ -2,17 +2,11 @@ import React from 'react';
 import MessageIndexItemContainer from './message_index_item_container';
 import MessageFormContainer from './message_form_container';
 import MessageIndexBeginning from './message_index_beginning';
-import { Route } from 'react-router-dom';
 
 class MessageIndex extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       this.props.fetchMessages(nextProps.match.params.channelId);
-      
       pusher.unsubscribe(`channel-connection-${this.props.match.params.channelId}`);
       
       var channel = pusher.subscribe(`channel-connection-${nextProps.match.params.channelId}`);
@@ -50,43 +44,61 @@ class MessageIndex extends React.Component {
     pusher.unsubscribe(`channel-connection-${this.props.match.params.channelId}`);
   }
   
-  render () {
-    // const messages = this.props.messages.map((message) => {
-    //   return (
-    //     <MessageIndexItemContainer
-    //       key={message.id}
-    //       message={message}/>
-    //   );
-    // });
+  generateDate(date) {
+    const today = new Date();
+    let yesterday = new Date();
+    yesterday.setDate(date.getDate() - 1);
     
+    let time;
+    if (today.getMonth() === date.getMonth()
+      && today.getDate() === date.getDate()
+      && today.getYear() === date.getYear()) {
+      time = "Today";
+    } else if (yesterday.getMonth() === date.getMonth()
+      && yesterday.getDate() === date.getDate()
+      && yesterday.getYear() === date.getYear()) {
+      time = "Yesterday";
+    } else {
+      const thisMonth = "January February March April May June July August September October November December".split(' ')[today.getMonth()];
+      const thisDay = "Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(' ')[today.getDay()];
+      time = `${thisDay}, ${thisMonth} ${date.getDate()}`;
+    }
+    return time;
+  }
+  
+  render () {
     let messages = [];
     for (var i = 0; i < this.props.messages.length; i++) {
       let message = this.props.messages[i];
-      let nextMessage = this.props.messages[i + 1];
+      let prevMessage = this.props.messages[i - 1] || {};
+      let thisDate = new Date(message.created_at);
+      let nextDate = new Date(prevMessage.created_at) || {};
+      if (thisDate.getDate() !== nextDate.getDate()
+        || thisDate.getMonth() !== nextDate.getMonth()
+        || thisDate.getYear() !== nextDate.getYear()) {
+        
+        let date = this.generateDate(thisDate);
+        
+        messages.push(
+          <div
+            className="message-index-divider"
+            key={-message.id}>
+            <div className="message-index-divider-line">
+              
+              <div className="message-index-divider-text">
+                {date}
+              </div>
+            </div>
+          </div>
+        );
+      }
+      
       messages.push(
         <MessageIndexItemContainer
           key={message.id}
           message={message}/>
       );
-      if (!nextMessage) continue;
-      let thisDate = new Date(message.created_at);
-      let nextDate = new Date(nextMessage.created_at);
-      if (thisDate.getDate() !== nextDate.getDate()
-        || thisDate.getMonth() !== nextDate.getMonth()
-        || thisDate.getYear() !== nextDate.getYear()) {
-          messages.push(
-            <div
-              className="message-index-divider"
-              key={-message.id}>
-              <div className="message-index-divider-line">
-                
-                <div className="message-index-divider-text">
-                  day
-                </div>
-              </div>
-            </div>
-          );
-        }
+
     }
     
     const channel = this.props.channel;

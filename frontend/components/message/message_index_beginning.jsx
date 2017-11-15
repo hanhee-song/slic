@@ -22,7 +22,9 @@ const MessageIndexBeginning = ({ channel, currentUser }) => {
     const month = "January February March April May June July August September October November December".split(' ')[date.getMonth()];
     
     let time;
-    if (thisMonth === month && today.getDate() === date.getDate()) {
+    if (thisMonth === month
+      && today.getDate() === date.getDate()
+      && today.getYear() === date.getYear()) {
       time = " today";
     } else {
       time = ` on ${month} ${date.getDate()}`;

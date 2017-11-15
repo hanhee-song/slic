@@ -4,9 +4,20 @@ import MessageFormContainer from './message_form_container';
 import MessageIndexBeginning from './message_index_beginning';
 
 class MessageIndex extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false,
+    };
+  }
+  
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-      this.props.fetchMessages(nextProps.match.params.channelId);
+      this.setState({ loaded: false });
+      this.props.fetchMessages(nextProps.match.params.channelId)
+        .then(success => {
+          this.setState({ loaded: true });
+        });
       pusher.unsubscribe(`channel-connection-${this.props.match.params.channelId}`);
       
       var channel = pusher.subscribe(`channel-connection-${nextProps.match.params.channelId}`);
@@ -20,7 +31,10 @@ class MessageIndex extends React.Component {
   }
   
   componentDidMount() {
-    this.props.fetchMessages(this.props.match.params.channelId);
+    this.props.fetchMessages(this.props.match.params.channelId)
+      .then(success => {
+        this.setState({ loaded: true });
+      });
     var channel = pusher.subscribe(`channel-connection-${this.props.match.params.channelId}`);
     channel.bind('create-message', (message) => {
       this.props.receiveMessage(message);
@@ -106,8 +120,27 @@ class MessageIndex extends React.Component {
     return (
       <div className="message-container">
         <div className="message-index-overflow-wrapper custom-scroll">
+          {
+            !this.state.loaded &&
+            <div className="message-index-loading-wrapper">
+              <div class="sk-circle">
+                <div class="sk-circle1 sk-child"></div>
+                <div class="sk-circle2 sk-child"></div>
+                <div class="sk-circle3 sk-child"></div>
+                <div class="sk-circle4 sk-child"></div>
+                <div class="sk-circle5 sk-child"></div>
+                <div class="sk-circle6 sk-child"></div>
+                <div class="sk-circle7 sk-child"></div>
+                <div class="sk-circle8 sk-child"></div>
+                <div class="sk-circle9 sk-child"></div>
+                <div class="sk-circle10 sk-child"></div>
+                <div class="sk-circle11 sk-child"></div>
+                <div class="sk-circle12 sk-child"></div>
+              </div>
+            </div>
+          }
           <div className="message-index">
-            { channel.id &&
+            { channel.id && this.state.loaded &&
               <MessageIndexBeginning
                 channel={channel}
                 currentUser={this.props.currentUser} />

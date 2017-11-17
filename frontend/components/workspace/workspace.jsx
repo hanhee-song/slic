@@ -12,6 +12,8 @@ import UserIndexContainer from '../user/user_index_container';
 import MessageIndexContainer from '../message/message_index_container';
 import ChannelDetailsContainer from '../channel/channel_details/channel_details_container';
 
+import ChannelSidebarFooter from '../channel/channel_sidebar/channel_sidebar_footer';
+
 class Workspace extends React.Component {
   constructor(props) {
     super(props);
@@ -119,6 +121,7 @@ class Workspace extends React.Component {
           <Route
             component={ChannelSidebarContainer}
             exact path="/channels" />
+          <ChannelSidebarFooter />
         </div>
         
         <div className="chat-main">

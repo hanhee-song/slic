@@ -73,8 +73,8 @@ class MessageIndex extends React.Component {
       && yesterday.getYear() === date.getYear()) {
       time = "Yesterday";
     } else {
-      const thisMonth = "January February March April May June July August September October November December".split(' ')[today.getMonth()];
-      const thisDay = "Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(' ')[today.getDay()];
+      const thisMonth = "January February March April May June July August September October November December".split(' ')[date.getMonth()];
+      const thisDay = "Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(' ')[date.getDay()];
       time = `${thisDay}, ${thisMonth} ${date.getDate()}`;
     }
     return time;

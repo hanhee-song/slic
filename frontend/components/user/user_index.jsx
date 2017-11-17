@@ -188,6 +188,7 @@ class UserIndex extends React.Component {
           }
           {
             this.props.channel.user_count === userCount &&
+            this.props.dropdown !== "messageNew" &&
             "Looks like everyone is already in this channel!"
           }
           {
@@ -226,7 +227,7 @@ class UserIndex extends React.Component {
                 value={this.state.inputVal}
                 onChange={this.changeInput}
                 type="text"
-                ></input>
+                autoFocus></input>
             </form>
             <div
               onClick={this.handleSubmit}

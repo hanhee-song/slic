@@ -23,6 +23,14 @@
   height: 50px;
 }
 
+.user-index-input:focus {
+  @include input-field-focus;
+}
+
+.user-index-input:hover {
+  @include input-field-hover;
+}
+
 /* MINI ICONS */
 
 .user-index-mini {

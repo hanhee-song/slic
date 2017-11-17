@@ -240,6 +240,9 @@
 }
 
 .sidebar-footer-text {
+  cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
   margin-bottom: 10px;
   text-align: center;
   font-size: 16px;
@@ -248,7 +251,7 @@
 
 .sidebar-footer-icons {
   display: flex;
-  width: 40%;
+  width: 50%;
   justify-content: space-between;
 }
 

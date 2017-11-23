@@ -28,7 +28,8 @@
   border-bottom: 2px solid #2ea06c;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  user-select: none;}
+  user-select: none;
+}
 
 @mixin input-field-focus {
   border: 1px solid #888;

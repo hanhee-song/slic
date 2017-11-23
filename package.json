@@ -22,7 +22,7 @@
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
-  "main": "./frontend/slix.jsx",
+  "main": "./frontend/slic.jsx",
   "directories": {
     "doc": "docs",
     "test": "test"
@@ -41,7 +41,7 @@
     "url": "git+https://github.com/hanhee-song/slic.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Hanhee Song",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/hanhee-song/slic/issues"

@@ -9,33 +9,27 @@ class MessageIndex extends React.Component {
     this.state = {
       loaded: false,
     };
+    this.initializeChannel = this.initializeChannel.bind(this);
   }
   
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-      this.setState({ loaded: false });
-      this.props.fetchMessages(nextProps.match.params.channelId)
-        .then(success => {
-          this.setState({ loaded: true });
-          this.scrollBottom();
-        });
+      this.initializeChannel(nextProps.match.params.channelId);
       pusher.unsubscribe(`channel-connection-${this.props.match.params.channelId}`);
-      
-      var channel = pusher.subscribe(`channel-connection-${nextProps.match.params.channelId}`);
-      channel.bind('create-message', (message) => {
-        this.setScrollBottom();
-        this.props.receiveMessage(message);
-      });
     }
   }
   
   componentDidMount() {
-    this.props.fetchMessages(this.props.match.params.channelId)
-      .then(success => {
-        this.setState({ loaded: true });
-        this.scrollBottom();
-      });
-    var channel = pusher.subscribe(`channel-connection-${this.props.match.params.channelId}`);
+    this.initializeChannel(this.props.match.params.channelId);
+  }
+  
+  initializeChannel(id) {
+    this.props.fetchMessages(id)
+    .then(success => {
+      this.setState({ loaded: true });
+      this.scrollBottom();
+    });
+    var channel = pusher.subscribe(`channel-connection-${id}`);
     channel.bind('create-message', (message) => {
       this.setScrollBottom();
       this.props.receiveMessage(message);

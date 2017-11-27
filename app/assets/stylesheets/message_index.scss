@@ -15,10 +15,6 @@
   flex-direction: column;
 }
 
-.message-index-overflow-wrapper, .message-index, .message-index-loading-wrapper {
-  // transform: scale(1, -1);
-}
-
 .message-index-loading-wrapper {
   height: 100%;
   display: flex;
@@ -168,8 +164,11 @@
   justify-content: center;
   position: sticky;
   position: -webkit-sticky;
-  top: -12px;
-  height: 50px;
+  top: 13px;
+  margin: 25px 0;
+  height: 0px;
+  animation: text-fadein .3s;
+  -webkit-animation: text-fadein .3s;
 }
 
 .message-index-divider-line {
@@ -188,7 +187,7 @@
   width: 230px;
   text-align: center;
   border-radius: 10px;
-  top: 10px;
+  top: -13px;
   cursor: default;
   user-select: none;
   -webkit-user-select: none;
@@ -211,8 +210,8 @@
   margin: 20px;
   display: flex;
   flex-direction: column;
-  animation: fadein .3s;
-  -webkit-animation: fadein .3s;
+  animation: message-fadein .5s;
+  -webkit-animation: message-fadein .5s;
 }
 
 .message-index-item-beginning-header {
@@ -322,7 +321,6 @@
 }
 
 @import "form_mixin";
-
 
 .message-form-join-wrapper {
   align-items: center;

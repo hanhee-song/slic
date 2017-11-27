@@ -82,7 +82,15 @@ class MessageIndex extends React.Component {
   }
   
   render () {
+    const channel = this.props.channel;
+    
     let messages = [];
+    messages.push(
+      <MessageIndexBeginning
+        key={"beginning"}
+        channel={channel}
+        currentUser={this.props.currentUser} />
+    );
     for (var i = 0; i < this.props.messages.length; i++) {
       let message = this.props.messages[i];
       let prevMessage = this.props.messages[i - 1] || {};
@@ -117,8 +125,6 @@ class MessageIndex extends React.Component {
       );
     }
     
-    const channel = this.props.channel;
-    
     return (
       <div className="message-container">
         <div className="message-index-overflow-wrapper custom-scroll">
@@ -142,12 +148,7 @@ class MessageIndex extends React.Component {
             </div>
           }
           <div className="message-index">
-            { channel.id && this.state.loaded &&
-              <MessageIndexBeginning
-                channel={channel}
-                currentUser={this.props.currentUser} />
-            }
-            {messages}
+            { this.state.loaded && messages }
           </div>
           
         </div>

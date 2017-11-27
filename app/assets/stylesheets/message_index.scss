@@ -159,16 +159,19 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  margin-top: auto;
 }
 
 .message-index-divider {
-  // background-color: #fff;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
   position: sticky;
   position: -webkit-sticky;
   top: -12px;
   height: 50px;
-  display: flex;
-  justify-content: center;
+  animation: message-fadein .3s;
+  -webkit-animation: message-fadein .3s;
 }
 
 .message-index-divider-line {
@@ -176,6 +179,8 @@
   top: 25px;
   width: 100%;
   border-top: 1px solid #eee;
+  animation: message-fadein .3s;
+  -webkit-animation: message-fadein .3s;
 }
 
 .message-index-divider-text {

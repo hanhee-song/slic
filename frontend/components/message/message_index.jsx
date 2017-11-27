@@ -17,6 +17,7 @@ class MessageIndex extends React.Component {
       this.props.fetchMessages(nextProps.match.params.channelId)
         .then(success => {
           this.setState({ loaded: true });
+          this.scrollBottom();
         });
       pusher.unsubscribe(`channel-connection-${this.props.match.params.channelId}`);
       
@@ -24,9 +25,6 @@ class MessageIndex extends React.Component {
       channel.bind('create-message', (message) => {
         this.props.receiveMessage(message);
       });
-      
-      const element = document.querySelector(".message-index-overflow-wrapper");
-      element.scrollTop = 0;
     }
   }
   
@@ -34,27 +32,31 @@ class MessageIndex extends React.Component {
     this.props.fetchMessages(this.props.match.params.channelId)
       .then(success => {
         this.setState({ loaded: true });
+        this.scrollBottom();
       });
     var channel = pusher.subscribe(`channel-connection-${this.props.match.params.channelId}`);
     channel.bind('create-message', (message) => {
+      const wrapper = document.querySelector('.message-index-overflow-wrapper');
+      console.log(wrapper.scrollTop + 350, wrapper.scrollHeight);
+      if (wrapper.scrollTop + 350 > wrapper.scrollHeight) {
+        setTimeout(() => {
+          this.scrollBottom();
+        }, 0);
+      }
       this.props.receiveMessage(message);
+      
     });
     
-    // document.querySelector('.message-index-overflow-wrapper')
-    //   .addEventListener('wheel', (e) => this.flipWheel(e));
   }
   
-  // flipWheel(e) {
-  //   if(e.deltaY) {
-  //     e.preventDefault();
-  //     e.currentTarget.scrollTop -= parseFloat(getComputedStyle(e.currentTarget)
-  //       .getPropertyValue('font-size')) * (e.deltaY) / 15;
-  //   }
-  // }
+  scrollBottom() {
+    // setTimeout(function () {
+      const wrapper = document.querySelector('.message-index-overflow-wrapper');
+      wrapper.scrollTop = wrapper.scrollHeight;
+    // }, 0);
+  }
   
   componentWillUnmount() {
-    document.querySelector('.message-index-overflow-wrapper')
-      .removeEventListener("wheel", (e) => this.flipWheel(e));
     pusher.unsubscribe(`channel-connection-${this.props.match.params.channelId}`);
   }
   

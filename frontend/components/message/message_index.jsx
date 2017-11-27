@@ -40,17 +40,17 @@ class MessageIndex extends React.Component {
       this.props.receiveMessage(message);
     });
     
-    document.querySelector('.message-index-overflow-wrapper')
-      .addEventListener('wheel', (e) => this.flipWheel(e));
+    // document.querySelector('.message-index-overflow-wrapper')
+    //   .addEventListener('wheel', (e) => this.flipWheel(e));
   }
   
-  flipWheel(e) {
-    if(e.deltaY) {
-      e.preventDefault();
-      e.currentTarget.scrollTop -= parseFloat(getComputedStyle(e.currentTarget)
-        .getPropertyValue('font-size')) * (e.deltaY) / 15;
-    }
-  }
+  // flipWheel(e) {
+  //   if(e.deltaY) {
+  //     e.preventDefault();
+  //     e.currentTarget.scrollTop -= parseFloat(getComputedStyle(e.currentTarget)
+  //       .getPropertyValue('font-size')) * (e.deltaY) / 15;
+  //   }
+  // }
   
   componentWillUnmount() {
     document.querySelector('.message-index-overflow-wrapper')
@@ -94,14 +94,16 @@ class MessageIndex extends React.Component {
         let date = this.generateDate(thisDate);
         
         messages.push(
+          <div className="message-index-divider-line"
+            key={`${message.id}l`}>
+          </div>
+        );
+        messages.push(
           <div
             className="message-index-divider"
             key={-message.id}>
-            <div className="message-index-divider-line">
-              
-              <div className="message-index-divider-text">
-                {date}
-              </div>
+            <div className="message-index-divider-text">
+              {date}
             </div>
           </div>
         );

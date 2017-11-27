@@ -16,7 +16,7 @@
 }
 
 .message-index-overflow-wrapper, .message-index, .message-index-loading-wrapper {
-  transform: scale(1, -1);
+  // transform: scale(1, -1);
 }
 
 .message-index-loading-wrapper {
@@ -162,26 +162,30 @@
 }
 
 .message-index-divider {
-  position: relative;
+  // background-color: #fff;
+  position: sticky;
+  position: -webkit-sticky;
+  top: -12px;
   height: 50px;
-}
-
-.message-index-divider-line {
-  position: absolute;
-  top: 25px;
-  width: 100%;
-  border-top: 1px solid #eee;
   display: flex;
   justify-content: center;
 }
 
+.message-index-divider-line {
+  position: relative;
+  top: 25px;
+  width: 100%;
+  border-top: 1px solid #eee;
+}
+
 .message-index-divider-text {
+  position: relative;
   display: inline-block;
-  position: absolute;
-  top: -13px;
+  height: 23px;
   background-color: #fff;
   padding: 4px 10px;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
+  top: 10px;
   cursor: default;
   user-select: none;
   -webkit-user-select: none;

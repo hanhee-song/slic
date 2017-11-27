@@ -1,10 +1,10 @@
 import React from 'react';
 
 const MessageIndexBeginning = ({ channel, currentUser, setScrollBottom }) => {
-  // setTimeout(function () {
-  //   const wrapper = document.querySelector('.message-index-overflow-wrapper');
-  //   wrapper.scrollTop = wrapper.scrollHeight;
-  // }, 0);
+  setTimeout(function () {
+    const wrapper = document.querySelector('.message-index-overflow-wrapper');
+    wrapper.scrollTop = wrapper.scrollHeight;
+  }, 0);
   
   let message = "";
   

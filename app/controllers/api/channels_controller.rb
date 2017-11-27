@@ -15,20 +15,10 @@ class Api::ChannelsController < ApplicationController
     @avatars = {}
     @channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.length
-      
-      if channel.messages.last
-        @most_recent_activities[channel.id] = channel.messages.last.created_at
-      else
-        @most_recent_activities[channel.id] = channel.created_at
-      end
-      
-      if channel.is_dm
-        generate_message_name(channel)
-        @names[channel.id] = generate_message_name(channel)
-      else
-        @names[channel.id] = channel.name
-      end
-      
+      @most_recent_activities[channel.id] = channel.messages.last ?
+        channel.messages.last.created_at : channel.created_at
+      @names[channel.id] = channel.is_dm ?
+        generate_message_name(channel) : channel.name
       @avatars[channel.id] = generate_message_avatar(channel)
     end
     
@@ -159,21 +149,15 @@ class Api::ChannelsController < ApplicationController
     if @subscription
       @visible = @subscription.visible
     end
-    if channel.is_dm
-      @name = generate_message_name(channel)
-    else
-      @name = channel.name
-    end
-    if channel.messages.last
-      @most_recent_activity = channel.messages.last.created_at
-    else
-      @most_recent_activity = channel.created_at
-    end
+    @name = channel.is_dm ? generate_message_name(channel) : channel.name
+    @most_recent_activity = channel.messages.last ?
+      channel.messages.last.created_at : channel.created_at
     @avatar = generate_message_avatar(@channel)
   end
   
   def generate_message_name(channel)
     names = channel.users.map(&:username) - [current_user.username]
+    names = names.sort
     if names.length <= 0
       "#{current_user.username} (you)"
     elsif names.length >= 1 && names.length < 4

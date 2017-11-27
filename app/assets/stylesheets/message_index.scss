@@ -170,8 +170,6 @@
   position: -webkit-sticky;
   top: -12px;
   height: 50px;
-  animation: message-fadein .3s;
-  -webkit-animation: message-fadein .3s;
 }
 
 .message-index-divider-line {
@@ -179,17 +177,17 @@
   top: 25px;
   width: 100%;
   border-top: 1px solid #eee;
-  animation: message-fadein .3s;
-  -webkit-animation: message-fadein .3s;
 }
 
 .message-index-divider-text {
   position: relative;
   display: inline-block;
-  height: 23px;
+  height: 25px;
   background-color: #fff;
   padding: 4px 10px;
-  border-radius: 0 0 10px 10px;
+  width: 230px;
+  text-align: center;
+  border-radius: 10px;
   top: 10px;
   cursor: default;
   user-select: none;

@@ -37,8 +37,7 @@ class MessageIndex extends React.Component {
     var channel = pusher.subscribe(`channel-connection-${this.props.match.params.channelId}`);
     channel.bind('create-message', (message) => {
       const wrapper = document.querySelector('.message-index-overflow-wrapper');
-      console.log(wrapper.scrollTop + 350, wrapper.scrollHeight);
-      if (wrapper.scrollTop + 350 > wrapper.scrollHeight) {
+      if (wrapper.scrollTop + wrapper.offsetHeight + 50 > wrapper.scrollHeight) {
         setTimeout(() => {
           this.scrollBottom();
         }, 0);

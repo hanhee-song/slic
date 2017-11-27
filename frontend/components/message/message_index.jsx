@@ -40,17 +40,19 @@ class MessageIndex extends React.Component {
   setScrollBottom() {
     const wrapper = document.querySelector('.message-index-overflow-wrapper');
     if (wrapper.scrollTop + wrapper.offsetHeight + 72 > wrapper.scrollHeight) {
-      // setTimeout(() => {
+      setTimeout(() => {
         this.scrollBottom();
-      // }, 0);
+      }, 0);
     }
   }
   
   scrollBottom() {
-    // setTimeout(function () {
+    const wrapper = document.querySelector('.message-index-overflow-wrapper');
+    wrapper.scrollTop = wrapper.scrollHeight;
+    setTimeout(function () {
       const wrapper = document.querySelector('.message-index-overflow-wrapper');
       wrapper.scrollTop = wrapper.scrollHeight;
-    // }, 0);
+    }, 0);
   }
   
   componentWillUnmount() {

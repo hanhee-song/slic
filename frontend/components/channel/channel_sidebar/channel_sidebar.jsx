@@ -6,26 +6,13 @@ import ChannelSidebarItemContainer from './channel_sidebar_item_container';
 class ChannelSidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.handleChannelNew = this.handleChannelNew.bind(this);
-    this.handleChannelIndex = this.handleChannelIndex.bind(this);
-    this.handleMessageNew = this.handleMessageNew.bind(this);
-    this.handleMessageIndex = this.handleMessageIndex.bind(this);
+    this.handleDropdown = this.handleDropdown.bind(this);
   }
   
-  handleChannelNew() {
-    this.props.receiveDropdown("channelNew");
-  }
-  
-  handleChannelIndex() {
-    this.props.receiveDropdown("channelIndex");
-  }
-  
-  handleMessageNew() {
-    this.props.receiveDropdown("messageNew");
-  }
-  
-  handleMessageIndex() {
-    this.props.receiveDropdown("messageIndex");
+  handleDropdown(field) {
+    return () => {
+      this.props.receiveDropdown(field);
+    };
   }
   
   render () {
@@ -62,14 +49,14 @@ class ChannelSidebar extends React.Component {
         <div className="sidebar-section-header">
           <div
             className="sidebar-section-title channels link sidebar-hoverable"
-            onClick={this.handleChannelIndex}>
+            onClick={this.handleDropdown("channelNew")}>
             Channels
           </div>
           <div className="sidebar-info-bubble">
             Browse All Channels
           </div>
           <i
-            onClick={this.handleChannelNew}
+            onClick={this.handleDropdown("channelIndex")}
             className="sidebar-hoverable fa fa-plus link"
             aria-hidden="true"></i>
           <div className="sidebar-info-bubble new">
@@ -83,7 +70,7 @@ class ChannelSidebar extends React.Component {
         
         <div className="sidebar-section-header">
           <div
-            onClick={this.handleMessageIndex}
+            onClick={this.handleDropdown("messageNew")}
             className="sidebar-section-title channels link sidebar-hoverable">
             Direct Messages
           </div>
@@ -91,7 +78,7 @@ class ChannelSidebar extends React.Component {
             Browse all direct messages
           </div>
           <i
-            onClick={this.handleMessageNew}
+            onClick={this.handleDropdown("messageIndex")}
             className="sidebar-hoverable fa fa-plus link"
             aria-hidden="true"></i>
           <div className="sidebar-info-bubble dm-2">

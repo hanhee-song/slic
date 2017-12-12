@@ -5,7 +5,6 @@ import {
   CLEAR_CHANNELS,
 } from '../actions/channel_actions';
 import { RECEIVE_MESSAGE } from '../actions/message_actions';
-
 import merge from 'lodash/merge';
 
 const initialState = {};

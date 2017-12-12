@@ -4,7 +4,6 @@ import {
   REMOVE_MESSAGE,
   CLEAR_MESSAGES,
 } from '../actions/message_actions';
-
 import merge from 'lodash/merge';
 
 const initialState = {};

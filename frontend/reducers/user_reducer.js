@@ -1,5 +1,4 @@
 import { RECEIVE_ALL_USERS } from '../actions/user_actions';
-
 import merge from 'lodash/merge';
 
 const initialState = {};

@@ -15,9 +15,7 @@ const ChannelErrorsReducer = (state = initialState, action) => {
       return action.errors.responseJSON ?
         action.errors.responseJSON : [action.errors.responseText];
     case RECEIVE_ALL_CHANNELS:
-      return initialState;
     case CLEAR_CHANNEL_ERRORS:
-      return initialState;
     case RECEIVE_CHANNEL:
       return initialState;
     default:

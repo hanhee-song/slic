@@ -14,7 +14,6 @@ const UserErrorsReducer = (state = initialState, action) => {
       return action.errors.responseJSON ?
         action.errors.responseJSON : [action.errors.responseText];
     case RECEIVE_ALL_USERS:
-      return initialState;
     case CLEAR_USER_ERRORS:
       return initialState;
     default:

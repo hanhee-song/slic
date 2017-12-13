@@ -65,7 +65,7 @@ class ChannelIndexItem extends React.Component {
     } else if (timeDif < 60 * 24 * 30) {
       const days = timeDif / 60 / 24;
       return `${Math.floor(days)} day${days >= 2 ? "s" : ""} ago`;
-    } else if (timeDif < 60 + 24 * 30 * 12) {
+    } else if (timeDif < 60 * 24 * 30 * 12) {
       const months = timeDif / 60 / 24 / 30;
       return `${Math.floor(months)} month${months >= 2 ? "s" : ""} ago`;
     } else {

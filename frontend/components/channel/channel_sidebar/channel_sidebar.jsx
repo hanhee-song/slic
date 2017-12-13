@@ -49,14 +49,14 @@ class ChannelSidebar extends React.Component {
         <div className="sidebar-section-header">
           <div
             className="sidebar-section-title channels link sidebar-hoverable"
-            onClick={this.handleDropdown("channelNew")}>
+            onClick={this.handleDropdown("channelIndex")}>
             Channels
           </div>
           <div className="sidebar-info-bubble">
             Browse All Channels
           </div>
           <i
-            onClick={this.handleDropdown("channelIndex")}
+            onClick={this.handleDropdown("channelNew")}
             className="sidebar-hoverable fa fa-plus link"
             aria-hidden="true"></i>
           <div className="sidebar-info-bubble new">
@@ -70,7 +70,7 @@ class ChannelSidebar extends React.Component {
         
         <div className="sidebar-section-header">
           <div
-            onClick={this.handleDropdown("messageNew")}
+            onClick={this.handleDropdown("messageIndex")}
             className="sidebar-section-title channels link sidebar-hoverable">
             Direct Messages
           </div>
@@ -78,7 +78,7 @@ class ChannelSidebar extends React.Component {
             Browse all direct messages
           </div>
           <i
-            onClick={this.handleDropdown("messageIndex")}
+            onClick={this.handleDropdown("messageNew")}
             className="sidebar-hoverable fa fa-plus link"
             aria-hidden="true"></i>
           <div className="sidebar-info-bubble dm-2">

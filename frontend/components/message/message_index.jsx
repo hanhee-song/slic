@@ -30,7 +30,7 @@ class MessageIndex extends React.Component {
       this.setState({ loaded: true });
       this.scrollBottom();
     });
-    var channel = pusher.subscribe(`channel-connection-${id}`);
+    const channel = pusher.subscribe(`channel-connection-${id}`);
     channel.bind('create-message', (message) => {
       this.setScrollBottom();
       this.props.receiveMessage(message);
@@ -91,7 +91,7 @@ class MessageIndex extends React.Component {
         channel={channel}
         currentUser={this.props.currentUser} />
     );
-    for (var i = 0; i < this.props.messages.length; i++) {
+    for (let i = 0; i < this.props.messages.length; i++) {
       let message = this.props.messages[i];
       let prevMessage = this.props.messages[i - 1] || {};
       let thisDate = new Date(message.created_at);

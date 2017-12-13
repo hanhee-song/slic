@@ -30,7 +30,7 @@ class Workspace extends React.Component {
     this.props.fetchChannel(channelId);
     this.props.receiveDetails();
     
-    var channel = pusher.subscribe('channel-connection');
+    const channel = pusher.subscribe('channel-connection');
     channel.bind('update-channel', (id) => {
       this.props.fetchChannel(id);
     });

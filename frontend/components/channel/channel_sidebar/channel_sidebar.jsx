@@ -16,6 +16,16 @@ class ChannelSidebar extends React.Component {
   }
   
   render () {
+    if (!this.props.allChannelsLoaded) {
+      return (
+        <div className="sidebar-section">
+          <div className="loader">
+            LOADING...
+          </div>
+        </div>
+      );
+    }
+
     const channels = this.props.channels
       .filter((channel) => {
         return channel.visible && !channel.is_dm;

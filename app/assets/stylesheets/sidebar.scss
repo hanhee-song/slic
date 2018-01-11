@@ -266,3 +266,50 @@
   color: #ddd;
   font-size: 17px;
 }
+
+.sidebar {
+  .loader,
+  .loader:after {
+    border-radius: 8%;
+    width: 10em;
+    height: 10em;
+  }
+  
+  .loader {
+    margin: 60px auto;
+    font-size: 6px;
+    position: relative;
+    text-indent: -9999em;
+    border-left: 7px solid #fffb;
+    border-right: 7px solid #fffb;
+    border-top: 7px solid #fff4;
+    border-bottom: 7px solid #fff4;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load-channel 1.3s infinite ease;
+    animation: load-channel 1.3s infinite ease;
+  }
+  
+  @-webkit-keyframes load-channel {
+    0% {
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+    100% {
+      -webkit-transform: rotate(450deg);
+      transform: rotate(450deg);
+    }
+  }
+  
+  @keyframes load-channel {
+    0% {
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+    100% {
+      -webkit-transform: rotate(450deg);
+      transform: rotate(450deg);
+    }
+  }
+}

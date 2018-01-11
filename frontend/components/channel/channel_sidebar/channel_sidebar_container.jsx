@@ -6,6 +6,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     channels: Object.values(state.entities.channels),
     selectedChannelId: ownProps.match.params.channelId,
+    allChannelsLoaded: state.ui.allChannelsLoaded,
   };
 };
 

@@ -1,10 +1,12 @@
 import { RECEIVE_DROPDOWN, CLEAR_DROPDOWN } from '../actions/ui_actions';
 import { RECEIVE_DETAILS, CLEAR_DETAILS } from '../actions/ui_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_ALL_CHANNELS } from '../actions/channel_actions';
 
 const initialState = {
   dropdown: null,
   details: "",
+  allChannelsLoaded: false,
 };
 
 const UIReducer = (state = initialState, action) => {
@@ -22,6 +24,9 @@ const UIReducer = (state = initialState, action) => {
       return newState;
     case CLEAR_DROPDOWN:
       newState.dropdown = null;
+      return newState;
+    case RECEIVE_ALL_CHANNELS:
+      newState.allChannelsLoaded = true;
       return newState;
     default:
       return state;

@@ -14,7 +14,7 @@ const MessageReducer = (state = initialState, action) => {
   
   switch (action.type) {
     case RECEIVE_ALL_MESSAGES:
-      return action.messages;
+      return merge({}, state, action.messages);
     case RECEIVE_MESSAGE:
       newState = merge({}, state, { [action.message.id]: action.message });
       return newState;

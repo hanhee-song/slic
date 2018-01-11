@@ -4,9 +4,12 @@ import { fetchMessages, receiveMessage } from '../../actions/message_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const channel = state.entities.channels[ownProps.match.params.channelId] || {};
+  const messages = Object.values(state.entities.messages).filter(message => {
+    return message.channel_id === channel.id;
+  });
   return {
     channel: channel,
-    messages: Object.values(state.entities.messages) || [],
+    messages: messages,
     currentUser: state.session.currentUser,
   };
 };

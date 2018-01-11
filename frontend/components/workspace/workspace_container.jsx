@@ -1,6 +1,6 @@
 import Workspace from './workspace';
 import { connect } from 'react-redux';
-import { receiveDetails } from '../../actions/ui_actions';
+import { receiveDetails, unloadCurrentChannel } from '../../actions/ui_actions';
 import {
   fetchChannels,
   fetchChannel,
@@ -29,6 +29,7 @@ const mapDispatchToProps = (dispatch) => {
     clearMessages: () => dispatch(clearMessages()),
     clearChannelErrors: () => dispatch(clearChannelErrors()),
     rememberCurrentChannelId: (user, channelId) => dispatch(rememberCurrentChannelId(user, channelId)),
+    unloadCurrentChannel: () => dispatch(unloadCurrentChannel()),
   };
 };
 

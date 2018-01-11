@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     channel: channel,
     messages: messages,
     currentUser: state.session.currentUser,
+    currentChannelLoaded: state.ui.currentChannelLoaded,
   };
 };
 

@@ -26,10 +26,10 @@ class MessageIndex extends React.Component {
   initializeChannel(id) {
     this.setState({ loaded: false });
     this.props.fetchMessages(id)
-    .then(success => {
-      this.setState({ loaded: true });
-      this.scrollBottom();
-    });
+      .then(success => {
+        this.setState({ loaded: true });
+        this.scrollBottom();
+      });
     const channel = pusher.subscribe(`channel-connection-${id}`);
     channel.bind('create-message', (message) => {
       this.setScrollBottom();
@@ -142,7 +142,7 @@ class MessageIndex extends React.Component {
           
         </div>
         {
-          this.state.loaded &&
+          this.state.loaded && this.props.currentChannelLoaded &&
           <MessageFormContainer
             channel={channel} />
         }

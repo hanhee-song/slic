@@ -52,8 +52,9 @@ class Workspace extends React.Component {
       return;
     }
     
-    if (thisChannelId !== nextChannelId
-      && channelIds.includes(nextChannelId)) {
+    if (thisChannelId !== nextChannelId && channelIds.includes(nextChannelId)) {
+
+      this.props.unloadCurrentChannel();
       this.props.fetchChannel(nextChannelId);
       this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
     }

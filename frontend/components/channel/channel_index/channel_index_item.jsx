@@ -19,29 +19,8 @@ class ChannelIndexItem extends React.Component {
 
   date() {
     if (!this.props.channel.created_at) return "";
-
-    let [year, month, day] = this.props.channel.created_at
-      .split("T")[0].split("-");
-    const months = "January February March April May June July August September October November December"
-      .split(" ");
-    const monthString = months[parseInt(month - 1)];
-    let dayStr = day;
-    day = parseInt(day);
-    switch (dayStr[dayStr.length-1]) {
-      case "1":
-        day += "st";
-        break;
-      case "2":
-        day += "nd";
-        break;
-      case "3":
-        day += "rd";
-        break;
-      default:
-        day += "th";
-    }
-
-    return `${monthString} ${day}, ${year}`;
+    const date = new Date(this.props.channel.created_at);
+    return moment(date).format('MMMM Do, YYYY');
   }
 
   timeAgo() {

@@ -130,8 +130,10 @@ class MessageIndex extends React.Component {
         <div className="message-index-overflow-wrapper custom-scroll">
           {
             !this.state.loaded &&
-            <div className="loader">
-              Loading...
+            <div className="message-loader-container">
+              <div className="loader">
+                Loading...
+              </div>
             </div>
           }
           <div className="message-index">

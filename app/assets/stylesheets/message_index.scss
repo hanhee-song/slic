@@ -13,8 +13,11 @@
   width: calc(100% - 2px);
   display: flex;
   flex-direction: column;
-  animation: bubble-fadein .4s;
-  -webkit-animation: bubble-fadein .4s;
+}
+
+.message-loader-container {
+  -webkit-animation: bubble-fadein .5s;
+  animation: bubble-fadein .5s;
 }
 
 // LOADER //

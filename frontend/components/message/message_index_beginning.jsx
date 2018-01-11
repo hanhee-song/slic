@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 const MessageIndexBeginning = ({ channel, currentUser }) => {
   let message = "";
@@ -16,20 +17,7 @@ const MessageIndexBeginning = ({ channel, currentUser }) => {
   }
   
   if (channel.creator && channel.creator.username) {
-    const date = new Date(channel.created_at);
-    const today = new Date();
-    const thisMonth = "January February March April May June July August September October November December".split(' ')[today.getMonth()];
-    const month = "January February March April May June July August September October November December".split(' ')[date.getMonth()];
-    
-    let time;
-    if (thisMonth === month
-      && today.getDate() === date.getDate()
-      && today.getYear() === date.getYear()) {
-      time = " today";
-    } else {
-      time = ` on ${month} ${date.getDate()}`;
-    }
-  
+    const time = ` on ${moment(new Date(channel.created_at)).format("MMMM Do")}`;
     if (channel.creator.id === currentUser.id) {
       message += `You created this channel${time}.`;
     } else if (channel.creator.id) {

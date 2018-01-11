@@ -1,26 +1,27 @@
 import React from 'react';
+import moment from 'moment';
 
 class ChannelDetails extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.handleClose = this.handleClose.bind(this);
     this.handleInvite = this.handleInvite.bind(this);
   }
-  
+
   handleClose() {
     this.props.clearDetails();
   }
-  
+
   handleInvite() {
     this.props.receiveDropdown("inviteIndex");
   }
-  
+
   render () {
     const channel = this.props.channel;
-    
+
     const name = channel.name ? channel.name : '';
-    
+
     let about;
     if (channel.id) {
       if (channel.is_dm) {
@@ -39,20 +40,19 @@ class ChannelDetails extends React.Component {
         }
       }
     }
-    
+
     const byCreator = channel.creator ?
       ` by ${channel.creator.username} ` : "";
-    
-    let date;
-    date = new Date(channel.created_at);
-    const month = "January February March April May June July August September October November December".split(' ')[date.getMonth()];
+
+    const date = new Date(channel.created_at);
+    const formattedDate = moment(date).format('MMMM Do, YYYY');
     const createdString = channel.created_at ?
-      `Created ${byCreator} on ${month} ${date.getDate()}, ${date.getFullYear()}` : "";
+      `Created ${byCreator} on ${formattedDate}` : "";
     
     const description = channel.description ?
       channel.description : "No description available";
-    
-    
+
+
     const miniUsers = this.props.users.map((user) => {
       return (
         <div
@@ -76,7 +76,7 @@ class ChannelDetails extends React.Component {
         </div>
       );
     });
-    
+
     return (
       <div className="channel-details">
         <div className="channel-details-header">
@@ -115,7 +115,7 @@ class ChannelDetails extends React.Component {
                 </div>
               </div>
             }
-            
+
             { (!channel.is_dm || channel.user_count > 2) &&
               channel.id &&
 
@@ -134,7 +134,7 @@ class ChannelDetails extends React.Component {
                 </div>
               </div>
             }
-            
+
             { (channel.is_dm && channel.user_count <= 2) &&
               <div className="channel-details-list-user">
                 <div className="fullscreen-index-list-item-left user">
@@ -151,7 +151,7 @@ class ChannelDetails extends React.Component {
             }
           </ul>
         </div>
-          
+
       </div>
     );
   }

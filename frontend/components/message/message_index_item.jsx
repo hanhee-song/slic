@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment'
 
 class MessageIndexItem extends React.Component {
   constructor(props) {
@@ -7,15 +8,8 @@ class MessageIndexItem extends React.Component {
   }
   
   date() {
-    let time = this.props.message.created_at
-      .split("T")[1].split(":");
-    let minute = time[1];
-    const offset = new Date().getTimezoneOffset() / 60;
-    let hour = parseInt(time[0]) - (offset);
-    hour = hour <= 0 ? hour + 24 : hour;
-    const suffix = hour >= 12 && hour !== 24 ? "PM" : "AM";
-    hour = hour > 12 ? hour - 12 : hour;
-    return `${hour}:${minute} ${suffix}`;
+    const time = new Date(this.props.message.created_at);
+    return moment(time).format("h:mm a");
   }
   
   render () {

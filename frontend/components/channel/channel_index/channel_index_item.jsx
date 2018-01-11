@@ -9,17 +9,17 @@ class ChannelIndexItem extends React.Component {
     this.timeAgo = this.timeAgo.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
-  
+
   handleClick() {
     this.props.handleClose();
     if (this.props.channel.is_dm) {
       this.props.makeChannelVisible(this.props.channel);
     }
   }
-  
+
   date() {
     if (!this.props.channel.created_at) return "";
-    
+
     let [year, month, day] = this.props.channel.created_at
       .split("T")[0].split("-");
     const months = "January February March April May June July August September October November December"
@@ -40,16 +40,15 @@ class ChannelIndexItem extends React.Component {
       default:
         day += "th";
     }
-    
+
     return `${monthString} ${day}, ${year}`;
   }
-  
+
   timeAgo() {
     const date = new Date(this.props.channel.most_recent_activity);
-    const formattedDate = `${date.getFullYear()}${date.getMonth()}${date.getDate()}`;
-    return moment(formattedDate, "YYYYMMDD").fromNow();
+    return moment(date).fromNow();
   }
-  
+
   render () {
     const userCount = this.props.channel.user_count;
     let description;
@@ -60,9 +59,9 @@ class ChannelIndexItem extends React.Component {
         </div>
       );
     }
-    
+
     const date = this.date();
-    
+
     let prefix;
     if (this.props.channel.is_dm) {
       prefix = (
@@ -84,7 +83,7 @@ class ChannelIndexItem extends React.Component {
         );
       }
     }
-    
+
     return (
       <Link
         className="fullscreen-index-list-li"
@@ -97,7 +96,7 @@ class ChannelIndexItem extends React.Component {
               {this.props.channel.name}
             </div>
           </div>
-          
+
           { !this.props.channel.is_dm &&
             <div className="fullscreen-index-list-item date">
               Created on {date}

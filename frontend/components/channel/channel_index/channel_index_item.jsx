@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 class ChannelIndexItem extends React.Component {
   constructor(props) {
@@ -45,33 +46,8 @@ class ChannelIndexItem extends React.Component {
   
   timeAgo() {
     const date = new Date(this.props.channel.most_recent_activity);
-    const now = new Date();
-    
-    const timeDif = (
-      now.getYear()*365*30*24*60 + now.getMonth()*30*24*60 +
-      now.getDate()*24*60 + now.getHours()*60 + now.getMinutes()
-    ) - (
-      date.getYear()*365*30*24*60 + date.getMonth()*30*24*60 +
-      date.getDate()*24*60 + date.getHours()*60 + date.getMinutes()
-    );
-    
-    if (timeDif < 1) {
-      return "less than a minute ago";
-    } else if (timeDif < 60) {
-      return `${Math.floor(timeDif)} minute${timeDif >= 2 ? "s" : ""} ago`;
-    } else if (timeDif < 60 * 24) {
-      const hours = timeDif / 60;
-      return `${Math.floor(hours)} hour${hours >= 2 ? "s" : ""} ago`;
-    } else if (timeDif < 60 * 24 * 30) {
-      const days = timeDif / 60 / 24;
-      return `${Math.floor(days)} day${days >= 2 ? "s" : ""} ago`;
-    } else if (timeDif < 60 * 24 * 30 * 12) {
-      const months = timeDif / 60 / 24 / 30;
-      return `${Math.floor(months)} month${months >= 2 ? "s" : ""} ago`;
-    } else {
-      const years = timeDif / 60 / 24 / 30 / 365;
-      return `${Math.floor(years)} year${years >= 2 ? "s" : ""} ago`;
-    }
+    const formattedDate = `${date.getFullYear()}${date.getMonth()}${date.getDate()}`;
+    return moment(formattedDate, "YYYYMMDD").fromNow();
   }
   
   render () {

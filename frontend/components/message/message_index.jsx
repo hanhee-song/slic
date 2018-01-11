@@ -141,8 +141,11 @@ class MessageIndex extends React.Component {
           </div>
           
         </div>
-        <MessageFormContainer
-          channel={channel} />
+        {
+          this.state.loaded &&
+          <MessageFormContainer
+            channel={channel} />
+        }
       </div>
     );
   }

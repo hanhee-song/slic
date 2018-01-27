@@ -32,7 +32,7 @@ gem 'faker'
 gem 'pusher'
 gem 'figaro'
 gem 'aws-sdk', '< 3.0'
-gem 'paperclip', '~> 5.1.0'#.beta1'
+gem 'paperclip', '5.2.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

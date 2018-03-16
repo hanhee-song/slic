@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment'
+import moment from 'moment';
 
 class MessageIndexItem extends React.Component {
   constructor(props) {
@@ -8,31 +8,38 @@ class MessageIndexItem extends React.Component {
   }
   
   date() {
-    const time = new Date(this.props.message.created_at);
+    const time = new Date(this.props.messageGroup[0].created_at);
     return moment(time).format("h:mm a");
   }
   
   render () {
+    const messageGroup = this.props.messageGroup.map((message) => {
+      return (
+        <div className="message-index-item-body"
+          key={message.id}>
+          {message.body}
+        </div>
+      );
+    });
+    
     return (
       <div className="message-index-item">
         <div className="message-index-item-profile-image profile-image">
           <img className="profile-image"
-              src={this.props.message.author.avatar_url} />
+              src={this.props.messageGroup[0].author.avatar_url} />
         </div>
         
         <div className="message-index-item-content">
           <div className="message-index-item-header">
             <div className="message-index-item-name">
-              {this.props.message.author.username}
+              {this.props.messageGroup[0].author.username}
             </div>
             <div className="message-index-item-time">
               {this.date()}
             </div>
           </div>
           
-          <div className="message-index-item-body">
-            {this.props.message.body}
-          </div>
+          {messageGroup}
         </div>
       </div>
     );

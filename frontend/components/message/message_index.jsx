@@ -10,6 +10,7 @@ class MessageIndex extends React.Component {
       loaded: false,
     };
     this.initializeChannel = this.initializeChannel.bind(this);
+    this.renderMessages = this.renderMessages.bind(this);
   }
   
   componentWillReceiveProps(nextProps) {
@@ -81,49 +82,75 @@ class MessageIndex extends React.Component {
     return time;
   }
   
-  render () {
-    const channel = this.props.channel;
-    
+  addDivider(messages, id, date) {
+    messages.push(
+      <div className="message-index-divider-line"
+        key={`${id}l`}>
+      </div>
+    );
+    messages.push(
+      <div
+        className="message-index-divider"
+        key={-id}>
+        <div className="message-index-divider-text">
+          {date}
+        </div>
+      </div>
+    );
+  }
+  
+  renderMessages() {
     let messages = [];
     messages.push(
       <MessageIndexBeginning
         key={"beginning"}
-        channel={channel}
+        channel={this.props.channel}
         currentUser={this.props.currentUser} />
     );
+    let messageGroup = [];
     for (let i = 0; i < this.props.messages.length; i++) {
       let message = this.props.messages[i];
-      let prevMessage = this.props.messages[i - 1] || {};
+      let prevMessage = this.props.messages[i - 1] || { author: {} };
       let thisDate = new Date(message.created_at);
-      let nextDate = new Date(prevMessage.created_at) || {};
-      if (thisDate.getDate() !== nextDate.getDate()
-        || thisDate.getMonth() !== nextDate.getMonth()
-        || thisDate.getYear() !== nextDate.getYear()) {
+      let prevDate = new Date(prevMessage.created_at) || {};
+      if (thisDate.getDate() !== prevDate.getDate()
+        || thisDate.getMonth() !== prevDate.getMonth()
+        || thisDate.getYear() !== prevDate.getYear()) {
         
         let date = this.generateDate(thisDate);
-        
-        messages.push(
-          <div className="message-index-divider-line"
-            key={`${message.id}l`}>
-          </div>
-        );
-        messages.push(
-          <div
-            className="message-index-divider"
-            key={-message.id}>
-            <div className="message-index-divider-text">
-              {date}
-            </div>
-          </div>
-        );
+        this.addDivider(messages, message.id, date);
       }
       
+      // If it's within a few minutes, add it to the current message block
+      // otherwise we make a new block
+      if (thisDate.getTime() < prevDate.getTime() + 120000
+        && message.author.username === prevMessage.author.username) {
+        messageGroup.push(message);
+      } else {
+        if (messageGroup.length > 0) {
+          messages.push(
+            <MessageIndexItemContainer
+              key={message.id}
+              messageGroup={messageGroup}/>
+          );
+          messageGroup = [];
+        }
+        messageGroup.push(message);
+      }
+      
+    }
+    if (messageGroup.length > 0) {
       messages.push(
         <MessageIndexItemContainer
-          key={message.id}
-          message={message}/>
+          key={messageGroup[messageGroup.length - 1].id}
+          messageGroup={messageGroup}/>
       );
     }
+    return messages;
+  }
+  
+  render () {
+    const messages = this.renderMessages();
     
     return (
       <div className="message-container">
@@ -144,7 +171,7 @@ class MessageIndex extends React.Component {
         {
           this.state.loaded && this.props.currentChannelLoaded &&
           <MessageFormContainer
-            channel={channel} />
+            channel={this.props.channel} />
         }
       </div>
     );

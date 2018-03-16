@@ -4,6 +4,9 @@ class Channel < ApplicationRecord
   validates :is_private, inclusion: { in: [true, false] }
   validates :is_dm, inclusion: { in: [true, false] }
   
+  # The following is not validated in the back end
+  validates :most_recent_activity, presence: true
+  
   has_many :subscriptions,
     foreign_key: :channel_id,
     class_name: :ChannelSubscription

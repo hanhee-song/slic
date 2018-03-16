@@ -1,9 +1,8 @@
-json.extract! channel, :id, :name, :description, :created_at, :is_private, :is_dm
+json.extract! channel, :id, :name, :description, :created_at, :is_private, :is_dm, :most_recent_activity
 json.name @name
 json.user_count channel.subscriptions.length
 json.visible @visible
 json.subscribed !!(@subscription)
-json.most_recent_activity @most_recent_activity
 json.created_at channel.created_at
 json.creator channel.creator
 

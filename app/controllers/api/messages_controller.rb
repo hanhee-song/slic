@@ -24,6 +24,10 @@ class Api::MessagesController < ApplicationController
         }
       )
       render 'api/messages/show'
+      channel = @message.channel
+      channel.most_recent_activity = @message.created_at
+      channel.save
+      Pusher.trigger('channel-connection', 'update-channel', @channel.id)
     else
       render json: @message.errors.full_messages, status: 422
     end

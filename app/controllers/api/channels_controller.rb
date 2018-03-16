@@ -10,18 +10,14 @@ class Api::ChannelsController < ApplicationController
       end
     end
     @counts = {}
-    @most_recent_activities = {}
     @names = {}
     @avatars = {}
     @channels.each do |channel|
       @counts[channel.id] = channel.subscriptions.length
-      @most_recent_activities[channel.id] = channel.messages.last ?
-        channel.messages.last.created_at : channel.created_at
       @names[channel.id] = channel.is_dm ?
         generate_message_name(channel) : channel.name
       @avatars[channel.id] = generate_message_avatar(channel)
     end
-    
     @visibles = {}
     @subscribeds = {}
     current_user.channel_subscriptions.select(:channel_id, :visible)

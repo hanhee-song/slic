@@ -130,7 +130,7 @@ class MessageIndex extends React.Component {
         if (messageGroup.length > 0) {
           messages.push(
             <MessageIndexItemContainer
-              key={message.id}
+              key={messageGroup[0].id}
               messageGroup={messageGroup}/>
           );
           messageGroup = [];

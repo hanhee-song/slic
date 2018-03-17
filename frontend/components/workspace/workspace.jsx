@@ -58,9 +58,7 @@ class Workspace extends React.Component {
       this.props.fetchChannel(nextChannelId);
       this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
     }
-    debugger;
     if (this.props.details.visible !== nextProps.details.visible) {
-      debugger;
       this.props.history.push(`/channels/${nextChannelId}${nextProps.details.visible ? "/details" : ""}`);
     }
     

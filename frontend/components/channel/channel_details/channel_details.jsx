@@ -1,5 +1,6 @@
 import React from 'react';
-import moment from 'moment';
+import ChannelInfoContainer from './channel_info_container';
+import ChannelUsersContainer from './channel_users_container';
 
 class ChannelDetails extends React.Component {
   constructor(props) {
@@ -41,42 +42,6 @@ class ChannelDetails extends React.Component {
       }
     }
 
-    const byCreator = channel.creator ?
-      ` by ${channel.creator.username} ` : "";
-
-    const date = new Date(channel.created_at);
-    const formattedDate = moment(date).format('MMMM Do, YYYY');
-    const createdString = channel.created_at ?
-      `Created ${byCreator} on ${formattedDate}` : "";
-    
-    const description = channel.description ?
-      channel.description : "No description available";
-
-
-    const miniUsers = this.props.users.map((user) => {
-      return (
-        <div
-          className="channel-details-user-mini-item"
-          key={user.id}>
-          <div className="channel-details-user-mini-icon">
-            <img
-              className="profile-image-mini-round"
-              src={user.avatar_url}
-              />
-          </div>
-          { user.username === this.props.currentUser.username ?
-            <div className="channel-details-user-mini-name">
-              {user.username} (you)
-            </div>
-            :
-            <div className="channel-details-user-mini-name">
-              {user.username}
-            </div>
-          }
-        </div>
-      );
-    });
-
     return (
       <div className="channel-details">
         <div className="channel-details-header">
@@ -89,69 +54,15 @@ class ChannelDetails extends React.Component {
             <i className="fa fa-times" aria-hidden="true"></i>
           </div>
         </div>
+        
         <div className="fullscreen-index-list-container-sidebar custom-scroll">
           <ul className="fullscreen-index-list-nonreversed">
             { !channel.is_dm && channel.id &&
-              <div className="channel-details-list-border">
-                <div className="channel-details-list-header">
-                  <i className="fa fa-info-circle" aria-hidden="true"></i>
-                  <div>
-                    Channel Details
-                  </div>
-                </div>
-                <div className="channel-details-list-content">
-                  <div className="channel-details-list-section-header">
-                    Purpose
-                  </div>
-                  <div className="channel-details-list-section-body">
-                    {description}
-                  </div>
-                  <div className="channel-details-list-section-header">
-                    Created
-                  </div>
-                  <div className="channel-details-list-section-body">
-                    {createdString}
-                  </div>
-                </div>
-              </div>
+              <ChannelInfoContainer />
             }
-
-            { (!channel.is_dm || channel.user_count > 2) &&
-              channel.id &&
-
-              <div className="channel-details-list-members">
-                <div className="channel-details-list-header">
-                  <i className="fa fa-user-o" aria-hidden="true"></i>
-                  <div>
-                    {channel.user_count} member{channel.user_count === 1 ? "" : "s"}
-                  </div>
-                </div>
-                {miniUsers}
-                <div
-                  className="channel-details-list-invite"
-                  onClick={this.handleInvite}>
-                  Invite more people ...
-                </div>
-              </div>
-            }
-
-            { (channel.is_dm && channel.user_count <= 2) &&
-              <div className="channel-details-list-user">
-                <div className="fullscreen-index-list-item-left user">
-                  <img className="profile-image-large"
-                      src={channel.avatar_url} />
-                  <div className="fullscreen-index-list-item name">
-                    {channel.name}
-                  </div>
-                </div>
-                <div className="fullscreen-index-list-item preview user">
-                  <i className="fa fa-plus-square-o" aria-hidden="true"></i>
-                </div>
-              </div>
-            }
+            <ChannelUsersContainer />
           </ul>
         </div>
-
       </div>
     );
   }

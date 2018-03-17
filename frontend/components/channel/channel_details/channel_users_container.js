@@ -1,23 +1,24 @@
 import { connect } from 'react-redux';
-import ChannelDetails from './channel_details';
-import { closeDetails, receiveDropdown } from '../../../actions/ui_actions';
+import ChannelUsers from './channel_users';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   const channel = state.entities.channels[ownProps.match.params.channelId] || {};
+  const users = channel.users || {};
   return {
-    channel: channel,
+    users: Object.values(users) || [],
     currentUser: state.session.currentUser,
+    channel,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
-    closeDetails: () => dispatch(closeDetails()),
+    
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(ChannelDetails);
+)(ChannelUsers));

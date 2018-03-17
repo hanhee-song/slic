@@ -54,7 +54,9 @@
 }
 
 .channel-details-list-header {
+  cursor: pointer;
   display: flex;
+  justify-content: space-between;
   flex-shrink: 0;
   align-items: center;
   padding-left: 10px;
@@ -63,6 +65,14 @@
   font-weight: 400;
   color: #333;
   font-size: 19px;
+  
+  .fa-caret-down {
+    transform: rotate(0deg);
+    transition: .1s transform;
+    -webkit-transition: .1s transform;
+    
+    &.collapsed { transform: rotate(-90deg); }
+  }
 }
 
 .channel-details-list-border {
@@ -82,16 +92,27 @@
 }
 
 .channel-details-list-content {
-  padding: 0 15px;
+  // javascrpt controls this height
+  overflow: hidden;
+  transition:height 0.3s ease-out;
+  height:auto;
+  
+  &.collapsed {
+    height: 0;
+  }
 }
 
 .channel-details-list-section-header {
+  margin-left: 10px;
+  margin-right: 10px;
   font-weight: 700;
   color: #777;
   font-size: 14px;
 }
 
 .channel-details-list-section-body {
+  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 5px;
   color: #333;
   line-height: 24px;

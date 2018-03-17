@@ -1,8 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { collapse, expand } from '../../../util/collapse';
 
 class ChannelInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggleCollapse = this.toggleCollapse.bind(this);
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    if (this.props.collapsed !== nextProps.collapsed) {
+      const div = document.querySelector(".channel-details-list-content.info");
+      if (this.props.collapsed) {
+        expand(div);
+      } else {
+        collapse(div);
+      }
+    }
+  }
+  
+  toggleCollapse() {
+    this.props.receiveDetails({ info: this.props.collapsed });
+  }
+  
   render () {
     const channel = this.props.channel;
     
@@ -19,13 +40,18 @@ class ChannelInfo extends React.Component {
     
     return (
       <div className="channel-details-list-border">
-        <div className="channel-details-list-header">
-          <i className="fa fa-info-circle" aria-hidden="true"></i>
-          <div>
-            Channel Details
+        <div className="channel-details-list-header"
+          onClick={this.toggleCollapse}>
+          <div className="flex">
+            <i className="fa fa-info-circle" aria-hidden="true"></i>
+            <div>
+              Channel Details
+            </div>
           </div>
+          <i className={`fa fa-caret-down ${this.props.collapsed ? "collapsed" : ""}`} aria-hidden="true"></i>
         </div>
-        <div className="channel-details-list-content">
+        
+        <div className={`channel-details-list-content info ${this.props.collapsed ? "collapsed" : ""}`}>
           <div className="channel-details-list-section-header">
             Purpose
           </div>

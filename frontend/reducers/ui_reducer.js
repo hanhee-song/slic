@@ -8,8 +8,8 @@ const initialState = {
   dropdown: null,
   details: {
     visible: true,
-    info: true,
-    users: true,
+    info: false,
+    users: false,
   },
   allChannelsLoaded: false,
   currentChannelLoaded: false,

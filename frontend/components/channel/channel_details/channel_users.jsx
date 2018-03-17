@@ -1,11 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { collapse, expand } from '../../../util/collapse';
 
 class ChannelUsers extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggleCollapse = this.toggleCollapse.bind(this);
+  }
+  
+  
+  componentWillReceiveProps(nextProps) {
+    if (this.props.collapsed !== nextProps.collapsed) {
+      const div = document.querySelector(".channel-details-list-content.users");
+      if (this.props.collapsed) {
+        expand(div);
+      } else {
+        collapse(div);
+      }
+    }
+  }
+  
+  toggleCollapse() {
+    this.props.receiveDetails({ users: this.props.collapsed });
+  }
+  
   render () {
     const channel = this.props.channel;
-    
-    
     const miniUsers = this.props.users.map((user) => {
       return (
         <div
@@ -29,17 +49,23 @@ class ChannelUsers extends React.Component {
     if ((!channel.is_dm || channel.user_count > 2) && channel.id) {
       return (
         <div className="channel-details-list-members">
-          <div className="channel-details-list-header">
-            <i className="fa fa-user-o" aria-hidden="true"></i>
-            <div>
-              {channel.user_count} member{channel.user_count === 1 ? "" : "s"}
+          <div className="channel-details-list-header"
+            onClick={this.toggleCollapse}>
+            <div className="flex">
+              <i className="fa fa-user-o" aria-hidden="true"></i>
+              <div>
+                {channel.user_count} member{channel.user_count === 1 ? "" : "s"}
+              </div>
             </div>
+            <i className={`fa fa-caret-down ${this.props.collapsed ? "collapsed" : ""}`} aria-hidden="true"></i>
           </div>
-          {miniUsers}
-          <div
-            className="channel-details-list-invite"
-            onClick={this.handleInvite}>
-            Invite more people ...
+          <div className={`channel-details-list-content users ${this.props.collapsed ? "collapsed" : ""}`}>
+            {miniUsers}
+            <div
+              className="channel-details-list-invite"
+              onClick={this.handleInvite}>
+              Invite more people ...
+            </div>
           </div>
         </div>
         

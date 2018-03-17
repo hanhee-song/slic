@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     channel: channel,
     currentUser: state.session.currentUser,
+    details: state.ui.details,
   };
 };
 

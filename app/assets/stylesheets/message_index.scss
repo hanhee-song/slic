@@ -157,13 +157,29 @@
   margin-bottom: 15px;
 }
 
-.message-index-item-profile-image {
-  margin: 5px 15px 5px 30px;
+.message-index-item-left-image {
+  width: 85px;
+  height: 50px;
+  padding: 5px 15px 5px 30px;
+}
+
+.message-index-item-left-timestamp {
+  width: 85px;
+  padding-right: 15px;
+  color: rgba(0, 0, 0, 0);
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 26px;
+  text-align: right;
+}
+
+.message-index-item:hover .message-index-item-left-timestamp {
+  color: #888;
 }
 
 .message-index-item-content {
   line-height: 22px;
-  margin: 5px 0px 5px 0px;
+  margin: 2px 0px 2px 0px;
   display: flex;
   flex-direction: column;
   overflow-wrap: break-word;

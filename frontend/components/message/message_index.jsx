@@ -121,29 +121,14 @@ class MessageIndex extends React.Component {
         this.addDivider(messages, message.id, date);
       }
       
-      // If it's within a few minutes, add it to the current message block
-      // otherwise we make a new block
-      if (thisDate.getTime() < prevDate.getTime() + 120000
-        && message.author.username === prevMessage.author.username) {
-        messageGroup.push(message);
-      } else {
-        if (messageGroup.length > 0) {
-          messages.push(
-            <MessageIndexItemContainer
-              key={messageGroup[0].id}
-              messageGroup={messageGroup}/>
-          );
-          messageGroup = [];
-        }
-        messageGroup.push(message);
-      }
+      const isGroupHead = !(thisDate.getTime() < prevDate.getTime() + 120000)
+        || !(message.author.username === prevMessage.author.username);
       
-    }
-    if (messageGroup.length > 0) {
       messages.push(
         <MessageIndexItemContainer
-          key={messageGroup[messageGroup.length - 1].id}
-          messageGroup={messageGroup}/>
+          key={message.id}
+          message={message}
+          isGroupHead={isGroupHead}/>
       );
     }
     return messages;

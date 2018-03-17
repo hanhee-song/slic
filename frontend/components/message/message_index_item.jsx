@@ -8,38 +8,42 @@ class MessageIndexItem extends React.Component {
   }
   
   date() {
-    const time = new Date(this.props.messageGroup[0].created_at);
+    const time = new Date(this.props.message.created_at);
     return moment(time).format("h:mm a");
   }
   
   render () {
-    const messageGroup = this.props.messageGroup.map((message) => {
-      return (
-        <div className="message-index-item-body"
-          key={message.id}>
-          {message.body}
-        </div>
-      );
-    });
-    
     return (
       <div className="message-index-item">
-        <div className="message-index-item-profile-image profile-image">
-          <img className="profile-image"
-              src={this.props.messageGroup[0].author.avatar_url} />
-        </div>
+        
+        {
+          this.props.isGroupHead ?
+          <div className="message-index-item-left-image">
+            <img className="profile-image"
+              src={this.props.message.author.avatar_url} />
+          </div>
+          :
+          <div className="message-index-item-left-timestamp">
+            {this.date()}
+          </div>
+        }
         
         <div className="message-index-item-content">
-          <div className="message-index-item-header">
-            <div className="message-index-item-name">
-              {this.props.messageGroup[0].author.username}
+          {
+            this.props.isGroupHead &&
+            <div className="message-index-item-header">
+              <div className="message-index-item-name">
+                {this.props.message.author.username}
+              </div>
+              <div className="message-index-item-time">
+                {this.date()}
+              </div>
             </div>
-            <div className="message-index-item-time">
-              {this.date()}
-            </div>
-          </div>
+          }
           
-          {messageGroup}
+          <div className="message-index-item-body">
+            {this.props.message.body}
+          </div>
         </div>
       </div>
     );

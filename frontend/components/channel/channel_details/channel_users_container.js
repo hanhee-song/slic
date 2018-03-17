@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ChannelUsers from './channel_users';
 import { withRouter } from 'react-router-dom';
-import { receiveDetails } from '../../../actions/ui_actions';
+import { receiveDetails, receiveDropdown } from '../../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const channel = state.entities.channels[ownProps.match.params.channelId] || {};
@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    receiveDetails: (details) => dispatch(receiveDetails(details))
+    receiveDetails: (details) => dispatch(receiveDetails(details)),
+    receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown))
   };
 };
 

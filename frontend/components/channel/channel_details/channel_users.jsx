@@ -6,10 +6,24 @@ class ChannelUsers extends React.Component {
   constructor(props) {
     super(props);
     this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.handleInvite = this.handleInvite.bind(this);
   }
   
   
+  handleInvite() {
+    this.props.receiveDropdown("inviteIndex");
+  }
+  
   componentWillReceiveProps(nextProps) {
+    try {
+      if (this.props.channel.users.length !== nextProps.channel.users.length && nextProps.collapsed) {
+        const div = document.querySelector(".channel-details-list-content.users");
+        expand(div);
+      }
+    } catch(e) {
+      // This is just so things don't burn down on the initial load
+    }
+    
     if (this.props.collapsed !== nextProps.collapsed) {
       const div = document.querySelector(".channel-details-list-content.users");
       if (this.props.collapsed) {

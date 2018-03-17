@@ -7,16 +7,12 @@ class ChannelDetails extends React.Component {
     super(props);
 
     this.handleClose = this.handleClose.bind(this);
-    this.handleInvite = this.handleInvite.bind(this);
   }
 
   handleClose() {
     this.props.closeDetails();
   }
 
-  handleInvite() {
-    this.props.receiveDropdown("inviteIndex");
-  }
 
   render () {
     const channel = this.props.channel;

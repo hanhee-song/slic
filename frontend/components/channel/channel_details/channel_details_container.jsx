@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ChannelDetails from './channel_details';
-import { clearDetails, receiveDropdown } from '../../../actions/ui_actions';
+import { closeDetails, receiveDropdown } from '../../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const channel = state.entities.channels[ownProps.match.params.channelId] || {};
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
-    clearDetails: () => dispatch(clearDetails()),
+    closeDetails: () => dispatch(closeDetails()),
   };
 };
 

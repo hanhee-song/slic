@@ -10,7 +10,7 @@ class ChannelDetails extends React.Component {
   }
 
   handleClose() {
-    this.props.clearDetails();
+    this.props.closeDetails();
   }
 
   handleInvite() {

@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     selectedChannelId: parseInt(ownProps.selectedChannelId),
     nextChannelId: findNextChannelId(state.entities.channels),
-    details: state.ui.details,
+    details: state.ui.details.visible ? "/details" : "",
   };
 };
 

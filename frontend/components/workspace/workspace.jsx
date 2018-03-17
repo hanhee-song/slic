@@ -58,13 +58,18 @@ class Workspace extends React.Component {
       this.props.fetchChannel(nextChannelId);
       this.props.rememberCurrentChannelId(this.props.currentUser, nextChannelId);
     }
-    
-    if (this.props.details !== nextProps.details) {
-      this.props.history.push(`/channels/${nextChannelId}${nextProps.details}`);
-    } else if (thisChannelId !== nextChannelId
-      && nextProps.details && nextProps.match.path !== "/channels/:channelId/details") {
-        this.props.history.push(`/channels/${nextChannelId}${nextProps.details}`);
+    debugger;
+    if (this.props.details.visible !== nextProps.details.visible) {
+      debugger;
+      this.props.history.push(`/channels/${nextChannelId}${nextProps.details.visible ? "/details" : ""}`);
     }
+    
+    // if (this.props.details !== nextProps.details) {
+    //   this.props.history.push(`/channels/${nextChannelId}${nextProps.details}`);
+    // } else if (thisChannelId !== nextChannelId
+    //   && nextProps.details && nextProps.match.path !== "/channels/:channelId/details") {
+    //     this.props.history.push(`/channels/${nextChannelId}${nextProps.details}`);
+    // }
   }
   
   render () {

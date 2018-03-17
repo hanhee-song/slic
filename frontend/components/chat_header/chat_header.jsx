@@ -14,7 +14,8 @@ class ChatHeader extends React.Component {
     this.handleInvite = this.handleInvite.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
     this.handleJoin = this.handleJoin.bind(this);
-    this.handleInfo = this.handleInfo.bind(this);
+    this.handleShowUsers = this.handleShowUsers.bind(this);
+    this.handleShowDetails = this.handleShowDetails.bind(this);
   }
   
   openModal(modal) {
@@ -54,12 +55,13 @@ class ChatHeader extends React.Component {
     this.closeModal();
   }
   
-  handleInfo() {
-    if (this.props.details) {
-      this.props.clearDetails();
-    } else {
-      this.props.receiveDetails();
-    }
+  handleShowUsers() {
+    this.props.receiveDetails({ users: true });
+  }
+  
+  handleShowDetails() {
+    this.props.details.visible ?
+      this.props.closeDetails() : this.props.receiveDetails();
   }
   
   modal(field) {
@@ -152,29 +154,24 @@ class ChatHeader extends React.Component {
           <div className="chat-header-left-options">
             <div
               className="chat-header-left-options blue-hover button chat-hoverable"
-              onClick={this.handleInfo}>
+              onClick={this.handleShowUsers}>
               <i className="fa fa-user-o" aria-hidden="true"></i>
               <div>{userCount}</div>
             </div>
             <div className="chat-info-bubble users">
-              {
-                this.props.details ?
-                "Hide Member List"
-                :
-                "View Member List"
-              }
+              View Member List
             </div>
           </div>
         </div>
         
         <div className="chat-header-right">
           <div className="chat-header-right-options info blue-hover button chat-hoverable"
-            onClick={this.handleInfo}>
+            onClick={this.handleShowDetails}>
             <i className="fa fa-info-circle" aria-hidden="true"></i>
           </div>
           <div className="chat-info-bubble details">
             {
-              this.props.details ?
+              this.props.details.visible ?
               "Hide Channel Details"
               :
               "Show Channel Details"

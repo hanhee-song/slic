@@ -7,7 +7,7 @@ import {
 import {
   receiveDropdown,
   receiveDetails,
-  clearDetails,
+  closeDetails,
 } from '../../actions/ui_actions';
 import { findNextChannelId } from '../../util/find_next_channel_id.js';
 
@@ -24,8 +24,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     receiveDropdown: (dropdown) => dispatch(receiveDropdown(dropdown)),
-    receiveDetails: () => dispatch(receiveDetails()),
-    clearDetails: () => dispatch(clearDetails()),
+    receiveDetails: (details) => dispatch(receiveDetails(details)),
+    closeDetails: () => dispatch(closeDetails()),
     subscribeUserIdsToChannel: (channel, ids) => dispatch(subscribeUserIdsToChannel(channel, ids)),
     unsubscribeUserIdsFromChannel: (channel, ids) => dispatch(unsubscribeUserIdsFromChannel(channel, ids)),
   };

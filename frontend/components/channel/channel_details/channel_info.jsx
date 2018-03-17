@@ -1,23 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { collapse, expand } from '../../../util/collapse';
 
 class ChannelInfo extends React.Component {
   constructor(props) {
     super(props);
     this.toggleCollapse = this.toggleCollapse.bind(this);
-  }
-  
-  componentWillReceiveProps(nextProps) {
-    if (this.props.collapsed !== nextProps.collapsed) {
-      const div = document.querySelector(".channel-details-list-content.info");
-      if (this.props.collapsed) {
-        expand(div);
-      } else {
-        collapse(div);
-      }
-    }
   }
   
   toggleCollapse() {

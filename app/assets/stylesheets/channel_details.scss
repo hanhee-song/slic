@@ -92,13 +92,16 @@
 }
 
 .channel-details-list-content {
-  // javascrpt controls this height
   overflow: hidden;
-  transition:height 0.3s ease-out;
-  height:auto;
+  transition: max-height 0.2s linear;
+  max-height: 500px;
+  
+  &.info {
+    max-height: 300px;
+  }
   
   &.collapsed {
-    height: 0;
+    max-height: 0;
   }
 }
 
@@ -143,6 +146,13 @@
 .channel-details-user-mini-item:hover {
   border-color: #d1eeff;
   background-color: #eaf7ff;
+}
+
+.channel-details-list-more-users {
+  padding-top: 5px;
+  padding-left: 10px;
+  color: #888;
+  font-size: 14px;
 }
 
 .channel-details-list-invite {

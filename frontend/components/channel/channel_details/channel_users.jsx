@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { collapse, expand } from '../../../util/collapse';
 
 class ChannelUsers extends React.Component {
   constructor(props) {
@@ -14,33 +13,13 @@ class ChannelUsers extends React.Component {
     this.props.receiveDropdown("inviteIndex");
   }
   
-  componentWillReceiveProps(nextProps) {
-    try {
-      if (this.props.channel.users.length !== nextProps.channel.users.length && nextProps.collapsed) {
-        const div = document.querySelector(".channel-details-list-content.users");
-        expand(div);
-      }
-    } catch(e) {
-      // This is just so things don't burn down on the initial load
-    }
-    
-    if (this.props.collapsed !== nextProps.collapsed) {
-      const div = document.querySelector(".channel-details-list-content.users");
-      if (this.props.collapsed) {
-        expand(div);
-      } else {
-        collapse(div);
-      }
-    }
-  }
-  
   toggleCollapse() {
     this.props.receiveDetails({ users: this.props.collapsed });
   }
   
   render () {
     const channel = this.props.channel;
-    const miniUsers = this.props.users.map((user) => {
+    const miniUsers = this.props.users.slice(0, 10).map((user) => {
       return (
         <div
           className="channel-details-user-mini-item"
@@ -75,6 +54,12 @@ class ChannelUsers extends React.Component {
           </div>
           <div className={`channel-details-list-content users ${this.props.collapsed ? "collapsed" : ""}`}>
             {miniUsers}
+            {
+              this.props.users.length > 10 &&
+              <div className="channel-details-list-more-users">
+                ... and {this.props.users.length - 10} more
+              </div>
+            }
             <div
               className="channel-details-list-invite"
               onClick={this.handleInvite}>

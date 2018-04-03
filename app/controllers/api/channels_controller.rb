@@ -43,8 +43,9 @@ class Api::ChannelsController < ApplicationController
   
   def create
     if channel_params[:is_dm]
+      option_params[:user_ids] = option_params[:user_ids].sort
       Channel.all.where("is_dm").includes(:users).each do |channel|
-        if channel.users.map(&:id).sort == option_params[:user_ids].sort
+        if channel.users.map(&:id).sort == option_params[:user_ids]
           @channel = channel
           subs = @channel.subscriptions.find_by(user_id: current_user)
             subs.update(visible: true) if !subs.visible
